@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-group-11",
+  "description": "مجموعة منبثقة",
+  "registryDependencies": [
+    "@arabicui/badge",
+    "@arabicui/button",
+    "@arabicui/group",
+    "@arabicui/popover"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-group-11.tsx",
+      "content": "import { ChevronDownIcon, GitForkIcon } from \"lucide-react\";\nimport { Badge } from \"@/registry/default/ui/badge\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport { Group, GroupSeparator } from \"@/registry/default/ui/group\";\nimport {\n  Popover,\n  PopoverDescription,\n  PopoverPopup,\n  PopoverTitle,\n  PopoverTrigger,\n} from \"@/registry/default/ui/popover\";\n\nexport default function Particle() {\n  return (\n    <Group aria-label=\"إجراءات المستودع\">\n      <Button variant=\"outline\">\n        <GitForkIcon aria-hidden=\"true\" />\n        شوكة\n        <Badge variant=\"secondary\">48</Badge>\n      </Button>\n      <GroupSeparator />\n      <Popover>\n        <PopoverTrigger\n          render={\n            <Button aria-label=\"إرسال خيارات\" size=\"icon\" variant=\"outline\" />\n          }\n        >\n          <ChevronDownIcon aria-hidden=\"true\" />\n        </PopoverTrigger>\n        <PopoverPopup align=\"end\" className=\"w-64\">\n          <PopoverTitle className=\"text-base\">الشوكات الموجودة</PopoverTitle>\n          <PopoverDescription>\n            ليس لديك أي شوكات من هذا المستودع\n          </PopoverDescription>\n        </PopoverPopup>\n      </Popover>\n    </Group>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "group"
+  ],
+  "type": "registry:block"
+}

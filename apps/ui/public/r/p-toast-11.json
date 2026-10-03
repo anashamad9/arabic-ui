@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-toast-11",
+  "description": "إشعارات الخطأ المكرر",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/toast"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-toast-11.tsx",
+      "content": "\"use client\";\n\nimport { Button } from \"@/registry/default/ui/button\";\nimport { toastManager } from \"@/registry/default/ui/toast\";\n\nconst ERROR_TOAST_ID = \"coss-demo-error-upsert\";\n\nexport default function Particle() {\n  return (\n    <Button\n      onClick={() => {\n        toastManager.add({\n          description:\n            \"نقرات متكررة تحديث هذا الخبز المحمص ؛ الأخطاء تستخدم الرسوم المتحركة هزة.\",\n          id: ERROR_TOAST_ID,\n          title: \"حدث خطأ ما\",\n          type: \"error\",\n        });\n      }}\n      variant=\"outline\"\n    >\n      إشعار خطأ واحد\n    </Button>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "toast",
+    "button",
+    "error"
+  ],
+  "type": "registry:block"
+}

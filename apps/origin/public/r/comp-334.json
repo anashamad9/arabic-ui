@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-334",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/accordion.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-334.tsx",
+      "content": "import {\n  Accordion,\n  AccordionContent,\n  AccordionItem,\n  AccordionTrigger,\n} from \"@/registry/default/ui/accordion\";\n\nconst items = [\n  {\n    content:\n      \"تركّز المكتبة على تجربة المطوّر والأداء، وتوفّر تحققًا من الأنواع ودعمًا لسهولة الوصول وتوثيقًا شاملًا.\",\n    id: \"1\",\n    title: \"ما الذي يميّز COSS UI/Arabic؟\",\n  },\n  {\n    content:\n      \"يمكنك تخصيص التنسيق العام بالمتغيرات، أو تعديل خصائص التنسيق لكل مكوّن. تدعم المكتبة الوحدات المنفصلة والمظهر الداكن.\",\n    id: \"2\",\n    title: \"كيف أخصّص المكونات؟\",\n  },\n  {\n    content:\n      \"نعم، تدعم المكونات تقسيم الكود واستبعاد الأجزاء غير المستخدمة لتقليل حجم التطبيق.\",\n    id: \"3\",\n    title: \"هل المكونات محسّنة للأداء؟\",\n  },\n  {\n    content:\n      \"تراعي المكونات معايير سهولة الوصول، وتدعم التنقل بلوحة المفاتيح وقرّاء الشاشة.\",\n    id: \"4\",\n    title: \"هل تدعم المكونات سهولة الوصول؟\",\n  },\n];\n\nexport default function Component() {\n  return (\n    <div className=\"space-y-4\">\n      <h2 className=\"font-bold text-xl\">W / شيفرون</h2>\n      <Accordion className=\"w-full\" collapsible defaultValue=\"3\" type=\"single\">\n        {items.map((item) => (\n          <AccordionItem className=\"py-2\" key={item.id} value={item.id}>\n            <AccordionTrigger className=\"py-2 text-[15px] leading-6 hover:no-underline\">\n              {item.title}\n            </AccordionTrigger>\n            <AccordionContent className=\"pb-2 text-muted-foreground\">\n              {item.content}\n            </AccordionContent>\n          </AccordionItem>\n        ))}\n      </Accordion>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "colSpan": 2,
+    "tags": [
+      "accordion",
+      "radix"
+    ]
+  }
+}

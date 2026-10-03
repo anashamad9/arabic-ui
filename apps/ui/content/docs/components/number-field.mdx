@@ -1,0 +1,148 @@
+---
+title: "حقل الأرقام"
+description: "عنصر إدخال رقمي مع أزرار زيادة ونقصان ، ومنطقة فرك."
+
+links:
+  doc: https://base-ui.com/react/components/number-field#api-reference
+---
+
+<ComponentPreview name="p-number-field-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/number-field
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource
+  name="number-field"
+  title="components/ui/number-field.tsx"
+/>
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  NumberField,
+  NumberFieldDecrement,
+  NumberFieldGroup,
+  NumberFieldIncrement,
+  NumberFieldInput,
+  NumberFieldScrubArea,
+} from "@/components/ui/number-field"
+```
+
+```tsx
+<NumberField defaultValue={0}>
+  <NumberFieldScrubArea label="الكمية" />
+  <NumberFieldGroup>
+    <NumberFieldDecrement />
+    <NumberFieldInput />
+    <NumberFieldIncrement />
+  </NumberFieldGroup>
+</NumberField>
+```
+
+## مرجع الواجهة البرمجية
+
+### NumberField
+
+المكوّن الأساسي. غلاف منسّق للمكوّن `NumberField.Root` من مكتبة بيس.
+
+| الخاصية   | النوع                        | الافتراضي     | الوصف                                      |
+| ------ | --------------------------- | ----------- | ------------------------------------------------ |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | يتحكم في حجم جميع مكونات الطفل عبر السياق |
+
+### NumberFieldGroup
+
+حاوية للإدخال والأزرار. غلاف مصمم ل `NumberField.Group` من مكتبة بيس.
+
+### NumberFieldInput
+
+عنصر الإدخال لقيمة الرقم. غلاف نمطي ل `NumberField.Input` من مكتبة بيس.
+
+### NumberFieldIncrement
+
+زر لزيادة القيمة. غلاف نمط ل `NumberField.Increment` من واجهة المستخدم الأساسية مع رمز زائد.
+
+### NumberFieldDecrement
+
+زر إلى decrement القيمة. غلاف نمط ل `NumberField.Decrement` من واجهة المستخدم الأساسية مع رمز ناقص.
+
+### NumberFieldScrubArea
+
+منطقة قابلة للسحب لغسل القيمة. غلاف مصمم ل `NumberField.ScrubArea` من مكتبة بيس.
+
+| الخاصية    | النوع     | الافتراضي | الوصف                                      |
+| ------- | -------- | ------- | ------------------------------------------------ |
+| `label` | `string` | -       | نص التسمية المعروض في منطقة فرك           |
+
+## الأمثلة
+
+للتسميات والتحقق مع دعم سهولة الوصول، يُفضّل استخدام `Field` مكون لف حقول الأرقام. انظر المثال ذي الصلة: [حقل رقم](/ui/docs/components/field#حقل-الأرقام).
+
+### حجم صغير
+
+<ComponentPreview name="p-number-field-2" />
+
+### حجم كبير
+
+<ComponentPreview name="p-number-field-3" />
+
+### معطّل
+
+<ComponentPreview name="p-number-field-4" />
+
+### مع التسمية الخارجية
+
+<ComponentPreview name="p-number-field-5" />
+
+### مع فرك
+
+<ComponentPreview name="p-number-field-6" />
+
+### مع المدى
+
+<ComponentPreview name="p-number-field-7" />
+
+### مع القيمة المنسقة
+
+<ComponentPreview name="p-number-field-8" />
+
+### مع خطوة
+
+<ComponentPreview name="p-number-field-9" />
+
+### التكامل مع النماذج
+
+<ComponentPreview name="p-number-field-10" />

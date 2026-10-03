@@ -1,0 +1,154 @@
+---
+title: "useMediaQuery"
+description: "هوك استعلام الوسائط التفاعلية مع بنية تشبه تيلويند."
+---
+
+خطاف رياكت يشترك في استعلام وسائط تنسيق ويعيد ما إذا كان يتطابق. `useSyncExternalStore` لسلامة SSR وتوافق الوضع المتزامن.
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/use-media-query
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="use-media-query" title="hooks/use-media-query.ts" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+### اختزال نقطة الإنكسار
+
+استخدم بناء جملة متغير تيلويند لمطابقة نقاط التوقف. يوفر تايب سكريبت الإكمال التلقائي الكامل.
+
+```tsx
+import { useMediaQuery } from "@/hooks/use-media-query";
+
+// Min-width (breakpoint and above) — like md:
+const isDesktop = useMediaQuery("md");
+
+// Max-width (below breakpoint) — like max-md:
+const isMobile = useMediaQuery("max-md");
+
+// Range (between two breakpoints) — like md:max-lg:
+const isTablet = useMediaQuery("md:max-lg");
+```
+
+### كائن واجهة برمجية
+
+استخدم نموذج الكائن عندما تحتاج إلى اكتشاف المؤشر أو قيم البكسل المخصصة.
+
+```tsx
+// Touch device detection
+const isTouch = useMediaQuery({ pointer: "coarse" });
+
+// Breakpoint + pointer combined
+const isMobileTouch = useMediaQuery({ max: "md", pointer: "coarse" });
+
+// Custom pixel values
+const isNarrow = useMediaQuery({ max: 600 });
+```
+
+### استفسار الوسائط الخام
+
+تمرير أي سلسلة استعلام وسائط تنسيق صالحة كفتحة هروب.
+
+```tsx
+const prefersDark = useMediaQuery("(prefers-color-scheme: dark)");
+const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+```
+
+### تقديم مشروط
+
+حالة الاستخدام الأساسية - قم بتثبيت مكون واحد بدلاً من آخر استنادًا إلى منفذ العرض.
+
+```tsx
+function Layout() {
+  const isDesktop = useMediaQuery("lg");
+
+  return isDesktop ? <DesktopNav /> : <MobileNav />;
+}
+```
+
+## نقاط التوقف
+
+يتضمن الخطاف خريطة نقطة توقف ثابتة يجب أن تتطابق مع تكوين تيلويند الخاص بك. القيم الافتراضية:
+
+| الاسم   | القيمة    |
+|--------|----------|
+| `sm`   | 640بكسل    |
+| `md`   | 800بكسل    |
+| `lg`   | 1024بكسل   |
+| `xl`   | 1280بكسل   |
+| `2xl`  | 1536بكسل   |
+| `3xl`  | 1600بكسل   |
+| `4xl`  | 2000بكسل   |
+
+إذا تجاوزت نقاط التوقف في تيلويند `@theme`تحديث `BREAKPOINTS` ثابت في هوك لمطابقة.
+
+## الواجهة البرمجية
+
+```tsx
+function useMediaQuery(
+  query: BreakpointQuery | MediaQueryInput | string
+): boolean;
+```
+
+### استعلامات السلسلة
+
+| نمط | مثال | تصنيف: مباريات |
+|---------|---------|---------|
+| `"{bp}"` | `"md"` | منطقة العرض ≥ نقطة توقف |
+| `"max-{bp}"` | `"max-md"` | Viewpoint &lt; نقطة التوقف |
+| `"{bp}:max-{bp}"` | `"md:max-lg"` | بين اثنين من نقاط التوقف |
+| `"(...)"` | `"(prefers-color-scheme: dark)"` | الخام تنسيق وسائل الإعلام |
+
+### استعلامات كائنية
+
+| عقارات عقارية | النوع | الوصف |
+|----------|------|-------------|
+| `min` | `Breakpoint \| number` | اسم نقطة انقطاع العرض Min-width أو قيمة بكسل |
+| `max` | `Breakpoint \| number` | اسم نقطة توقف العرض الأقصى أو قيمة بكسل |
+| `pointer` | `"coarse" \| "fine"` | نوع المؤشر (`coarse` للمس، `fine` للفأرة ) |
+
+### قيمة الإرجاع
+
+الإرجاع `boolean` — `true` عندما يتطابق استعلام الوسائط ، `false` خلاف ذلك. إرجاع `false` خلال SSR.
+
+## الأمثلة
+
+قم بتغيير حجم منفذ العرض لعرض تحديث القيم في الوقت الفعلي.
+
+<MediaQueryDemo />
+
+## تصدير الراحة
+
+هوك أيضا تصدير `useIsMobile` للتوافق الخلفي مع شادسي إن's `use-mobile` نمط:
+
+```tsx
+import { useIsMobile } from "@/hooks/use-media-query";
+
+const isMobile = useIsMobile(); // equivalent to useMediaQuery("max-md")
+```

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-alert-dialog-2",
+  "description": "نافذة تنبيه مع تذييل بسيط",
+  "registryDependencies": [
+    "@arabicui/alert-dialog",
+    "@arabicui/button"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-alert-dialog-2.tsx",
+      "content": "import {\n  AlertDialog,\n  AlertDialogClose,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  AlertDialogPopup,\n  AlertDialogTitle,\n  AlertDialogTrigger,\n} from \"@/registry/default/ui/alert-dialog\";\nimport { Button } from \"@/registry/default/ui/button\";\n\nexport default function Particle() {\n  return (\n    <AlertDialog>\n      <AlertDialogTrigger render={<Button variant=\"destructive-outline\" />}>\n        حذف الحساب\n      </AlertDialogTrigger>\n      <AlertDialogPopup>\n        <AlertDialogHeader>\n          <AlertDialogTitle>هل أنت متأكد تماما؟</AlertDialogTitle>\n          <AlertDialogDescription>\n            لا يمكن التراجع عن هذا الإجراء. سيؤدي ذلك إلى حذف حسابك نهائيًا\n            وإزالة بياناتك من خوادمنا.\n          </AlertDialogDescription>\n        </AlertDialogHeader>\n        <AlertDialogFooter variant=\"bare\">\n          <AlertDialogClose render={<Button variant=\"ghost\" />}>\n            إلغاء\n          </AlertDialogClose>\n          <AlertDialogClose render={<Button variant=\"destructive\" />}>\n            حذف الحساب\n          </AlertDialogClose>\n        </AlertDialogFooter>\n      </AlertDialogPopup>\n    </AlertDialog>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "alert dialog",
+    "dialog"
+  ],
+  "type": "registry:block"
+}

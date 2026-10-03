@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-toggle-group-9",
+  "description": "تبديل المجموعة مع تلميحات الأدوات",
+  "registryDependencies": [
+    "@arabicui/toggle-group",
+    "@arabicui/tooltip"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-toggle-group-9.tsx",
+      "content": "import { BoldIcon, ItalicIcon, UnderlineIcon } from \"lucide-react\";\nimport {\n  ToggleGroup,\n  ToggleGroupItem,\n} from \"@/registry/default/ui/toggle-group\";\nimport {\n  Tooltip,\n  TooltipPopup,\n  TooltipProvider,\n  TooltipTrigger,\n} from \"@/registry/default/ui/tooltip\";\n\nexport default function Particle() {\n  return (\n    <TooltipProvider>\n      <ToggleGroup defaultValue={[\"bold\"]} multiple>\n        <Tooltip>\n          <TooltipTrigger\n            render={\n              <ToggleGroupItem aria-label=\"تبديل الخط العريض\" value=\"bold\" />\n            }\n          >\n            <BoldIcon />\n          </TooltipTrigger>\n          <TooltipPopup>عريض</TooltipPopup>\n        </Tooltip>\n        <Tooltip>\n          <TooltipTrigger\n            render={\n              <ToggleGroupItem aria-label=\"تبديل الخط المائل\" value=\"italic\" />\n            }\n          >\n            <ItalicIcon />\n          </TooltipTrigger>\n          <TooltipPopup>مائل</TooltipPopup>\n        </Tooltip>\n        <Tooltip>\n          <TooltipTrigger\n            render={\n              <ToggleGroupItem aria-label=\"تبديل التسطير\" value=\"underline\" />\n            }\n          >\n            <UnderlineIcon />\n          </TooltipTrigger>\n          <TooltipPopup>تسطير</TooltipPopup>\n        </Tooltip>\n      </ToggleGroup>\n    </TooltipProvider>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "toggle",
+    "toggle group"
+  ],
+  "type": "registry:block"
+}

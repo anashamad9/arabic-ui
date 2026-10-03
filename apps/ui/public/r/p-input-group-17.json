@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-input-group-17",
+  "description": "مجموعة الإدخال مع مساحة النص",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/input-group",
+    "@arabicui/menu",
+    "@arabicui/tooltip"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-input-group-17.tsx",
+      "content": "\"use client\";\n\nimport { ArrowUpIcon, PlusIcon } from \"lucide-react\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupText,\n  InputGroupTextarea,\n} from \"@/registry/default/ui/input-group\";\nimport {\n  Menu,\n  MenuItem,\n  MenuPopup,\n  MenuTrigger,\n} from \"@/registry/default/ui/menu\";\nimport {\n  Tooltip,\n  TooltipPopup,\n  TooltipTrigger,\n} from \"@/registry/default/ui/tooltip\";\n\nexport default function Particle() {\n  return (\n    <InputGroup>\n      <InputGroupTextarea placeholder=\"اسأل أو ابحث أو دردش...\" />\n      <InputGroupAddon align=\"block-end\">\n        <Menu>\n          <Tooltip>\n            <TooltipTrigger\n              render={\n                <MenuTrigger\n                  render={\n                    <Button\n                      aria-label=\"إضافة ملفات\"\n                      className=\"rounded-full\"\n                      size=\"icon-sm\"\n                      variant=\"ghost\"\n                    />\n                  }\n                >\n                  <PlusIcon />\n                </MenuTrigger>\n              }\n            />\n            <TooltipPopup>إضافة الملفات والمزيد</TooltipPopup>\n          </Tooltip>\n          <MenuPopup align=\"start\">\n            <MenuItem>إضافة الصور &amp; الملفات</MenuItem>\n            <MenuItem>إنشاء صورة</MenuItem>\n            <MenuItem>التفكير</MenuItem>\n            <MenuItem>البحث العميق</MenuItem>\n          </MenuPopup>\n        </Menu>\n        <InputGroupText className=\"ms-auto\">78 ٪ المستخدمة</InputGroupText>\n        <Tooltip>\n          <TooltipTrigger\n            render={\n              <Button\n                aria-label=\"إرسال\"\n                className=\"rounded-full\"\n                size=\"icon-sm\"\n                variant=\"default\"\n              >\n                <ArrowUpIcon />\n              </Button>\n            }\n          />\n          <TooltipPopup>إرسال</TooltipPopup>\n        </Tooltip>\n      </InputGroupAddon>\n    </InputGroup>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-80"
+  },
+  "categories": [
+    "input group",
+    "textarea"
+  ],
+  "type": "registry:block"
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-471",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/table.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-471.tsx",
+      "content": "import {\n  Table,\n  TableBody,\n  TableCell,\n  TableHead,\n  TableHeader,\n  TableRow,\n} from \"@/registry/default/ui/table\";\n\nconst programmingLanguages = [\n  {\n    developer: \"بريندان أيخ\",\n    extension: \".js\",\n    id: \"1\",\n    latestVersion: \"ES2021\",\n    name: \"جافا سكريبت\",\n    paradigm: \"نموذج متعدد\",\n    popularity: \"عالية\",\n    releaseYear: \"1995\",\n    typing: \"ديناميكي\",\n  },\n  {\n    developer: \"غويدو فان روسوم\",\n    extension: \".py\",\n    id: \"2\",\n    latestVersion: \"3.10\",\n    name: \"بايثون\",\n    paradigm: \"نموذج متعدد\",\n    popularity: \"عالية\",\n    releaseYear: \"1991\",\n    typing: \"ديناميكي\",\n  },\n  {\n    developer: \"جيمس جوسلينج\",\n    extension: \".java\",\n    id: \"3\",\n    latestVersion: \"17\",\n    name: \"جافا\",\n    paradigm: \"كائني المنحى\",\n    popularity: \"عالية\",\n    releaseYear: \"1995\",\n    typing: \"ثابت\",\n  },\n  {\n    developer: \"بيارن ستروستروب\",\n    extension: \".cpp\",\n    id: \"4\",\n    latestVersion: \"C++20\",\n    name: \"+++++++\",\n    paradigm: \"نموذج متعدد\",\n    popularity: \"عالية\",\n    releaseYear: \"1985\",\n    typing: \"ثابت\",\n  },\n  {\n    developer: \"يوكيهيرو ماتسوموتو\",\n    extension: \".rb\",\n    id: \"5\",\n    latestVersion: \"3.0\",\n    name: \"روبية\",\n    paradigm: \"نموذج متعدد\",\n    popularity: \"منخفضة\",\n    releaseYear: \"1995\",\n    typing: \"ديناميكي\",\n  },\n];\n\nexport default function Component() {\n  return (\n    <div>\n      <div className=\"overflow-hidden rounded-md border bg-background\">\n        <Table>\n          <TableHeader>\n            <TableRow className=\"bg-muted/50\">\n              <TableHead className=\"h-9 py-2\">الاسم</TableHead>\n              <TableHead className=\"h-9 py-2\">سنة الإصدار</TableHead>\n              <TableHead className=\"h-9 py-2\">المطوّر</TableHead>\n              <TableHead className=\"h-9 py-2\">الكتابة</TableHead>\n              <TableHead className=\"h-9 py-2\">نموذج</TableHead>\n              <TableHead className=\"h-9 py-2\">تمديد تمديد التمديد</TableHead>\n              <TableHead className=\"h-9 py-2\">أحدث إصدار</TableHead>\n              <TableHead className=\"h-9 py-2\">شعبية</TableHead>\n            </TableRow>\n          </TableHeader>\n          <TableBody>\n            {programmingLanguages.map((language) => (\n              <TableRow key={language.id}>\n                <TableCell className=\"py-2 font-medium\">\n                  {language.name}\n                </TableCell>\n                <TableCell className=\"py-2\">{language.releaseYear}</TableCell>\n                <TableCell className=\"py-2\">{language.developer}</TableCell>\n                <TableCell className=\"py-2\">{language.typing}</TableCell>\n                <TableCell className=\"py-2\">{language.paradigm}</TableCell>\n                <TableCell className=\"py-2\">{language.extension}</TableCell>\n                <TableCell className=\"py-2\">{language.latestVersion}</TableCell>\n                <TableCell className=\"py-2\">{language.popularity}</TableCell>\n              </TableRow>\n            ))}\n          </TableBody>\n        </Table>\n      </div>\n      <p className=\"mt-4 text-center text-muted-foreground text-sm\">\n        طاولة كثيفة\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "colSpan": 3,
+    "tags": [
+      "table"
+    ]
+  }
+}

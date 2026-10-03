@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-toast-5",
+  "description": "إشعارات مكدس على أساس الوعد",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/toast"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-toast-5.tsx",
+      "content": "\"use client\";\n\nimport { Button } from \"@/registry/default/ui/button\";\nimport { toastManager } from \"@/registry/default/ui/toast\";\n\nexport default function Particle() {\n  return (\n    <Button\n      onClick={() => {\n        toastManager.promise(\n          new Promise<string>((resolve, reject) => {\n            const shouldSucceed = Math.random() > 0.3;\n            setTimeout(() => {\n              if (shouldSucceed) {\n                resolve(\"تحميل البيانات بنجاح\");\n              } else {\n                reject(new Error(\"فشل في تحميل البيانات\"));\n              }\n            }, 2000);\n          }),\n          {\n            error: () => ({\n              description: \"يرجى المحاولة مرة أخرى.\",\n              title: \"حدث خطأ ما\",\n            }),\n            loading: {\n              description: \"الوعد هو التحميل.\",\n              title: \"تحميل...\",\n            },\n            success: (data: string) => ({\n              description: `النجاح : ${data}`,\n              title: \"هذا إشعار نجاح!\",\n            }),\n          },\n        );\n      }}\n      variant=\"outline\"\n    >\n      تشغيل الوعد\n    </Button>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "toast"
+  ],
+  "type": "registry:block"
+}

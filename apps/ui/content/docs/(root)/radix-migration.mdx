@@ -1,0 +1,1038 @@
+---
+title: "الهجرة من راديكس"
+slug: radix-migration
+description: "دليل عملي للهجرة من المكتبات المستندة إلى راديكس إلى مكونات COSS UI/Arabic."
+---
+
+هذا الدليل مخصص للمطورين الذين لديهم بالفعل تطبيقات مبنية على المكتبات المستندة إلى راديكس - الأطر التي تلتف ببدائيات راديكس - و **ترغب في اعتماد COSS UI/Arabic**.
+
+**COSS UI/Arabic** بنيت على رأس **[قاعدة واجهة المستخدم](https://base-ui.com/)**، باستخدام تجريد مخصص يبقى عن قصد قريبًا من نموذجه العقلي. واجهة برمجة التطبيقات المكونة التي يتعرض لها COSS UI/Arabic تشبه عمدًا شادسي إن / واجهة المستخدم ، وهذا هو السبب في أن هذا الدليل يسلط الضوء أيضًا على الاختلافات الرئيسية بين شادسي إن / واجهة المستخدم و COSS UI/Arabic.
+
+## نظرة عامة
+
+**COSS UI/Arabic** الاستخدامات **قاعدة واجهة المستخدم** داخليًا ، وليس راديكس. هذا يعني أن أنماط الهندسة المعمارية وواجهة برمجة التطبيقات تختلف حسب التصميم. ومع ذلك ، عملنا على جعل مسار الترحيل واضحًا قدر الإمكان من خلال:
+
+- توفير أدلة تفصيلية للهجرة لكل عنصر على حدة أدناه
+- الحفاظ على أسماء المكونات والهياكل المماثلة حيث يكون من المنطقي
+- تقديم خرائط دعائية واضحة وأمثلة التعليمات البرمجية
+
+**نصيحة:** تم تصميم دليل الترحيل هذا ليكون صديقًا للماجستير. يمكنك توفير هذه الصفحة لمساعدي ترميز الذكاء الاصطناعي (مثل Claude و ChatGPT وما إلى ذلك) للمساعدة في أتمتة تحويل مكونات راديكس إلى COSS UI/Arabic.
+
+## أنماط الهجرة العامة
+
+### ال asChild لتقديم نمط
+
+أحد التغييرات الأكثر شيوعًا في الهجرة هو استبدال واجهة مستخدم راديكس `asChild` دعم مع قاعدة واجهة المستخدم `render` الدعامة (خاصة على عنصر التفعيل / إغلاق / الأجزاء المركبة):
+
+<span data-lib="radix-ui">
+```tsx title="Radix"
+// [!code word:asChild]
+<DropdownMenuTrigger asChild>
+  <Button>تعديل الملف الشخصي</Button>
+</DropdownMenuTrigger>
+```
+</span>
+
+ليس كل مكون يستخدم هذا النمط. تطبيقه حيث يدعم مكون COSS UI/Arabic `render`.
+
+<span data-lib="base-ui">
+```tsx title="coss ui"
+// [!code word:render]
+<MenuTrigger render={<Button />}>تعديل الملف الشخصي</MenuTrigger>
+```
+</span>
+
+### اتفاقيات تسمية المكونات
+
+بعض المكونات لديها أسماء محدثة للوضوح والاتساق:
+
+- `*Content` → `*Popup` أو `*Panel` (على سبيل المثال، `DialogContent` → `DialogPopup`)
+- غالبًا ما يتم الاحتفاظ بالأسماء القديمة للتوافق مع الإصدارات السابقة
+
+## أدلة ترحيل المكونات
+
+### القائمة القابلة للطي
+
+**قائمة تحقق سريعة:**
+- استبدل `type="multiple"` → `multiple={true}` على `Accordion`
+- إزالة `type="single"` من `Accordion`
+- إزالة `collapsible` من `Accordion`
+- دائما استخدام المصفوفات ل `defaultValue`
+- استخدم `AccordionPanel` المضي قدما؛ `AccordionContent` يبقى لدعم المكونات السابقة
+- إذا كنت تستخدم `asChild` على أجزاء، والتبديل إلى `render` الخاصية
+
+**رسم الخرائط الدعامة:**
+
+| مكوّن   | خاصية راديكس                             | قاعدة واجهة المستخدم الدعامة                          |
+| ----------- | ----------------------------------------- | ------------------------------------- |
+| `Accordion` | `type` (enum, `"single"` أو `"multiple"`) | `multiple` (boolean, default: `false`) |
+| `Accordion` | `collapsible`                             | _إزالة_                             |
+
+**مثال للمقارنة:**
+
+<span data-lib="radix-ui">
+```tsx title="shadcn/ui"
+// [!code word:type="multiple"]
+// [!code word:collapsible]
+// [!code word:"item-1":1]
+<Accordion type="multiple" collapsible defaultValue="item-1">
+  <AccordionItem value="item-1">
+    <AccordionTrigger>العنوان</AccordionTrigger>
+    <AccordionContent>المحتوى</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+</span>
+
+<span data-lib="base-ui">
+```tsx title="coss ui"
+// [!code word:multiple={true}]
+// [!code word:\{\["item-1"\]\}]
+<Accordion multiple={true} defaultValue={["item-1"]}>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>العنوان</AccordionTrigger>
+    <AccordionPanel>المحتوى</AccordionPanel>
+  </AccordionItem>
+</Accordion>
+```
+</span>
+
+### التنبيه
+
+**المتغيرات الجديدة:**
+
+لقد أضفنا متغيرات ملونة جديدة لمعنى دلالي أفضل:
+
+| المتغير   | الوصف                       |
+| --------- | --------------------------------- |
+| `info`    | يعرض تنبيه معلومات (أزرق)     |
+| `success` | يعرض تنبيه النجاح (أخضر)  |
+| `warning` | يعرض تنبيه تحذيري (أصفر) |
+| `error`   | عرض تنبيه خطأ (أحمر)     |
+
+تأكد من وجود المتغيرات التالية المستوردة في ملف تنسيق الخاص بك:
+
+- `--destructive-foreground`
+- `--info`
+- `--info-foreground`
+- `--success`
+- `--success-foreground`
+- `--warning`
+- `--warning-foreground`
+
+### نافذة التنبيه
+
+**قائمة تحقق سريعة:**
+- استبدل `asChild` → `render` على `AlertDialogTrigger` وأزرار الإغلاق
+- استبدل `AlertDialogAction` و `AlertDialogCancel` → `AlertDialogClose`
+- يُفضّل `AlertDialogPopup`; `AlertDialogContent` يبقى لدعم المكونات السابقة
+- يؤلف `AlertDialogHeader` → `AlertDialogFooter` داخل مباشرة `AlertDialogPopup` (لا) `AlertDialogPanel`؛ على عكس نافذة حوارية ، لا يقوم مربع حوار تنبيه التسجيل بشحن جزء غلاف الجسم)
+- إذا كنت تستخدم `asChild` على أي أجزاء أخرى ، التبديل إلى `render` الخاصية
+
+**مثال للمقارنة:**
+
+<span data-lib="radix-ui">
+```tsx title="shadcn/ui"
+// [!code word:asChild]
+// [!code word:AlertDialogCancel]
+// [!code word:AlertDialogAction]
+<AlertDialog>
+  <AlertDialogTrigger asChild>
+    <Button variant="outline">عرض تنبيه الحوار</Button>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>هل أنت متأكد تماما؟</AlertDialogTitle>
+      <AlertDialogDescription>
+        ولا يمكن التراجع عن هذا الإجراء.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>إلغاء</AlertDialogCancel>
+      <AlertDialogAction asChild>
+        <Button>متابعة</Button>
+      </AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
+```
+</span>
+
+<span data-lib="base-ui">
+```tsx title="coss ui"
+// [!code word:render]
+// [!code word:AlertDialogClose]
+<AlertDialog>
+  <AlertDialogTrigger render={<Button variant="outline" />}>
+    عرض تنبيه الحوار
+  </AlertDialogTrigger>
+  <AlertDialogPopup>
+    <AlertDialogHeader>
+      <AlertDialogTitle>هل أنت متأكد تماما؟</AlertDialogTitle>
+      <AlertDialogDescription>
+        ولا يمكن التراجع عن هذا الإجراء.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogClose render={<Button variant="ghost" />}>
+        إلغاء
+      </AlertDialogClose>
+      <AlertDialogClose render={<Button variant="destructive" />}>
+        متابعة
+      </AlertDialogClose>
+    </AlertDialogFooter>
+  </AlertDialogPopup>
+</AlertDialog>
+```
+</span>
+
+### الصورة الشخصية
+
+**قائمة تحقق سريعة:**
+- استبدل `asChild` → `render` على `Avatar`
+
+**مثال للمقارنة:**
+
+<span data-lib="radix-ui">
+```tsx title="shadcn/ui"
+// [!code word:asChild]
+<Avatar asChild>
+  <Link href="/profile">
+    <AvatarImage src="avatar.jpg" alt="المستخدم" />
+    <AvatarFallback>الولايات المتحدة الأمريكية</AvatarFallback>
+  </Link>
+</Avatar>
+```
+</span>
+
+<span data-lib="base-ui">
+```tsx title="coss ui"
+// [!code word:render]
+<Avatar render={<Link href="/profile" />}>
+  <AvatarImage src="avatar.jpg" alt="المستخدم" />
+  <AvatarFallback>الولايات المتحدة الأمريكية</AvatarFallback>
+</Avatar>
+```
+</span>
+
+### الشارة
+
+**قائمة تحقق سريعة:**
+- استبدل `asChild` → `render` على `Badge`
+
+**مقارنة الحجم:**
+
+بالمقارنة مع شادسي إن / واجهة المستخدم ، لدينا `Badge` يتضمن المكون متغيرات الحجم للتحكم بشكل أفضل في الكثافة. شارات شادسي إن / واجهة المستخدم لها حجم ثابت ، بينما يقدم مكوننا تحجيمًا مرنًا مع `sm`, `default`، و `lg` الخيارات.
+
+لذلك ، إذا كنت ترغب في الحفاظ على حجم شارة شادسي إن / واجهة المستخدم الأصلي ، فيجب عليك استخدام `lg` الحجم في COSS UI/Arabic.
+
+**المتغيرات الجديدة:**
+
+لقد أضفنا متغيرات ملونة جديدة إلى المتغيرات الموجودة (`default`, `destructive`, `outline`, `secondary`) لتحسين المعنى الدلالي والتواصل البصري:
+
+| المتغير   | الوصف                        |
+| --------- | ---------------------------------- |
+| `info`    | شارة زرقاء للمعلومات         |
+| `success` | شارة خضراء لدول النجاح     |
+| `warning` | شارة صفراء للتحذيرات          |
+| `error`   | شارة حمراء للأخطاء               |
+
+تأكد من وجود المتغيرات التالية المستوردة في ملف تنسيق الخاص بك:
+
+- `--destructive-foreground`
+- `--info`
+- `--info-foreground`
+- `--success`
+- `--success-foreground`
+- `--warning`
+- `--warning-foreground`
+
+**مثال للمقارنة:**
+
+<span data-lib="radix-ui">
+```tsx title="shadcn/ui"
+// [!code word:asChild]
+<Badge asChild>
+  <Link href="/new">جديد</Link>
+</Badge>
+```
+</span>
+
+<span data-lib="base-ui">
+```tsx title="coss ui"
+// [!code word:render]
+<Badge render={<Link href="/new" />}>جديد</Badge>
+```
+</span>
+
+### الزر
+
+**قائمة تحقق سريعة:**
+- استبدل `asChild` → `render` على `Button`
+
+**مقارنة الحجم:**
+
+أحجام زر COSS UI/Arabic أكثر إحكاما مقارنة مع شادسي إن / واجهة المستخدم ، مما يجعلها أكثر ملاءمة للتطبيقات الكثيفة. كما نقدم أحجام جديدة (`xs`, `xl`, `icon-sm`, `icon-lg`) لمزيد من السيطرة الحبيبية:
+
+| حجم الحجم      | الارتفاع (شادسي إن/واجهة المستخدم) | الارتفاع (COSS UI/Arabic) |
+| --------- | ------------------ | ---------------- |
+| `xs`      | -                  | 24بكسل             |
+| `sm`      | 32بكسل               | 28بكسل             |
+| `default` | 36بكسل               | 32بكسل             |
+| `lg`      | 40بكسل               | 36بكسل             |
+| `xl`      | -                  | 40بكسل             |
+| `icon`    | 36بكسل               | 32بكسل             |
+| `icon-sm` | -                  | 28بكسل             |
+| `icon-lg` | -                  | 36بكسل             |
+
+على سبيل المثال، إذا كنت تستخدم `default` حجم في شادسي إن / واجهة المستخدم وتريد الحفاظ على الارتفاع الأصلي ، يجب عليك استخدام `lg` الحجم في COSS UI/Arabic.
+
+**المتغيرات الجديدة:**
+
+لقد أضفنا جديد `destructive-outline` البديل لتحسين أنماط تجربة المستخدم:
+
+- **الإجراءات الأولية**: استخدام `destructive` (الأحمر الصلب) للعمل التدميري الرئيسي
+- **محفزات ثانوية**: استخدام `destructive-outline` (الخطوط العريضة الحمراء) لتجنب الأزرار الحمراء المثيرة للقلق في الواجهة الرئيسية
+
+**مثال للمقارنة:**
+
+<span data-lib="radix-ui">
+```tsx title="shadcn/ui"
+// [!code word:asChild]
+<Button asChild>
+  <Link href="/login">تسجيل الدخول</Link>
+</Button>
+```
+</span>
+
+<span data-lib="base-ui">
+```tsx title="coss ui"
+// [!code word:render]
+<Button render={<Link href="/login" />}>تسجيل الدخول</Button>
+```
+</span>
+
+### البطاقة
+
+**قائمة تحقق سريعة:**
+- استخدم `CardPanel` المضي قدما؛ `CardContent` يبقى لدعم المكونات السابقة
+
+### مربع الاختيار
+
+**قائمة تحقق سريعة:**
+- استبدل `asChild` → `render` على `Checkbox`
+
+
+### المحتوى القابل للطي
+
+**قائمة تحقق سريعة:**
+- استبدل `asChild` → `render` على `CollapsibleTrigger`
+- يُفضّل `CollapsiblePanel`; `CollapsibleContent` يبقى لدعم المكونات السابقة
+
+**مثال للمقارنة:**
+
+<span data-lib="radix-ui">
+```tsx title="shadcn/ui"
+// [!code word:asChild]
+<Collapsible>
+  <CollapsibleTrigger asChild>
+    <Button>زر التبديل</Button>
+  </CollapsibleTrigger>
+  <CollapsibleContent>المحتوى هنا</CollapsibleContent>
+</Collapsible>
+```
+</span>
+
+<span data-lib="base-ui">
+```tsx title="coss ui"
+// [!code word:render]
+// [!code word:CollapsiblePanel]
+<Collapsible>
+  <CollapsibleTrigger render={<Button />}>زر التبديل</CollapsibleTrigger>
+  <CollapsiblePanel>المحتوى هنا</CollapsiblePanel>
+</Collapsible>
+```
+</span>
+
+### قائمة الأوامر
+
+تختلف واجهة برمجة التطبيقات بشكل كبير عن شادسي إن / واجهة المستخدم (قائمة الأوامر). يرجى مراجعة كلا المستندين قبل الهجرة: [قائمة الأوامر Docs](https://cmdk.paco.me/) و [shadcn / ui Command](https://ui.shadcn.com/docs/components/command)، ومستندات الإكمال التلقائي لواجهة المستخدم الأساسية.
+
+**الاختلافات الرئيسية:**
+
+- لا `cmdk` التبعية - بنيت بالكامل مع مكونات الإكمال التلقائي والحوار في واجهة المستخدم الأساسية
+- نهج قائم على البيانات - تمرير `items` صفيف إلى `Command` استخدم وظائف التصيير بدلاً من التأليف يدويًا `CommandItem` children
+- استخدم `CommandCollection` داخل `CommandGroup` عند تقديم البيانات المجمعة مع نمط العناصر
+- استخدم `CommandDialog`, `CommandDialogTrigger`، و `CommandDialogPopup` لوظائف الحوار بدلاً من تأليف مكونات حوار منفصلة
+- `CommandGroup` الاستخدامات `<CommandGroupLabel>` كطفل بدلاً من أ `heading` الخاصية
+
+### النافذة الحوارية
+
+**قائمة تحقق سريعة:**
+- استبدل `asChild` → `render` على `DialogTrigger` وأزرار الإغلاق
+- يُفضّل `DialogPopup`; `DialogContent` يبقى لدعم المكونات السابقة
+- استخدم `DialogPanel` لف المحتوى الرئيسي بين `DialogHeader` و `DialogFooter`
+- إذا كنت تستخدم `asChild` على أي أجزاء أخرى ، التبديل إلى `render` الخاصية
+- اختياري `portalProps` على `DialogPopup` إلى الأمام إلى قاعدة واجهة المستخدم `Dialog.Portal` (على سبيل المثال `keepMounted` أو العرف `container`)
+
+**مثال للمقارنة:**
+
+<span data-lib="radix-ui">
+```tsx title="shadcn/ui"
+// [!code word:asChild]
+<Dialog>
+  <DialogTrigger asChild>
+    <Button variant="outline">عرض الحوار</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>عنوان الحوار</DialogTitle>
+      <DialogDescription>الحوار الوصف</DialogDescription>
+    </DialogHeader>
+    <DialogFooter>
+      <DialogClose asChild>
+        <Button variant="ghost">إلغاء</Button>
+      </DialogClose>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
+```
+</span>
+
+<span data-lib="base-ui">
+```tsx title="coss ui"
+// [!code word:render]
+// [!code word:<DialogPanel>Content</DialogPanel>]
+<Dialog>
+  <DialogTrigger render={<Button variant="outline" />}>
+    عرض الحوار
+  </DialogTrigger>
+  <DialogPopup>
+    <DialogHeader>
+      <DialogTitle>عنوان الحوار</DialogTitle>
+      <DialogDescription>الحوار الوصف</DialogDescription>
+    </DialogHeader>
+    <DialogPanel>المحتوى</DialogPanel>
+    <DialogFooter>
+      <DialogClose render={<Button variant="ghost" />}>إلغاء</DialogClose>
+    </DialogFooter>
+  </DialogPopup>
+</Dialog>
+```
+</span>
+
+### مجموعة (زر مجموعة)
+
+**قائمة تحقق سريعة:**
+- يُفضّل `Group*` أسماء المكونات؛ `ButtonGroup*` البقاء للتوافق
+- `GroupSeparator` هو **مطلوب دائما** بين عناصر التحكم ، بما في ذلك أزرار الخطوط العريضة (على عكس شادسي إن حيث تكون الفواصل اختيارية لأزرار الخطوط العريضة). يضمن ذلك معالجة حالة التركيز المتسقة وإمكانية وصول أفضل
+- إذا كنت تستخدم `asChild` على `ButtonGroupText`، التبديل إلى `render` الدعامة للمكونات المخصصة
+
+### حقل الإدخال
+
+بالمقارنة مع شادسي إن / واجهة المستخدم ، لدينا `Input` يتضمن المكون متغيرات الحجم للتحكم بشكل أفضل في الكثافة. تحتوي مدخلات شادسي إن / واجهة المستخدم على ارتفاع ثابت يبلغ 36 بكسل ، بينما يوفر مكوننا التحجيم المرن مع `sm` (28بكسل) `default` (32بكسل) و `lg` (36بكسل) خيارات.
+
+لذلك ، إذا كنت ترغب في الحفاظ على ارتفاع إدخال شادسي إن / واجهة المستخدم الأصلي (36بكسل) ، فيجب عليك استخدام `lg` الحجم في COSS UI/Arabic.
+
+### مجموعة الإدخال
+
+**قائمة تحقق سريعة:**
+- لا `InputGroupButton` المكون - استخدام العادية `Button` المكون مباشرة داخل `InputGroupAddon` بدلا من ذلك
+- لتعطيل مجموعة الإدخال، تعطيل `InputGroupInput` أو `InputGroupTextarea` مباشرة (وأي زر داخله) - لا حاجة لإضافة `data-disabled` السمة على `InputGroup`.
+
+### رمز التحقق
+
+كوس دوس **لا** استخدام المجتمع [`input-otp`](https://github.com/guilhermerodz/input-otp) حزمة. يتم تنفيذ إدخال رمز تحقق مع [قاعدة واجهة المستخدم رمز تحقق الميدان](https://base-ui.com/react/components/otp-field) (`OTPField`) عن طريق `@arabicui/otp-field` بند التسجيل (`components/ui/otp-field.tsx`).
+
+**قائمة تحقق سريعة:**
+- إزالة `input-otp` التبعية من التطبيق الخاص بك ؛ الاعتماد على `@base-ui/react` من خلال COSS UI/Arabic
+- استبدل `InputOTP` → `OTPField`, `InputOTPSlot` → `OTPFieldInput`, `InputOTPSeparator` → `OTPFieldSeparator`
+- إزالة `InputOTPGroup`استخدام `size` على `OTPField` عندما كنت في حاجة إلى البديل فتحة كبيرة (`size="lg"`)
+- استبدل `maxLength` → `length` على الجذر
+- بالنسبة للقيم الخاضعة للرقابة ، استخدم `onValueChange` (و) `value`) كما هو موثق لواجهة المستخدم الأساسية - وليس الحزمة القديمة `onChange` وحيد
+- تقديم واحد `OTPFieldInput` لكل حرف في **طلب دوم**; لا تمر فتحة `index`
+- التسمية `OTPField` على الجذر (`aria-label` أو مرئية `<label>`(بالإنجليزية: Keep the First `OTPFieldInput` غير مسمى وإضافة فتحة `aria-label`s فقط للمدخلات `2..N`
+
+**مثال للمقارنة:**
+
+<span data-lib="radix-ui">
+```tsx title="shadcn/ui + input-otp"
+<InputOTP maxLength={6} value={value} onChange={setValue}>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+  </InputOTPGroup>
+  <InputOTPSeparator />
+  <InputOTPGroup>
+    <InputOTPSlot index={3} />
+    <InputOTPSlot index={4} />
+    <InputOTPSlot index={5} />
+  </InputOTPGroup>
+</InputOTP>
+```
+</span>
+
+<span data-lib="base-ui">
+```tsx title="coss ui"
+<OTPField aria-label="رمز التحقق" length={6} value={value} onValueChange={setValue}>
+  <OTPFieldInput />
+  <OTPFieldInput aria-label="شخصية 2 من 6" />
+  <OTPFieldInput aria-label="شخصية 3 من 6" />
+  <OTPFieldSeparator />
+  <OTPFieldInput aria-label="شخصية 4 من 6" />
+  <OTPFieldInput aria-label="شخصية 5 من 6" />
+  <OTPFieldInput aria-label="شخصية 6 من 6" />
+</OTPField>
+```
+</span>
+
+### القائمة
+
+**رسم الخرائط الدعامة:**
+
+| مكوّن  | خاصية راديكس | قاعدة واجهة المستخدم الدعامة |
+| ---------- | ------------- | ------------ |
+| `MenuItem` | `onSelect`    | `onClick`    |
+
+**قائمة تحقق سريعة:**
+- استبدل `asChild` → `render` على `MenuTrigger` و `MenuItem`
+- استبدل `onSelect` → `onClick` على عناصر القائمة
+- تحديث مسار الاستيراد من `@/components/ui/dropdown-menu` → `@/components/ui/menu`
+- يُفضّل `Menu*` أسماء المكونات؛ `DropdownMenu*` البقاء للإرث
+- يُفضّل `MenuGroupLabel` بدلا من `DropdownMenuLabel`
+- يُفضّل `MenuPopup` بدلا من `DropdownMenuContent`
+- يُفضّل `MenuSubPopup` بدلا من `DropdownMenuSubContent`
+- إذا كنت تستخدم `asChild` على أي أجزاء أخرى ، التبديل إلى `render` الخاصية
+- اختياري `portalProps` على `MenuPopup` إلى الأمام إلى قاعدة واجهة المستخدم `Menu.Portal` (على سبيل المثال `keepMounted` أو العرف `container`)
+
+**مثال للمقارنة:**
+
+<span data-lib="radix-ui">
+```tsx title="shadcn/ui"
+// [!code word:onSelect]
+<DropdownMenu>
+  <DropdownMenuTrigger>فتح القائمة</DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem
+      onSelect={() => {
+        console.log("لوحة التحكم")
+      }}
+    >
+      لوحة التحكم
+    </DropdownMenuItem>
+    <DropdownMenuItem>الإعدادات</DropdownMenuItem>
+    <DropdownMenuItem>تسجيل الدخول</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+```
+</span>
+
+<span data-lib="base-ui">
+```tsx title="coss ui"
+// [!code word:onClick]
+<Menu>
+  <MenuTrigger>فتح القائمة</MenuTrigger>
+  <MenuPopup>
+    <MenuItem
+      onClick={() => {
+        console.log("لوحة التحكم")
+      }}
+    >
+      لوحة التحكم
+    </MenuItem>
+    <MenuItem>الإعدادات</MenuItem>
+    <MenuItem>تسجيل الدخول</MenuItem>
+  </MenuPopup>
+</Menu>
+```
+</span>
+
+### النافذة المنبثقة
+
+**قائمة تحقق سريعة:**
+- استبدل `asChild` → `render` على `PopoverTrigger` وأزرار الإغلاق
+- يُفضّل `PopoverPopup`; `PopoverContent` يبقى لدعم المكونات السابقة
+- إذا كنت تستخدم `asChild` على أي أجزاء أخرى ، التبديل إلى `render` الخاصية
+- اختياري `portalProps` على `PopoverPopup` إلى الأمام إلى قاعدة واجهة المستخدم `Popover.Portal` (على سبيل المثال `keepMounted` أو العرف `container`)
+
+**ملاحظات إضافية:**
+
+قاعدة واجهة المستخدم يقدم `PopoverTitle` و `PopoverDescription` لهيكلة العناوين والنص المساعد داخل النافذة المنبثقة. واجهة المستخدم الأساسية تقدم أيضًا `PopoverClose` مكون لإضافة أزرار إغلاق إلى النافذة المنبثقة.
+
+**مثال للمقارنة:**
+
+<span data-lib="radix-ui">
+```tsx title="shadcn/ui"
+// [!code word:asChild]
+<Popover>
+  <PopoverTrigger asChild>
+    <Button variant="outline">افتح النافذة المنبثقة</Button>
+  </PopoverTrigger>
+  <PopoverContent>
+    <h2>عنوان النافذة المنبثقة</h2>
+    <p>وصف النافذة المنبثقة</p>
+  </PopoverContent>
+</Popover>
+```
+</span>
+
+<span data-lib="base-ui">
+```tsx title="coss ui"
+// [!code word:PopoverTitle]
+// [!code word:PopoverDescription]
+// [!code word:PopoverClose]
+// [!code word:render:2]
+<Popover>
+  <PopoverTrigger render={<Button variant="outline" />}>
+    افتح النافذة المنبثقة
+  </PopoverTrigger>
+  <PopoverPopup>
+    <PopoverTitle>عنوان النافذة المنبثقة</PopoverTitle>
+    <PopoverDescription>وصف النافذة المنبثقة</PopoverDescription>
+    <PopoverClose render={<Button variant="ghost" />}>إغلاق</PopoverClose>
+  </PopoverPopup>
+</Popover>
+```
+</span>
+
+### بطاقة المعاينة
+
+**قائمة تحقق سريعة:**
+- تحديث مسار الاستيراد من `@/components/ui/hover-card` → `@/components/ui/preview-card`
+- يُفضّل `PreviewCard*` أسماء المكونات؛ `HoverCard*` البقاء للإرث
+- يُفضّل `PreviewCardPopup` بدلا من `HoverCardContent`
+- إذا كنت تستخدم `asChild` على أجزاء، والتبديل إلى `render` الخاصية
+
+**مثال للمقارنة:**
+
+<span data-lib="radix-ui">
+```tsx title="shadcn/ui"
+// [!code word:asChild]
+<HoverCard>
+  <HoverCardTrigger asChild>
+    <Button variant="outline">فتح بطاقة معاينة</Button>
+  </HoverCardTrigger>
+  <HoverCardContent>معاينة محتوى البطاقة</HoverCardContent>
+</HoverCard>
+```
+</span>
+
+<span data-lib="base-ui">
+```tsx title="coss ui"
+// [!code word:render]
+<PreviewCard>
+  <PreviewCardTrigger render={<Button variant="outline" />}>
+    فتح بطاقة معاينة
+  </PreviewCardTrigger>
+  <PreviewCardPopup>معاينة محتوى البطاقة</PreviewCardPopup>
+</PreviewCard>
+```
+</span>
+
+### مؤشر التقدم
+
+**قائمة تحقق سريعة:**
+- يُفضّل `ProgressLabel` و `ProgressValue` للتسمية / القيمة بدلاً من العناصر المضمنة
+- إذا جعلت الأطفال بالداخل `Progress`، يجب أن تشمل `ProgressTrack` و `ProgressIndicator` (وإلا لن يعرض الشريط). بدون أطفال ، يتم تقديم شريط افتراضي لك
+- إذا كنت تستخدم `asChild`، التبديل إلى `render` الخاصية
+
+**ملاحظات إضافية:**
+
+تقدم واجهة المستخدم الأساسية أجزاء منفصلة - `ProgressLabel`, `ProgressValue`, `ProgressTrack`، و `ProgressIndicator` التي تؤلفها في الداخل `Progress` لمزيد من المرونة.
+
+### مجموعة الاختيار الأحادي
+
+**قائمة تحقق سريعة:**
+- استخدم `Radio` المضي قدما؛ `RadioGroupItem` يبقى لدعم المكونات السابقة
+- استبدل `asChild` → `render` على أجزاء إذا استخدمت
+
+### منطقة التمرير
+
+**قائمة تحقق سريعة:**
+- إذا كنت تستخدم `asChild` على أجزاء، والتبديل إلى `render` الخاصية
+
+### الاختيار
+
+**ملاحظة:** تغير واجهة المستخدم الأساسية كيفية توفير الخيارات. بدلاً من استخلاص الخيارات من الأطفال فقط (نمط راديكس) ، يجب عليك تمرير `items` الدعامة (مصفوفة أو سجل) بحيث تكون القيم والتسميات معروفة قبل الترطيب. هذا يتجنب المزالق SSR ويحسن أداء التثبيت. بدلا من ذلك ، توفير وظيفة الطفل ل `SelectValue` لتهيئة التسمية. انظر [قاعدة واجهة المستخدم حدد مستندات](https://base-ui.com/react/components/select).
+
+**رسم الخرائط الدعامة:**
+
+| مكوّن     | خاصية راديكس                                  | COSS UI/Arabic / قاعدة واجهة المستخدم الدعامة                      |
+| ------------- | ---------------------------------------------- | ------------------------------------------- |
+| `Select`      | الخيارات المستنتجة من `SelectItem` children    | `items` الدعامة (موصى به ل SSR / الترطيب) |
+| `SelectValue` | `placeholder`                                  | `placeholder` (مدعوم على `SelectValue`)         |
+| `SelectPopup` | _لا يوجد ما يعادل_                                | `alignItemWithTrigger`                      |
+
+**قائمة تحقق سريعة:**
+- تعيين `items` دعامة على `Select`
+- الحفاظ على العنصر النائب على `SelectValue` عند الحاجة
+- يُفضّل `SelectPopup` بدلا من `SelectContent`
+- إذا كنت تستخدم `asChild` على أجزاء، والتبديل إلى `render` الخاصية
+
+**مقارنة الحجم:**
+
+أحجام COSS UI/Arabic المحددة أكثر إحكاما مقارنة مع شادسي إن / واجهة المستخدم ، مما يجعلها أكثر ملاءمة للتطبيقات الكثيفة:
+
+| حجم الحجم      | الارتفاع (شادسي إن/واجهة المستخدم) | الارتفاع (COSS UI/Arabic) |
+| --------- | ------------------ | ---------------- |
+| `sm`      | 32بكسل               | 28بكسل             |
+| `default` | 36بكسل               | 32بكسل             |
+| `lg`      | -                  | 36بكسل             |
+
+على سبيل المثال، إذا كنت تستخدم `default` حجم في شادسي إن / واجهة المستخدم وتريد الحفاظ على الارتفاع الأصلي ، يجب عليك استخدام `lg` الحجم في COSS UI/Arabic.
+
+**ملاحظات إضافية:**
+
+`alignItemWithTrigger` يتحكم في ما إذا كانت النافذة المنبثقة محاذاة العنصر المحدد مع نص المشغل. في COSS UI/Arabic ، يتوفر هذا الدعامة على `SelectPopup` (الاسم المستعار القديم: `SelectContent`).
+
+`SelectValue` يدعم a `placeholder` الدعامة. إذا كنت بحاجة إلى المقاصة في المنبثقة ، تفضل إضافة `null` عنصر الخيار بدلا من الاعتماد على نائب وحده.
+
+- اختياري `portalProps` على `SelectPopup` إلى الأمام إلى قاعدة واجهة المستخدم `Select.Portal` (على سبيل المثال `keepMounted` أو العرف `container`).
+
+**مثال للمقارنة:**
+
+<span data-lib="radix-ui">
+```tsx title="shadcn/ui"
+// [!code word:placeholder="Select a framework"]
+<Select>
+  <SelectTrigger>
+    <SelectValue placeholder="اختر إطار عمل" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="next">Next.js</SelectItem>
+    <SelectItem value="vite">فايت</SelectItem>
+    <SelectItem value="astro">أسترو</SelectItem>
+  </SelectContent>
+</Select>
+```
+</span>
+
+<span data-lib="base-ui">
+```tsx title="coss ui"
+// [!code word:alignItemWithTrigger={false}]
+// [!code word:items:2]
+const items = [
+  { label: "اختر إطار عمل", value: null },
+  { label: "Next.js", value: "next" },
+  { label: "فايت", value: "vite" },
+  { label: "أسترو", value: "astro" },
+]
+
+<Select
+  items={items}
+>
+  <SelectTrigger>
+    <SelectValue />
+  </SelectTrigger>
+  <SelectPopup alignItemWithTrigger={false}>
+    {items.map((item) => (
+      <SelectItem key={item.value} value={item}>
+        {item.label}
+      </SelectItem>
+    ))}
+  </SelectPopup>
+</Select>
+```
+</span>
+
+### اللوحة الجانبية
+
+**قائمة تحقق سريعة:**
+- استبدل `asChild` → `render` على `SheetTrigger` وأزرار الإغلاق
+- يُفضّل `SheetPopup`; `SheetContent` يبقى لدعم المكونات السابقة
+- استخدم `SheetPanel` لتغليف المحتوى الرئيسي
+- إذا كنت تستخدم `asChild` على أي أجزاء أخرى ، التبديل إلى `render` الخاصية
+
+**مثال للمقارنة:**
+
+<span data-lib="radix-ui">
+```tsx title="shadcn/ui"
+// [!code word:asChild]
+<Sheet>
+  <SheetTrigger asChild>
+    <Button variant="outline">فتح اللوحة الجانبية</Button>
+  </SheetTrigger>
+  <SheetContent>
+    <SheetHeader>
+      <SheetTitle>عنوان الورقة</SheetTitle>
+    </SheetHeader>
+    المحتوى هنا
+    <SheetFooter>
+      <SheetClose asChild>
+        <Button>إغلاق</Button>
+      </SheetClose>
+    </SheetFooter>
+  </SheetContent>
+</Sheet>
+```
+</span>
+
+<span data-lib="base-ui">
+```tsx title="coss ui"
+// [!code word:render]
+// [!code word:<SheetPanel>Content here</SheetPanel>]
+<Sheet>
+  <SheetTrigger render={<Button variant="outline" />}>
+    فتح اللوحة الجانبية
+  </SheetTrigger>
+  <SheetPopup>
+    <SheetHeader>
+      <SheetTitle>عنوان الورقة</SheetTitle>
+    </SheetHeader>
+    <SheetPanel>المحتوى هنا</SheetPanel>
+    <SheetFooter>
+      <SheetClose render={<Button />}>إغلاق</SheetClose>
+    </SheetFooter>
+  </SheetPopup>
+</Sheet>
+```
+</span>
+
+### شريط التمرير
+
+**قائمة تحقق سريعة:**
+- COSS UI/Arabic `Slider` يستخدم نهج القيمة المتعددة لواجهة المستخدم الأساسية
+- دائما تمرير القيم كمصفوفات (على سبيل المثال، `value={[50]}` بدلا من `value={50}`)
+- `onValueChange` يتلقى مجموعة من الأرقام
+- يتم دعم الإبهام المتعدد أصلاً عبر طول الصفيف
+- استبدل `asChild` → `render` على أجزاء إذا استخدمت
+
+### مفتاح التبديل
+
+**قائمة تحقق سريعة:**
+- استبدل `asChild` → `render` على `Switch` إذا تم استخدامها
+
+### التبويبات
+
+**قائمة تحقق سريعة:**
+- استبدل `asChild` → `render` على أجزاء إذا استخدمت
+- استخدم `TabsTab` المضي قدما؛ `TabsTrigger` يبقى لدعم المكونات السابقة
+- يُفضّل `TabsPanel`; `TabsContent` يبقى لدعم المكونات السابقة
+
+**ملاحظات إضافية:**
+
+بالمقارنة مع شادسي إن / واجهة المستخدم ، لدينا `TabsList` إضافة مكون `variant` الدعامة ، والتي تسمح لك بالاختيار بين `default` و `underline` أنماط.
+
+**مثال للمقارنة:**
+
+<span data-lib="radix-ui">
+```tsx title="shadcn/ui"
+// [!code word:TabsContent]
+<Tabs defaultValue="tab-1">
+  <TabsList>
+    <TabsTab value="tab-1">التبويب الأول</TabsTab>
+    <TabsTab value="tab-2">التبويب الثاني</TabsTab>
+    <TabsTab value="tab-3">التبويب الثالث</TabsTab>
+  </TabsList>
+  <TabsContent value="tab-1">محتوى التبويب الأول</TabsContent>
+  <TabsContent value="tab-2">محتوى التبويب الثاني</TabsContent>
+  <TabsContent value="tab-3">محتوى التبويب الثالث</TabsContent>
+</Tabs>
+```
+</span>
+
+<span data-lib="base-ui">
+```tsx title="coss ui"
+// [!code word:TabsPanel]
+<Tabs defaultValue="tab-1">
+  <TabsList>
+    <TabsTab value="tab-1">التبويب الأول</TabsTab>
+    <TabsTab value="tab-2">التبويب الثاني</TabsTab>
+    <TabsTab value="tab-3">التبويب الثالث</TabsTab>
+  </TabsList>
+  <TabsPanel value="tab-1">محتوى التبويب الأول</TabsPanel>
+  <TabsPanel value="tab-2">محتوى التبويب الثاني</TabsPanel>
+  <TabsPanel value="tab-3">محتوى التبويب الثالث</TabsPanel>
+</Tabs>
+```
+</span>
+
+### مساحة النص
+
+بالمقارنة مع شادسي إن / واجهة المستخدم ، لدينا `Textarea` يتضمن المكون المتغيرات الحجم (`sm`, `default`, `lg`) لتحسين التحكم في الكثافة. للاتساق البصري ، إذا كنت تستخدم `size="lg"` على عناصر النموذج الأخرى مثل المدخلات، يجب إضافة نفس الحجم إلى textareas كذلك.
+
+### الإشعار العابر
+
+تختلف واجهة برمجة التطبيقات بشكل كبير عن شادسي إن / واجهة المستخدم (سونر). يرجى مراجعة كلا المستندين قبل الهجرة: [سونر Docs](https://sonner.emilkowal.ski/) و [shadcn / ui sonner](https://ui.shadcn.com/docs/components/sonner)، ولدينا قاعدة واجهة المستخدم توست مستندات.
+
+**قائمة تحقق سريعة:**
+- استبدل `<Toaster />` عنصر في تخطيط → `<ToastProvider>` غلاف
+- إشعار واجهة برمجية المكالمات تختلف اختلافا كبيرا - انظر المقارنة أدناه
+- إجراءات إشعار استخدام أنماط مختلفة
+- اختياري `portalProps` على `ToastProvider` / `AnchoredToastProvider` إلى الأمام إلى قاعدة واجهة المستخدم `Toast.Portal` (على سبيل المثال العرف `container`)
+
+**أمثلة المقارنة:**
+
+**shadcn/ui (سونر)**
+
+```tsx title="app/layout.tsx"
+import { Toaster } from "@/components/ui/sonner"
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="ar" dir="rtl">
+      <head />
+      <body>
+        <main>{children}</main>
+        <Toaster />
+      </body>
+    </html>
+  )
+}
+```
+
+```tsx
+toast("تم إنشاء الحدث", {
+  description: "الأحد, ديسمبر 03, 2023 الساعة ٩:٠٠ صباحًا",
+  cancel: {
+    label: "تراجع",
+  },
+})
+```
+
+**COSS UI/Arabic (بيس)**
+
+```tsx title="app/layout.tsx"
+import { ToastProvider } from "@/components/ui/toast"
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="ar" dir="rtl">
+      <head />
+      <body>
+        <ToastProvider>
+          <main>{children}</main>
+        </ToastProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+```tsx
+onClick={() => {
+  const id = toastManager.add({
+    title: "تم إنشاء الحدث",
+    description: "الأحد, ديسمبر 03, 2023 الساعة ٩:٠٠ صباحًا",
+    type: "success",
+    actionProps: {
+      children: "تراجع",
+      onClick: () => toastManager.close(id),
+    },
+  })
+}}
+```
+
+### زر التبديل
+
+**قائمة تحقق سريعة:**
+- استبدل `asChild` → `render` على `Toggle` إذا تم استخدامها
+
+### مجموعة أزرار التبديل
+
+**رسم الخرائط الدعامة:**
+
+| مكوّن     | خاصية راديكس                             | قاعدة واجهة المستخدم الدعامة                           |
+| ------------- | ----------------------------------------- | -------------------------------------- |
+| `ToggleGroup` | `type` (enum, `"single"` أو `"multiple"`) | `multiple` (boolean, default: `false`) |
+
+**قائمة تحقق سريعة:**
+- استبدل `type="multiple"` → `multiple` على `ToggleGroup`
+- إزالة `type="single"` من `ToggleGroup`
+- دائما استخدام المصفوفات ل `defaultValue`
+- استخدم `ToggleGroupItem` لكل خيار داخل `ToggleGroup`. المستقل `Toggle` من `toggle.tsx` هو فقط للتبديلات خارج مجموعة (انظر [زر التبديل](#زر-التبديل) أعلاه).
+- استبدل `asChild` → `render` على أجزاء إذا استخدمت
+
+**مقارنة الحجم:**
+
+أحجام مجموعة COSS UI/Arabic تبديل أكثر إحكاما مقارنة مع شادسي إن / واجهة المستخدم ، مما يجعلها أكثر ملاءمة للتطبيقات الكثيفة:
+
+| حجم الحجم      | الارتفاع (شادسي إن/واجهة المستخدم) | الارتفاع (COSS UI/Arabic) |
+| --------- | ------------------ | ---------------- |
+| `sm`      | 32بكسل               | 28بكسل             |
+| `default` | 36بكسل               | 32بكسل             |
+| `lg`      | -                  | 36بكسل             |
+
+على سبيل المثال، إذا كنت تستخدم `default` حجم في شادسي إن / واجهة المستخدم وتريد الحفاظ على الارتفاع الأصلي ، يجب عليك استخدام `lg` الحجم في COSS UI/Arabic.
+
+**مثال للمقارنة:**
+
+<span data-lib="radix-ui">
+```tsx title="shadcn/ui"
+// [!code word:type="multiple"]
+<ToggleGroup type="multiple" defaultValue={["bold"]}>
+  <ToggleGroupItem value="bold">أ ب</ToggleGroupItem>
+  <ToggleGroupItem value="italic">أ</ToggleGroupItem>
+  <ToggleGroupItem value="underline">الولايات المتحدة الأمريكية</ToggleGroupItem>
+</ToggleGroup>
+```
+</span>
+
+<span data-lib="base-ui">
+```tsx title="coss ui"
+// [!code word:multiple]
+<ToggleGroup multiple defaultValue={["bold"]}>
+  <ToggleGroupItem value="bold">أ ب</ToggleGroupItem>
+  <ToggleGroupItem value="italic">أ</ToggleGroupItem>
+  <ToggleGroupItem value="underline">الولايات المتحدة الأمريكية</ToggleGroupItem>
+</ToggleGroup>
+```
+</span>
+
+### التلميح
+
+**قائمة تحقق سريعة:**
+- استبدل `asChild` → `render` على `TooltipTrigger`
+- يُفضّل `TooltipPopup`; `TooltipContent` يبقى لدعم المكونات السابقة
+
+**مثال للمقارنة:**
+
+<span data-lib="radix-ui">
+```tsx title="shadcn/ui"
+// [!code word:asChild]
+<Tooltip>
+  <TooltipTrigger asChild>
+    <Button variant="outline">تحوم حولي</Button>
+  </TooltipTrigger>
+  <TooltipContent>محتوى تلميح الأدوات</TooltipContent>
+</Tooltip>
+```
+</span>
+
+<span data-lib="base-ui">
+```tsx title="coss ui"
+// [!code word:render]
+<Tooltip>
+  <TooltipTrigger render={<Button variant="outline" />}>
+    تحوم حولي
+  </TooltipTrigger>
+  <TooltipPopup>محتوى تلميح الأدوات</TooltipPopup>
+</Tooltip>
+```
+</span>
+
+## التحقق بعد الهجرة
+
+بعد تحويل المكونات ، قم بتشغيل تمريرة تحقق سريعة:
+
+- Typecheck وlint لعدم تطابق الدعامة / الاسم (`*Content` v `*Popup` / `*Panel`, `onSelect` v `onClick`).
+- تراكب اختبار لوحة المفاتيح (فتح / إغلاق ، فخ التركيز ، التعامل مع الهروب).
+- تأكيد أسماء يمكن الوصول إليها (`aria-label` لعناصر التحكم رمز فقط، والجمعيات التسمية المناسبة في أشكال).
+- من أجل `Select`/`Command`، التحقق من سلوك SSR / الترطيب وتقديم الملصق المحدد.
+- بالنسبة لحقول رمز تحقق ، تأكد من عدد `OTPFieldInput` تصنيف: مباريات سلوتس `length` وهذا التركيز يتحرك بشكل صحيح بين المدخلات.
+- قارن الكثافة البصرية واضبط متغيرات الحجم عند الحاجة إلى التكافؤ مع واجهة المستخدم السابقة.
+
+## موارد إضافية
+
+- [قاعدة واجهة المستخدم الوثائق](https://base-ui.com/) - مستندات واجهة المستخدم Base الرسمية
+- [الوثائق المكونة](/ui/docs/components) - مستندات مكونة فردية مع أمثلة
+- [دليل التصميم](/ui/docs/styling) - تعرف على نظام الألوان لدينا والموضوع
+
+## هل تحتاج إلى مساعدة؟
+
+إذا واجهت مشاكل أثناء الترحيل أو لديك أسئلة حول مكونات محددة ، فيرجى:
+
+- تحقق من صفحات توثيق المكونات الفردية
+- مراجعة وثائق واجهة المستخدم الأساسية لفهم أعمق
+- افتح مشكلة في مستودع غيت هب الخاص بنا

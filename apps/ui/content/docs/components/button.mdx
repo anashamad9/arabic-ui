@@ -1,0 +1,185 @@
+---
+title: "الزر"
+description: "زر تفاعلي أو عنصر بتنسيق زر."
+---
+
+<ComponentPreview name="p-button-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/button
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>استيراد المتغيرات التالية إلى ملف تنسيق الخاص بك</Step>
+
+```css
+@theme inline {
+  --color-destructive-foreground: var(--destructive-foreground);
+}
+
+:root {
+  --destructive-foreground: var(--color-red-700);
+}
+
+.dark {
+  --destructive-foreground: var(--color-red-400);
+}
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="button" title="components/ui/button.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { Button } from "@/components/ui/button"
+```
+
+```tsx
+<Button>الزر</Button>
+```
+
+## الرابط
+
+يمكنك استخدام [`render`](https://base-ui.com/react/utils/use-render#migrating-from-radix-ui) الخاصية لجعل مكون آخر يبدو وكأنه زر. إليك مثال على رابط يشبه الزر.
+
+```tsx
+import Link from "next/link"
+
+import { Button } from "@/components/ui/button"
+
+export function LinkAsButton() {
+  return <Button render={<Link href="/login" />}>تسجيل الدخول</Button>
+}
+```
+
+## مرجع الواجهة البرمجية
+
+مكوّن مخصّص يستخدم من مكتبة بيس `useRender` بدلًا من تغليف مكوّن جاهز مباشرة.
+
+### الزر
+
+مكوّن زر يدعم الأنماط والأحجام وحالة التحميل.
+
+| الخاصية      | النوع                                                                                                              | الافتراضي     | الوصف                                                                 |
+| --------- | ----------------------------------------------------------------------------------------------------------------- | ----------- | --------------------------------------------------------------------------- |
+| `variant` | `"default" \| "destructive" \| "destructive-outline" \| "ghost" \| "link" \| "outline" \| "secondary"`         | `"default"` | يحدّد نمط الزر.                                                 |
+| `size`    | `"default" \| "icon" \| "icon-lg" \| "icon-sm" \| "icon-xl" \| "icon-xs" \| "lg" \| "sm" \| "xl" \| "xs"`     | `"default"` | يحدّد حجم الزر.                                                    |
+| `loading` | `boolean`                                                                                                         | `false`     | يعرض مؤشر التحميل ويعطّل الزر أثناء التحميل.           |
+| `render`  | `React.ReactElement`                                                                                              | -           | يعرض عنصرًا مختلفًا، مثل الرابط.                                  |
+
+عندما `loading` هو `true`المكون:
+
+- يعرض مؤشر تحميل (`data-slot="button-loading-indicator"`)
+- يضيف `data-loading` إلى عنصر الزر الأساسي.
+- يفرض الخاصية الأصلية `disabled` الخاصية
+- يضبط `aria-disabled="true"`
+- يحافظ على عرض الزر بإخفاء محتواه بصريًا بدلًا من إزالته.
+
+## الأمثلة
+
+### الافتراضي
+
+<ComponentPreview name="p-button-1" />
+
+### بإطار
+
+<ComponentPreview name="p-button-2" />
+
+### ثانوي
+
+<ComponentPreview name="p-button-3" />
+
+### حذف وتحذير
+
+<ComponentPreview name="p-button-4" />
+
+### تحذير بإطار
+
+<ComponentPreview name="p-button-5" />
+
+### شفاف
+
+<ComponentPreview name="p-button-6" />
+
+### الرابط
+
+<ComponentPreview name="p-button-7" />
+
+### حجم صغير جدًا
+
+<ComponentPreview name="p-button-8" />
+
+### حجم صغير
+
+<ComponentPreview name="p-button-9" />
+
+### حجم كبير
+
+<ComponentPreview name="p-button-10" />
+
+### حجم كبير جدًا
+
+<ComponentPreview name="p-button-11" />
+
+### معطّل
+
+<ComponentPreview name="p-button-12" />
+
+### أيقونة
+
+<ComponentPreview name="p-button-13" />
+
+### أيقونة صغيرة
+
+<ComponentPreview name="p-button-14" />
+
+### أيقونة كبيرة
+
+<ComponentPreview name="p-button-15" />
+
+### مع أيقونة
+
+<ComponentPreview name="p-button-16" />
+
+### مع رابط
+
+<ComponentPreview name="p-button-17" />
+
+### تحميل باستخدام الخاصية المدمجة
+
+<ComponentPreview name="p-button-41" />
+
+### تحميل بتركيب مخصّص
+
+<ComponentPreview name="p-button-18" />

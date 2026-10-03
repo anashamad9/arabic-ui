@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-input-9",
+  "description": "إدخال كلمة المرور مع تبديل الرؤية",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/input-group",
+    "@arabicui/tooltip"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-input-9.tsx",
+      "content": "\"use client\";\n\nimport { EyeIcon, EyeOffIcon } from \"lucide-react\";\nimport { useState } from \"react\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n} from \"@/registry/default/ui/input-group\";\nimport {\n  Tooltip,\n  TooltipPopup,\n  TooltipTrigger,\n} from \"@/registry/default/ui/tooltip\";\n\nexport default function Particle() {\n  const [showPassword, setShowPassword] = useState(false);\n\n  return (\n    <InputGroup>\n      <InputGroupInput\n        aria-label=\"كلمة المرور مع رؤية التبديل\"\n        placeholder=\"أدخل كلمة المرور\"\n        type={showPassword ? \"text\" : \"password\"}\n      />\n      <InputGroupAddon align=\"inline-end\">\n        <Tooltip>\n          <TooltipTrigger\n            render={\n              <Button\n                aria-label={\n                  showPassword ? \"إخفاء كلمة المرور\" : \"إظهار كلمة المرور\"\n                }\n                onClick={() => setShowPassword(!showPassword)}\n                size=\"icon-xs\"\n                variant=\"ghost\"\n              />\n            }\n          >\n            {showPassword ? <EyeOffIcon /> : <EyeIcon />}\n          </TooltipTrigger>\n          <TooltipPopup>\n            {showPassword ? \"إخفاء كلمة المرور\" : \"إظهار كلمة المرور\"}\n          </TooltipPopup>\n        </Tooltip>\n      </InputGroupAddon>\n    </InputGroup>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-64"
+  },
+  "categories": [
+    "button",
+    "input",
+    "input group",
+    "tooltip"
+  ],
+  "type": "registry:block"
+}

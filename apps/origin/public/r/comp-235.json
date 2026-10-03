@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-235",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/label.json",
+    "https://coss.com/origin/r/multiselect.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-235.tsx",
+      "content": "import { Label } from \"@/registry/default/ui/label\";\nimport MultipleSelector, {\n  type Option,\n} from \"@/registry/default/ui/multiselect\";\n\nconst frameworks: Option[] = [\n  {\n    label: \"Next.js\",\n    value: \"next.js\",\n  },\n  {\n    label: \"سفلت\",\n    value: \"sveltekit\",\n  },\n  {\n    label: \"Nuxt.js\",\n    value: \"nuxt.js\",\n  },\n  {\n    label: \"ريميكس\",\n    value: \"remix\",\n  },\n  {\n    label: \"أسترو\",\n    value: \"astro\",\n  },\n  {\n    label: \"أنغولار\",\n    value: \"angular\",\n  },\n  {\n    label: \"Vue.js\",\n    value: \"vue\",\n  },\n  {\n    label: \"رياكت\",\n    value: \"react\",\n  },\n  {\n    label: \"Ember.js\",\n    value: \"ember\",\n  },\n  {\n    label: \"غاتسبي\",\n    value: \"gatsby\",\n  },\n  {\n    label: \"الحادي عشر\",\n    value: \"eleventy\",\n  },\n  {\n    label: \"سوليد\",\n    value: \"solid\",\n  },\n  {\n    label: \"بريكت\",\n    value: \"preact\",\n  },\n  {\n    label: \"كويك\",\n    value: \"qwik\",\n  },\n  {\n    label: \"Alpine.js\",\n    value: \"alpine\",\n  },\n  {\n    label: \"ليت\",\n    value: \"lit\",\n  },\n];\n\nexport default function Component() {\n  return (\n    <div className=\"*:not-first:mt-2\">\n      <Label>اختيار متعدد مع نائب وواضح</Label>\n      <MultipleSelector\n        commandProps={{\n          label: \"حدد أطر العمل\",\n        }}\n        defaultOptions={frameworks}\n        emptyIndicator={<p className=\"text-center text-sm\">لم يتم العثور على نتائج</p>}\n        placeholder=\"حدد أطر العمل\"\n      />\n      <p\n        aria-live=\"polite\"\n        className=\"mt-2 text-muted-foreground text-xs\"\n        role=\"region\"\n      >\n        مستوحاة من{\" \"}\n        <a\n          className=\"underline hover:text-foreground\"\n          href=\"https://shadcnui-expansions.typeart.cc/docs/multiple-selector\"\n          rel=\"noreferrer noopener nofollow\"\n          target=\"_blank\"\n        >\n          shadcn/ui expansions\n        </a>\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "tags": [
+      "label",
+      "select",
+      "multiselect",
+      "tag",
+      "input",
+      "search",
+      "autocomplete",
+      "radix"
+    ]
+  }
+}

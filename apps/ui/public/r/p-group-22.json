@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-group-22",
+  "description": "مجموعة مع اثنين من المدخلات رقم للنطاق",
+  "registryDependencies": [
+    "@arabicui/group",
+    "@arabicui/label",
+    "@arabicui/number-field"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-group-22.tsx",
+      "content": "import { Group, GroupSeparator } from \"@/registry/default/ui/group\";\nimport { Label } from \"@/registry/default/ui/label\";\nimport {\n  NumberField,\n  NumberFieldGroup,\n  NumberFieldInput,\n} from \"@/registry/default/ui/number-field\";\n\nexport default function Particle() {\n  return (\n    <div className=\"flex flex-col gap-2\">\n      <Label>المدى</Label>\n      <Group aria-label=\"نطاق المدخلات\">\n        <NumberField\n          aria-label=\"قيمة الحد الأدنى\"\n          render={<NumberFieldGroup />}\n        >\n          <NumberFieldInput className=\"text-start\" placeholder=\"من\" />\n        </NumberField>\n        <GroupSeparator />\n        <NumberField aria-label=\"أقصى قيمة\" render={<NumberFieldGroup />}>\n          <NumberFieldInput className=\"text-start\" placeholder=\"إلى\" />\n        </NumberField>\n      </Group>\n    </div>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "group",
+    "label",
+    "number field"
+  ],
+  "type": "registry:block"
+}

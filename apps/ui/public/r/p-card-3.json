@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-card-3",
+  "description": "بطاقة مصادقة مع فواصل",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/card",
+    "@arabicui/field",
+    "@arabicui/form",
+    "@arabicui/input"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-card-3.tsx",
+      "content": "import { ShieldAlertIcon } from \"lucide-react\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport {\n  Card,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardPanel,\n  CardTitle,\n} from \"@/registry/default/ui/card\";\nimport { Field, FieldLabel } from \"@/registry/default/ui/field\";\nimport { Form } from \"@/registry/default/ui/form\";\nimport { Input } from \"@/registry/default/ui/input\";\n\nexport default function Particle() {\n  return (\n    <Card className=\"w-full max-w-xs\">\n      <CardHeader className=\"border-b\">\n        <CardTitle>تسجيل الدخول إلى حسابك</CardTitle>\n        <CardDescription>\n          أدخل البريد الإلكتروني وكلمة المرور لتسجيل الدخول\n        </CardDescription>\n      </CardHeader>\n      <CardPanel>\n        <Form className=\"flex w-full flex-col gap-4\">\n          <Field>\n            <FieldLabel>البريد الإلكتروني</FieldLabel>\n            <Input placeholder=\"أدخل بريدك الإلكتروني\" type=\"email\" />\n          </Field>\n          <Field>\n            <FieldLabel>كلمة المرور</FieldLabel>\n            <Input placeholder=\"أدخل كلمة المرور\" type=\"password\" />\n          </Field>\n          <Button className=\"w-full\" type=\"submit\">\n            تسجيل الدخول\n          </Button>\n        </Form>\n      </CardPanel>\n      <CardFooter className=\"border-t\">\n        <div className=\"flex gap-1 text-muted-foreground text-xs\">\n          <ShieldAlertIcon className=\"size-3 h-lh shrink-0\" />\n          <p>يتم تشفير المعلومات التي تدخلها وتخزينها بشكل آمن.</p>\n        </div>\n      </CardFooter>\n    </Card>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:flex **:data-[slot=preview]:justify-center"
+  },
+  "categories": [
+    "card",
+    "form"
+  ],
+  "type": "registry:block"
+}

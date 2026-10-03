@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-540",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/timeline.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-540.tsx",
+      "content": "import {\n  Timeline,\n  TimelineContent,\n  TimelineDate,\n  TimelineHeader,\n  TimelineIndicator,\n  TimelineItem,\n  TimelineSeparator,\n  TimelineTitle,\n} from \"@/registry/default/ui/timeline\";\n\nconst items = [\n  {\n    date: \"15 مارس 2024\",\n    description: \"اجتماع الفريق الأولي.\",\n    id: 1,\n    title: \"انطلاقة المشروع\",\n  },\n  {\n    date: \"مارس 22, 2024\",\n    description: \"الإطارات السلكية المكتملة.\",\n    id: 2,\n    title: \"مرحلة التصميم\",\n  },\n  {\n    date: \"أبريل 5, 2024\",\n    description: \"تطوير الخلفية.\",\n    id: 3,\n    title: \"تطوير سبرينت\",\n  },\n  {\n    date: \"أبريل 19, 2024\",\n    description: \"تحسين الأداء.\",\n    id: 4,\n    title: \"الاختبار والنشر\",\n  },\n];\n\nexport default function Component() {\n  return (\n    <Timeline defaultValue={3} orientation=\"horizontal\">\n      {items.map((item) => (\n        <TimelineItem key={item.id} step={item.id}>\n          <TimelineHeader>\n            <TimelineSeparator />\n            <TimelineDate>{item.date}</TimelineDate>\n            <TimelineTitle>{item.title}</TimelineTitle>\n            <TimelineIndicator />\n          </TimelineHeader>\n          <TimelineContent>{item.description}</TimelineContent>\n        </TimelineItem>\n      ))}\n    </Timeline>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "colSpan": 3,
+    "tags": [
+      "timeline"
+    ]
+  }
+}

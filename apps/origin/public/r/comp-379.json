@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-379",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/button.json",
+    "https://coss.com/origin/r/dropdown-menu.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-379.tsx",
+      "content": "import {\n  Heading1Icon,\n  Heading2Icon,\n  MinusIcon,\n  PlusIcon,\n  TextQuoteIcon,\n  TypeIcon,\n} from \"lucide-react\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuLabel,\n  DropdownMenuTrigger,\n} from \"@/registry/default/ui/dropdown-menu\";\n\nexport default function Component() {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger asChild>\n        <Button\n          aria-label=\"افتح قائمة تحرير\"\n          className=\"rounded-full shadow-none\"\n          size=\"icon\"\n          variant=\"ghost\"\n        >\n          <PlusIcon aria-hidden=\"true\" size={16} />\n        </Button>\n      </DropdownMenuTrigger>\n      <DropdownMenuContent className=\"pb-2\">\n        <DropdownMenuLabel>إضافة كتلة</DropdownMenuLabel>\n        <DropdownMenuItem>\n          <div\n            aria-hidden=\"true\"\n            className=\"flex size-8 items-center justify-center rounded-md border bg-background\"\n          >\n            <TypeIcon className=\"opacity-60\" size={16} />\n          </div>\n          <div>\n            <div className=\"font-medium text-sm\">النص</div>\n            <div className=\"text-muted-foreground text-xs\">\n              ابدأ الكتابة بنص عادي\n            </div>\n          </div>\n        </DropdownMenuItem>\n        <DropdownMenuItem>\n          <div\n            aria-hidden=\"true\"\n            className=\"flex size-8 items-center justify-center rounded-md border bg-background\"\n          >\n            <TextQuoteIcon className=\"opacity-60\" size={16} />\n          </div>\n          <div>\n            <div className=\"font-medium text-sm\">اقتباس</div>\n            <div className=\"text-muted-foreground text-xs\">التقاط اقتباس</div>\n          </div>\n        </DropdownMenuItem>\n        <DropdownMenuItem>\n          <div\n            aria-hidden=\"true\"\n            className=\"flex size-8 items-center justify-center rounded-md border bg-background\"\n          >\n            <MinusIcon className=\"opacity-60\" size={16} />\n          </div>\n          <div>\n            <div className=\"font-medium text-sm\">مقسم</div>\n            <div className=\"text-muted-foreground text-xs\">\n              تقسيم بصريا كتل\n            </div>\n          </div>\n        </DropdownMenuItem>\n        <DropdownMenuItem>\n          <div\n            aria-hidden=\"true\"\n            className=\"flex size-8 items-center justify-center rounded-md border bg-background\"\n          >\n            <Heading1Icon className=\"opacity-60\" size={16} />\n          </div>\n          <div>\n            <div className=\"font-medium text-sm\">العنوان 1</div>\n            <div className=\"text-muted-foreground text-xs\">\n              عنوان القسم الكبير\n            </div>\n          </div>\n        </DropdownMenuItem>\n        <DropdownMenuItem>\n          <div\n            aria-hidden=\"true\"\n            className=\"flex size-8 items-center justify-center rounded-md border bg-background\"\n          >\n            <Heading2Icon className=\"opacity-60\" size={16} />\n          </div>\n          <div>\n            <div className=\"font-medium text-sm\">العنوان 2</div>\n            <div className=\"text-muted-foreground text-xs\">\n              عنوان فرعي متوسط\n            </div>\n          </div>\n        </DropdownMenuItem>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "style": 1,
+    "tags": [
+      "dropdown",
+      "text editor",
+      "radix"
+    ]
+  }
+}

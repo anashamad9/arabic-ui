@@ -1,0 +1,94 @@
+---
+title: "شريط التمرير"
+description: "إدخال حيث يختار المستخدم قيمة من ضمن نطاق معين."
+
+links:
+  doc: https://base-ui.com/react/components/slider#api-reference
+---
+
+<ComponentPreview name="p-slider-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/slider
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="slider" title="components/ui/slider.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { Slider, SliderValue } from "@/components/ui/slider"
+```
+
+```tsx
+<Slider />
+```
+
+## مرجع الواجهة البرمجية
+
+### شريط التمرير
+
+المكوّن الأساسي. غلاف منسّق للمكوّن `Slider.Root` من واجهة المستخدم الأساسية مع قيم الحد الأدنى / الحد الأقصى الافتراضية والإبهام محاذاة الحافة.
+
+| الخاصية  | النوع     | الافتراضي | الوصف                                      |
+| ----- | -------- | ------- | ------------------------------------------------ |
+| `min` | `number` | `0`     | الحد الأدنى لقيمة شريط التمرير                      |
+| `max` | `number` | `100`   | الحد الأقصى لقيمة المنزلق                      |
+
+ملاحظة: مجموعات المكونات `thumbAlignment="edge"` بشكل افتراضي ، والذي محاذاة الإبهام إلى حافة المسار بدلاً من توسيطها.
+
+### SliderValue
+
+يعرض القيمة الحالية. غلاف نمط ل `Slider.Value` من مكتبة بيس.
+
+## الأمثلة
+
+للتسميات والتحقق مع دعم سهولة الوصول، يُفضّل استخدام `Field` مكون لتغليف مربعات الاختيار. انظر المثال ذي الصلة: [حقل شريط التمرير](/ui/docs/components/field#حقل-شريط-التمرير).
+
+### مع التسمية والقيمة
+
+<ComponentPreview name="p-slider-2" />
+
+### نطاق المنزلق
+
+<ComponentPreview name="p-slider-3" />
+
+### عمودي
+
+<ComponentPreview name="p-slider-4" />
+
+### التكامل مع النماذج
+
+<ComponentPreview name="p-slider-5" />

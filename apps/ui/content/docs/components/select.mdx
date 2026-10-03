@@ -1,0 +1,204 @@
+---
+title: "الاختيار"
+description: "مكون نموذج شائع لاختيار قيمة محددة مسبقًا في قائمة منسدلة."
+
+links:
+  doc: https://base-ui.com/react/components/select#api-reference
+---
+
+<ComponentPreview name="p-select-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/select
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="select" title="components/ui/select.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  Select,
+  SelectItem,
+  SelectPopup,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+```
+
+```tsx
+const items = [
+  { label: "اختر إطار العمل", value: null },
+  { label: "Next.js", value: "next" },
+  { label: "فايت", value: "vite" },
+  { label: "أسترو", value: "astro" },
+]
+
+<Select items={items}>
+  <SelectTrigger>
+    <SelectValue />
+  </SelectTrigger>
+  <SelectPopup>
+    <SelectLabel>الأطر</SelectLabel>
+    {items.map((item) => (
+      <SelectItem key={item.value} value={item}>
+        {item.label}
+      </SelectItem>
+    ))}
+  </SelectPopup>
+  </Select>
+```
+
+## مرجع الواجهة البرمجية
+
+### الاختيار
+
+المكوّن الأساسي. اسم بديل للمكوّن `Select.Root` من مكتبة بيس.
+
+### SelectTrigger
+
+زر عنصر التفعيل الذي يفتح القائمة المنسدلة حدد. غلاف نمط ل `Select.Trigger` من مكتبة بيس.
+
+| الخاصية   | النوع                        | الافتراضي     | الوصف                                      |
+| ------ | --------------------------- | ----------- | ------------------------------------------------ |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | يتحكم في حجم عنصر التفعيل                 |
+
+### SelectValue
+
+يعرض القيمة المحددة. غلاف مصمم ل `Select.Value` من مكتبة بيس.
+
+### SelectPopup
+
+حاوية منبثقة لخيارات محددة. أيضا تصديرها كما `SelectContent`.
+
+| الخاصية                   | النوع                    | الافتراضي | الوصف                                                                                         |
+| ---------------------- | ----------------------- | ------- | --------------------------------------------------------------------------------------------------- |
+| `alignItemWithTrigger` | `boolean`               | `true`  | محاذاة العنصر المحدد مع عنصر التفعيل                                                           |
+| `sideOffset`           | `number`                | `4`     | المسافة من عنصر التفعيل بالبكسل                                                                   |
+| `portalProps`          | `Select.Portal.Props`   | -       | خصائص تُمرّر إلى البوابة الداخلية (`keepMounted`, `container`، إلخ) ؛ راجع بيس اختيار بوابة العرض واجهة برمجية |
+
+### SelectItem
+
+خيار اختيار فردي. غلاف مصمم ل `Select.Item` من واجهة المستخدم الأساسية مع مؤشر مدمج.
+
+### SelectGroup
+
+العناصر المحددة ذات الصلة بالمجموعات. الاسم المستعار ل `Select.Group` من مكتبة بيس.
+
+### SelectLabel
+
+تسمية لجميع الخيارات في النافذة المنبثقة. غلاف نمط ل `Select.Label` من واجهة المستخدم الأساسية. النقر عليه يركز على المشغل المحدد دون فتح النافذة المنبثقة.
+
+### SelectGroupLabel
+
+تسمية لمجموعة مختارة. غلاف مصمم ل `Select.GroupLabel` من مكتبة بيس.
+
+### SelectSeparator
+
+فاصل البصرية بين العناصر. المجمع على غرار ل `Select.Separator` من مكتبة بيس.
+
+### SelectButton
+
+زر مستقل على غرار مثل `SelectTrigger`. استخدمه كـ `render` الدعامة على مكونات عنصر التفعيل الأخرى (على سبيل المثال ، `ComboboxTrigger`, `MenuTrigger`) لمنحهم مظهر يشبه الاختيار.
+
+| الخاصية   | النوع                        | الافتراضي     | الوصف                                      |
+| ------ | --------------------------- | ----------- | ------------------------------------------------ |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | يتحكم في حجم الزر                 |
+
+```tsx
+import { SelectButton } from "@/components/ui/select"
+```
+
+```tsx
+<ComboboxTrigger render={<SelectButton />}>
+  <ComboboxValue placeholder="اختر فاكهة" />
+</ComboboxTrigger>
+```
+
+## الأمثلة
+
+للتسميات والتحقق مع دعم سهولة الوصول، يُفضّل استخدام `Field` مكون إلى التفاف محددات. انظر المثال ذي الصلة: [اختر حقل](/ui/docs/components/field#اختر-حقل).
+
+### حجم صغير
+
+<ComponentPreview name="p-select-2" />
+
+### حجم كبير
+
+<ComponentPreview name="p-select-3" />
+
+### معطّل
+
+<ComponentPreview name="p-select-4" />
+
+### بدون محاذاة البند
+
+<ComponentPreview name="p-select-5" />
+
+### مع المجموعات
+
+<ComponentPreview name="p-select-6" />
+
+### مع التسمية
+
+<ComponentPreview name="p-select-23" />
+
+### اختيار متعدد
+
+<ComponentPreview name="p-select-7" />
+
+### مع أيقونة
+
+<ComponentPreview name="p-select-8" />
+
+### خيارات مع أيقونة
+
+<ComponentPreview name="p-select-9" />
+
+### مع قيم الكائن
+
+<ComponentPreview name="p-select-10" />
+
+### SelectButton مع اختيار مع البحث
+
+استخدم `SelectButton` كـ `render` دعامة على `ComboboxTrigger` لإنشاء اختيار مع البحث التي تبدو مثل تحديد.
+
+<ComponentPreview name="p-combobox-18" />
+
+### التكامل مع النماذج
+
+<ComponentPreview name="p-select-11" />
+

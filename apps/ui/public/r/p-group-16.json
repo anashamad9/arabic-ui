@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-group-16",
+  "description": "المجموعة مع إضافة زر وإدخال",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/group",
+    "@arabicui/input"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-group-16.tsx",
+      "content": "import { PlusIcon } from \"lucide-react\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport { Group, GroupSeparator } from \"@/registry/default/ui/group\";\nimport { Input } from \"@/registry/default/ui/input\";\n\nexport default function Particle() {\n  return (\n    <Group aria-label=\"إضافة عنصر\">\n      <Button aria-label=\"إضافة\" size=\"icon\" variant=\"outline\">\n        <PlusIcon aria-hidden=\"true\" />\n      </Button>\n      <GroupSeparator />\n      <Input\n        aria-label=\"اسم العنصر\"\n        placeholder=\"أدخل اسم العنصر\"\n        type=\"text\"\n      />\n    </Group>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "button",
+    "group",
+    "input"
+  ],
+  "type": "registry:block"
+}

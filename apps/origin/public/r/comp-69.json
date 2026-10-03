@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-69",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/button.json",
+    "https://coss.com/origin/r/label.json",
+    "https://coss.com/origin/r/textarea.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-69.tsx",
+      "content": "import { useId } from \"react\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport { Label } from \"@/registry/default/ui/label\";\nimport { Textarea } from \"@/registry/default/ui/textarea\";\n\nexport default function Component() {\n  const id = useId();\n  return (\n    <div className=\"*:not-first:mt-2\">\n      <Label htmlFor={id}>مساحة النص مع الزر الأيمن</Label>\n      <Textarea id={id} placeholder=\"اكتب تعليقًا\" />\n      <div className=\"flex justify-end\">\n        <Button variant=\"outline\">إرسال</Button>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "tags": [
+      "label",
+      "textarea",
+      "button"
+    ]
+  }
+}

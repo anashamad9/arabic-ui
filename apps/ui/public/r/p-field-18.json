@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-field-18",
+  "description": "نموذج كامل مبني على الحقل",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/checkbox",
+    "@arabicui/field",
+    "@arabicui/form",
+    "@arabicui/input",
+    "@arabicui/select"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-field-18.tsx",
+      "content": "\"use client\";\n\nimport type { FormEvent } from \"react\";\nimport { useState } from \"react\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport { Checkbox } from \"@/registry/default/ui/checkbox\";\nimport {\n  Field,\n  FieldDescription,\n  FieldError,\n  FieldLabel,\n} from \"@/registry/default/ui/field\";\nimport { Form } from \"@/registry/default/ui/form\";\nimport { Input } from \"@/registry/default/ui/input\";\nimport {\n  Select,\n  SelectItem,\n  SelectPopup,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/default/ui/select\";\n\nexport default function Particle() {\n  const [loading, setLoading] = useState(false);\n  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {\n    e.preventDefault();\n    const formData = new FormData(e.currentTarget);\n    setLoading(true);\n    await new Promise((r) => setTimeout(r, 800));\n    setLoading(false);\n    const data = {\n      email: formData.get(\"email\"),\n      fullName: formData.get(\"fullName\"),\n      newsletter: formData.get(\"newsletter\"),\n      role: formData.get(\"role\"),\n    };\n    alert(\n      `الاسم الكامل: ${data.fullName || \"\"}البريد الإلكتروني:: ${data.email || \"\"}الدور:: ${\n        data.role || \"\"\n      }النشرة الإخبارية:: ${data.newsletter}`,\n    );\n  };\n  return (\n    <Form className=\"flex w-full flex-col gap-4\" onSubmit={onSubmit}>\n      <Field name=\"fullName\">\n        <FieldLabel>\n          الاسم الكامل <span className=\"text-destructive\">*</span>\n        </FieldLabel>\n        <Input placeholder=\"جون دو\" required type=\"text\" />\n        <FieldError>يرجى إدخال اسم صالح.</FieldError>\n      </Field>\n\n      <Field name=\"email\">\n        <FieldLabel>\n          البريد الإلكتروني <span className=\"text-destructive\">*</span>\n        </FieldLabel>\n        <Input placeholder=\"john@example.com\" required type=\"email\" />\n        <FieldError>يرجى إدخال بريد إلكتروني صحيح.</FieldError>\n      </Field>\n\n      <Field name=\"role\">\n        <FieldLabel>الدور</FieldLabel>\n        <Select\n          items={[\n            { label: \"حدد دورك\", value: null },\n            { label: \"المطوّر\", value: \"developer\" },\n            { label: \"مصمم\", value: \"designer\" },\n            { label: \"مدير المنتج\", value: \"manager\" },\n            { label: \"أخرى\", value: \"other\" },\n          ]}\n        >\n          <SelectTrigger>\n            <SelectValue />\n          </SelectTrigger>\n          <SelectPopup>\n            <SelectItem value=\"developer\">المطوّر</SelectItem>\n            <SelectItem value=\"designer\">مصمم</SelectItem>\n            <SelectItem value=\"manager\">مدير المنتج</SelectItem>\n            <SelectItem value=\"other\">أخرى</SelectItem>\n          </SelectPopup>\n        </Select>\n        <FieldDescription>هذا حقل اختياري</FieldDescription>\n      </Field>\n\n      <Field name=\"newsletter\">\n        <div className=\"flex items-center gap-2\">\n          <Checkbox />\n          <FieldLabel className=\"cursor-pointer\">\n            اشترك في النشرة الإخبارية\n          </FieldLabel>\n        </div>\n      </Field>\n\n      <Button loading={loading} type=\"submit\">\n        إرسال\n      </Button>\n    </Form>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-64"
+  },
+  "categories": [
+    "button",
+    "checkbox",
+    "field",
+    "form",
+    "input",
+    "label",
+    "select"
+  ],
+  "type": "registry:block"
+}

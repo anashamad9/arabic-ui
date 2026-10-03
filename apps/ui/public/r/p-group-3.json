@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-group-3",
+  "description": "مجموعة صغيرة",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/group",
+    "@arabicui/menu"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-group-3.tsx",
+      "content": "import {\n  ArchiveIcon,\n  EditIcon,\n  EllipsisIcon,\n  FilesIcon,\n  FilmIcon,\n  ShareIcon,\n  TrashIcon,\n} from \"lucide-react\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport { Group, GroupSeparator } from \"@/registry/default/ui/group\";\nimport {\n  Menu,\n  MenuItem,\n  MenuPopup,\n  MenuTrigger,\n} from \"@/registry/default/ui/menu\";\n\nexport default function Particle() {\n  return (\n    <Group aria-label=\"إجراءات الملف\">\n      <Button size=\"sm\" variant=\"outline\">\n        <FilesIcon aria-hidden=\"true\" />\n        ملفات\n      </Button>\n      <GroupSeparator />\n      <Button size=\"sm\" variant=\"outline\">\n        <FilmIcon aria-hidden=\"true\" />\n        الوسائط\n      </Button>\n      <GroupSeparator />\n      <Menu>\n        <MenuTrigger\n          render={\n            <Button aria-label=\"القائمة\" size=\"icon-sm\" variant=\"outline\" />\n          }\n        >\n          <EllipsisIcon aria-hidden=\"true\" className=\"size-4\" />\n        </MenuTrigger>\n        <MenuPopup align=\"end\">\n          <MenuItem>\n            <EditIcon aria-hidden=\"true\" />\n            تعديل\n          </MenuItem>\n          <MenuItem>\n            <ArchiveIcon aria-hidden=\"true\" />\n            أرشفة\n          </MenuItem>\n          <MenuItem>\n            <ShareIcon aria-hidden=\"true\" />\n            مشاركة\n          </MenuItem>\n          <MenuItem variant=\"destructive\">\n            <TrashIcon aria-hidden=\"true\" />\n            حذف\n          </MenuItem>\n        </MenuPopup>\n      </Menu>\n    </Group>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "group"
+  ],
+  "type": "registry:block"
+}

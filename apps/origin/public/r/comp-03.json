@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-03",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/input.json",
+    "https://coss.com/origin/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-03.tsx",
+      "content": "import { useId } from \"react\";\nimport { Input } from \"@/registry/default/ui/input\";\nimport { Label } from \"@/registry/default/ui/label\";\n\nexport default function Component() {\n  const id = useId();\n  return (\n    <div className=\"*:not-first:mt-2\">\n      <Label htmlFor={id}>الإدخال مع نص مساعد</Label>\n      <Input id={id} placeholder=\"البريد الإلكتروني\" type=\"email\" />\n      <p\n        aria-live=\"polite\"\n        className=\"mt-2 text-muted-foreground text-xs\"\n        role=\"region\"\n      >\n        فزنا &amp; lsquo;t مشاركة البريد الإلكتروني الخاص بك مع أي شخص\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "tags": [
+      "input",
+      "label",
+      "helper"
+    ]
+  }
+}

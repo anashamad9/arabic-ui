@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-155",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/label.json",
+    "https://coss.com/origin/r/radio-group.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-155.tsx",
+      "content": "import { useId } from \"react\";\nimport { Label } from \"@/registry/default/ui/label\";\nimport { RadioGroup, RadioGroupItem } from \"@/registry/default/ui/radio-group\";\n\nexport default function Component() {\n  const id = useId();\n  return (\n    <RadioGroup className=\"gap-6\" defaultValue=\"1\">\n      <div className=\"flex items-start gap-2\">\n        <RadioGroupItem\n          aria-describedby={`${id}-1-description`}\n          id={`${id}-1`}\n          value=\"1\"\n        />\n        <div className=\"grid grow gap-2\">\n          <Label htmlFor={`${id}-1`}>\n            صغير{\" \"}\n            <span className=\"font-normal text-muted-foreground text-xs leading-[inherit]\">\n              (تسمية فرعية)\n            </span>\n          </Label>\n          <p\n            className=\"text-muted-foreground text-xs\"\n            id={`${id}-1-description`}\n          >\n            يمكنك استخدام هذه البطاقة مع عنوان ووصف.\n          </p>\n        </div>\n      </div>\n      <div className=\"flex items-start gap-2\">\n        <RadioGroupItem\n          aria-describedby={`${id}-2-description`}\n          id={`${id}-2`}\n          value=\"2\"\n        />\n        <div className=\"grid grow gap-2\">\n          <Label htmlFor={`${id}-2`}>\n            كبير{\" \"}\n            <span className=\"font-normal text-muted-foreground text-xs leading-[inherit]\">\n              (تسمية فرعية)\n            </span>\n          </Label>\n          <p\n            className=\"text-muted-foreground text-xs\"\n            id={`${id}-2-description`}\n          >\n            يمكنك استخدام هذه البطاقة مع عنوان ووصف.\n          </p>\n        </div>\n      </div>\n    </RadioGroup>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "tags": [
+      "radio",
+      "label",
+      "radix"
+    ]
+  }
+}

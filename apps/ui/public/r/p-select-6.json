@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-select-6",
+  "description": "اختر مع المجموعات",
+  "registryDependencies": [
+    "@arabicui/select"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-select-6.tsx",
+      "content": "import {\n  Select,\n  SelectGroup,\n  SelectGroupLabel,\n  SelectItem,\n  SelectPopup,\n  SelectSeparator,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/default/ui/select\";\n\nconst frontend = [\n  { label: \"Next.js\", value: \"next\" },\n  { label: \"فايت\", value: \"vite\" },\n  { label: \"أسترو\", value: \"astro\" },\n];\n\nconst backend = [\n  { label: \"إكسبرس\", value: \"express\" },\n  { label: \"NestJS\", value: \"nestjs\" },\n  { label: \"Fastify\", value: \"fastify\" },\n  { label: \"جانجو\", value: \"django\" },\n  { label: \"قارورة\", value: \"flask\" },\n  { label: \"القضبان\", value: \"rails\" },\n];\n\nexport default function Particle() {\n  return (\n    <Select items={[...frontend, ...backend]}>\n      <SelectTrigger aria-label=\"اختر إطار العمل\">\n        <SelectValue placeholder=\"اختر إطار العمل\" />\n      </SelectTrigger>\n      <SelectPopup>\n        <SelectGroup>\n          <SelectGroupLabel>تطوير الواجهات</SelectGroupLabel>\n          {frontend.map(({ label, value }) => (\n            <SelectItem key={value} value={value}>\n              {label}\n            </SelectItem>\n          ))}\n        </SelectGroup>\n        <SelectSeparator />\n        <SelectGroup>\n          <SelectGroupLabel>تطوير الخدمات</SelectGroupLabel>\n          {backend.map(({ label, value }) => (\n            <SelectItem key={value} value={value}>\n              {label}\n            </SelectItem>\n          ))}\n        </SelectGroup>\n      </SelectPopup>\n    </Select>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-64"
+  },
+  "categories": [
+    "select"
+  ],
+  "type": "registry:block"
+}

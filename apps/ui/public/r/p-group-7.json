@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-group-7",
+  "description": "المجموعة مع نص البداية",
+  "registryDependencies": [
+    "@arabicui/group",
+    "@arabicui/input",
+    "@arabicui/label"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-group-7.tsx",
+      "content": "import { Group, GroupSeparator, GroupText } from \"@/registry/default/ui/group\";\nimport { Input } from \"@/registry/default/ui/input\";\nimport { Label } from \"@/registry/default/ui/label\";\n\nexport default function Particle() {\n  return (\n    <Group aria-label=\"مدخل المجال\">\n      <GroupText render={<Label aria-label=\"النطاق\" htmlFor=\"domain\" />}>\n        https://\n      </GroupText>\n      <GroupSeparator />\n      <Input\n        aria-label=\"النطاق\"\n        defaultValue=\"coss.com\"\n        id=\"domain\"\n        type=\"text\"\n      />\n    </Group>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "group"
+  ],
+  "type": "registry:block"
+}

@@ -1,0 +1,100 @@
+---
+title: "حقل الإدخال"
+description: "عنصر إدخال أصلي."
+
+links:
+  doc: https://base-ui.com/react/components/input#api-reference
+---
+
+<ComponentPreview name="p-input-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/input
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="input" title="components/ui/input.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { Input } from "@/components/ui/input"
+```
+
+```tsx
+<Input />
+```
+
+## مرجع الواجهة البرمجية
+
+### حقل الإدخال
+
+المجمع على غرار ل `Input` من واجهة المستخدم الأساسية مع خيارات حجم مخصص.
+
+| الخاصية       | النوع                                  | الافتراضي     | الوصف                                      |
+| ---------- | ------------------------------------- | ----------- | ------------------------------------------------ |
+| `size`     | `"sm" \| "default" \| "lg" \| number` | `"default"` | يتحكم في ارتفاع الإدخال. يتم تمرير قيم الأرقام إلى الأصل `size` الخاصية |
+| `unstyled` | `boolean`                             | `false`     | عندما يكون صحيحًا ، يزيل تصميم الغلاف (الحدود ، الظل ، إلخ) |
+
+## الأمثلة
+
+للتسميات والتحقق مع دعم سهولة الوصول، يُفضّل استخدام `Field` مكون لتغليف المدخلات ، أو `FieldControl` المكون. انظر بعض [أمثلة ذات صلة](/ui/docs/components/field).
+
+### حجم صغير
+
+<ComponentPreview name="p-input-2" />
+
+### حجم كبير
+
+<ComponentPreview name="p-input-3" />
+
+### معطّل
+
+<ComponentPreview name="p-input-4" />
+
+### ملف
+
+<ComponentPreview name="p-input-5" />
+
+### مع التسمية
+
+<ComponentPreview name="p-input-6" />
+
+### مع زر
+
+<ComponentPreview name="p-input-7" />
+
+### التكامل مع النماذج
+
+<ComponentPreview name="p-form-1" />

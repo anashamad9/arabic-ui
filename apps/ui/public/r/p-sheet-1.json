@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-sheet-1",
+  "description": "لوحة جانبية أساسية",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/field",
+    "@arabicui/form",
+    "@arabicui/input",
+    "@arabicui/sheet"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-sheet-1.tsx",
+      "content": "import { Button } from \"@/registry/default/ui/button\";\nimport { Field, FieldLabel } from \"@/registry/default/ui/field\";\nimport { Form } from \"@/registry/default/ui/form\";\nimport { Input } from \"@/registry/default/ui/input\";\nimport {\n  Sheet,\n  SheetClose,\n  SheetDescription,\n  SheetFooter,\n  SheetHeader,\n  SheetPanel,\n  SheetPopup,\n  SheetTitle,\n  SheetTrigger,\n} from \"@/registry/default/ui/sheet\";\n\nexport default function Particle() {\n  return (\n    <Sheet>\n      <SheetTrigger render={<Button variant=\"outline\" />}>\n        فتح اللوحة الجانبية\n      </SheetTrigger>\n      <SheetPopup>\n        <SheetHeader>\n          <SheetTitle>تعديل الملف الشخصي</SheetTitle>\n          <SheetDescription>\n            قم بإجراء تغييرات على ملفك الشخصي هنا. انقر فوق حفظ عند الانتهاء من\n            ذلك.\n          </SheetDescription>\n        </SheetHeader>\n        <Form className=\"contents\">\n          <SheetPanel className=\"grid gap-4\">\n            <Field>\n              <FieldLabel>الاسم</FieldLabel>\n              <Input defaultValue=\"مارجريت ويلز\" type=\"text\" />\n            </Field>\n            <Field>\n              <FieldLabel>اسم المستخدم</FieldLabel>\n              <Input defaultValue=\"@maggie.welsh\" type=\"text\" />\n            </Field>\n          </SheetPanel>\n          <SheetFooter>\n            <SheetClose render={<Button variant=\"ghost\" />}>إلغاء</SheetClose>\n            <Button type=\"submit\">حفظ</Button>\n          </SheetFooter>\n        </Form>\n      </SheetPopup>\n    </Sheet>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "sheet"
+  ],
+  "type": "registry:block"
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-field-1",
+  "description": "حقل مع وصف",
+  "registryDependencies": [
+    "@arabicui/field",
+    "@arabicui/input"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-field-1.tsx",
+      "content": "import {\n  Field,\n  FieldDescription,\n  FieldLabel,\n} from \"@/registry/default/ui/field\";\nimport { Input } from \"@/registry/default/ui/input\";\n\nexport default function Particle() {\n  return (\n    <Field>\n      <FieldLabel>الاسم</FieldLabel>\n      <Input placeholder=\"أدخل اسمك\" type=\"text\" />\n      <FieldDescription>مرئية على ملفك الشخصي</FieldDescription>\n    </Field>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-64"
+  },
+  "categories": [
+    "field",
+    "input",
+    "label"
+  ],
+  "type": "registry:block"
+}

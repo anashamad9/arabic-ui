@@ -1,0 +1,288 @@
+---
+title: "اللوحة المنزلقة"
+description: "لوحة تنزلق من حافة الشاشة مع إيماءات التمرير السريع ونقاط المفاجئة ودعم اللوحة المنزلقة المتداخل."
+
+links:
+  doc: https://base-ui.com/react/components/drawer
+---
+
+<ComponentPreview name="p-drawer-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/drawer
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="drawer" title="components/ui/drawer.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  Drawer,
+  DrawerCreateHandle,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerMenu,
+  DrawerMenuCheckboxItem,
+  DrawerMenuGroup,
+  DrawerMenuGroupLabel,
+  DrawerMenuItem,
+  DrawerMenuRadioGroup,
+  DrawerMenuRadioItem,
+  DrawerMenuSeparator,
+  DrawerPanel,
+  DrawerPopup,
+  DrawerMenuTrigger,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
+```
+
+```tsx
+<Drawer>
+  <DrawerTrigger>فتح</DrawerTrigger>
+  <DrawerPopup>
+    <DrawerHeader>
+      <DrawerTitle>عنوان اللوحة المنزلقة</DrawerTitle>
+      <DrawerDescription>وصف درج</DrawerDescription>
+    </DrawerHeader>
+    <DrawerPanel>المحتوى</DrawerPanel>
+    <DrawerFooter>
+      <DrawerClose>إغلاق</DrawerClose>
+    </DrawerFooter>
+  </DrawerPopup>
+</Drawer>
+```
+
+## مرجع الواجهة البرمجية
+
+### اللوحة المنزلقة
+
+عنصر الجذر. يلتف `Drawer.Root` من قاعدة واجهة المستخدم مع التلقائي `swipeDirection` رسم الخرائط على أساس `position`.
+
+| الخاصية             | النوع                                     | الافتراضي   | الوصف                                      |
+| ---------------- | ---------------------------------------- | --------- | ------------------------------------------------ |
+| `position`       | `"right" \| "left" \| "top" \| "bottom"` | `"bottom"` | يتحكم في الحافة التي يفتح منها اللوحة المنزلقة. يضبط اتجاه التمرير تلقائيًا ويتدفق إلى مكونات الطفل عبر السياق |
+| `swipeDirection` | `"up" \| "down" \| "left" \| "right"`   | مشتقات مشتقة   | تجاوز اتجاه التمرير المستمد من `position`. استخدم عندما تحتاج إلى سلوك انتقاد مختلف |
+
+جميع الدعائم الأخرى من `Drawer.Root` يتم دعمها، بما في ذلك `open`, `onOpenChange`, `modal`, `snapPoints`, `snapPoint`, `onSnapPointChange`، و `snapToSequentialPoints`. ملاحظة: تعمل نقاط Snap فقط للأدراج السفلية.
+
+### DrawerCreateHandle
+
+ينشئ مقبضًا لمشغلات اللوحة المنزلقة المنفصلة. استخدمه عندما تحتاج المشغلات ومحتوى اللوحة المنزلقة إلى التنسيق عبر أجزاء مختلفة من الشجرة.
+
+### DrawerTrigger
+
+زر عنصر التفعيل الذي يفتح اللوحة المنزلقة. الاسم المستعار ل `Drawer.Trigger` من مكتبة بيس.
+
+### DrawerPopup
+
+حاوية منبثقة تعرض محتوى اللوحة المنزلقة.
+
+| الخاصية              | النوع                                      | الافتراضي     | الوصف                                      |
+| ----------------- | ----------------------------------------- | ----------- | ------------------------------------------------ |
+| `variant`         | `"default" \| "straight" \| "inset"`     | `"default"` | يتحكم في نمط اللوحة المنزلقة. `straight` يزيل زوايا مستديرة ، `inset` يضيف تباعد حول اللوحة المنزلقة على شاشات سطح المكتب |
+| `showCloseButton` | `boolean`                                 | `false`     | عندما يكون الأمر صحيحًا ، يعرض زر إغلاق في الزاوية العلوية اليمنى |
+| `showBar`         | `boolean`                                 | `false`     | عندما يكون صحيحًا ، يعرض مؤشر شريط السحب |
+| `portalProps`     | `Drawer.Portal.Props`                     | -           | خصائص تُمرّر إلى البوابة الداخلية (`keepMounted`, `container`، وما إلى ذلك) ؛ انظر قاعدة واجهة المستخدم درج البوابة واجهة برمجية |
+
+**مثال:**
+
+```tsx
+// Bottom drawer (default)
+<Drawer>
+  <DrawerPopup>...</DrawerPopup>
+</Drawer>
+
+// Right side drawer
+<Drawer position="right">
+  <DrawerPopup>...</DrawerPopup>
+</Drawer>
+
+// Left side drawer
+<Drawer position="left">
+  <DrawerPopup>...</DrawerPopup>
+</Drawer>
+
+// Drawer with inset variant
+<Drawer position="right">
+  <DrawerPopup variant="inset">...</DrawerPopup>
+</Drawer>
+```
+
+### DrawerHeader
+
+حاوية لعنوان اللوحة المنزلقة والوصف. يدعم `render` الدعامة لتكوين متعدد الأشكال (على سبيل المثال `render={<header />}`).
+
+| الخاصية           | النوع      | الافتراضي | الوصف                                      |
+| -------------- | --------- | ------- | ------------------------------------------------ |
+| `allowSelection` | `boolean` | `false` | عندما يكون صحيحا، يلتف رأس في `DrawerContent` للحد من تداخل التمرير السريع أثناء اختيار نص الماوس |
+
+### DrawerFooter
+
+قسم تذييل لأزرار العمل. يدعم `render` الخاصية لتركيب العناصر بأشكال مختلفة.
+
+| الخاصية           | النوع                     | الافتراضي     | الوصف                                      |
+| -------------- | ------------------------ | ----------- | ------------------------------------------------ |
+| `variant`      | `"default" \| "bare"`    | `"default"` | يتحكم في تصميم التذييل. `default` تشمل الحدود والخلفية ، `bare` يزيلها |
+| `allowSelection` | `boolean`              | `true`      | عندما يكون صحيحا، يلتف التذييل في `DrawerContent` للحد من تداخل التمرير السريع أثناء اختيار نص الماوس |
+
+### DrawerTitle
+
+عنصر العنوان. الاسم المستعار ل `Drawer.Title` من مكتبة بيس.
+
+### DrawerDescription
+
+عنصر الوصف. الاسم المستعار ل `Drawer.Description` من مكتبة بيس.
+
+### DrawerPanel
+
+حاوية المحتوى. متى `scrollable` صحيح (افتراضي) ، يلتف المحتوى في a `ScrollArea` عنصر. يدعم `render` الخاصية لتركيب العناصر بأشكال مختلفة.
+
+| الخاصية           | النوع      | الافتراضي | الوصف                                      |
+| -------------- | --------- | ------- | ------------------------------------------------ |
+| `scrollable`   | `boolean` | `true`  | عندما يكون الأمر صحيحًا ، يلف المحتوى في `ScrollArea`. تعيين إلى كاذبة لمحتوى غير قابل للتمرير |
+| `scrollFade`   | `boolean` | `true`  | عندما يكون صحيحًا ، يظهر تأثير التلاشي على حواف التمرير (يطبق فقط عندما `scrollable` (صحيح) |
+| `allowSelection` | `boolean` | `true` | عندما يكون صحيحا، يلتف الفريق في `DrawerContent` للحد من تداخل التمرير السريع أثناء اختيار نص الماوس |
+
+### DrawerMenu
+
+حاوية لعناصر القائمة درج. استخدام مع `DrawerMenuItem`, `DrawerMenuSeparator`, `DrawerMenuGroup`, `DrawerMenuGroupLabel`, `DrawerMenuCheckboxItem`, `DrawerMenuRadioGroup`, `DrawerMenuRadioItem`، و `DrawerMenuTrigger` لإنشاء قوائم تعكس واجهة برمجة تطبيقات مكون القائمة. يدعم `render` الخاصية لتركيب العناصر بأشكال مختلفة.
+
+### DrawerMenuItem
+
+عنصر القائمة المصمم الذي يطابق `MenuItem` المظهر. لا يغلق اللوحة المنزلقة - التفاف مع `DrawerClose` عند الحاجة إلى إغلاق على انقر فوق. يدعم `render` الخاصية لتركيب العناصر بأشكال مختلفة.
+
+| الخاصية      | النوع                                | الافتراضي     | الوصف                                      |
+| --------- | ----------------------------------- | ----------- | ------------------------------------------------ |
+| `variant` | `"default" \| "destructive"`        | `"default"` | عندما `destructive`يستخدم لون النص المدمر  |
+| `disabled`| `boolean`                           | —           | عندما يكون صحيحًا ، يعطل العنصر                     |
+
+**مثال:** استخدام مع `DrawerClose` للإغلاق عند النقر: `<DrawerClose render={<DrawerMenuItem />}>Edit</DrawerClose>`
+
+### DrawerMenuSeparator
+
+فاصل أفقي بين عناصر القائمة أو المجموعات. يدعم `render` الخاصية لتركيب العناصر بأشكال مختلفة.
+
+### DrawerMenuGroup
+
+حاوية لتجميع عناصر القائمة ذات الصلة. استخدم مع `DrawerMenuGroupLabel` للأقسام المسمى. يدعم `render` الخاصية لتركيب العناصر بأشكال مختلفة.
+
+### DrawerMenuGroupLabel
+
+تسمية ل `DrawerMenuGroup` القسم. يجعل صامتة ، نص أصغر فوق مجموعة من العناصر. في الأدراج المتداخلة ، استخدم كعنوان قسم في الجزء العلوي من القائمة (لا حاجة إلى زر الرجوع - اسحب للعودة). يدعم `render` الخاصية لتركيب العناصر بأشكال مختلفة.
+
+### DrawerMenuTrigger
+
+عنصر التفعيل الذي يفتح درج متداخل. على غرار عنصر القائمة مع شيفرون زائدة. استخدم لعناصر القائمة التي تفتح الأدراج المتداخلة (على سبيل المثال "إضافة إلى قائمة التشغيل" → درج متداخل مع خيارات قائمة التشغيل). يلتف `DrawerTrigger` داخليا.
+
+**مثال:** `<DrawerMenuTrigger>Add to Playlist</DrawerMenuTrigger>` يفتح درج متداخل عند النقر عليه.
+
+### DrawerMenuCheckboxItem
+
+عنصر القائمة مربع الاختيار لمفاتيح مستقلة. يدعم `variant="switch"` لمفاتيح التبديل على غرار. لمجموعات التحديد ، استخدم `DrawerMenuRadioGroup` مع `DrawerMenuRadioItem`.
+
+### DrawerMenuRadioGroup
+
+حاوية لعناصر قائمة الراديو. استخدام مع `DrawerMenuRadioItem` لخيارات حصرية متبادلة (على سبيل المثال "فرز حسب" مع الفنان، الألبوم، العنوان).
+
+### DrawerMenuRadioItem
+
+عنصر قائمة الراديو. يجب استخدامه في الداخل `DrawerMenuRadioGroup` مع a `value` الخاصية.
+
+### DrawerClose
+
+إغلاق زر المكون. الاسم المستعار ل `Drawer.Close` من مكتبة بيس.
+
+### DrawerPortal
+
+مكون البوابة للعرض خارج التسلسل الهرمي بنية الصفحة. الاسم المستعار ل `Drawer.Portal` من مكتبة بيس.
+
+### DrawerBackdrop
+
+خلفية / عنصر تراكب. الاسم المستعار ل `Drawer.Backdrop` من مكتبة بيس.
+
+### DrawerViewport
+
+عنصر منطقة العرض لتحديد المواقع. الاسم المستعار ل `Drawer.Viewport` من واجهة المستخدم الأساسية. عادة لا تستخدم مباشرة - `DrawerPopup` يجعله داخليًا.
+
+### DrawerBar
+
+مؤشر مقبض السحب هو مبين عند `showBar` صحيح على `DrawerPopup`. عادة لا تستخدم مباشرة.
+
+### DrawerContent
+
+غلاف المحتوى البدائي المستخدم لتكوين متعدد الأشكال مع `render` الدعامة. الاسم المستعار ل `Drawer.Content` من مكتبة بيس.
+
+## الأمثلة
+
+### تنسيق داخلي
+
+<ComponentPreview name="p-drawer-4" />
+
+### متغير مستقيم
+
+<ComponentPreview name="p-drawer-5" />
+
+### محتوى قابل للتمرير
+
+<ComponentPreview name="p-drawer-6" />
+
+### أدراج متداخلة
+
+<ComponentPreview name="p-drawer-7" />
+
+### نقاط Snap
+
+<ComponentPreview name="p-drawer-9" />
+
+### قائمة الأجهزة المحمولة
+
+<ComponentPreview name="p-drawer-11" />
+
+### حوار متجاوب
+
+استخدم `Drawer` على شاشات صغيرة و `Dialog` على أكبر منها لإظهار نفس المحتوى في مشروط على سطح المكتب ورقة أسفل على الهاتف المحمول.
+
+<ComponentPreview name="p-drawer-12" />
+
+### قائمة مستجيبة
+
+زوج `Drawer` مع `Menu` لذلك تظهر الإجراءات في القائمة المنسدلة على سطح المكتب وورقة التمرير السريع على الهاتف المحمول. استخدام `DrawerMenuTrigger` للعناصر التي تفتح الأدراج المتداخلة على الهاتف المحمول. تستخدم الأدراج المتداخلة `DrawerMenuGroupLabel` كعناوين الأقسام ؛ انتقاد للعودة.
+
+<ComponentPreview name="p-drawer-13" />

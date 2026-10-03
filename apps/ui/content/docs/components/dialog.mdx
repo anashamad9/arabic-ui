@@ -1,0 +1,195 @@
+---
+title: "النافذة الحوارية"
+description: "نافذة منبثقة تفتح أعلى الصفحة بأكملها."
+
+links:
+  doc: https://base-ui.com/react/components/dialog#api-reference
+---
+
+<ComponentPreview name="p-dialog-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/dialog
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="dialog" title="components/ui/dialog.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  Dialog,
+  DialogClose,
+  DialogDescription,
+  DialogPanel,
+  DialogFooter,
+  DialogHeader,
+  DialogPopup,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+```
+
+```tsx
+<Dialog>
+  <DialogTrigger>فتح النافذة</DialogTrigger>
+  <DialogPopup>
+    <DialogHeader>
+      <DialogTitle>عنوان الحوار</DialogTitle>
+      <DialogDescription>الحوار الوصف</DialogDescription>
+    </DialogHeader>
+    <DialogPanel>المحتوى</DialogPanel>
+    <DialogFooter>
+      <DialogClose>إغلاق</DialogClose>
+    </DialogFooter>
+  </DialogPopup>
+</Dialog>
+```
+
+## مرجع الواجهة البرمجية
+
+### النافذة الحوارية
+
+المكوّن الأساسي. اسم بديل للمكوّن `Dialog.Root` من مكتبة بيس.
+
+### DialogTrigger
+
+زر عنصر التفعيل الذي يفتح الحوار. الاسم المستعار ل `Dialog.Trigger` من مكتبة بيس.
+
+### DialogCreateHandle
+
+ينشئ مقبضًا لمشغلات الحوار المنفصلة. استخدمه عندما يحتاج المشغل والمنبثق إلى التنسيق عبر أجزاء مختلفة من الشجرة.
+
+### DialogPopup
+
+حاوية منبثقة تعرض محتوى الحوار. كما تم تصديرها كـ `DialogContent`.
+
+| الخاصية                  | النوع                        | الافتراضي | الوصف                                      |
+| --------------------- | --------------------------- | ------- | ------------------------------------------------ |
+| `showCloseButton`     | `boolean`                   | `true`  | عندما يكون الأمر صحيحًا ، يعرض زر إغلاق في الزاوية العلوية اليمنى |
+| `bottomStickOnMobile` | `boolean`                   | `true`  | عندما يكون ذلك صحيحًا ، يلتصق بأسفل الشاشة على الأجهزة المحمولة |
+| `closeProps`          | `Dialog.Close.Props`        | -       | الدعائم إعادة توجيهها إلى زر الإغلاق الداخلي ، مفيدة لتجاوز `aria-label` |
+| `portalProps`         | `Dialog.Portal.Props`       | -       | خصائص تُمرّر إلى البوابة الداخلية (`keepMounted`, `container`، وما إلى ذلك) ؛ انظر قاعدة واجهة المستخدم الحوار بوابة واجهة برمجية |
+
+### DialogHeader
+
+حاوية لعنوان الحوار والوصف. يدعم `render` الدعامة لتكوين متعدد الأشكال (على سبيل المثال `render={<Link href="/" />}`).
+
+### DialogFooter
+
+قسم تذييل لأزرار العمل. يدعم `render` الخاصية لتركيب العناصر بأشكال مختلفة.
+
+| الخاصية        | النوع                     | الافتراضي     | الوصف                                      |
+| ----------- | ------------------------ | ----------- | ------------------------------------------------ |
+| `variant`   | `"default" \| "bare"`    | `"default"` | يتحكم في تصميم التذييل. `default` تشمل الحدود والخلفية ، `bare` يزيلها |
+
+**مثال:**
+
+```tsx
+// Default variant (with border and background)
+<DialogFooter>
+  <DialogClose>إلغاء</DialogClose>
+  <Button>حفظ</Button>
+</DialogFooter>
+
+// Bare variant (no border or background)
+<DialogFooter variant="bare">
+  <DialogClose>إلغاء</DialogClose>
+  <Button>حفظ</Button>
+</DialogFooter>
+```
+
+### DialogTitle
+
+عنصر العنوان. الاسم المستعار ل `Dialog.Title` من مكتبة بيس.
+
+### DialogDescription
+
+عنصر الوصف. الاسم المستعار ل `Dialog.Description` من مكتبة بيس.
+
+### DialogPanel
+
+حاوية محتوى قابلة للتمرير. يلف المحتوى تلقائيًا في `ScrollArea` عنصر. يدعم `render` الخاصية لتركيب العناصر بأشكال مختلفة.
+
+| الخاصية         | النوع      | الافتراضي | الوصف                                      |
+| ------------ | --------- | ------- | ------------------------------------------------ |
+| `scrollFade` | `boolean` | `true`  | عندما يكون صحيحًا ، يظهر تأثير تتلاشى على حواف التمرير   |
+
+**مثال:**
+
+```tsx
+<DialogPanel>
+  {/* Long content that will scroll if it exceeds the dialog height */}
+  <div>...</div>
+</DialogPanel>
+```
+
+### DialogClose
+
+إغلاق زر المكون. الاسم المستعار ل `Dialog.Close` من مكتبة بيس.
+
+### DialogPortal
+
+مكون البوابة للعرض خارج التسلسل الهرمي بنية الصفحة. الاسم المستعار ل `Dialog.Portal` من مكتبة بيس.
+
+### DialogBackdrop
+
+خلفية / عنصر تراكب. أيضا تصديرها كما `DialogOverlay`. الاسم المستعار ل `Dialog.Backdrop` من مكتبة بيس.
+
+### DialogViewport
+
+عنصر منطقة العرض لتحديد المواقع. الاسم المستعار ل `Dialog.Viewport` من مكتبة بيس.
+
+## الأمثلة
+
+### فتح من قائمة
+
+<ComponentPreview name="p-dialog-2" />
+
+### الحوار مع Bare Footer
+
+<ComponentPreview name="p-dialog-6" />
+
+### الحوار مع التمرير داخل
+
+<ComponentPreview name="p-dialog-5" />
+
+### حوارات متداخلة
+
+<ComponentPreview name="p-dialog-3" />
+
+### إغلاق تأكيد
+
+<ComponentPreview name="p-dialog-4" />

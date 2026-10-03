@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-field-8",
+  "description": "حقل مع اختيار مع البحث",
+  "registryDependencies": [
+    "@arabicui/combobox",
+    "@arabicui/field"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-field-8.tsx",
+      "content": "\"use client\";\n\nimport {\n  Combobox,\n  ComboboxEmpty,\n  ComboboxInput,\n  ComboboxItem,\n  ComboboxList,\n  ComboboxPopup,\n} from \"@/registry/default/ui/combobox\";\nimport {\n  Field,\n  FieldDescription,\n  FieldLabel,\n} from \"@/registry/default/ui/field\";\n\nconst items = [\n  { label: \"تفاح\", value: \"apple\" },\n  { label: \"موز\", value: \"banana\" },\n  { label: \"برتقال\", value: \"orange\" },\n  { label: \"عنب\", value: \"grape\" },\n  { label: \"فراولة\", value: \"strawberry\" },\n  { label: \"مانجو\", value: \"mango\" },\n  { label: \"أناناس\", value: \"pineapple\" },\n  { label: \"كيوي\", value: \"kiwi\" },\n  { label: \"خوخ\", value: \"peach\" },\n  { label: \"كمثرى\", value: \"pear\" },\n];\n\nexport default function Particle() {\n  return (\n    <Field>\n      <FieldLabel>الفواكه</FieldLabel>\n      <Combobox items={items}>\n        <ComboboxInput aria-label=\"اختر عنصر\" placeholder=\"اختر عنصرًا…\" />\n        <ComboboxPopup>\n          <ComboboxEmpty>لم يتم العثور على نتائج.</ComboboxEmpty>\n          <ComboboxList>\n            {(item) => (\n              <ComboboxItem key={item.value} value={item}>\n                {item.label}\n              </ComboboxItem>\n            )}\n          </ComboboxList>\n        </ComboboxPopup>\n      </Combobox>\n      <FieldDescription>حدد عنصر.</FieldDescription>\n    </Field>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-64"
+  },
+  "categories": [
+    "combobox",
+    "field",
+    "input",
+    "label"
+  ],
+  "type": "registry:block"
+}

@@ -1,0 +1,191 @@
+---
+title: "اللوحة الجانبية"
+description: "A flyout الذي يفتح من جانب الشاشة، استنادا إلى عنصر الحوار."
+
+links:
+  doc: https://base-ui.com/react/components/dialog#api-reference
+---
+
+<ComponentPreview name="p-sheet-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/sheet
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="sheet" title="components/ui/sheet.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetPanel,
+  SheetPopup,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+```
+
+```tsx
+<Sheet>
+  <SheetTrigger>فتح</SheetTrigger>
+  <SheetPopup>
+    <SheetHeader>
+      <SheetTitle>هل أنت متأكد تماما؟</SheetTitle>
+      <SheetDescription>
+        لا يمكن التراجع عن هذا الإجراء. سيؤدي ذلك إلى حذف حسابك نهائيًا وإزالة بياناتك من خوادمنا.
+      </SheetDescription>
+    </SheetHeader>
+    <SheetPanel>المحتوى</SheetPanel>
+    <SheetFooter>
+      <SheetClose>إغلاق</SheetClose>
+    </SheetFooter>
+  </SheetPopup>
+</Sheet>
+```
+
+## مرجع الواجهة البرمجية
+
+### اللوحة الجانبية
+
+المكوّن الأساسي. اسم بديل للمكوّن `Dialog.Root` من مكتبة بيس.
+
+### SheetTrigger
+
+زر عنصر التفعيل الذي يفتح الورقة. الاسم المستعار ل `Dialog.Trigger` من مكتبة بيس.
+
+### SheetPopup
+
+حاوية منبثقة تعرض محتوى الورقة. كما تم تصديرها كـ `SheetContent`.
+
+| الخاصية              | النوع                                      | الافتراضي     | الوصف                                      |
+| ----------------- | ----------------------------------------- | ----------- | ------------------------------------------------ |
+| `side`            | `"right" \| "left" \| "top" \| "bottom"`  | `"right"`   | يتحكم في أي جانب من الشاشة تفتح الورقة من |
+| `variant`         | `"default" \| "inset"`                    | `"default"` | يتحكم في نمط الورقة. `inset` يضيف تباعد حول الورقة على شاشات سطح المكتب |
+| `showCloseButton` | `boolean`                                 | `true`      | عندما يكون الأمر صحيحًا ، يعرض زر إغلاق في الزاوية العلوية اليمنى |
+| `closeProps`      | `Dialog.Close.Props`                      | -           | الدعائم إعادة توجيهها إلى زر الإغلاق الداخلي ، مفيدة لتجاوز `aria-label` |
+| `portalProps`     | `Dialog.Portal.Props`                     | -           | خصائص تُمرّر إلى البوابة الداخلية (`keepMounted`, `container`، وما إلى ذلك) ؛ انظر قاعدة واجهة المستخدم الحوار بوابة واجهة برمجية |
+
+**مثال:**
+
+```tsx
+// Right side sheet (default)
+<SheetPopup side="right">
+  ...
+</SheetPopup>
+
+// Left side sheet
+<SheetPopup side="left">
+  ...
+</SheetPopup>
+
+// Top sheet
+<SheetPopup side="top">
+  ...
+</SheetPopup>
+
+// Bottom sheet
+<SheetPopup side="bottom">
+  ...
+</SheetPopup>
+
+// Sheet with inset variant
+<SheetPopup side="right" variant="inset">
+  ...
+</SheetPopup>
+```
+
+### SheetHeader
+
+حاوية لعنوان الورقة والوصف. يدعم `render` الدعامة لتكوين متعدد الأشكال (على سبيل المثال `render={<Link href="/" />}`).
+
+### SheetFooter
+
+قسم تذييل لأزرار العمل. يدعم `render` الخاصية لتركيب العناصر بأشكال مختلفة.
+
+| الخاصية        | النوع                     | الافتراضي     | الوصف                                      |
+| ----------- | ------------------------ | ----------- | ------------------------------------------------ |
+| `variant`   | `"default" \| "bare"`    | `"default"` | يتحكم في تصميم التذييل. `default` تشمل الحدود والخلفية ، `bare` يزيلها |
+
+### SheetTitle
+
+عنصر العنوان. الاسم المستعار ل `Dialog.Title` من مكتبة بيس.
+
+### SheetDescription
+
+عنصر الوصف. الاسم المستعار ل `Dialog.Description` من مكتبة بيس.
+
+### SheetPanel
+
+حاوية محتوى قابلة للتمرير. يلف المحتوى تلقائيًا في `ScrollArea` عنصر. يدعم `render` الخاصية لتركيب العناصر بأشكال مختلفة.
+
+| الخاصية         | النوع      | الافتراضي | الوصف                                      |
+| ------------ | --------- | ------- | ------------------------------------------------ |
+| `scrollFade` | `boolean` | `true`  | عندما يكون صحيحًا ، يظهر تأثير تتلاشى على حواف التمرير   |
+
+**مثال:**
+
+```tsx
+<SheetPanel>
+  {/* Long content that will scroll if it exceeds the sheet height */}
+  <div>...</div>
+</SheetPanel>
+```
+
+### SheetClose
+
+إغلاق زر المكون. الاسم المستعار ل `Dialog.Close` من مكتبة بيس.
+
+### SheetPortal
+
+مكون البوابة للعرض خارج التسلسل الهرمي بنية الصفحة. الاسم المستعار ل `Dialog.Portal` من مكتبة بيس.
+
+### SheetBackdrop
+
+خلفية / عنصر تراكب. أيضا تصديرها كما `SheetOverlay`. الاسم المستعار ل `Dialog.Backdrop` من مكتبة بيس.
+
+## الأمثلة
+
+### ورقة مع أقحم
+
+<ComponentPreview name="p-sheet-2" />
+
+### صفائح جانبية
+
+<ComponentPreview name="p-sheet-3" />

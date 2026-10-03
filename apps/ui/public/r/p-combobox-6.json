@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-combobox-6",
+  "description": "اختيار مع البحث التلقائي تمييز الخيار الأول",
+  "registryDependencies": [
+    "@arabicui/combobox"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-combobox-6.tsx",
+      "content": "\"use client\";\n\nimport {\n  Combobox,\n  ComboboxEmpty,\n  ComboboxInput,\n  ComboboxItem,\n  ComboboxList,\n  ComboboxPopup,\n} from \"@/registry/default/ui/combobox\";\n\nconst items = [\n  { label: \"تفاح\", value: \"apple\" },\n  { label: \"موز\", value: \"banana\" },\n  { label: \"برتقال\", value: \"orange\" },\n  { label: \"عنب\", value: \"grape\" },\n  { label: \"فراولة\", value: \"strawberry\" },\n  { label: \"مانجو\", value: \"mango\" },\n  { label: \"أناناس\", value: \"pineapple\" },\n  { label: \"كيوي\", value: \"kiwi\" },\n  { label: \"خوخ\", value: \"peach\" },\n  { label: \"كمثرى\", value: \"pear\" },\n];\n\nexport default function Particle() {\n  return (\n    <Combobox autoHighlight items={items}>\n      <ComboboxInput aria-label=\"اختر عنصر\" placeholder=\"اختر عنصرًا…\" />\n      <ComboboxPopup>\n        <ComboboxEmpty>لم يتم العثور على نتائج.</ComboboxEmpty>\n        <ComboboxList>\n          {(item) => (\n            <ComboboxItem key={item.value} value={item}>\n              {item.label}\n            </ComboboxItem>\n          )}\n        </ComboboxList>\n      </ComboboxPopup>\n    </Combobox>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-64"
+  },
+  "categories": [
+    "combobox",
+    "input"
+  ],
+  "type": "registry:block"
+}

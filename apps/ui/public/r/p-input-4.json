@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-input-4",
+  "description": "مدخلات معطّلة",
+  "registryDependencies": [
+    "@arabicui/input"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-input-4.tsx",
+      "content": "import { Input } from \"@/registry/default/ui/input\";\n\nexport default function Particle() {\n  return <Input aria-label=\"معطّل\" disabled placeholder=\"معطّل\" type=\"text\" />;\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-64"
+  },
+  "categories": [
+    "input"
+  ],
+  "type": "registry:block"
+}

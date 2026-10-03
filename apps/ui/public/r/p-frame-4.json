@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-frame-4",
+  "description": "الإطار مع لوحات مكدسة متعددة",
+  "registryDependencies": [
+    "@arabicui/frame",
+    "@arabicui/separator"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-frame-4.tsx",
+      "content": "import {\n  Frame,\n  FrameDescription,\n  FrameHeader,\n  FramePanel,\n  FrameTitle,\n} from \"@/registry/default/ui/frame\";\nimport { Separator } from \"@/registry/default/ui/separator\";\n\nexport default function Particle() {\n  return (\n    <Frame className=\"w-full\">\n      <FrameHeader>\n        <FrameTitle>رأس القسم</FrameTitle>\n        <FrameDescription>وصف موجز عن القسم</FrameDescription>\n      </FrameHeader>\n      <FramePanel className=\"p-0\">\n        <div className=\"p-5\">\n          <h2 className=\"font-semibold text-sm\">لوحة مكدسة</h2>\n          <p className=\"text-muted-foreground text-sm\">وصف القسم</p>\n        </div>\n        <Separator />\n        <div className=\"p-5\">\n          <h2 className=\"font-semibold text-sm\">لوحة مكدسة</h2>\n          <p className=\"text-muted-foreground text-sm\">وصف القسم</p>\n        </div>\n      </FramePanel>\n    </Frame>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full"
+  },
+  "categories": [
+    "frame"
+  ],
+  "type": "registry:block"
+}

@@ -1,0 +1,115 @@
+---
+title: "مسار التنقل"
+description: "يعرض المسار إلى المورد الحالي باستخدام تسلسل هرمي للروابط."
+---
+
+<ComponentPreview name="p-breadcrumb-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/breadcrumb
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="breadcrumb" title="components/ui/breadcrumb.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  Breadcrumb,
+  BreadcrumbEllipsis,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+```
+
+```tsx
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/">الرئيسية</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbEllipsis />
+    </BreadcrumbItem>
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/components">المكونات</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbPage>مسار التنقل</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
+
+## مرجع الواجهة البرمجية
+
+مكوّن مخصّص للمكتبة.
+
+### مسار التنقل
+
+حاوية الملاحة الجذر مع `aria-label="breadcrumb"`.
+
+### BreadcrumbList
+
+حاوية قائمة أمرت لبنود مسار التنقل.
+
+### BreadcrumbItem
+
+حاوية بند مسار التنقل الفردية.
+
+### BreadcrumbLink
+
+عنصر الارتباط لعناصر مسار التنقل القابلة للملاحة. يدعم `render` الخاصية لاستخدام مكونات الارتباط المخصصة (على سبيل المثال، نكست Link).
+
+| الخاصية     | النوع                   | الافتراضي | الوصف                                      |
+| -------- | ---------------------- | ------- | ------------------------------------------------ |
+| `render` | `React.ReactElement`   | -       | تقديم كعنصر مختلف (على سبيل المثال، نكست Link) |
+
+### BreadcrumbPage
+
+عنصر غير تفاعلي يمثل الصفحة الحالية. يتضمن `aria-current="page"`.
+
+### BreadcrumbSeparator
+
+فاصل بين عناصر مسار التنقل. الافتراضي إلى رمز شيفرون ولكنه يقبل الأطفال المخصصين.
+
+### BreadcrumbEllipsis
+
+مؤشر القطع الناقص لعناصر مسار التنقل المنهارة.
+
+## الأمثلة
+
+### مع فاصل مخصص
+
+<ComponentPreview name="p-breadcrumb-2" />

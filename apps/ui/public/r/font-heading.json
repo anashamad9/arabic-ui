@@ -1,0 +1,11 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "font-heading",
+  "files": [],
+  "cssVars": {
+    "theme": {
+      "font-heading": "\"Thmanyah Sans\", sans-serif"
+    }
+  },
+  "type": "registry:style"
+}

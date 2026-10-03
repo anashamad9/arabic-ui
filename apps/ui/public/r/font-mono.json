@@ -1,0 +1,11 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "font-mono",
+  "files": [],
+  "cssVars": {
+    "theme": {
+      "font-mono": "ui-monospace, \"Thmanyah Sans\", monospace"
+    }
+  },
+  "type": "registry:style"
+}

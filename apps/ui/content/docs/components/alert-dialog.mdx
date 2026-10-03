@@ -1,0 +1,164 @@
+---
+title: "نافذة التنبيه"
+description: "حوار يتطلب استجابة المستخدم للمتابعة."
+
+links:
+  doc: https://base-ui.com/react/components/alert-dialog#api-reference
+---
+
+<ComponentPreview name="p-alert-dialog-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/alert-dialog
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="alert-dialog" title="components/ui/alert-dialog.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  AlertDialog,
+  AlertDialogClose,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogPopup,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+```
+
+```tsx
+<AlertDialog>
+  <AlertDialogTrigger>حذف الحساب</AlertDialogTrigger>
+  <AlertDialogPopup>
+    <AlertDialogHeader>
+      <AlertDialogTitle>هل أنت متأكد تماما؟</AlertDialogTitle>
+      <AlertDialogDescription>
+        لا يمكن التراجع عن هذا الإجراء. سيؤدي ذلك إلى حذف حسابك نهائيًا وإزالة بياناتك من خوادمنا.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogClose>إلغاء</AlertDialogClose>
+      <AlertDialogClose>حذف الحساب</AlertDialogClose>
+    </AlertDialogFooter>
+  </AlertDialogPopup>
+</AlertDialog>
+```
+
+## مرجع الواجهة البرمجية
+
+### AlertDialog
+
+المكوّن الأساسي. اسم بديل للمكوّن `AlertDialog.Root` من مكتبة بيس.
+
+### AlertDialogTrigger
+
+زر عنصر التفعيل الذي يفتح مربع حوار التنبيه. الاسم المستعار ل `AlertDialog.Trigger` من مكتبة بيس.
+
+### AlertDialogPopup
+
+الحاوية المنبثقة التي تعرض محتوى مربع الحوار التنبيه. أيضا تصديرها كما `AlertDialogContent`.
+
+| الخاصية                  | النوع                         | الافتراضي | الوصف                                      |
+| --------------------- | ---------------------------- | ------- | ------------------------------------------------ |
+| `bottomStickOnMobile` | `boolean`                    | `true`  | عندما يكون ذلك صحيحًا ، يلتصق بأسفل الشاشة على الأجهزة المحمولة |
+| `portalProps`         | `AlertDialog.Portal.Props`   | -       | خصائص تُمرّر إلى البوابة الداخلية (`keepMounted`, `container`, etc.; see قاعدة واجهة المستخدم تنبيه الحوار بوابة واجهة برمجية |
+
+### AlertDialogHeader
+
+حاوية لعنوان مربع الحوار التنبيه والوصف.
+
+### AlertDialogFooter
+
+قسم تذييل لأزرار العمل.
+
+على عكس عكس [النافذة الحوارية](/docs/components/dialog)، حوار التنبيه ليس لديه `AlertDialogPanel`. وضع العنوان والوصف في `AlertDialogHeader`الإجراءات في `AlertDialogFooter`، واستخدام عنصر عادي مع `className` إذا كنت بحاجة إلى محتوى إضافي للجسم بينهما.
+
+| الخاصية        | النوع                     | الافتراضي     | الوصف                                      |
+| ----------- | ------------------------ | ----------- | ------------------------------------------------ |
+| `variant`   | `"default" \| "bare"`    | `"default"` | يتحكم في تصميم التذييل. `default` تشمل الحدود والخلفية ، `bare` يزيلها |
+
+**مثال:**
+
+```tsx
+// Default variant (with border and background)
+<AlertDialogFooter>
+  <AlertDialogClose>إلغاء</AlertDialogClose>
+  <AlertDialogClose>حذف</AlertDialogClose>
+</AlertDialogFooter>
+
+// Bare variant (no border or background)
+<AlertDialogFooter variant="bare">
+  <AlertDialogClose>إلغاء</AlertDialogClose>
+  <AlertDialogClose>حذف</AlertDialogClose>
+</AlertDialogFooter>
+```
+
+### AlertDialogTitle
+
+عنصر العنوان. الاسم المستعار ل `AlertDialog.Title` من مكتبة بيس.
+
+### AlertDialogDescription
+
+عنصر الوصف. الاسم المستعار ل `AlertDialog.Description` من مكتبة بيس.
+
+### AlertDialogClose
+
+إغلاق زر المكون. الاسم المستعار ل `AlertDialog.Close` من مكتبة بيس.
+
+### AlertDialogPortal
+
+مكون البوابة للعرض خارج التسلسل الهرمي بنية الصفحة. الاسم المستعار ل `AlertDialog.Portal` من مكتبة بيس.
+
+### AlertDialogBackdrop
+
+خلفية / عنصر تراكب. أيضا تصديرها كما `AlertDialogOverlay`. الاسم المستعار ل `AlertDialog.Backdrop` من مكتبة بيس.
+
+### AlertDialogViewport
+
+عنصر منطقة العرض لتحديد المواقع. الاسم المستعار ل `AlertDialog.Viewport` من مكتبة بيس.
+
+## الأمثلة
+
+### تنبيه الحوار مع العارية تذييل
+
+<ComponentPreview name="p-alert-dialog-2" />
+
+### إغلاق تأكيد
+
+<ComponentPreview name="p-dialog-4" />

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-alert-3",
+  "description": "تنبيه مع أيقونة وأزرار العمل",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@arabicui/alert",
+    "@arabicui/button"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-alert-3.tsx",
+      "content": "import { InfoIcon } from \"lucide-react\";\nimport {\n  Alert,\n  AlertAction,\n  AlertDescription,\n  AlertTitle,\n} from \"@/registry/default/ui/alert\";\nimport { Button } from \"@/registry/default/ui/button\";\n\nexport default function Particle() {\n  return (\n    <Alert>\n      <InfoIcon />\n      <AlertTitle>تنبيه!</AlertTitle>\n      <AlertDescription>وصف ما يمكن القيام به حيال ذلك هنا.</AlertDescription>\n      <AlertAction>\n        <Button size=\"xs\" variant=\"ghost\">\n          رفض\n        </Button>\n        <Button size=\"xs\">موافق</Button>\n      </AlertAction>\n    </Alert>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full"
+  },
+  "categories": [
+    "alert"
+  ],
+  "type": "registry:block"
+}

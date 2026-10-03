@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-toast-6",
+  "description": "إشعارات مكدسة مع ارتفاع محتوى متفاوت",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/toast"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-toast-6.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport { toastManager } from \"@/registry/default/ui/toast\";\n\nconst TEXTS = [\n  \"رسالة قصيرة\",\n  \"رسالة أطول قليلاً تمتد على سطرين.\",\n  \"هذا هو وصف أطول يأخذ عمدا مساحة رأسية أكبر لإظهار التراص مع ارتفاعات متفاوتة.\",\n  \"وصف أطول يجب أن يمتد لعدة خطوط حتى نتمكن من التحقق من الارتفاع المنهار المثبت والرسوم المتحركة التمددية السلسة عند التحوم أو التركيز على منفذ العرض.\",\n];\n\nexport default function Particle() {\n  const [count, setCount] = useState(0);\n\n  function createToast() {\n    setCount((prev) => prev + 1);\n    const description = TEXTS[Math.floor(Math.random() * TEXTS.length)];\n    toastManager.add({\n      description,\n      title: `الإشعار العابر ${count + 1} created`,\n    });\n  }\n\n  return (\n    <Button onClick={createToast} variant=\"outline\">\n      مع ارتفاعات متفاوتة\n    </Button>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "toast"
+  ],
+  "type": "registry:block"
+}

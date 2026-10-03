@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-538",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/timeline.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-538.tsx",
+      "content": "import {\n  Timeline,\n  TimelineContent,\n  TimelineDate,\n  TimelineItem,\n} from \"@/registry/default/ui/timeline\";\n\nconst items = [\n  {\n    date: new Date(\"2024-01-09T10:55:00\"),\n    description: \"تم الانتهاء من النسخ الاحتياطي للنظام بنجاح.\",\n    id: 1,\n  },\n  {\n    date: new Date(\"2024-01-09T10:50:00\"),\n    description:\n      \"إعادة تشغيل خدمة مصادقة المستخدم بسبب تحديث التكوين.\",\n    id: 2,\n  },\n  {\n    date: new Date(\"2024-01-09T10:45:00\"),\n    description: \"تحذير: تم اكتشاف استخدام وحدة المعالجة المركزية العالية على عقدة العامل-03.\",\n    id: 3,\n  },\n  {\n    date: new Date(\"2024-01-09T10:40:00\"),\n    description: \"بدأ نشر جديد لـ واجهة برمجية-service v2.1.0.\",\n    id: 4,\n  },\n];\n\nexport default function Component() {\n  return (\n    <Timeline className=\"divide-y rounded-lg border\">\n      {items.map((item) => (\n        <TimelineItem className=\"m-0! px-4! py-3!\" key={item.id} step={item.id}>\n          <TimelineContent className=\"text-foreground\">\n            {item.description}\n            <TimelineDate className=\"mt-1\">\n              {item.date.toLocaleDateString(\"ar\", {\n                day: \"numeric\",\n                month: \"long\",\n                year: \"numeric\",\n              })}{\" \"}\n              في{\" \"}\n              {item.date.toLocaleTimeString(\"ar\", {\n                hour: \"numeric\",\n                hour12: true,\n                minute: \"2-digit\",\n              })}\n            </TimelineDate>\n          </TimelineContent>\n        </TimelineItem>\n      ))}\n    </Timeline>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "colSpan": 2,
+    "tags": [
+      "timeline",
+      "vertical timeline"
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-form-2",
+  "description": "نموذج مع التحقق من صحة Zod",
+  "dependencies": [
+    "zod"
+  ],
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/field",
+    "@arabicui/form",
+    "@arabicui/input"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-form-2.tsx",
+      "content": "\"use client\";\n\nimport type { FormEvent } from \"react\";\nimport { useState } from \"react\";\nimport { z } from \"zod\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport { Field, FieldError, FieldLabel } from \"@/registry/default/ui/field\";\nimport { Form } from \"@/registry/default/ui/form\";\nimport { Input } from \"@/registry/default/ui/input\";\n\nconst schema = z.object({\n  age: z.coerce\n    .number({ message: \"الرجاء إدخال رقم.\" })\n    .positive({ message: \"يجب أن يكون الرقم إيجابيا.\" }),\n  name: z.string().min(1, { message: \"الرجاء إدخال اسم.\" }),\n});\n\ntype Errors = Record<string, string | string[]>;\n\nasync function submitForm(event: FormEvent<HTMLFormElement>) {\n  event.preventDefault();\n\n  const formData = new FormData(event.currentTarget);\n  const result = schema.safeParse(Object.fromEntries(formData));\n\n  if (!result.success) {\n    const { fieldErrors } = z.flattenError(result.error);\n    return { errors: fieldErrors as Errors };\n  }\n\n  return {\n    errors: {} as Errors,\n  };\n}\n\nexport default function Particle() {\n  const [loading, setLoading] = useState(false);\n  const [errors, setErrors] = useState<Errors>({});\n\n  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {\n    event.preventDefault();\n    const formData = new FormData(event.currentTarget);\n    setLoading(true);\n    const response = await submitForm(event);\n    await new Promise((r) => setTimeout(r, 800));\n    setErrors(response.errors);\n    setLoading(false);\n    if (Object.keys(response.errors).length === 0) {\n      alert(\n        `الاسم: ${String(formData.get(\"name\") || \"\")}العمر:: ${String(\n          formData.get(\"age\") || \"\",\n        )}`,\n      );\n    }\n  };\n\n  return (\n    <Form\n      className=\"flex w-full max-w-64 flex-col gap-4\"\n      errors={errors}\n      onSubmit={onSubmit}\n    >\n      <Field name=\"name\">\n        <FieldLabel>الاسم</FieldLabel>\n        <Input placeholder=\"أدخل الاسم\" />\n        <FieldError />\n      </Field>\n      <Field name=\"age\">\n        <FieldLabel>العمر</FieldLabel>\n        <Input placeholder=\"أدخل في العمر\" />\n        <FieldError />\n      </Field>\n      <Button loading={loading} type=\"submit\">\n        إرسال\n      </Button>\n    </Form>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-64"
+  },
+  "categories": [
+    "button",
+    "field",
+    "form",
+    "label",
+    "validation",
+    "zod"
+  ],
+  "type": "registry:block"
+}

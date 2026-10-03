@@ -1,0 +1,115 @@
+---
+title: "مجموعة أزرار التبديل"
+description: "يوفر حالة مشتركة لسلسلة من أزرار التبديل."
+---
+
+<ComponentPreview name="p-toggle-group-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/toggle-group
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="toggle-group" title="components/ui/toggle-group.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+```
+
+```tsx
+<ToggleGroup>
+  <ToggleGroupItem>عريض</ToggleGroupItem>
+  <ToggleGroupItem>مائل</ToggleGroupItem>
+  <ToggleGroupItem>تسطير</ToggleGroupItem>
+</ToggleGroup>
+```
+
+## مرجع الواجهة البرمجية
+
+### ToggleGroup
+
+المكوّن الأساسي. غلاف منسّق للمكوّن `ToggleGroup.Root` من واجهة المستخدم الأساسية. يوفر البديل المشترك والحجم إلى تبديلات الطفل عبر السياق.
+
+| الخاصية      | النوع                          | الافتراضي     | الوصف                                      |
+| --------- | ----------------------------- | ----------- | ------------------------------------------------ |
+| `variant` | `"default" \| "outline"`      | `"default"` | يتحكم في تصميم جميع تبديلات الأطفال        |
+| `size`    | `"default" \| "sm" \| "lg"`   | `"default"` | يتحكم في حجم جميع تبديلات الأطفال           |
+
+### ToggleGroupItem
+
+زر تبديل الفردية داخل المجموعة. المجمع على غرار ل `Toggle` من واجهة المستخدم الأساسية. يرث البديل والحجم من سياق ToggleGroup الأم.
+
+### ToggleGroupSeparator
+
+فاصل بصري بين أزرار التبديل.
+
+## الأمثلة
+
+### تبديلات صغيرة
+
+<ComponentPreview name="p-toggle-group-2" />
+
+### تبديلات كبيرة
+
+<ComponentPreview name="p-toggle-group-3" />
+
+### مع Outline Toggles
+
+<ComponentPreview name="p-toggle-group-4" />
+
+### عمودي
+
+<ComponentPreview name="p-toggle-group-5" />
+
+### معطّل
+
+<ComponentPreview name="p-toggle-group-6" />
+
+### مع تبديل المعاقين
+
+<ComponentPreview name="p-toggle-group-7" />
+
+### اختيار متعدد
+
+<ComponentPreview name="p-toggle-group-8" />
+
+### مع Tooltips
+
+<ComponentPreview name="p-toggle-group-9" />
+
+## سجل التغيير
+
+- [مارس 20, 2026](/ui/docs/changelog#مجموعة-أزرار-التبديل) — `Toggle` أعيدت تسميتها `ToggleGroupItem`

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-345",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/accordion.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-345.tsx",
+      "content": "import { PlusIcon } from \"lucide-react\";\nimport { Accordion as AccordionPrimitive } from \"radix-ui\";\nimport {\n  Accordion,\n  AccordionContent,\n  AccordionItem,\n} from \"@/registry/default/ui/accordion\";\n\nconst items = [\n  {\n    content:\n      \"تركّز المكتبة على تجربة المطوّر والأداء، وتوفّر تحققًا من الأنواع ودعمًا لسهولة الوصول وتوثيقًا شاملًا.\",\n    id: \"1\",\n    title: \"ما الذي يميّز COSS UI/Arabic؟\",\n  },\n  {\n    content:\n      \"يمكنك تخصيص التنسيق العام بالمتغيرات، أو تعديل خصائص التنسيق لكل مكوّن. تدعم المكتبة الوحدات المنفصلة والمظهر الداكن.\",\n    id: \"2\",\n    title: \"كيف أخصّص المكونات؟\",\n  },\n  {\n    content:\n      \"نعم، تدعم المكونات تقسيم الكود واستبعاد الأجزاء غير المستخدمة لتقليل حجم التطبيق.\",\n    id: \"3\",\n    title: \"هل المكونات محسّنة للأداء؟\",\n  },\n  {\n    content:\n      \"تراعي المكونات معايير سهولة الوصول، وتدعم التنقل بلوحة المفاتيح وقرّاء الشاشة.\",\n    id: \"4\",\n    title: \"هل تدعم المكونات سهولة الوصول؟\",\n  },\n];\n\nexport default function Component() {\n  return (\n    <div className=\"space-y-4\">\n      <h2 className=\"font-bold text-xl\">علامات التبويب ث / زائد ناقص</h2>\n      <Accordion\n        className=\"w-full space-y-2\"\n        collapsible\n        defaultValue=\"3\"\n        type=\"single\"\n      >\n        {items.map((item) => (\n          <AccordionItem\n            className=\"rounded-md border bg-background px-4 py-1 outline-none last:border-b has-focus-visible:border-ring has-focus-visible:ring-[3px] has-focus-visible:ring-ring/50\"\n            key={item.id}\n            value={item.id}\n          >\n            <AccordionPrimitive.Header className=\"flex\">\n              <AccordionPrimitive.Trigger className=\"flex flex-1 items-center justify-between rounded-md py-2 text-start font-semibold text-[15px] leading-6 outline-none ocus-visible:ring-0 transition-all [&>svg>path:last-child]:origin-center [&>svg>path:last-child]:transition-all [&>svg>path:last-child]:duration-200 [&[data-state=open]>svg>path:last-child]:rotate-90 [&[data-state=open]>svg>path:last-child]:opacity-0 [&[data-state=open]>svg]:rotate-180\">\n                {item.title}\n                <PlusIcon\n                  aria-hidden=\"true\"\n                  className=\"pointer-events-none shrink-0 opacity-60 transition-transform duration-200\"\n                  size={16}\n                />\n              </AccordionPrimitive.Trigger>\n            </AccordionPrimitive.Header>\n            <AccordionContent className=\"pb-2 text-muted-foreground\">\n              {item.content}\n            </AccordionContent>\n          </AccordionItem>\n        ))}\n      </Accordion>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "colSpan": 2,
+    "tags": [
+      "accordion",
+      "radix"
+    ]
+  }
+}

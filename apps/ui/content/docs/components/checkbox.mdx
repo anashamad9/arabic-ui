@@ -1,0 +1,85 @@
+---
+title: "مربع الاختيار"
+description: "عنصر تحكم يسمح للمستخدم بالتبديل بين التحقق وعدم التحقق."
+
+links:
+  doc: https://base-ui.com/react/components/checkbox#api-reference
+---
+
+<ComponentPreview name="p-checkbox-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/checkbox
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="checkbox" title="components/ui/checkbox.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { Checkbox } from "@/components/ui/checkbox"
+```
+
+```tsx
+<Checkbox />
+```
+
+## مرجع الواجهة البرمجية
+
+### مربع الاختيار
+
+المجمع على غرار ل `Checkbox.Root` من واجهة المستخدم الأساسية. يتضمن مؤشر مدمج مع علامة اختيار ورموز غير محددة.
+
+## الأمثلة
+
+للتسميات والتحقق مع دعم سهولة الوصول، يُفضّل استخدام `Field` مكون لتغليف مربعات الاختيار. انظر المثال ذي الصلة: [حقل خانة الاختيار](/ui/docs/components/field#حقل-خانة-الاختيار).
+
+### معطّل
+
+<ComponentPreview name="p-checkbox-2" />
+
+### مع الوصف
+
+<ComponentPreview name="p-checkbox-3" />
+
+### نمط البطاقة
+
+<ComponentPreview name="p-checkbox-4" />
+
+### التكامل مع النماذج
+
+يوفر الحقل إمكانية الوصول إلى العلامات والتحقق من الصحة الأولية لعناصر التحكم في النموذج. استخدمه مع `Form` لتقديم القيم.
+
+<ComponentPreview name="p-checkbox-5" />

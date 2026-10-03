@@ -1,0 +1,95 @@
+---
+title: "مؤشر التقدم"
+description: "يعرض حالة المهمة التي تستغرق وقتا طويلا."
+
+links:
+  doc: https://base-ui.com/react/components/progress#api-reference
+---
+
+<ComponentPreview name="p-progress-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/progress
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="progress" title="components/ui/progress.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  Progress,
+  ProgressLabel,
+  ProgressValue,
+} from "@/components/ui/progress"
+```
+
+```tsx
+<Progress value={40} />
+```
+
+ملاحظة: إذا قمت بعرض الأطفال في الداخل `Progress`، يجب أن تشمل أيضا `ProgressTrack` و `ProgressIndicator` داخله. بدونها ، لن يتم عرض الشريط. عندما لا يتم توفير أي أطفال ، يتم تقديم مسار ومؤشر افتراضي لك.
+
+## مرجع الواجهة البرمجية
+
+### مؤشر التقدم
+
+المكوّن الأساسي. غلاف منسّق للمكوّن `Progress.Root` من واجهة المستخدم الأساسية. عندما يتم توفير أي أطفال، تلقائيا يجعل المسار والمؤشر.
+
+### ProgressTrack
+
+حاوية المسار لمؤشر التقدم. غلاف على غرار ل `Progress.Track` من مكتبة بيس.
+
+### ProgressIndicator
+
+مؤشر مرئي يوضح التقدم الحالي. غلاف مصمم ل `Progress.Indicator` من مكتبة بيس.
+
+### ProgressLabel
+
+نص التسمية لشريط التقدم. غلاف نمط ل `Progress.Label` من مكتبة بيس.
+
+### ProgressValue
+
+يعرض القيمة الحالية. غلاف نمط ل `Progress.Value` من مكتبة بيس.
+
+## الأمثلة
+
+### مع التسمية والقيمة
+
+<ComponentPreview name="p-progress-2" />
+
+### مع القيمة المنسقة
+
+<ComponentPreview name="p-progress-3" />

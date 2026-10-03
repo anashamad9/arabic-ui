@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-combobox-5",
+  "description": "اختيار مع البحث مع التسمية",
+  "registryDependencies": [
+    "@arabicui/combobox",
+    "@arabicui/label"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-combobox-5.tsx",
+      "content": "\"use client\";\n\nimport { useId } from \"react\";\nimport {\n  Combobox,\n  ComboboxEmpty,\n  ComboboxInput,\n  ComboboxItem,\n  ComboboxList,\n  ComboboxPopup,\n} from \"@/registry/default/ui/combobox\";\nimport { Label } from \"@/registry/default/ui/label\";\n\nconst items = [\n  { label: \"تفاح\", value: \"apple\" },\n  { label: \"موز\", value: \"banana\" },\n  { label: \"برتقال\", value: \"orange\" },\n  { label: \"عنب\", value: \"grape\" },\n  { label: \"فراولة\", value: \"strawberry\" },\n  { label: \"مانجو\", value: \"mango\" },\n  { label: \"أناناس\", value: \"pineapple\" },\n  { label: \"كيوي\", value: \"kiwi\" },\n  { label: \"خوخ\", value: \"peach\" },\n  { label: \"كمثرى\", value: \"pear\" },\n];\n\nexport default function Particle() {\n  const id = useId();\n  return (\n    <Combobox items={items}>\n      <div className=\"flex flex-col items-start gap-2\">\n        <Label htmlFor={id}>الفواكه</Label>\n        <ComboboxInput\n          aria-label=\"اختر عنصر\"\n          id={id}\n          placeholder=\"اختر عنصرًا…\"\n        />\n      </div>\n      <ComboboxPopup>\n        <ComboboxEmpty>لم يتم العثور على نتائج.</ComboboxEmpty>\n        <ComboboxList>\n          {(item) => (\n            <ComboboxItem key={item.value} value={item}>\n              {item.label}\n            </ComboboxItem>\n          )}\n        </ComboboxList>\n      </ComboboxPopup>\n    </Combobox>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-64"
+  },
+  "categories": [
+    "combobox",
+    "input"
+  ],
+  "type": "registry:block"
+}

@@ -1,0 +1,92 @@
+---
+title: "النموذج"
+description: "مكون غلاف النموذج الذي يبسط التحقق من صحة وتقديم."
+
+links:
+  doc: https://base-ui.com/react/components/form#api-reference
+---
+
+<ComponentPreview name="p-form-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/form
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react zod
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="form" title="components/ui/form.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  Field,
+  FieldError,
+  FieldLabel,
+} from "@/components/ui/field"
+import { Form } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+```
+
+```tsx
+<Form
+  className="flex w-full flex-col gap-4"
+  onSubmit={(e) => {
+    /* handle submit */
+  }}
+>
+  <Field>
+    <FieldLabel>البريد الإلكتروني</FieldLabel>
+    <Input name="email" type="email" required />
+    <FieldError>يرجى إدخال بريد إلكتروني صحيح.</FieldError>
+  </Field>
+</Form>
+```
+
+## مرجع الواجهة البرمجية
+
+### النموذج
+
+غلاف رقيق حول واجهة المستخدم الأساسية `Form` بدون تخطيط افتراضي. تمرير **`className`** للتباعد والهيكل (على سبيل المثال `flex w-full flex-col gap-4` من أجل كومة حقل عمودي).
+
+**الحوار ، ورقة ، درج:** مكان المكان **`DialogHeader`** (أو رأس ورقة / درج) **خارج** النموذج. التفاف **`DialogPanel`** و **`DialogFooter`** فقط في **`<Form className="contents">`** (أو **`<form className="contents">`**). **`contents`** قيمة العرض تحافظ على مشاركة اللوحة والتذييل بشكل صحيح في تخطيط الفليكس المنبثق دون تعشيش الرأس داخل `<form>`.
+
+## الأمثلة
+
+### استخدام مع Zod
+
+<ComponentPreview name="p-form-2" />
+
+## سجل التغيير
+
+- [أبريل 17, 2026](/ui/docs/changelog#النموذج) — **`Form`** لم يعد يطبق فئات التخطيط الافتراضية ؛ تمرير **`className`** للحقول المكدسة (`flex w-full flex-col gap-4`) ؛ للتراكبات ، التفاف **لوحة + تذييل** في **`Form className="contents"`** مع **رأس** خارج.

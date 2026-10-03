@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-radio-group-8",
+  "description": "التحكم المجزأ المبني مع مجموعة اختيار أحادي",
+  "registryDependencies": [
+    "@arabicui/radio-group",
+    "@arabicui/segmented-control"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-radio-group-8.tsx",
+      "content": "\"use client\";\n\nimport {\n  segmentedControlItemVariants,\n  segmentedControlRootClassName,\n} from \"@/registry/default/lib/segmented-control\";\nimport {\n  RadioGroupPrimitive,\n  RadioPrimitive,\n} from \"@/registry/default/ui/radio-group\";\n\nconst itemClassName = segmentedControlItemVariants({\n  className: \"grow\",\n  state: \"checked\",\n});\n\nexport default function Particle() {\n  return (\n    <RadioGroupPrimitive\n      aria-label=\"فترة الفوترة\"\n      className={segmentedControlRootClassName}\n      defaultValue=\"monthly\"\n    >\n      <RadioPrimitive.Root className={itemClassName} value=\"monthly\">\n        شهريا\n      </RadioPrimitive.Root>\n      <RadioPrimitive.Root className={itemClassName} value=\"yearly\">\n        سنوي\n      </RadioPrimitive.Root>\n    </RadioGroupPrimitive>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "radio group",
+    "segmented control"
+  ],
+  "type": "registry:block"
+}

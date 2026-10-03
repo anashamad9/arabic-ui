@@ -1,0 +1,96 @@
+---
+title: "مقياس القيمة"
+description: "عرض رسومي لقيمة رقمية ضمن نطاق."
+
+links:
+  doc: https://base-ui.com/react/components/meter#api-reference
+---
+
+<ComponentPreview name="p-meter-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/meter
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="meter" title="components/ui/meter.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { Meter, MeterLabel, MeterValue } from "@/components/ui/meter"
+```
+
+```tsx
+<Meter value={40}>
+  <MeterLabel>مؤشر التقدم</MeterLabel>
+  <MeterValue />
+</Meter>
+```
+
+## مرجع الواجهة البرمجية
+
+### مقياس القيمة
+
+المكوّن الأساسي. غلاف منسّق للمكوّن `Meter.Root` من واجهة المستخدم الأساسية مع تخطيط العمود المرن.
+
+### MeterTrack
+
+حاوية المسار لمؤشر متر. المجمع على غرار ل `Meter.Track` من مكتبة بيس.
+
+### MeterIndicator
+
+مؤشر مرئي يوضح القيمة الحالية. غلاف مصمم ل `Meter.Indicator` من مكتبة بيس.
+
+### MeterLabel
+
+نص التسمية للمتر. المجمع على غرار ل `Meter.Label` من مكتبة بيس.
+
+### MeterValue
+
+يعرض القيمة الحالية. غلاف نمط ل `Meter.Value` من مكتبة بيس.
+
+## الأمثلة
+
+### بدون تسمية وقيمة
+
+<ComponentPreview name="p-meter-2" />
+
+### مع القيمة المنسقة
+
+<ComponentPreview name="p-meter-3" />
+
+### مع المدى
+
+<ComponentPreview name="p-meter-4" />

@@ -1,0 +1,213 @@
+---
+title: "المجموعة"
+description: "عنصر لتجميع بصريا سلسلة من الضوابط."
+---
+
+<ComponentPreview name="p-group-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/group
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="group" title="components/ui/group.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { Button } from "@/components/ui/button"
+import { Group, GroupSeparator } from "@/components/ui/group"
+```
+
+```tsx
+<Group>
+  <Button>الزر</Button>
+  <GroupSeparator />
+  <Button>الزر</Button>
+</Group>
+```
+
+## إمكانية الوصول
+
+- المكوّن `Group` المكون يحتوي على `role` السمة Set to `group`.
+- استخدم `Tab` التنقل بين عناصر التحكم في المجموعة.
+- استخدم `aria-label` أو `aria-labelledby` لتسمية المجموعة
+
+```tsx showLineNumbers
+<Group aria-label="التحكم في وسائل الإعلام">
+  <Button variant="outline">تشغيل</Button>
+  <GroupSeparator />
+  <Button variant="outline">الوقفة</Button>
+</Group>
+```
+
+### المجموعة مقابل ToggleGroup
+
+- استخدم `Group` المكون عندما تريد تجميع عناصر التحكم التي تؤدي إجراء.
+- استخدم `ToggleGroup` المكون عندما تريد تجميع عناصر التحكم التي تقوم بتبديل حالة.
+
+## مرجع الواجهة البرمجية
+
+### المجموعة
+
+المكوّن `Group` المكون هو حاوية تجمع بصريًا سلسلة من عناصر التحكم ذات الصلة جنبًا إلى جنب مع التصميم المتسق.
+
+| الخاصية          | النوع                         | الافتراضي        |
+| ------------- | ---------------------------- | -------------- |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` |
+
+```tsx
+<Group>
+  <Button>زر 1</Button>
+  <GroupSeparator />
+  <Button>زر 2</Button>
+</Group>
+```
+
+عش مجموعات متعددة لإنشاء تخطيطات معقدة مع تباعد. [المجموعات المتداخلة](#المجموعات-المتداخلة) مثال لمزيد من التفاصيل.
+
+```tsx
+<Group>
+  <Group>
+    <Button>1</Button>
+    <GroupSeparator />
+    <Button>2</Button>
+  </Group>
+  <Group>
+    <Button>السابق</Button>
+    <GroupSeparator />
+    <Button>التالي</Button>
+  </Group>
+</Group>
+```
+
+### GroupSeparator
+
+المكوّن `GroupSeparator` يقسم المكون بصريًا عناصر التحكم داخل المجموعة.
+
+| الخاصية          | النوع                         | الافتراضي      |
+| ------------- | ---------------------------- | ------------ |
+| `orientation` | `"horizontal" \| "vertical"` | `"vertical"` |
+
+```tsx
+<Group>
+  <Button>زر 1</Button>
+  <GroupSeparator />
+  <Button>زر 2</Button>
+</Group>
+```
+
+**ملاحظة:** على عكس مجموعة أزرار (شادن) `GroupSeparator` مطلوب بين جميع عناصر التحكم ، بما في ذلك أزرار الخطوط العريضة. هذا يضمن التسلسل الهرمي البصري المتسق وحالات التركيز.
+
+### GroupText
+
+استخدم هذا المكون لعرض نص داخل مجموعة، مثل التسميات أو البادئات.
+
+| الخاصية     | النوع                       | الافتراضي |
+| -------- | -------------------------- | ------- |
+| `render` | `React.ReactNode \| null` | `null`  |
+
+```tsx
+<Group>
+  <GroupText>https://</GroupText>
+  <GroupSeparator />
+  <Input placeholder="سبيل المثال.com" />
+</Group>
+```
+
+استخدم `render` الخاصية لتصيير مكون مخصص كنص، على سبيل المثال تسمية.
+
+```tsx
+<Group>
+  <GroupText render={<Label htmlFor="domain" aria-label="النطاق" />}>
+    https://
+  </GroupText>
+  <GroupSeparator />
+  <Input id="domain" placeholder="سبيل المثال.com" />
+</Group>
+```
+
+## الأمثلة
+
+### مع المدخلات
+
+<ComponentPreview name="p-group-2" />
+
+### حجم صغير
+
+<ComponentPreview name="p-group-3" />
+
+### حجم كبير
+
+<ComponentPreview name="p-group-4" />
+
+### مع زر المعاقين
+
+<ComponentPreview name="p-group-5" />
+
+### مع أزرار افتراضية
+
+<ComponentPreview name="p-group-6" />
+
+### مع بدء النص المسمى
+
+<ComponentPreview name="p-group-7" />
+
+### مع نهاية النص
+
+<ComponentPreview name="p-group-8" />
+
+### عمودي
+
+<ComponentPreview name="p-group-9" />
+
+### المجموعات المتداخلة
+
+<ComponentPreview name="p-group-10" />
+
+### مع Popup
+
+<ComponentPreview name="p-group-11" />
+
+### مع مجموعة الإدخال
+
+<ComponentPreview name="p-group-12" />
+
+### مع القائمة
+
+<ComponentPreview name="p-group-13" />
+
+### مع تحديد
+
+<ComponentPreview name="p-group-14" />

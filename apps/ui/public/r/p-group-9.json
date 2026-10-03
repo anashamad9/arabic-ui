@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-group-9",
+  "description": "مجموعة عمودية",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/group"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-group-9.tsx",
+      "content": "import { ZoomInIcon, ZoomOutIcon } from \"lucide-react\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport { Group, GroupSeparator } from \"@/registry/default/ui/group\";\n\nexport default function Particle() {\n  return (\n    <Group aria-label=\"ضوابط التكبير\" orientation=\"vertical\">\n      <Button aria-label=\"تكبير في\" size=\"icon\" variant=\"outline\">\n        <ZoomInIcon />\n      </Button>\n      <GroupSeparator orientation=\"horizontal\" />\n      <Button aria-label=\"تصغير\" size=\"icon\" variant=\"outline\">\n        <ZoomOutIcon />\n      </Button>\n    </Group>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "group"
+  ],
+  "type": "registry:block"
+}

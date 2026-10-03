@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-group-17",
+  "description": "المجموعة مع المدخلات والعملة النص",
+  "registryDependencies": [
+    "@arabicui/group",
+    "@arabicui/input",
+    "@arabicui/label"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-group-17.tsx",
+      "content": "import { Group, GroupSeparator, GroupText } from \"@/registry/default/ui/group\";\nimport { Input } from \"@/registry/default/ui/input\";\nimport { Label } from \"@/registry/default/ui/label\";\n\nexport default function Particle() {\n  return (\n    <Group aria-label=\"مدخلات الأسعار\">\n      <Input\n        aria-label=\"أدخل المبلغ\"\n        className=\"text-end\"\n        defaultValue=\"100\"\n        id=\"amount\"\n        type=\"text\"\n      />\n      <GroupSeparator />\n      <GroupText render={<Label aria-label=\"العملة\" htmlFor=\"amount\" />}>\n        دولار أمريكي\n      </GroupText>\n    </Group>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "group",
+    "input"
+  ],
+  "type": "registry:block"
+}

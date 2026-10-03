@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-342",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/accordion.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-342.tsx",
+      "content": "import {\n  BellIcon,\n  ChevronDownIcon,\n  LifeBuoyIcon,\n  Link2Icon,\n  ShieldCheckIcon,\n} from \"lucide-react\";\nimport { Accordion as AccordionPrimitive } from \"radix-ui\";\nimport {\n  Accordion,\n  AccordionContent,\n  AccordionItem,\n} from \"@/registry/default/ui/accordion\";\n\nconst items = [\n  {\n    content:\n      \"قم بتوصيل حساباتك من غوغل أو غيت هب أو مايكروسوفت لتمكين تسجيل الدخول مرة واحدة وتبسيط سير عملك. يمكن استخدام الحسابات المتصلة لتسجيل الدخول السريع واستيراد تفضيلاتك عبر الأنظمة الأساسية. يمكنك إلغاء الوصول إلى أي حساب متصل في أي وقت.\",\n    icon: Link2Icon,\n    id: \"1\",\n    sub: \"إدارة حساباتك الاجتماعية والعملية المرتبطة\",\n    title: \"الحسابات المتصلة\",\n  },\n  {\n    content:\n      \"اختر التحديثات التي تريد تلقيها. يمكنك الحصول على إشعارات لما يلي: تنبيهات الأمان وتحديثات الفواتير والرسائل الإخبارية وإعلانات المنتجات وتقارير الاستخدام والصيانة المجدولة. يمكن تسليم الإشعارات عبر البريد الإلكتروني أو الرسائل القصيرة أو الإشعارات الفورية على أجهزتك.\",\n    icon: BellIcon,\n    id: \"2\",\n    sub: \"تخصيص تفضيلات الإشعارات\",\n    title: \"الإشعارات\",\n  },\n  {\n    content:\n      \"قم بحماية حسابك من خلال المصادقة الثنائية. يمكنك استخدام تطبيقات المصادقة مثل غوغل المصادقة أو أوثي أو تلقي رموز رسائل قصيرة أو استخدام مفاتيح الأمان مثل يوبي كي. نوصي باستخدام تطبيق المصادقة للحصول على تجربة أكثر أمانًا.\",\n    icon: ShieldCheckIcon,\n    id: \"3\",\n    sub: \"أضف طبقة أمان إضافية إلى حسابك\",\n    title: \"التحقق بخطوتين\",\n  },\n  {\n    content:\n      \"فريق الدعم متاح على مدار الساعة للإجابة عن استفسارات الفوترة والمشكلات التقنية والأسئلة العامة. يمكنك التواصل عبر المحادثة أو البريد الإلكتروني، أو حجز مكالمة مع الفريق.\",\n    icon: LifeBuoyIcon,\n    id: \"4\",\n    sub: \"نحن هنا للمساعدة 24/7\",\n    title: \"دعم الاتصال\",\n  },\n];\n\nexport default function Component() {\n  return (\n    <div className=\"space-y-4\">\n      <h2 className=\"font-bold text-xl\">مع أيقونة وعنوان فرعي وسهم</h2>\n      <Accordion className=\"w-full\" collapsible defaultValue=\"3\" type=\"single\">\n        {items.map((item) => (\n          <AccordionItem className=\"py-2\" key={item.id} value={item.id}>\n            <AccordionPrimitive.Header className=\"flex\">\n              <AccordionPrimitive.Trigger className=\"flex flex-1 items-center justify-between rounded-md py-2 text-start font-semibold text-[15px] leading-6 outline-none transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 [&[data-state=open]>svg]:rotate-180\">\n                <span className=\"flex items-center gap-3\">\n                  <span\n                    aria-hidden=\"true\"\n                    className=\"flex size-10 shrink-0 items-center justify-center rounded-full border\"\n                  >\n                    <item.icon className=\"opacity-60\" size={16} />\n                  </span>\n                  <span className=\"flex flex-col space-y-1\">\n                    <span>{item.title}</span>\n                    {item.sub && (\n                      <span className=\"font-normal text-sm\">{item.sub}</span>\n                    )}\n                  </span>\n                </span>\n                <ChevronDownIcon\n                  aria-hidden=\"true\"\n                  className=\"pointer-events-none shrink-0 opacity-60 transition-transform duration-200\"\n                  size={16}\n                />\n              </AccordionPrimitive.Trigger>\n            </AccordionPrimitive.Header>\n            <AccordionContent className=\"ms-3 ps-10 pb-2 text-muted-foreground\">\n              {item.content}\n            </AccordionContent>\n          </AccordionItem>\n        ))}\n      </Accordion>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "colSpan": 2,
+    "tags": [
+      "accordion",
+      "radix"
+    ]
+  }
+}

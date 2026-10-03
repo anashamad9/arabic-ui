@@ -1,0 +1,55 @@
+"use client";
+
+import { useState } from "react";
+import { Button } from "@/registry/default/ui/button";
+import {
+  Drawer,
+  DrawerDescription,
+  DrawerHeader,
+  DrawerPanel,
+  DrawerPopup,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/registry/default/ui/drawer";
+
+export default function Particle() {
+  const snapPoints = ["300px", 1] as const;
+  const [snapPoint, setSnapPoint] = useState<
+    (typeof snapPoints)[number] | null
+  >(snapPoints[0]);
+
+  return (
+    <Drawer
+      onSnapPointChange={(point) =>
+        setSnapPoint(point as (typeof snapPoints)[number] | null)
+      }
+      position="bottom"
+      snapPoint={snapPoint}
+      snapPoints={[...snapPoints]}
+      snapToSequentialPoints
+    >
+      <DrawerTrigger render={<Button variant="outline" />}>
+        مع نقاط المفاجئة
+      </DrawerTrigger>
+      <DrawerPopup showBar>
+        <DrawerHeader>
+          <DrawerTitle>نقاط Snap Points</DrawerTitle>
+          <DrawerDescription>
+            اسحب اللوحة المنزلقة لالتقاط بين نظرة خاطفة مدمجة وعرض كامل
+            الارتفاع.
+          </DrawerDescription>
+        </DrawerHeader>
+        <DrawerPanel>
+          <div className="flex flex-col gap-2">
+            {Array.from({ length: 48 }, (_, i) => `box-${i}`).map((key) => (
+              <div
+                className="h-12 shrink-0 rounded-xl border bg-muted"
+                key={key}
+              />
+            ))}
+          </div>
+        </DrawerPanel>
+      </DrawerPopup>
+    </Drawer>
+  );
+}

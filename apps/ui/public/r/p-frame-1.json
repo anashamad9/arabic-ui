@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-frame-1",
+  "description": "الإطار الأساسي",
+  "registryDependencies": [
+    "@arabicui/frame"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-frame-1.tsx",
+      "content": "import {\n  Frame,\n  FrameDescription,\n  FrameFooter,\n  FrameHeader,\n  FramePanel,\n  FrameTitle,\n} from \"@/registry/default/ui/frame\";\n\nexport default function Particle() {\n  return (\n    <Frame className=\"w-full\">\n      <FrameHeader>\n        <FrameTitle>رأس القسم</FrameTitle>\n        <FrameDescription>وصف موجز عن القسم</FrameDescription>\n      </FrameHeader>\n      <FramePanel>\n        <h2 className=\"font-semibold text-sm\">عنوان القسم</h2>\n        <p className=\"text-muted-foreground text-sm\">وصف القسم</p>\n      </FramePanel>\n      <FrameFooter>\n        <p className=\"text-muted-foreground text-sm\">التذييل</p>\n      </FrameFooter>\n    </Frame>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full"
+  },
+  "categories": [
+    "frame"
+  ],
+  "type": "registry:block"
+}

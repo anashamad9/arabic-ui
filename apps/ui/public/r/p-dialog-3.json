@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-dialog-3",
+  "description": "حوارات متداخلة",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/dialog",
+    "@arabicui/field",
+    "@arabicui/input"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-dialog-3.tsx",
+      "content": "import { Button } from \"@/registry/default/ui/button\";\nimport {\n  Dialog,\n  DialogClose,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogPanel,\n  DialogPopup,\n  DialogTitle,\n  DialogTrigger,\n} from \"@/registry/default/ui/dialog\";\nimport { Field, FieldLabel } from \"@/registry/default/ui/field\";\nimport { Input } from \"@/registry/default/ui/input\";\n\nexport default function Particle() {\n  return (\n    <Dialog>\n      <DialogTrigger render={<Button variant=\"outline\" />}>\n        الوالدين المفتوحين\n      </DialogTrigger>\n      <DialogPopup showCloseButton={false}>\n        <DialogHeader>\n          <DialogTitle>إدارة أعضاء الفريق</DialogTitle>\n          <DialogDescription>عرض وإدارة مستخدم في فريقك.</DialogDescription>\n        </DialogHeader>\n        <DialogPanel className=\"grid gap-4\">\n          <div className=\"grid gap-1\">\n            <p className=\"text-muted-foreground text-sm\">الاسم</p>\n            <p className=\"font-medium text-sm\">بورا بالوغلو</p>\n          </div>\n          <div className=\"grid gap-1\">\n            <p className=\"text-muted-foreground text-sm\">البريد الإلكتروني</p>\n            <p className=\"font-medium text-sm\">bora@example.com</p>\n          </div>\n        </DialogPanel>\n        <DialogFooter>\n          <Dialog>\n            <DialogTrigger render={<Button variant=\"outline\" />}>\n              تحرير التفاصيل\n            </DialogTrigger>\n            <DialogPopup showCloseButton={false}>\n              <DialogHeader>\n                <DialogTitle>تحرير التفاصيل</DialogTitle>\n                <DialogDescription>\n                  قم بإجراء تغييرات على معلومات العضو و .\n                </DialogDescription>\n              </DialogHeader>\n              <DialogPanel className=\"grid gap-4\">\n                <Field>\n                  <FieldLabel>الاسم</FieldLabel>\n                  <Input defaultValue=\"بورا بالوغلو\" type=\"text\" />\n                </Field>\n                <Field>\n                  <FieldLabel>البريد الإلكتروني</FieldLabel>\n                  <Input defaultValue=\"bora@example.com\" type=\"text\" />\n                </Field>\n              </DialogPanel>\n              <DialogFooter>\n                <DialogClose render={<Button variant=\"ghost\" />}>\n                  إلغاء\n                </DialogClose>\n                <Button type=\"submit\">حفظ التغييرات</Button>\n              </DialogFooter>\n            </DialogPopup>\n          </Dialog>\n        </DialogFooter>\n      </DialogPopup>\n    </Dialog>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "dialog"
+  ],
+  "type": "registry:block"
+}

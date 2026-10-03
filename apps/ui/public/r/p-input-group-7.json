@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-input-group-7",
+  "description": "مجموعة الإدخال مع تلميح نهاية",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/input-group",
+    "@arabicui/popover"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-input-group-7.tsx",
+      "content": "\"use client\";\n\nimport { InfoIcon } from \"lucide-react\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n} from \"@/registry/default/ui/input-group\";\nimport {\n  Popover,\n  PopoverPopup,\n  PopoverTrigger,\n} from \"@/registry/default/ui/popover\";\n\nexport default function Particle() {\n  return (\n    <InputGroup>\n      <InputGroupInput\n        aria-label=\"كلمة المرور\"\n        placeholder=\"كلمة المرور\"\n        type=\"password\"\n      />\n      <InputGroupAddon align=\"inline-end\">\n        <Popover>\n          <PopoverTrigger\n            openOnHover\n            render={\n              <Button\n                aria-label=\"متطلبات كلمة المرور\"\n                size=\"icon-xs\"\n                variant=\"ghost\"\n              />\n            }\n          >\n            <InfoIcon />\n          </PopoverTrigger>\n          <PopoverPopup side=\"top\" tooltipStyle>\n            <p>الحد الأدنى 8 أحرف</p>\n          </PopoverPopup>\n        </Popover>\n      </InputGroupAddon>\n    </InputGroup>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-64"
+  },
+  "categories": [
+    "input group",
+    "tooltip"
+  ],
+  "type": "registry:block"
+}

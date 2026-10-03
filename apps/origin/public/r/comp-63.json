@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-63",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/label.json",
+    "https://coss.com/origin/r/textarea.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-63.tsx",
+      "content": "import { useId } from \"react\";\nimport { Label } from \"@/registry/default/ui/label\";\nimport { Textarea } from \"@/registry/default/ui/textarea\";\n\nexport default function Component() {\n  const id = useId();\n  return (\n    <div className=\"[--ring:var(--color-indigo-300)] in-[.dark]:[--ring:var(--color-indigo-900)] *:not-first:mt-2\">\n      <Label htmlFor={id}>مساحة النص مع الحدود الملونة وحلقة</Label>\n      <Textarea id={id} placeholder=\"اكتب تعليقًا\" />\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "tags": [
+      "label",
+      "textarea"
+    ]
+  }
+}

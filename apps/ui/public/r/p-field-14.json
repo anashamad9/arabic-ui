@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-field-14",
+  "description": "حقل مع مجموعة اختيار أحادي",
+  "registryDependencies": [
+    "@arabicui/field",
+    "@arabicui/fieldset",
+    "@arabicui/radio-group"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-field-14.tsx",
+      "content": "\"use client\";\n\nimport {\n  Field,\n  FieldDescription,\n  FieldItem,\n  FieldLabel,\n} from \"@/registry/default/ui/field\";\nimport { Fieldset, FieldsetLegend } from \"@/registry/default/ui/fieldset\";\nimport { Radio, RadioGroup } from \"@/registry/default/ui/radio-group\";\n\nexport default function Particle() {\n  return (\n    <Field\n      className=\"gap-2\"\n      name=\"plan\"\n      render={(props) => <Fieldset {...props} />}\n    >\n      <FieldsetLegend className=\"font-medium text-sm\">اختر خطة</FieldsetLegend>\n      <RadioGroup defaultValue=\"free\">\n        <FieldItem>\n          <FieldLabel>\n            <Radio value=\"free\" /> مجانا\n          </FieldLabel>\n        </FieldItem>\n        <FieldItem>\n          <FieldLabel>\n            <Radio value=\"pro\" /> برو\n          </FieldLabel>\n        </FieldItem>\n        <FieldItem>\n          <FieldLabel>\n            <Radio value=\"enterprise\" /> المؤسسات\n          </FieldLabel>\n        </FieldItem>\n      </RadioGroup>\n      <FieldDescription>اختر الخطة التي تناسب احتياجاتك.</FieldDescription>\n    </Field>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-64"
+  },
+  "categories": [
+    "field",
+    "fieldset",
+    "label",
+    "radio group"
+  ],
+  "type": "registry:block"
+}

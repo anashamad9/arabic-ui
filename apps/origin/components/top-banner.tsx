@@ -1,0 +1,27 @@
+import { ArrowUpRightIcon } from "lucide-react";
+
+export default function TopBanner() {
+  const gatewayOrigin = process.env.NEXT_PUBLIC_COSS_UI_URL || "";
+  const gatewayHome = gatewayOrigin ? `${gatewayOrigin}/` : "/";
+
+  return (
+    <div className="dark relative bg-zinc-900 px-4 text-foreground/80">
+      <p className="mx-auto w-full max-w-6xl py-3 text-sm">
+        مكتبة جديدة وحديثة لمكونات واجهة المستخدم مبنية على واجهة المستخدم
+        الأساسية.{" "}
+        <a
+          className="group font-heading text-base text-foreground before:absolute before:inset-0 hover:underline"
+          href={gatewayHome}
+        >
+          <span className="inline-flex items-center gap-1">
+            <span className="decoration-muted-foreground underline-offset-4 group-hover:underline">
+              COSS UI/Arabic{" "}
+              <span className="text-muted-foreground">المكونات</span>
+            </span>{" "}
+            <ArrowUpRightIcon className="size-4 opacity-60 transition-all group-hover:rotate-45 group-hover:opacity-100" />
+          </span>
+        </a>
+      </p>
+    </div>
+  );
+}

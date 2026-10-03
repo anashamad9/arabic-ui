@@ -1,0 +1,93 @@
+---
+title: "مفتاح التبديل"
+description: "عنصر تحكم يشير إلى ما إذا كان الإعداد قيد التشغيل أو إيقاف التشغيل."
+
+links:
+  doc: https://base-ui.com/react/components/switch#api-reference
+---
+
+<ComponentPreview name="p-switch-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/switch
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="switch" title="components/ui/switch.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { Switch } from "@/components/ui/switch"
+```
+
+```tsx
+<Switch />
+```
+
+## مرجع الواجهة البرمجية
+
+### مفتاح التبديل
+
+المجمع على غرار ل `Switch.Root` من واجهة المستخدم الأساسية مع الإبهام المدمج. يتم التحكم في الحجم عبر `--thumb-size` متغير تنسيق.
+
+## الأمثلة
+
+للتسميات والتحقق مع دعم سهولة الوصول، يُفضّل استخدام `Field` مكون لتغليف مربعات الاختيار. انظر المثال ذي الصلة: [حقل التبديل](/ui/docs/components/field#حقل-التبديل).
+
+### معطّل
+
+<ComponentPreview name="p-switch-2" />
+
+### مع الوصف
+
+<ComponentPreview name="p-switch-3" />
+
+### تخصيص الحجم
+
+يتم التحكم في حجم التبديل بواسطة `--thumb-size` متغير تنسيق. بشكل افتراضي ، يستخدم المفتاح التحجيم المتجاوب مع `[--thumb-size:--spacing(5)] sm:[--thumb-size:--spacing(4)]` الطبقات، مما يجعلها أكبر قليلا على الأجهزة النقالة (مثل العناصر التفاعلية الأخرى).
+
+يمكنك تخصيص الحجم عن طريق تجاوز هذه الفئات المتغيرة تنسيق على المكون. ال `--thumb-size` يمكن التعبير عن القيمة باستخدام:
+- مقياس التباعد: `--spacing(3)`, `--spacing(4)`, `--spacing(5)`، إلخ.
+- الوحدات الثابتة: `1rem`, `16px`، إلخ.
+
+<ComponentPreview name="p-switch-6" />
+
+### نمط البطاقة
+
+<ComponentPreview name="p-switch-4" />
+
+### التكامل مع النماذج
+
+<ComponentPreview name="p-switch-5" />

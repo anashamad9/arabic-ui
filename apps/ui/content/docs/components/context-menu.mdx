@@ -1,0 +1,258 @@
+---
+title: "قائمة السياق"
+description: "قائمة تظهر في المؤشر عند النقر بزر الماوس الأيمن أو الضغط لفترة طويلة."
+
+links:
+  doc: https://base-ui.com/react/components/context-menu#api-reference
+---
+
+<ComponentPreview name="p-context-menu-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/context-menu
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>استيراد المتغيرات التالية إلى ملف تنسيق الخاص بك</Step>
+
+```css
+@theme inline {
+  --color-destructive-foreground: var(--destructive-foreground);
+}
+
+:root {
+  --destructive-foreground: var(--color-red-700);
+}
+
+.dark {
+  --destructive-foreground: var(--color-red-400);
+}
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="context-menu" title="components/ui/context-menu.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  ContextMenu,
+  ContextMenuCheckboxItem,
+  ContextMenuGroup,
+  ContextMenuGroupLabel,
+  ContextMenuItem,
+  ContextMenuLinkItem,
+  ContextMenuPopup,
+  ContextMenuRadioGroup,
+  ContextMenuRadioItem,
+  ContextMenuSeparator,
+  ContextMenuSub,
+  ContextMenuSubPopup,
+  ContextMenuSubTrigger,
+  ContextMenuTrigger,
+} from "@/components/ui/context-menu"
+```
+
+```tsx
+<ContextMenu>
+  <ContextMenuTrigger className="flex h-32 items-center justify-center rounded-lg border border-dashed">
+    انقر هنا بالزر الأيمن
+  </ContextMenuTrigger>
+  <ContextMenuPopup>
+    <ContextMenuItem>رجوع</ContextMenuItem>
+    <ContextMenuItem>إلى الأمام</ContextMenuItem>
+    <ContextMenuSeparator />
+    <ContextMenuLinkItem render={<Link href="/docs" />}>
+      التوثيق
+    </ContextMenuLinkItem>
+    <ContextMenuSeparator />
+    <ContextMenuSub>
+      <ContextMenuSubTrigger>المزيد من الأدوات</ContextMenuSubTrigger>
+      <ContextMenuSubPopup>
+        <ContextMenuItem>التفتيش</ContextMenuItem>
+        <ContextMenuItem>عرض المصدر</ContextMenuItem>
+      </ContextMenuSubPopup>
+    </ContextMenuSub>
+  </ContextMenuPopup>
+</ContextMenu>
+```
+
+## مرجع الواجهة البرمجية
+
+### ContextMenu
+
+المكوّن الأساسي. اسم بديل للمكوّن `ContextMenu.Root` من مكتبة بيس.
+
+### ContextMenuTrigger
+
+منطقة تفتح القائمة عند النقر بزر الماوس الأيمن أو الضغط لفترة طويلة. `<div>` عنصر.
+
+### ContextMenuPopup
+
+حاوية منبثقة تعرض محتوى القائمة في المؤشر.
+
+| الخاصية          | النوع                                           | الافتراضي    | الوصف                                      |
+| ------------- | ---------------------------------------------- | ---------- | ------------------------------------------------ |
+| `side`        | `"top" \| "bottom" \| "left" \| "right"`       | `"bottom"` | الجانب من مرساة لوضع المنبثقة         |
+| `align`       | `"start" \| "center" \| "end"`                 | `"center"` | محاذاة بالنسبة إلى مرساة                   |
+| `sideOffset`  | `number`                                       | `4`        | المسافة من مرساة في بكسل               |
+| `alignOffset` | `number`                                       | -          | إزاحة على طول محور المحاذاة                  |
+| `portalProps` | `ContextMenu.Portal.Props`                     | -          | خصائص تُمرّر إلى البوابة الداخلية (`keepMounted`, `container`، وما إلى ذلك) ؛ انظر قاعدة واجهة المستخدم السياق القائمة واجهة برمجية |
+
+### ContextMenuGroup
+
+عناصر القائمة المتعلقة بالمجموعات. الاسم المستعار ل `ContextMenu.Group` من مكتبة بيس.
+
+### ContextMenuItem
+
+عنصر القائمة الفردية.
+
+| الخاصية      | النوع                          | الافتراضي     | الوصف                                      |
+| --------- | ----------------------------- | ----------- | ------------------------------------------------ |
+| `inset`   | `boolean`                     | -           | يضيف مسافة عند بداية السطر للمحاذاة مع العناصر التي تتضمن أيقونات. |
+| `variant` | `"default" \| "destructive"`  | `"default"` | يتحكم في تصميم العنصر                        |
+
+**استخدام `inset`:** عند خلط العناصر مع وبدون أيقونات ، استخدم `inset` على عناصر أقل رمز للحفاظ على المحاذاة:
+
+```tsx
+<ContextMenuItem><PencilIcon /> تعديل</ContextMenuItem>
+<ContextMenuItem inset>عقارات عقارية</ContextMenuItem>
+```
+
+### ContextMenuLinkItem
+
+ربط عنصر القائمة للملاحة. **`LinkItem`** يجعل من الأصلي **`<a>`** عندما تمر **`href`**. على غرار مثل **`ContextMenuItem`**.
+
+| الخاصية           | النوع                          | الافتراضي     | الوصف                                      |
+| -------------- | ----------------------------- | ----------- | ------------------------------------------------ |
+| `inset`        | `boolean`                     | -           | يضيف مسافة عند بداية السطر للمحاذاة مع العناصر التي تتضمن أيقونات. |
+| `variant`      | `"default" \| "destructive"`  | `"default"` | يتحكم في تصميم العنصر                        |
+| `closeOnClick` | `boolean`                     | `true`      | ما إذا كانت القائمة تغلق عند النقر على الرابط |
+
+إذا كنت تستخدم **`ContextMenuItem render={<Link href="..." />}`**الهجرة إلى **`ContextMenuLinkItem`** ولكن **الحفاظ على الحفاظ `render`** - لا تستبدلها ب **`href`** وحدها عند استخدام جهاز التوجيه **`Link`**.
+
+```tsx
+<ContextMenuLinkItem render={<Link href="/docs" />}>التوثيق</ContextMenuLinkItem>
+```
+
+استخدم **`href`** فقط لروابط مرساة عادي:
+
+```tsx
+<ContextMenuLinkItem href="/docs">التوثيق</ContextMenuLinkItem>
+```
+
+### ContextMenuCheckboxItem
+
+عنصر قائمة خانة الاختيار.
+
+| الخاصية      | النوع                       | الافتراضي     | الوصف                                      |
+| --------- | -------------------------- | ----------- | ------------------------------------------------ |
+| `variant` | `"default" \| "switch"`    | `"default"` | نمط العرض - `switch` يظهر مؤشر تبديل التبديل |
+
+### ContextMenuRadioGroup
+
+مجموعات عناصر القائمة الراديو. الاسم المستعار ل `ContextMenu.RadioGroup` من مكتبة بيس.
+
+### ContextMenuRadioItem
+
+عنصر قائمة الراديو. غلاف على غرار `ContextMenu.RadioItem` من مكتبة بيس.
+
+### ContextMenuGroupLabel
+
+تسمية لمجموعة القائمة.
+
+| الخاصية    | النوع      | الافتراضي | الوصف                                      |
+| ------- | --------- | ------- | ------------------------------------------------ |
+| `inset` | `boolean` | -       | يضيف مسافة عند بداية السطر للمحاذاة مع العناصر التي تتضمن أيقونات. |
+
+### ContextMenuSeparator
+
+فاصل بصري بين عناصر القائمة.
+
+### ContextMenuShortcut
+
+يعرض نص اختصار لوحة المفاتيح. مكون مخصص (وليس غلاف واجهة المستخدم الأساسية).
+
+### ContextMenuSub
+
+حاوية القائمة الفرعية. الاسم المستعار ل `ContextMenu.SubmenuRoot` من مكتبة بيس.
+
+### ContextMenuSubTrigger
+
+محفز لفتح قائمة فرعية
+
+| الخاصية    | النوع      | الافتراضي | الوصف                                      |
+| ------- | --------- | ------- | ------------------------------------------------ |
+| `inset` | `boolean` | -       | يضيف مسافة عند بداية السطر للمحاذاة مع العناصر التي تتضمن أيقونات. |
+
+### ContextMenuSubPopup
+
+منبثقة لمحتوى القائمة الفرعية.
+
+| الخاصية          | النوع                           | الافتراضي   | الوصف                                      |
+| ------------- | ------------------------------ | --------- | ------------------------------------------------ |
+| `align`       | `"start" \| "center" \| "end"` | `"start"` | محاذاة بالنسبة إلى عنصر التفعيل                |
+| `sideOffset`  | `number`                       | `0`       | المسافة من عنصر التفعيل بالبكسل              |
+| `alignOffset` | `number`                       | `-5`      | إزاحة على طول محور المحاذاة. الافتراضي إلى `-5` عندما `align` ليس `"center"` |
+
+## الأمثلة
+
+### مع رابط
+
+<ComponentPreview name="p-context-menu-2" />
+
+### قائمة متداخلة
+
+<ComponentPreview name="p-context-menu-3" />
+
+### مع مربع اختيار
+
+<ComponentPreview name="p-context-menu-4" />
+
+### مع تسمية المجموعة
+
+<ComponentPreview name="p-context-menu-5" />
+
+### مع أيقونات
+
+<ComponentPreview name="p-context-menu-6" />
+
+### مع مجموعة راديو
+
+<ComponentPreview name="p-context-menu-7" />
+
+### مع التبديل
+
+`ContextMenuCheckboxItem` يدعم a `variant="switch"` الدعامة التي تعرض مؤشر التبديل الزخرفية بدلا من علامة الاختيار. هذا هو البديل البصري بحتة - يبقى المكون عنصر مربع الاختيار مع نفس الوظيفة.
+
+<ComponentPreview name="p-context-menu-8" />

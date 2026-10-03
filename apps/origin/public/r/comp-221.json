@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-221",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/select.json",
+    "https://coss.com/origin/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-221.tsx",
+      "content": "import { useId } from \"react\";\nimport { Label } from \"@/registry/default/ui/label\";\nimport {\n  Select,\n  SelectContent,\n  SelectItem,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/default/ui/select\";\n\nexport default function Component() {\n  const id = useId();\n  return (\n    <div className=\"*:not-first:mt-2\">\n      <Label htmlFor={id}>حدد مع النص الأيسر</Label>\n      <Select defaultValue=\"1\">\n        <SelectTrigger id={id}>\n          <span>\n            اللغة: <SelectValue placeholder=\"اختر لغة\" />\n          </span>\n        </SelectTrigger>\n        <SelectContent>\n          <SelectItem value=\"1\">جافا سكريبت</SelectItem>\n          <SelectItem value=\"2\">باش</SelectItem>\n        </SelectContent>\n      </Select>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "tags": [
+      "label",
+      "select",
+      "radix"
+    ]
+  }
+}

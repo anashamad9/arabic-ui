@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-359",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/button.json",
+    "https://coss.com/origin/r/tooltip.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-359.tsx",
+      "content": "import { Button } from \"@/registry/default/ui/button\";\nimport {\n  Tooltip,\n  TooltipContent,\n  TooltipProvider,\n  TooltipTrigger,\n} from \"@/registry/default/ui/tooltip\";\n\nexport default function Component() {\n  return (\n    <TooltipProvider delayDuration={0}>\n      <Tooltip>\n        <TooltipTrigger asChild>\n          <Button size=\"sm\" variant=\"outline\">\n            W / صورة\n          </Button>\n        </TooltipTrigger>\n        <TooltipContent className=\"py-3\">\n          <div className=\"space-y-2\">\n            <img\n              alt=\"المحتوى\"\n              className=\"w-full rounded\"\n              height={216}\n              src=\"/origin/dialog-content.png\"\n              width={382}\n            />\n            <div className=\"space-y-1\">\n              <p className=\"font-medium text-[13px]\">\n                تلميح الأدوات مع العنوان والرمز\n              </p>\n              <p className=\"text-muted-foreground text-xs\">\n                تم تصميم تلميحات الأدوات لتكون قابلة للتخصيص بشكل كبير ، مع ميزات مثل الموضع الديناميكي والمحتوى الغني وواجهة برمجة تطبيقات قوية.\n              </p>\n            </div>\n          </div>\n        </TooltipContent>\n      </Tooltip>\n    </TooltipProvider>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "style": 1,
+    "tags": [
+      "tooltip",
+      "image",
+      "radix"
+    ]
+  }
+}

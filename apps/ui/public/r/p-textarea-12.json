@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-textarea-12",
+  "description": "حقل مساحة النص مع المؤشر المطلوب",
+  "registryDependencies": [
+    "@arabicui/field",
+    "@arabicui/textarea"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-textarea-12.tsx",
+      "content": "import { Field, FieldError, FieldLabel } from \"@/registry/default/ui/field\";\nimport { Textarea } from \"@/registry/default/ui/textarea\";\n\nexport default function Particle() {\n  return (\n    <Field>\n      <FieldLabel>\n        الرسالة <span className=\"text-destructive-foreground\">*</span>\n      </FieldLabel>\n      <Textarea placeholder=\"اكتب رسالتك هنا\" required />\n      <FieldError>يرجى ملء هذا الحقل.</FieldError>\n    </Field>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-64"
+  },
+  "categories": [
+    "field",
+    "label",
+    "textarea"
+  ],
+  "type": "registry:block"
+}

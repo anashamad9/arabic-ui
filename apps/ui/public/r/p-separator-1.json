@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-separator-1",
+  "description": "فاصل مع الاتجاهات الأفقية والرأسية",
+  "registryDependencies": [
+    "@arabicui/separator"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-separator-1.tsx",
+      "content": "import { Separator } from \"@/registry/default/ui/separator\";\n\nexport default function Particle() {\n  return (\n    <div className=\"max-w-72\">\n      <div className=\"flex flex-col gap-1\">\n        <h4 className=\"font-medium text-sm\">COSS UI/Arabic</h4>\n        <p className=\"text-muted-foreground text-sm\">\n          بدائيات غير منقوشة ويمكن الوصول إليها لواجهة المستخدم سريعة المنتج\n          وأنظمة التصميم.\n        </p>\n      </div>\n      <Separator className=\"my-4\" />\n      <div className=\"flex items-center gap-4 text-sm\">\n        <div>مدونة مدونة مدونة المدونة</div>\n        <Separator orientation=\"vertical\" />\n        <div>التوثيق</div>\n        <Separator orientation=\"vertical\" />\n        <div>مصدر المصدر المصدر</div>\n        <Separator orientation=\"vertical\" />\n        <div>الإصدارات</div>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "separator"
+  ],
+  "type": "registry:block"
+}

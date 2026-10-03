@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-190",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/select-native.json",
+    "https://coss.com/origin/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-190.tsx",
+      "content": "import { useId } from \"react\";\nimport { Label } from \"@/registry/default/ui/label\";\nimport { SelectNative } from \"@/registry/default/ui/select-native\";\n\nexport default function Component() {\n  const id = useId();\n  return (\n    <div className=\"*:not-first:mt-2\">\n      <Label htmlFor={id}>اختر مع نائب (أصلي)</Label>\n      <SelectNative defaultValue=\"\" id={id}>\n        <option disabled value=\"\">\n          الرجاء اختيار قيمة\n        </option>\n        <option value=\"1\">1 إلى 5</option>\n        <option value=\"2\">5 إلى 10</option>\n        <option value=\"3\">أكثر من 10</option>\n      </SelectNative>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "tags": [
+      "label",
+      "select",
+      "native select"
+    ]
+  }
+}

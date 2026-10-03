@@ -1,0 +1,100 @@
+---
+title: "مجموعة الاختيار الأحادي"
+description: "مجموعة من الأزرار القابلة للتحقق حيث لا يمكن التحقق من أكثر من أزرار في وقت واحد."
+
+links:
+  doc: https://base-ui.com/react/components/radio#api-reference
+---
+
+<ComponentPreview name="p-radio-group-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/radio-group
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="radio-group" title="components/ui/radio-group.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { Label } from "@/components/ui/label"
+import { Radio, RadioGroup } from "@/components/ui/radio-group"
+```
+
+```tsx
+<RadioGroup defaultValue="next">
+  <Label>
+    <Radio value="next" /> Next.js
+  </Label>
+  <Label>
+    <Radio value="vite" /> فايت
+  </Label>
+  <Label>
+    <Radio value="astro" /> أسترو
+  </Label>
+</RadioGroup>
+```
+
+## مرجع الواجهة البرمجية
+
+### RadioGroup
+
+المكوّن الأساسي. غلاف منسّق للمكوّن `RadioGroup.Root` من واجهة المستخدم الأساسية مع تخطيط العمود المرن.
+
+### اختيار أحادي
+
+زر راديو فردي. غلاف مصمم ل `Radio.Root` من واجهة المستخدم الأساسية مع مؤشر مدمج. كما تصديرها كما `RadioGroupItem`.
+
+## الأمثلة
+
+للتسميات والتحقق مع دعم سهولة الوصول، يُفضّل استخدام `Field` مكون لف أزرار الراديو. انظر المثال ذي الصلة: [حقل الاختيار الأحادي](/ui/docs/components/field#حقل-الاختيار-الأحادي).
+
+للحصول على خيارات حصرية متبادلة على غرار علامات التبويب ، راجع [الاختيار المقسّم](/ui/docs/components/segmented-control) نمط.
+
+### معطّل
+
+<ComponentPreview name="p-radio-group-2" />
+
+### مع الوصف
+
+<ComponentPreview name="p-radio-group-3" />
+
+### نمط البطاقة
+
+<ComponentPreview name="p-radio-group-4" />
+
+### التكامل مع النماذج
+
+<ComponentPreview name="p-radio-group-5" />

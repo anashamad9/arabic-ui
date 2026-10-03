@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-drawer-3",
+  "description": "درج مع زر إغلاق",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/drawer"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-drawer-3.tsx",
+      "content": "import { Button } from \"@/registry/default/ui/button\";\nimport {\n  Drawer,\n  DrawerDescription,\n  DrawerHeader,\n  DrawerPanel,\n  DrawerPopup,\n  DrawerTitle,\n  DrawerTrigger,\n} from \"@/registry/default/ui/drawer\";\n\nexport default function Particle() {\n  return (\n    <Drawer position=\"right\">\n      <DrawerTrigger render={<Button variant=\"outline\" />}>\n        فتح اللوحة المنزلقة\n      </DrawerTrigger>\n      <DrawerPopup showCloseButton variant=\"straight\">\n        <DrawerHeader>\n          <DrawerTitle>الإشعارات</DrawerTitle>\n          <DrawerDescription>هذا هو وصف اللوحة المنزلقة.</DrawerDescription>\n        </DrawerHeader>\n        <DrawerPanel>\n          <p className=\"text-muted-foreground text-sm\">\n            هذا نص عربي تجريبي يعرض شكل المحتوى داخل المكوّن. يمكنك استبداله\n            بمحتواك الخاص، وتعديل الطول والتنسيق بما يناسب واجهتك.\n          </p>\n        </DrawerPanel>\n      </DrawerPopup>\n    </Drawer>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "drawer"
+  ],
+  "type": "registry:block"
+}

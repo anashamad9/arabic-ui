@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-input-group-29",
+  "description": "دردشة المدخلات مع الصوت وإرسال أزرار",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/input-group",
+    "@arabicui/tooltip"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-input-group-29.tsx",
+      "content": "\"use client\";\n\nimport { ArrowRightIcon, MicIcon } from \"lucide-react\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupText,\n  InputGroupTextarea,\n} from \"@/registry/default/ui/input-group\";\nimport {\n  Tooltip,\n  TooltipPopup,\n  TooltipTrigger,\n} from \"@/registry/default/ui/tooltip\";\n\nexport default function Particle() {\n  return (\n    <InputGroup>\n      <InputGroupTextarea placeholder=\"اكتب رسالة...\" />\n      <InputGroupAddon align=\"block-end\">\n        <Tooltip>\n          <TooltipTrigger\n            render={\n              <Button\n                aria-label=\"رسالة صوتية\"\n                className=\"rounded-full\"\n                size=\"icon-sm\"\n                variant=\"ghost\"\n              />\n            }\n          >\n            <MicIcon />\n          </TooltipTrigger>\n          <TooltipPopup>تسجيل رسالة صوتية</TooltipPopup>\n        </Tooltip>\n        <InputGroupText className=\"ms-auto text-muted-foreground text-xs\">\n          اضغط على Enter لإرسال\n        </InputGroupText>\n        <Tooltip>\n          <TooltipTrigger\n            render={\n              <Button\n                aria-label=\"إرسال رسالة خاصة\"\n                className=\"rounded-full\"\n                size=\"icon-sm\"\n              />\n            }\n          >\n            <ArrowRightIcon className=\"rtl:rotate-180\" />\n          </TooltipTrigger>\n          <TooltipPopup>إرسال</TooltipPopup>\n        </Tooltip>\n      </InputGroupAddon>\n    </InputGroup>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-80"
+  },
+  "categories": [
+    "button",
+    "input group",
+    "textarea",
+    "tooltip"
+  ],
+  "type": "registry:block"
+}

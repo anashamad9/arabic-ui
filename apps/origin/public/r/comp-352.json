@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-352",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/accordion.json",
+    "https://coss.com/origin/r/collapsible.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-352.tsx",
+      "content": "import { ChevronDownIcon } from \"lucide-react\";\nimport {\n  Accordion,\n  AccordionContent,\n  AccordionItem,\n  AccordionTrigger,\n} from \"@/registry/default/ui/accordion\";\nimport {\n  Collapsible,\n  CollapsibleContent,\n  CollapsibleTrigger,\n} from \"@/registry/default/ui/collapsible\";\n\nconst items = [\n  {\n    collapsibles: [\n      {\n        content:\n          \"نقوم بتحسين كل مكون للحصول على أقصى قدر من الأداء والحد الأدنى من حجم الحزمة.\",\n        title: \"ماذا عن الأداء؟\",\n      },\n      {\n        content:\n          \"وثائقنا شاملة وتتضمن أمثلة حية لكل مكون.\",\n        title: \"كيف هي الوثائق؟\",\n      },\n    ],\n    id: \"1\",\n    title: \"ما الذي يميّز COSS UI/Arabic؟\",\n  },\n  {\n    collapsibles: [\n      {\n        content:\n          \"نعم ، نظام السمات لدينا قابل للتخصيص بالكامل ويدعم كل من أوضاع الضوء والظلام.\",\n        title: \"هل يمكنني استخدام سمات مخصصة؟\",\n      },\n      {\n        content:\n          \"لدينا دعم من الدرجة الأولى ل تيلويند مع فئات فائدة مخصصة.\",\n        title: \"ماذا عن دعم تيلويند؟\",\n      },\n    ],\n    id: \"2\",\n    title: \"كيف أخصّص المكونات؟\",\n  },\n  {\n    collapsibles: [\n      {\n        content:\n          \"مكوناتنا قابلة للاهتزاز الأشجار وعادة ما تضيف الحد الأدنى من النفقات العامة إلى الحزمة الخاصة بك.\",\n        open: true,\n        title: \"ما هو تأثير حجم الحزمة؟\",\n      },\n      {\n        content:\n          \"نحن نؤيد تقسيم التعليمات البرمجية التلقائي لأداء التحميل الأمثل.\",\n        title: \"كيف يتم التعامل مع تقسيم الكود؟\",\n      },\n    ],\n    id: \"3\",\n    title: \"هل المكونات محسّنة للأداء؟\",\n  },\n  {\n    collapsibles: [\n      {\n        content:\n          \"نقوم بالاختبار باستخدام إن في دي إيه و فويس أوفر و جوز لضمان توافق واسع النطاق.\",\n        title: \"ما هي برامج قراءة الشاشة التي يتم دعمها؟\",\n      },\n      {\n        content:\n          \"يتم تنفيذ دعم التنقل الكامل للوحة المفاتيح باتباع أفضل ممارسات سهولة الوصول.\",\n        title: \"ماذا عن الملاحة بلوحة المفاتيح؟\",\n      },\n    ],\n    id: \"4\",\n    title: \"هل تدعم المكونات سهولة الوصول؟\",\n  },\n];\n\nexport default function Component() {\n  return (\n    <div className=\"space-y-4\">\n      <h2 className=\"font-bold text-xl\">متعدد المستويات</h2>\n      <Accordion\n        className=\"w-full -space-y-px\"\n        collapsible\n        defaultValue=\"3\"\n        type=\"single\"\n      >\n        {items.map((item) => (\n          <AccordionItem\n            className=\"relative border bg-background outline-none first:rounded-t-md last:rounded-b-md last:border-b has-focus-visible:z-10 has-focus-visible:border-ring has-focus-visible:ring-[3px] has-focus-visible:ring-ring/50\"\n            key={item.id}\n            value={item.id}\n          >\n            <AccordionTrigger className=\"rounded-md px-4 py-3 text-[15px] leading-6 outline-none hover:no-underline focus-visible:ring-0\">\n              {item.title}\n            </AccordionTrigger>\n            <AccordionContent className=\"p-0\">\n              {item.collapsibles.map((collapsible, _index) => (\n                <CollapsibleDemo\n                  content={collapsible.content}\n                  key={collapsible.title}\n                  open={collapsible.open}\n                  title={collapsible.title}\n                />\n              ))}\n            </AccordionContent>\n          </AccordionItem>\n        ))}\n      </Accordion>\n    </div>\n  );\n}\n\nfunction CollapsibleDemo({\n  title,\n  content,\n  open,\n}: {\n  title: string;\n  content: string;\n  open?: boolean;\n}) {\n  return (\n    <Collapsible className=\"border-t bg-accent px-4 py-3\" defaultOpen={open}>\n      <CollapsibleTrigger className=\"flex gap-2 font-semibold text-[15px] leading-6 [&[data-state=open]>svg]:rotate-180\">\n        <ChevronDownIcon\n          aria-hidden=\"true\"\n          className=\"mt-1 shrink-0 opacity-60 transition-transform duration-200\"\n          size={16}\n        />\n        {title}\n      </CollapsibleTrigger>\n      <CollapsibleContent className=\"mt-1 overflow-hidden ps-6 text-muted-foreground text-sm transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down\">\n        {content}\n      </CollapsibleContent>\n    </Collapsible>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "colSpan": 2,
+    "tags": [
+      "accordion",
+      "collapsible",
+      "radix"
+    ]
+  }
+}

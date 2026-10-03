@@ -1,0 +1,132 @@
+---
+title: "التقويم"
+description: "مكون منتقي التاريخ مع نطاق ودعم متعدد التحديد."
+
+links:
+  doc: https://daypicker.dev/
+---
+
+<ComponentPreview name="p-calendar-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/calendar
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @daypicker/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="calendar" title="components/ui/calendar.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { Calendar } from "@/components/ui/calendar"
+```
+
+```tsx
+<Calendar />
+```
+
+## مرجع الواجهة البرمجية
+
+هذا المكون يلتف [@daypicker/react](https://daypicker.dev/) مع التصميم المخصص.
+
+### التقويم
+
+عنصر التقويم لاختيار التاريخ.
+
+| الخاصية              | النوع                                                | الافتراضي    | الوصف                                      |
+| ----------------- | --------------------------------------------------- | ---------- | ------------------------------------------------ |
+| `mode`            | `"single" \| "multiple" \| "range"`                 | `"single"` | وضع التحديد للتقويم                  |
+| `captionLayout`   | `"label" \| "dropdown" \| "dropdown-months" \| "dropdown-years"` | `"label"` | تخطيط التسمية التوضيحية - استخدام `"dropdown"` لشهر/سنة المنسدلة |
+| `selected`        | `Date \| Date[] \| DateRange`                       | -          | التاريخ المختار (التواريخ)                             |
+| `onSelect`        | `(date: Date \| Date[] \| DateRange) => void`       | -          | معاودة الاتصال عند تغيير تحديد التاريخ             |
+| `showOutsideDays` | `boolean`                                           | `true`     | إظهار الأيام من الأشهر المجاورة                   |
+| `startMonth`      | `Date`                                              | -          | الشهر الأول للعرض في التنقل المنسدلة       |
+| `endMonth`        | `Date`                                              | -          | الشهر الماضي لتظهر في التنقل المنسدلة        |
+| `buttonVariant`   | `"ghost" \| "outline" \| ...`                       | `"ghost"`  | زر البديل لأزرار التنقل            |
+| `classNames`      | `object`                                            | -          | أسماء فئات مخصصة لأجزاء التقويم            |
+| `components`      | `object`                                            | -          | مكونات مخصصة لتجاوز الافتراضات           |
+
+للحصول على قائمة كاملة من الدعائم، انظر [@daypicker/react documentation](https://daypicker.dev/).
+
+### تخصيص حجم الخلية
+
+يستخدم التقويم خصائص تنسيق المخصصة لتحجيم الخلية. بشكل افتراضي ، يكون حجم الخلية هو `--spacing(9)` على الهاتف المحمول و `--spacing(8)` على شاشات أكبر:
+
+```css
+[--cell-size:--spacing(10)] sm:[--cell-size:--spacing(9)]
+```
+
+يمكنك تخصيص حجم الخلية عن طريق تمرير مخصص `className`:
+
+```tsx
+<Calendar className="[--cell-size:--spacing(11)]" />
+```
+
+أو استخدم قيم الاستجابة:
+
+```tsx
+<Calendar className="[--cell-size:--spacing(11)] sm:[--cell-size:--spacing(10)]" />
+```
+
+## الأمثلة
+
+### اختيار تاريخ واحد
+
+<ComponentPreview name="p-calendar-2" />
+
+### اختيار نطاق التاريخ
+
+<ComponentPreview name="p-calendar-3" />
+
+### نظام الملاحة المنسدلة
+
+استخدم `captionLayout="dropdown"` مع `startMonth` و `endMonth` لتمكين التنقل المنسدلة الشهر / السنة:
+
+<ComponentPreview name="p-calendar-4" />
+
+### حدد القائمة المنسدلة لشهر / سنة
+
+التقويم مع مخصص حدد مكون للتنقل الشهر والسنة:
+
+<ComponentPreview name="p-calendar-5" />
+
+### كومبوكس المنسدلة لشهر / سنة
+
+التقويم مع اختيار مع البحث للبحث عن الشهر والسنة الملاحة:
+
+<ComponentPreview name="p-calendar-6" />
+
+## سجل التغيير
+
+- [26 يوليو 2026](/ui/docs/changelog#رياكت-منتقي-التاريخ-10) — ترقية إلى **رياكت منتقي التاريخ 10** وهاجروا من **`react-day-picker`** إلى **`@daypicker/react`**. يجب أن تتبع التطبيقات التي تحتوي على أغلفة تقويم مخصصة دليل الترحيل المرتبط.

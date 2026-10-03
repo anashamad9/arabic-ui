@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-autocomplete-15",
+  "description": "الإكمال التلقائي بحواف مستديرة بالكامل",
+  "registryDependencies": [
+    "@arabicui/autocomplete"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-autocomplete-15.tsx",
+      "content": "\"use client\";\n\nimport {\n  Autocomplete,\n  AutocompleteEmpty,\n  AutocompleteInput,\n  AutocompleteItem,\n  AutocompleteList,\n  AutocompletePopup,\n} from \"@/registry/default/ui/autocomplete\";\n\nconst items = [\n  { label: \"تفاح\", value: \"apple\" },\n  { label: \"موز\", value: \"banana\" },\n  { label: \"برتقال\", value: \"orange\" },\n  { label: \"عنب\", value: \"grape\" },\n  { label: \"فراولة\", value: \"strawberry\" },\n  { label: \"مانجو\", value: \"mango\" },\n  { label: \"أناناس\", value: \"pineapple\" },\n  { label: \"كيوي\", value: \"kiwi\" },\n  { label: \"خوخ\", value: \"peach\" },\n  { label: \"كمثرى\", value: \"pear\" },\n];\n\nexport default function Particle() {\n  return (\n    <Autocomplete items={items}>\n      <AutocompleteInput\n        aria-label=\"البحث في العناصر\"\n        className=\"[--radius-lg:9999px] [--radius:9999px]\"\n        placeholder=\"البحث عن العناصر...\"\n      />\n      <AutocompletePopup>\n        <AutocompleteEmpty>لا توجد عناصر.</AutocompleteEmpty>\n        <AutocompleteList>\n          {(item) => (\n            <AutocompleteItem key={item.value} value={item}>\n              {item.label}\n            </AutocompleteItem>\n          )}\n        </AutocompleteList>\n      </AutocompletePopup>\n    </Autocomplete>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-64"
+  },
+  "categories": [
+    "autocomplete",
+    "input"
+  ],
+  "type": "registry:block"
+}

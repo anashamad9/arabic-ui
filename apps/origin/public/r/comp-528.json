@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-528",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/stepper.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-528.tsx",
+      "content": "import {\n  Stepper,\n  StepperIndicator,\n  StepperItem,\n  StepperSeparator,\n  StepperTitle,\n  StepperTrigger,\n} from \"@/registry/default/ui/stepper\";\n\nconst steps = [\n  {\n    step: 1,\n    title: \"خطوة واحدة\",\n  },\n  {\n    step: 2,\n    title: \"الخطوة الثانية\",\n  },\n  {\n    step: 3,\n    title: \"الخطوة الثالثة\",\n  },\n  {\n    step: 4,\n    title: \"الخطوة الرابعة\",\n  },\n];\n\nexport default function Component() {\n  return (\n    <div className=\"space-y-8 text-center\">\n      <Stepper defaultValue={2} orientation=\"vertical\">\n        {steps.map(({ step, title }) => (\n          <StepperItem\n            className=\"relative not-last:flex-1 items-start\"\n            key={step}\n            step={step}\n          >\n            <StepperTrigger className=\"items-start rounded pb-12 last:pb-0\">\n              <StepperIndicator />\n              <div className=\"mt-0.5 px-2 text-start\">\n                <StepperTitle>{title}</StepperTitle>\n              </div>\n            </StepperTrigger>\n            {step < steps.length && (\n              <StepperSeparator className=\"absolute inset-y-0 top-[calc(1.5rem+0.125rem)] left-3 -order-1 m-0 -translate-x-1/2 group-data-[orientation=vertical]/stepper:h-[calc(100%-1.5rem-0.25rem)] group-data-[orientation=horizontal]/stepper:w-[calc(100%-1.5rem-0.25rem)] group-data-[orientation=horizontal]/stepper:flex-none\" />\n            )}\n          </StepperItem>\n        ))}\n      </Stepper>\n      <p\n        aria-live=\"polite\"\n        className=\"mt-2 text-muted-foreground text-xs\"\n        role=\"region\"\n      >\n        السائر الرأسي مع عناوين مضمنة\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "colSpan": 2,
+    "tags": [
+      "stepper",
+      "vertical stepper"
+    ]
+  }
+}

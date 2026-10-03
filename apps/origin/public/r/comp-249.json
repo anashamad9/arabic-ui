@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-249",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/label.json",
+    "https://coss.com/origin/r/slider.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-249.tsx",
+      "content": "import { Label } from \"@/registry/default/ui/label\";\nimport { Slider } from \"@/registry/default/ui/slider\";\n\nexport default function Component() {\n  return (\n    <div className=\"*:not-first:mt-4\">\n      <Label>شريط التمرير مع التسميات وتلميح الأدوات</Label>\n      <div>\n        <span\n          aria-hidden=\"true\"\n          className=\"mb-3 flex w-full items-center justify-between gap-2 font-medium text-muted-foreground text-xs\"\n        >\n          <span>منخفضة</span>\n          <span>عالية</span>\n        </span>\n        <Slider\n          aria-label=\"شريط التمرير مع التسميات وتلميح الأدوات\"\n          defaultValue={[50]}\n          showTooltip={true}\n          step={10}\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "tags": [
+      "slider",
+      "label",
+      "tooltip",
+      "radix"
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-214",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/select.json",
+    "https://coss.com/origin/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-214.tsx",
+      "content": "import { useId } from \"react\";\nimport { Label } from \"@/registry/default/ui/label\";\nimport {\n  Select,\n  SelectContent,\n  SelectGroup,\n  SelectItem,\n  SelectLabel,\n  SelectSeparator,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/default/ui/select\";\n\nexport default function Component() {\n  const id = useId();\n  return (\n    <div className=\"*:not-first:mt-2\">\n      <Label htmlFor={id}>اختر مع فاصل</Label>\n      <Select defaultValue=\"1\">\n        <SelectTrigger id={id}>\n          <SelectValue placeholder=\"اختر إطار العمل\" />\n        </SelectTrigger>\n        <SelectContent>\n          <SelectGroup>\n            <SelectLabel>تطوير الواجهات</SelectLabel>\n            <SelectItem value=\"1\">رياكت</SelectItem>\n            <SelectItem value=\"2\">فيو</SelectItem>\n            <SelectItem value=\"3\">أنغولار</SelectItem>\n          </SelectGroup>\n          <SelectSeparator />\n          <SelectGroup>\n            <SelectLabel>تطوير الخدمات</SelectLabel>\n            <SelectItem value=\"4\">Node.js</SelectItem>\n            <SelectItem value=\"5\">بايثون</SelectItem>\n            <SelectItem value=\"6\">جافا</SelectItem>\n          </SelectGroup>\n        </SelectContent>\n      </Select>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "tags": [
+      "label",
+      "select",
+      "radix"
+    ]
+  }
+}

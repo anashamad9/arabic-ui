@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-299",
+  "type": "registry:component",
+  "dependencies": [
+    "sonner"
+  ],
+  "registryDependencies": [
+    "https://coss.com/origin/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-299.tsx",
+      "content": "\"use client\";\n\nimport { toast } from \"sonner\";\nimport { Button } from \"@/registry/default/ui/button\";\n\nexport default function Component() {\n  return (\n    <Button\n      onClick={() => {\n        toast(\"تم الانتهاء من طلبك!\", {\n          action: {\n            label: \"تراجع\",\n            onClick: () => console.log(\"تراجع\"),\n          },\n          description: \"لقد كانت رحلة طويلة ، لكننا فعلناها!\",\n        });\n      }}\n      variant=\"outline\"\n    >\n      عرض السونر\n    </Button>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "colSpan": 2,
+    "style": 1,
+    "tags": [
+      "notification",
+      "toast",
+      "sonner",
+      "radix"
+    ]
+  }
+}

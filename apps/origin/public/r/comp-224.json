@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-224",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/select.json",
+    "https://coss.com/origin/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-224.tsx",
+      "content": "import { useId } from \"react\";\nimport { Label } from \"@/registry/default/ui/label\";\nimport {\n  Select,\n  SelectContent,\n  SelectItem,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/default/ui/select\";\n\nexport default function Component() {\n  const id = useId();\n  return (\n    <div className=\"*:not-first:mt-2\">\n      <Label htmlFor={id}>اختر مع الوصف والمؤشر الصحيح</Label>\n      <Select defaultValue=\"2\">\n        <SelectTrigger className=\"**:data-desc:hidden\" id={id}>\n          <SelectValue placeholder=\"اختر خطة\" />\n        </SelectTrigger>\n        <SelectContent className=\"[&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8\">\n          <SelectItem value=\"1\">\n            الخطة القياسية\n            <span\n              className=\"mt-1 block text-muted-foreground text-xs\"\n              data-desc\n            >\n              مثالية للأفراد\n            </span>\n          </SelectItem>\n          <SelectItem value=\"2\">\n            خطة برو\n            <span\n              className=\"mt-1 block text-muted-foreground text-xs\"\n              data-desc\n            >\n              للمستخدمين المحترفين\n            </span>\n          </SelectItem>\n          <SelectItem value=\"3\">\n            خطة المؤسسة\n            <span\n              className=\"mt-1 block text-muted-foreground text-xs\"\n              data-desc\n            >\n              بنيت للفرق الكبيرة\n            </span>\n          </SelectItem>\n        </SelectContent>\n      </Select>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "tags": [
+      "label",
+      "select",
+      "radix"
+    ]
+  }
+}

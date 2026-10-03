@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-drawer-1",
+  "description": "درج سفلي بسيط مع زر الإغلاق",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/drawer"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-drawer-1.tsx",
+      "content": "import { Button } from \"@/registry/default/ui/button\";\nimport {\n  Drawer,\n  DrawerClose,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerHeader,\n  DrawerPopup,\n  DrawerTitle,\n  DrawerTrigger,\n} from \"@/registry/default/ui/drawer\";\n\nexport default function Particle() {\n  return (\n    <Drawer>\n      <DrawerTrigger render={<Button variant=\"outline\" />}>\n        فتح اللوحة المنزلقة\n      </DrawerTrigger>\n      <DrawerPopup showBar>\n        <DrawerHeader className=\"text-center\">\n          <DrawerTitle>الإشعارات</DrawerTitle>\n          <DrawerDescription>هذا هو وصف اللوحة المنزلقة.</DrawerDescription>\n        </DrawerHeader>\n        <DrawerFooter\n          className=\"justify-center sm:justify-center\"\n          variant=\"bare\"\n        >\n          <DrawerClose render={<Button variant=\"outline\" />}>إغلاق</DrawerClose>\n        </DrawerFooter>\n      </DrawerPopup>\n    </Drawer>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "drawer"
+  ],
+  "type": "registry:block"
+}

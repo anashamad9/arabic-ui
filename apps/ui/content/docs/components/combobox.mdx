@@ -1,0 +1,362 @@
+---
+title: "مربع الاختيار والبحث"
+description: "إدخال جنبا إلى جنب مع قائمة من العناصر المحددة مسبقا لتحديد."
+
+links:
+  doc: https://base-ui.com/react/components/combobox#api-reference
+---
+
+<ComponentPreview name="p-combobox-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/combobox
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="combobox" title="components/ui/combobox.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+### اختيار واحد
+
+```tsx
+import {
+  Combobox,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+  ComboboxPopup,
+  createComboboxItems,
+} from "@/components/ui/combobox"
+```
+
+```tsx
+const items = [
+  { value: "apple", label: "تفاح" },
+  { value: "banana", label: "موز" },
+  { value: "orange", label: "برتقال" },
+  { value: "grape", label: "عنب" },
+]
+
+<Combobox items={items}>
+  <ComboboxInput placeholder="اختر عنصرًا…" />
+  <ComboboxPopup>
+    <ComboboxEmpty>لم يتم العثور على نتائج.</ComboboxEmpty>
+    <ComboboxList>
+      {(item) => <ComboboxItem key={item.value} value={item}>{item.label}</ComboboxItem>}
+    </ComboboxList>
+  </ComboboxPopup>
+</Combobox>
+```
+
+عندما تكون عناصر المصدر الخاصة بك كائنات ولكن يجب أن يستخدم التحديد قيمة بدائية مستقرة ، قم بإنشاء مجموعة مكتوبة باستخدام `createComboboxItems`:
+
+```tsx
+const users = [
+  { id: "ada", name: "آدا لوفليس" },
+  { id: "grace", name: "غريس هوبر" },
+]
+
+const userItems = createComboboxItems(users, {
+  getLabel: (user) => user.name,
+  getValue: (user) => user.id,
+})
+
+<Combobox defaultValue="ada" items={userItems}>
+  <ComboboxInput placeholder="اختر مستخدم..." />
+  <ComboboxPopup>
+    <ComboboxList>
+      {(user) => (
+        <ComboboxItem key={user.id} value={user.id}>
+          {user.name}
+        </ComboboxItem>
+      )}
+    </ComboboxList>
+  </ComboboxPopup>
+</Combobox>
+```
+
+### اختيار متعدد
+
+```tsx
+import {
+  Combobox,
+  ComboboxChip,
+  ComboboxChips,
+  ComboboxChipsInput,
+  ComboboxEmpty,
+  ComboboxItem,
+  ComboboxList,
+  ComboboxPopup,
+  ComboboxValue,
+} from "@/components/ui/combobox"
+```
+
+```tsx
+const items = [
+  { value: "apple", label: "تفاح" },
+  { value: "banana", label: "موز" },
+  { value: "orange", label: "برتقال" },
+  { value: "grape", label: "عنب" },
+]
+
+<Combobox items={items} multiple>
+  <ComboboxChips>
+    <ComboboxValue>
+      {(value: { value: string; label: string }[]) => (
+        <>
+          {value?.map((item) => (
+            <ComboboxChip key={item.value} aria-label={item.value}>
+              {item.label}
+            </ComboboxChip>
+          ))}
+          <ComboboxChipsInput
+            placeholder={value.length > 0 ? undefined : "اختر عنصرًا…"}
+            aria-label="اختر عنصر"
+          />
+        </>
+      )}
+    </ComboboxValue>
+  </ComboboxChips>
+  <ComboboxPopup>
+    <ComboboxEmpty>لم يتم العثور على نتائج.</ComboboxEmpty>
+    <ComboboxList>
+      {(item) => <ComboboxItem value={item}>{item.label}</ComboboxItem>}
+    </ComboboxList>
+  </ComboboxPopup>
+</Combobox>
+```
+
+## مرجع الواجهة البرمجية
+
+### مربع الاختيار والبحث
+
+المكون اختيار مع البحث الجذر. يدير حالة اختيار مع البحث ويوفر السياق لمكونات الطفل.
+
+| الخاصية       | النوع                                    | الوصف                                       |
+| ---------- | --------------------------------------- | ------------------------------------------------- |
+| `items`    | `readonly unknown[]`                    | مجموعة من العناصر لعرضها في اختيار مع البحث     |
+| `multiple` | `boolean`                               | ما إذا كان يسمح بالاختيار المتعدد               |
+| `open`     | `boolean`                               | يتحكم في ما إذا كانت النافذة المنبثقة مفتوحة                |
+| `...props` | `React.ComponentProps<typeof Combobox>` | يتم دعم جميع الدعائم الأساسية واجهة المستخدم اختيار مع البحث          |
+
+### createComboboxItems
+
+يقوم بإنشاء مجموعة عناصر مكتوبة تستمد قيم التحديد البدائية والتسميات من عناصر الكائن. تحديد المجموعات الثابتة خارج المكونات وحفظ المجموعات الديناميكية.
+
+### ComboboxInput
+
+مكون حقل الإدخال لوضع التحديد الفردي مع ميزات موسعة لمتغيرات الحجم ودعم الإضافة.
+
+| الخاصية           | النوع                         | الافتراضي     | الوصف                                                                                      |
+| -------------- | ---------------------------- | ----------- | ------------------------------------------------------------------------------------------------ |
+| `size`         | `"sm" \| "default" \| "lg"`  | `"default"` | حجم متغير من حقل الإدخال                                                              |
+| `startAddon`   | `React.ReactNode`            | -           | عنصر لعرضه في بداية (الجانب الأيسر) من الإدخال، مثل أيقونة                        |
+| `showTrigger`  | `boolean`                    | `true`      | سواء لعرض زر عنصر التفعيل (رمز شيفرون) على الجانب الأيمن من الإدخال                |
+| `showClear`    | `boolean`                    | `false`     | سواء لعرض زر واضح (رمز إكس) على الجانب الأيمن من الإدخال عندما تكون هناك قيمة |
+| `triggerProps`  | `Combobox.Trigger.Props`    | -           | الدعائم إعادة توجيهها إلى زر عنصر التفعيل الداخلي ، مفيدة لتجاوز `aria-label`               |
+| `clearProps`    | `Combobox.Clear.Props`      | -           | الدعائم إعادة توجيهها إلى زر الداخلية واضحة، مفيدة لتجاوز `aria-label`                 |
+| `className`    | `string`                     | -           | فئات تنسيق إضافية لتخصيص المكوّن.                                                 |
+| `...props`     | قاعدة واجهة المستخدم كومبوبوإدخال الدعائم | -           | يتم دعم جميع سمات الإدخال اختيار مع البحث القياسية                                             |
+
+### ComboboxPopup
+
+الحاوية المنبثقة التي تعرض خيارات اختيار مع البحث.
+
+| الخاصية           | النوع                               | الوصف                                      |
+| -------------- | ---------------------------------- | ------------------------------------------------ |
+| `className`    | `string`                           | فئات تنسيق إضافية لتخصيص المكوّن. |
+| `portalProps`  | `Combobox.Portal.Props`            | خصائص تُمرّر إلى البوابة الداخلية (`keepMounted`, `container`، وما إلى ذلك) ؛ انظر قاعدة واجهة المستخدم كومبوإكس بوابة واجهة برمجية |
+| `...props`     | قاعدة واجهة المستخدم كومبو بوكس الدعائم المنبثقة       | يتم دعم جميع السمات المنبثقة اختيار مع البحث القياسية |
+
+### ComboboxList
+
+حاوية قابلة للتمرير لعناصر اختيار مع البحث.
+
+| الخاصية        | النوع                          | الوصف                                      |
+| ----------- | ----------------------------- | ------------------------------------------------ |
+| `className` | `string`                      | فئات تنسيق إضافية لتخصيص المكوّن. |
+| `...props`  | قاعدة واجهة المستخدم كومبوبوإكس قائمة الدعائم   | يتم دعم جميع سمات قائمة اختيار مع البحث القياسية |
+
+### ComboboxItem
+
+عنصر اختيار مع البحث فردي قابل للتحديد.
+
+| الخاصية        | النوع                          | الوصف                                      |
+| ----------- | ----------------------------- | ------------------------------------------------ |
+| `value`     | `unknown`                     | قيمة البند                            |
+| `className` | `string`                      | فئات تنسيق إضافية لتخصيص المكوّن. |
+| `...props`  | قاعدة واجهة المستخدم كومبوبوإكس البند الدعائم   | يتم دعم جميع سمات عنصر اختيار مع البحث القياسية |
+
+### ComboboxEmpty
+
+يعرض رسالة عندما لا يتم العثور على نتائج.
+
+| الخاصية        | النوع                           | الوصف                                      |
+| ----------- | ------------------------------ | ------------------------------------------------ |
+| `className` | `string`                       | فئات تنسيق إضافية لتخصيص المكوّن. |
+| `...props`  | قاعدة واجهة المستخدم اختيار مع البحث الدعائم الفارغة   | يتم دعم جميع سمات اختيار مع البحث الفارغة القياسية |
+
+### ComboboxGroup
+
+مجموعات البنود اختيار مع البحث ذات الصلة معا.
+
+| الخاصية        | النوع                           | الوصف                                      |
+| ----------- | ------------------------------ | ------------------------------------------------ |
+| `items`     | `readonly unknown[]`           | مجموعة العناصر في هذه المجموعة                 |
+| `className` | `string`                       | فئات تنسيق إضافية لتخصيص المكوّن. |
+| `...props`  | قاعدة واجهة المستخدم اختيار مع البحث مجموعة الدعائم   | يتم دعم جميع سمات مجموعة اختيار مع البحث القياسية |
+
+### ComboboxGroupLabel
+
+يعرض تسمية لمجموعة اختيار مع البحث.
+
+| الخاصية        | النوع                                | الوصف                                      |
+| ----------- | ----------------------------------- | ------------------------------------------------ |
+| `className` | `string`                            | فئات تنسيق إضافية لتخصيص المكوّن. |
+| `...props`  | قاعدة واجهة المستخدم اختيار مع البحث مجموعة تسمية الدعائم  | يتم دعم جميع سمات تسمية مجموعة اختيار مع البحث القياسية |
+
+### ComboboxCollection
+
+تستخدم لتغليف العناصر داخل مجموعة لتقديم.
+
+| الخاصية        | النوع                                 | الوصف                                      |
+| ----------- | ------------------------------------ | ------------------------------------------------ |
+| `...props`  | قاعدة واجهة المستخدم اختيار مع البحث مجموعة الدعائم    | يتم دعم جميع سمات جمع اختيار مع البحث القياسية |
+
+### ComboboxChips
+
+حاوية لعرض رقائق مختارة في وضع التحديد المتعدد.
+
+| الخاصية          | النوع                          | الوصف                                                    |
+| ------------- | ----------------------------- | -------------------------------------------------------------- |
+| `startAddon`  | `React.ReactNode`             | عنصر لعرضه في بداية (الجانب الأيسر) من منطقة الرقائق  |
+| `className`   | `string`                      | فئات تنسيق إضافية لتخصيص المكوّن.               |
+| `...props`    | `React.ComponentProps<'div'>` | يتم دعم جميع سمات div القياسية                      |
+
+### ComboboxChipsInput
+
+عنصر حقل الإدخال للاستخدام داخل `ComboboxChips` في وضع التحديد المتعدد. هذا هو الحد الأدنى من الإدخال دون المجمع، عنصر التفعيل، أو زر واضح.
+
+| الخاصية          | النوع                        | الافتراضي     | الوصف                                                                                      |
+| ------------- | --------------------------- | ----------- | ------------------------------------------------------------------------------------------------ |
+| `size`        | `"sm" \| "default" \| "lg"` | `"default"` | حجم متغير من حقل الإدخال                                                              |
+| `className`   | `string`                    | -           | فئات تنسيق إضافية لتخصيص المكوّن.                                                 |
+| `...props`    | قاعدة واجهة المستخدم كومبوبوإدخال الدعائم | -          | يتم دعم جميع سمات الإدخال اختيار مع البحث القياسية                                             |
+
+### ComboboxChip
+
+شريحة فردية تمثل عنصرًا محددًا في وضع التحديد المتعدد.
+
+| الخاصية           | النوع                              | الوصف                                                                       |
+| -------------- | --------------------------------- | --------------------------------------------------------------------------------- |
+| `removeProps`  | `Combobox.ChipRemove.Props`       | الدعائم إعادة توجيهها إلى زر إزالة الداخلية، مفيدة لتجاوز `aria-label` |
+| `className`    | `string`                          | فئات تنسيق إضافية لتخصيص المكوّن.                                  |
+| `...props`     | قاعدة واجهة المستخدم اختيار مع البحث رقاقة الدعائم       | يتم دعم جميع سمات رقاقة اختيار مع البحث القياسية                               |
+
+### ComboboxValue
+
+يوفر الوصول إلى القيمة الحالية للعرض المخصص.
+
+| الخاصية        | النوع                           | الوصف                                      |
+| ----------- | ------------------------------ | ------------------------------------------------ |
+| `...props`  | قاعدة واجهة المستخدم اختيار مع البحث قيمة الدعائم   | يتم دعم جميع سمات قيمة اختيار مع البحث القياسية |
+
+## الأمثلة
+
+### معطّل
+
+<ComponentPreview name="p-combobox-2" />
+
+### حجم صغير
+
+<ComponentPreview name="p-combobox-3" />
+
+### حجم كبير
+
+<ComponentPreview name="p-combobox-4" />
+
+### مع التسمية
+
+<ComponentPreview name="p-combobox-5" />
+
+### تسليط الضوء السيارات
+
+قم تلقائيًا بتسليط الضوء على خيار المطابقة الأول.
+
+<ComponentPreview name="p-combobox-6" />
+
+### مع زر واضح
+
+<ComponentPreview name="p-combobox-7" />
+
+### مع المجموعات
+
+<ComponentPreview name="p-combobox-8" />
+
+### مع اختيار متعددة
+
+<ComponentPreview name="p-combobox-9" />
+
+### مع إضافة عند بداية الحقل
+
+عرض أيقونة أو عنصر آخر في بداية الإدخال باستخدام `startAddon` الخاصية.
+
+<ComponentPreview name="p-combobox-13" />
+
+### مع بداية الإضافة - متعددة
+
+استخدم `startAddon` دعامة على `ComboboxChips` لعرض أيقونة في البداية عند استخدام التحديد المتعدد.
+
+<ComponentPreview name="p-combobox-14" />
+
+### مع مدخلات داخل المنبثقة
+
+<ComponentPreview name="p-combobox-10" />
+
+### مع زر الاختيار مثل
+
+استخدم `SelectButton` كـ `render` دعامة على `ComboboxTrigger` لجعل عنصر التفعيل التحرير والسرد تبدو وكأنها حدد.
+
+<ComponentPreview name="p-combobox-18" />
+
+### التكامل مع النماذج
+
+<ComponentPreview name="p-combobox-11" />
+
+### نموذج التكامل - متعددة
+
+<ComponentPreview name="p-combobox-12" />

@@ -1,0 +1,186 @@
+---
+title: "مجموعة الإدخال"
+description: "مكون مرن لتجميع المدخلات مع الإضافات والأزرار والعناصر الأخرى."
+---
+
+<ComponentPreview name="p-input-group-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/input-group
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="input-group" title="components/ui/input-group.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { Input } from "@/components/ui/input"
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+  InputGroupText,
+} from "@/components/ui/input-group"
+```
+
+```tsx
+<InputGroup>
+  <InputGroupInput type="email" placeholder="البريد الإلكتروني" />
+  <InputGroupAddon>
+    <MailIcon />
+  </InputGroupAddon>
+</InputGroup>
+```
+
+## مرجع الواجهة البرمجية
+
+### InputGroup
+
+المكون الرئيسي الذي يلف المدخلات والإضافات.
+
+| الخاصية        | النوع                          | الوصف                                      |
+| ----------- | ----------------------------- | ------------------------------------------------ |
+| `className` | `string`                      | فئات تنسيق إضافية لتخصيص المكوّن. |
+| `...props`  | `React.ComponentProps<'div'>` | يتم دعم جميع سمات div القياسية        |
+
+### InputGroupAddon
+
+حاوية للإضافات مثل الرموز والنصوص والأزرار والعناصر الأخرى. يمكن وضعه في بداية أو نهاية (مضمنة) أو أعلى أو أسفل (كتلة) الإدخال.
+
+| الخاصية        | النوع                                                              | الافتراضي          | الوصف                                                                                                                        |
+| ----------- | ----------------------------------------------------------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `align`     | `'inline-start' \| 'inline-end' \| 'block-start' \| 'block-end'` | `'inline-start'` | موقف الملحق بالنسبة إلى الإدخال. استخدام `inline-start` أو `inline-end` للمدخلات و `block-start` أو `block-end` للمناطق النصية |
+| `className` | `string`                                                          |                  | فئات تنسيق إضافية لتخصيص المكوّن.                                                                                   |
+| `...props`  | `React.ComponentProps<'div'>`                                     |                  | يتم دعم جميع سمات div القياسية                                                                                          |
+
+<Alert className="bg-muted/24">
+  <InfoIcon />
+  <AlertDescription>
+    للملاحة التركيز السليم، `InputGroupAddon` يجب وضع المكون بعد الإدخال في ترتيب بنية الصفحة.
+  </AlertDescription>
+</Alert>
+
+### InputGroupText
+
+مكون حاوية نصية لعرض محتوى النص داخل `InputGroupAddon`. تلقائيا أنماط النص مع لون المقدمة صامتة ومقابض رمز التحجيم.
+
+| الخاصية        | النوع                           | الوصف                                      |
+| ----------- | ------------------------------ | ------------------------------------------------ |
+| `className` | `string`                       | فئات تنسيق إضافية لتخصيص المكوّن. |
+| `...props`  | `React.ComponentProps<'span'>` | يتم دعم جميع سمات الامتداد القياسية       |
+
+### InputGroupInput
+
+مكون إدخال متخصص للاستخدام داخل InputGroup. إنه في الأساس مكون إدخال غير مصنف يرث التصميم من InputGroup الأم.
+
+| الخاصية        | النوع         | الوصف                                                                                           |
+| ----------- | ------------ | ----------------------------------------------------------------------------------------------------- |
+| `className` | `string`     | فئات تنسيق إضافية لتخصيص المكوّن.                                                      |
+| `...props`  | `InputProps` | يتم دعم جميع الدعائم من مكون الإدخال ، بما في ذلك `type`, `placeholder`, `disabled`، إلخ. |
+
+### InputGroupTextarea
+
+مكون نصي متخصص للاستخدام داخل InputGroup. إنه مكون نصي غير مصمم يرث التصميم من الأصل InputGroup.
+
+| الخاصية        | النوع            | الوصف                                                                                              |
+| ----------- | --------------- | -------------------------------------------------------------------------------------------------------- |
+| `className` | `string`        | فئات تنسيق إضافية لتخصيص المكوّن.                                                         |
+| `...props`  | `TextareaProps` | يتم دعم جميع الدعائم من مكون مساحة النص ، بما في ذلك `placeholder`, `disabled`, `rows`، إلخ. |
+
+## الأمثلة
+
+### مع نهاية أيقونة
+
+<ComponentPreview name="p-input-group-2" />
+
+### مع بداية النص
+
+<ComponentPreview name="p-input-group-3" />
+
+### مع نهاية النص
+
+<ComponentPreview name="p-input-group-4" />
+
+### مع بداية ونهاية النص
+
+<ComponentPreview name="p-input-group-5" />
+
+### مع التلميح
+
+<ComponentPreview name="p-input-group-7" />
+
+### مع زر أيقونة
+
+<ComponentPreview name="p-input-group-8" />
+
+### مع زر
+
+<ComponentPreview name="p-input-group-9" />
+
+### مع شارة
+
+<ComponentPreview name="p-input-group-10" />
+
+### مع اختصار لوحة المفاتيح
+
+<ComponentPreview name="p-input-group-11" />
+
+### مع التسمية الداخلية
+
+<ComponentPreview name="p-input-group-12" />
+
+### حجم صغير
+
+<ComponentPreview name="p-input-group-13" />
+
+### حجم كبير
+
+<ComponentPreview name="p-input-group-14" />
+
+### معطّل
+
+<ComponentPreview name="p-input-group-15" />
+
+### جارٍ التحميل
+
+<ComponentPreview name="p-input-group-16" />
+
+### مع حقل العدد
+
+<ComponentPreview name="p-input-group-6" />
+
+### مع مساحة النص
+
+<ComponentPreview name="p-input-group-17" />

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-table-7",
+  "description": "إطار البطاقة مع طاولة على غرار بطاقة",
+  "registryDependencies": [
+    "@arabicui/badge",
+    "@arabicui/card",
+    "@arabicui/table"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-table-7.tsx",
+      "content": "import { Badge } from \"@/registry/default/ui/badge\";\nimport { CardFrame } from \"@/registry/default/ui/card\";\nimport {\n  Table,\n  TableBody,\n  TableCell,\n  TableFooter,\n  TableHead,\n  TableHeader,\n  TableRow,\n} from \"@/registry/default/ui/table\";\n\nexport default function Particle() {\n  return (\n    <CardFrame className=\"w-full\">\n      <Table variant=\"card\">\n        <TableHeader>\n          <TableRow>\n            <TableHead>المشروع</TableHead>\n            <TableHead>الحالة</TableHead>\n            <TableHead>الفريق</TableHead>\n            <TableHead className=\"text-end\">ميزانية الميزانية</TableHead>\n          </TableRow>\n        </TableHeader>\n        <TableBody>\n          <TableRow>\n            <TableCell className=\"font-medium\">إعادة تصميم الموقع</TableCell>\n            <TableCell>\n              <Badge variant=\"outline\">\n                <span\n                  aria-hidden=\"true\"\n                  className=\"size-1.5 rounded-full bg-emerald-500\"\n                />\n                مدفوع\n              </Badge>\n            </TableCell>\n            <TableCell>فريق فرونت إند</TableCell>\n            <TableCell className=\"text-end\">$12,500</TableCell>\n          </TableRow>\n          <TableRow>\n            <TableCell className=\"font-medium\">تطبيق الهاتف</TableCell>\n            <TableCell>\n              <Badge variant=\"outline\">\n                <span\n                  aria-hidden=\"true\"\n                  className=\"size-1.5 rounded-full bg-muted-foreground/64\"\n                />\n                غير مدفوع\n              </Badge>\n            </TableCell>\n            <TableCell>فريق الجوال</TableCell>\n            <TableCell className=\"text-end\">$8,750</TableCell>\n          </TableRow>\n          <TableRow>\n            <TableCell className=\"font-medium\">\n              تكامل الواجهة البرمجية\n            </TableCell>\n            <TableCell>\n              <Badge variant=\"outline\">\n                <span\n                  aria-hidden=\"true\"\n                  className=\"size-1.5 rounded-full bg-amber-500\"\n                />\n                قيد الانتظار\n              </Badge>\n            </TableCell>\n            <TableCell>فريق الخلفية</TableCell>\n            <TableCell className=\"text-end\">$5,200</TableCell>\n          </TableRow>\n          <TableRow>\n            <TableCell className=\"font-medium\">قاعدة بيانات الهجرة</TableCell>\n            <TableCell>\n              <Badge variant=\"outline\">\n                <span\n                  aria-hidden=\"true\"\n                  className=\"size-1.5 rounded-full bg-emerald-500\"\n                />\n                مدفوع\n              </Badge>\n            </TableCell>\n            <TableCell>فريق التطوير والتشغيل</TableCell>\n            <TableCell className=\"text-end\">$3,800</TableCell>\n          </TableRow>\n          <TableRow>\n            <TableCell className=\"font-medium\">لوحة تحكم المستخدم</TableCell>\n            <TableCell>\n              <Badge variant=\"outline\">\n                <span\n                  aria-hidden=\"true\"\n                  className=\"size-1.5 rounded-full bg-emerald-500\"\n                />\n                مدفوع\n              </Badge>\n            </TableCell>\n            <TableCell>فريق تجربة المستخدم</TableCell>\n            <TableCell className=\"text-end\">$7,200</TableCell>\n          </TableRow>\n          <TableRow>\n            <TableCell className=\"font-medium\">التدقيق الأمني</TableCell>\n            <TableCell>\n              <Badge variant=\"outline\">\n                <span\n                  aria-hidden=\"true\"\n                  className=\"size-1.5 rounded-full bg-red-500\"\n                />\n                فشل\n              </Badge>\n            </TableCell>\n            <TableCell>فريق الأمن</TableCell>\n            <TableCell className=\"text-end\">$2,100</TableCell>\n          </TableRow>\n        </TableBody>\n        <TableFooter>\n          <TableRow>\n            <TableCell colSpan={3}>مجموع الميزانية</TableCell>\n            <TableCell className=\"text-end\">$39,550</TableCell>\n          </TableRow>\n        </TableFooter>\n      </Table>\n    </CardFrame>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full sm:**:data-[slot=preview]:max-w-4xl",
+    "colSpan": 2
+  },
+  "categories": [
+    "card",
+    "table"
+  ],
+  "type": "registry:block"
+}

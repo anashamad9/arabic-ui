@@ -1,0 +1,224 @@
+---
+title: "الجدول"
+description: "مكون جدول بسيط لعرض البيانات الجدولية."
+---
+
+<ComponentPreview name="p-table-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/table
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="table" title="components/ui/table.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+```
+
+```tsx
+<Table>
+  <TableCaption>التسمية التوضيحية</TableCaption>
+  <TableHeader>
+    <TableRow>
+      <TableHead>العنوان</TableHead>
+      <TableHead>العنوان</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>الخلية</TableCell>
+      <TableCell>الخلية</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+## مرجع الواجهة البرمجية
+
+### الجدول
+
+عنصر حاوية الجدول الرئيسي. تعيين `variant="card"` لطاولة على غرار بطاقة: الحدود المنفصلة، زوايا مدورة، والأسطح الصف التي تقرأ كبطاقات. أن أزواج بشكل جيد مع [الإطار](/ui/docs/components/frame) (صفحة الكروم) أو [CardFrame](/ui/docs/components/card) (قذيفة بطاقة مع إجراءات رأس اختيارية). البديل الافتراضي هو تخطيط صف أبسط مع حدود قياسية.
+
+| الخاصية        | النوع                         | الافتراضي     |
+| ----------- | ---------------------------- | ----------- |
+| `className` | `string`                     |             |
+| `variant`   | `"default"` \| `"card"`      | `"default"` |
+
+```tsx
+<Table>
+  <TableHeader>...</TableHeader>
+  <TableBody>...</TableBody>
+</Table>
+```
+
+```tsx
+<Table variant="card">
+  <TableHeader>...</TableHeader>
+  <TableBody>...</TableBody>
+</Table>
+```
+
+### TableHeader
+
+قسم الرأس في الجدول الذي يحتوي على رؤوس الأعمدة.
+
+| الخاصية        | النوع     | الافتراضي |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<TableHeader>
+  <TableRow>
+    <TableHead>العنوان</TableHead>
+  </TableRow>
+</TableHeader>
+```
+
+### TableBody
+
+قسم الجسم من الجدول الذي يحتوي على صفوف الجدول والبيانات.
+
+| الخاصية        | النوع     | الافتراضي |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<TableBody>
+  <TableRow>
+    <TableCell>الخلية</TableCell>
+  </TableRow>
+</TableBody>
+```
+
+### TableFooter
+
+قسم تذييل من الطاولة.
+
+| الخاصية        | النوع     | الافتراضي |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<TableFooter>
+  <TableRow>
+    <TableCell>التذييل</TableCell>
+  </TableRow>
+</TableFooter>
+```
+
+### TableRow
+
+صف في الطاولة.
+
+| الخاصية        | النوع     | الافتراضي |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<TableRow>
+  <TableCell>الخلية</TableCell>
+</TableRow>
+```
+
+### TableHead
+
+خلية رأس في الطاولة.
+
+| الخاصية        | النوع     | الافتراضي |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<TableHead>العنوان</TableHead>
+```
+
+### TableCell
+
+خلية بيانات في الجدول.
+
+| الخاصية        | النوع     | الافتراضي |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<TableCell>الخلية</TableCell>
+```
+
+### TableCaption
+
+تعليق على الطاولة.
+
+| الخاصية        | النوع     | الافتراضي |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<TableCaption>التسمية التوضيحية</TableCaption>
+```
+
+## الأمثلة
+
+### طاولة على غرار البطاقة
+
+استخدم `variant="card"` عندما الشبكة نفسها يجب أن تبدو وكأنها مجموعة من البطاقات (على سبيل المثال لوحات المعلومات أو الجداول المستقلة دون إطار خارجي).
+
+<ComponentPreview name="p-table-5" />
+
+### الجدول في إطار البطاقة
+
+ضع الطاولة في [CardFrame](/ui/docs/components/card) حتى الشبكة يجلس داخل قذيفة بطاقة (الحدود، دائرة نصف قطرها، لقطة). استخدام `variant="card"` على `Table`. المثال أدناه هو ترميز ثابت - لا يوجد تحديد صف أو TanStack.
+
+<ComponentPreview name="p-table-7" />
+
+### الجدول في الإطار
+
+لف الطاولة في a [الإطار](/ui/docs/components/frame) لحدود التطبيق سطح تأطير. استخدام `variant="card"` على `Table` حتى الصفوف الحفاظ على العلاج على غرار بطاقة داخل الإطار.
+
+<ComponentPreview name="p-table-2" />
+
+### جدول البيانات مع تانستاك
+
+استخدم [جدول البيانات](https://tanstack.com/table) مع `variant="card"` عندما تحتاج إلى تعريفات الأعمدة ، وتحديد الصفوف ، و `flexRender` على نفس الجدول الأوليات. إضافة `@tanstack/react-table` لمشروعك لحالة مقطوعة الرأس (الفرز ، ترقيم الصفحات ، التحديد) بعد الترميز الثابت.
+
+<ComponentPreview name="p-table-6" />
+
+## سجل التغيير
+
+- [أبريل 12, 2026](/ui/docs/changelog#الجدول) — `Table` إضافة اختياري `variant` (`default` أو `card`)

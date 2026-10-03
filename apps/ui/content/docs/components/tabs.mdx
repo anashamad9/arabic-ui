@@ -1,0 +1,125 @@
+---
+title: "التبويبات"
+description: "مكون للتبديل بين اللوحات ذات الصلة في نفس الصفحة."
+
+links:
+  doc: https://base-ui.com/react/components/tabs#api-reference
+---
+
+<ComponentPreview name="p-tabs-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/tabs
+```
+
+تثبيت سطر الأوامر المشتركة `@arabicui/segmented-control` اعتماد التسجيل تلقائيا.
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react class-variance-authority
+```
+
+<Step>انسخ تصميم التحكم المجزأ المشترك في مشروعك.</Step>
+
+<ComponentSource name="segmented-control" title="lib/segmented-control.ts" />
+
+<Step>انسخ مكون التبويبات ولصقه في مشروعك.</Step>
+
+<ComponentSource name="tabs" title="components/ui/tabs.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/ui/tabs"
+```
+
+```tsx
+<Tabs defaultValue="tab-1">
+  <TabsList>
+    <TabsTab value="tab-1">التبويب الأول</TabsTab>
+    <TabsTab value="tab-2">التبويب الثاني</TabsTab>
+    <TabsTab value="tab-3">التبويب الثالث</TabsTab>
+  </TabsList>
+  <TabsPanel value="tab-1">محتوى التبويب الأول</TabsPanel>
+  <TabsPanel value="tab-2">محتوى التبويب الثاني</TabsPanel>
+  <TabsPanel value="tab-3">محتوى التبويب الثالث</TabsPanel>
+</Tabs>
+```
+
+## مرجع الواجهة البرمجية
+
+### التبويبات
+
+المكوّن الأساسي. غلاف منسّق للمكوّن `Tabs.Root` من مكتبة بيس.
+
+### TabsList
+
+حاوية لمشغلات علامة التبويب. غلاف نمط ل `Tabs.List` من مكتبة بيس.
+
+| الخاصية      | النوع                       | الافتراضي     | الوصف                         |
+| --------- | -------------------------- | ----------- | ----------------------------------- |
+| `size`    | `"sm" \| "default" \| "lg"` | `"default"` | يتحكم في حجم جميع عناصر علامة التبويب. |
+| `variant` | `"default" \| "underline"` | `"default"` | يتحكم بتصميم علامات التبويب.          |
+
+### TabsTab
+
+عنصر التفعيل علامة التبويب الفردية. المجمع على غرار ل `Tabs.Tab` من مكتبة بيس.
+
+### TabsPanel
+
+لوحة المحتوى لكل علامة تبويب. غلاف مصمم ل `Tabs.Panel` من مكتبة بيس.
+
+### TabsIndicator
+
+مؤشر بصري لعلامة التبويب النشطة. المجمع على غرار ل `Tabs.Indicator` من مكتبة بيس.
+
+## الأمثلة
+
+للحصول على إرشادات حول الاختيار بين علامات التبويب ومجموعة الاختيار الأحادي ومجموعة تبديل مجموعة وروابط التنقل ، راجع [الاختيار المقسّم](/ui/docs/components/segmented-control) نمط.
+
+تستخدم علامات التبويب نفس التحجيم البصري كعناصر تحكم مجزأة. يكون السطح الافتراضي أطول قليلاً من زر بنفس الحجم بحيث يظل مؤشره النشط المدمج متوازنًا بصريًا جنبًا إلى جنب مع عناصر التحكم المجاورة.
+
+### صغير
+
+<ComponentPreview name="p-tabs-14" />
+
+### كبير
+
+<ComponentPreview name="p-tabs-15" />
+
+### نمط التسطير
+
+<ComponentPreview name="p-tabs-2" />
+
+### الاتجاه الرأسي
+
+<ComponentPreview name="p-tabs-3" />
+
+### التأكيد مع الاتجاه الرأسي
+
+<ComponentPreview name="p-tabs-4" />

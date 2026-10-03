@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-combobox-12",
+  "description": "اختيار مع البحث شكل متعدد",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/combobox",
+    "@arabicui/field",
+    "@arabicui/form"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-combobox-12.tsx",
+      "content": "\"use client\";\n\nimport type { FormEvent } from \"react\";\nimport { useState } from \"react\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport {\n  Combobox,\n  ComboboxChip,\n  ComboboxChips,\n  ComboboxChipsInput,\n  ComboboxEmpty,\n  ComboboxItem,\n  ComboboxList,\n  ComboboxPopup,\n  ComboboxValue,\n} from \"@/registry/default/ui/combobox\";\nimport { Field, FieldError, FieldLabel } from \"@/registry/default/ui/field\";\nimport { Form } from \"@/registry/default/ui/form\";\n\nconst items = [\n  { label: \"تفاح\", value: \"apple\" },\n  { label: \"موز\", value: \"banana\" },\n  { label: \"برتقال\", value: \"orange\" },\n  { label: \"عنب\", value: \"grape\" },\n  { label: \"فراولة\", value: \"strawberry\" },\n  { label: \"مانجو\", value: \"mango\" },\n  { label: \"أناناس\", value: \"pineapple\" },\n  { label: \"كيوي\", value: \"kiwi\" },\n  { label: \"خوخ\", value: \"peach\" },\n  { label: \"كمثرى\", value: \"pear\" },\n];\n\nexport default function Particle() {\n  const [loading, setLoading] = useState(false);\n  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {\n    e.preventDefault();\n    const formData = new FormData(e.currentTarget);\n    const selectedItems = formData.getAll(\"items\");\n    const itemValues = selectedItems.map(\n      (selectedItem) =>\n        items.find((item) => item.label === selectedItem)?.value ||\n        selectedItem,\n    );\n    setLoading(true);\n    await new Promise((r) => setTimeout(r, 800));\n    setLoading(false);\n    alert(`العناصر المفضلة: ${itemValues.join(\", \") || \"\"}`);\n  };\n\n  return (\n    <Form className=\"flex w-full max-w-64 flex-col gap-4\" onSubmit={onSubmit}>\n      <Field name=\"items\">\n        <FieldLabel>العناصر المفضلة</FieldLabel>\n        <Combobox items={items} multiple required>\n          <ComboboxChips>\n            <ComboboxValue>\n              {(value: { value: string; label: string }[]) => (\n                <>\n                  {value?.map((item) => (\n                    <ComboboxChip aria-label={item.label} key={item.value}>\n                      {item.label}\n                    </ComboboxChip>\n                  ))}\n                  <ComboboxChipsInput\n                    placeholder={\n                      value.length > 0 ? undefined : \"حدد العناصر ...\"\n                    }\n                  />\n                </>\n              )}\n            </ComboboxValue>\n          </ComboboxChips>\n          <ComboboxPopup>\n            <ComboboxEmpty>لا توجد عناصر.</ComboboxEmpty>\n            <ComboboxList>\n              {(item) => (\n                <ComboboxItem key={item.value} value={item}>\n                  {item.label}\n                </ComboboxItem>\n              )}\n            </ComboboxList>\n          </ComboboxPopup>\n        </Combobox>\n        <FieldError>يرجى اختيار عنصر واحد على الأقل.</FieldError>\n      </Field>\n      <Button loading={loading} type=\"submit\">\n        إرسال\n      </Button>\n    </Form>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-64"
+  },
+  "categories": [
+    "combobox",
+    "form",
+    "input"
+  ],
+  "type": "registry:block"
+}

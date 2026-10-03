@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-fieldset-1",
+  "description": "مجموعة الحقول مع حقول متعددة",
+  "registryDependencies": [
+    "@arabicui/field",
+    "@arabicui/fieldset",
+    "@arabicui/input"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-fieldset-1.tsx",
+      "content": "import {\n  Field,\n  FieldDescription,\n  FieldLabel,\n} from \"@/registry/default/ui/field\";\nimport { Fieldset, FieldsetLegend } from \"@/registry/default/ui/fieldset\";\nimport { Input } from \"@/registry/default/ui/input\";\n\nexport default function Particle() {\n  return (\n    <Fieldset className=\"flex w-full flex-col gap-6\">\n      <FieldsetLegend>تفاصيل الفوترة</FieldsetLegend>\n      <Field>\n        <FieldLabel>الشركة</FieldLabel>\n        <Input placeholder=\"أدخل اسم الشركة\" type=\"text\" />\n        <FieldDescription>الاسم الذي سيظهر على الفواتير.</FieldDescription>\n      </Field>\n\n      <Field>\n        <FieldLabel>البطاقة الضريبية</FieldLabel>\n        <Input placeholder=\"أدخل رقم التعريف الضريبي\" type=\"text\" />\n        <FieldDescription>رقم التعريف الضريبي الخاص بك.</FieldDescription>\n      </Field>\n    </Fieldset>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-64"
+  },
+  "categories": [
+    "fieldset",
+    "input"
+  ],
+  "type": "registry:block"
+}

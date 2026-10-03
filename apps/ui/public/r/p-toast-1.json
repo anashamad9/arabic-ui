@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-toast-1",
+  "description": "إشعارات مكدسة افتراضية مع العنوان والوصف",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/toast"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-toast-1.tsx",
+      "content": "\"use client\";\n\nimport { Button } from \"@/registry/default/ui/button\";\nimport { toastManager } from \"@/registry/default/ui/toast\";\n\nexport default function Particle() {\n  return (\n    <Button\n      onClick={() => {\n        toastManager.add({\n          description: \"الاثنين 3 يناير الساعة 6:00 مساءً\",\n          title: \"تم إنشاء الحدث\",\n        });\n      }}\n      variant=\"outline\"\n    >\n      إشعار افتراضي\n    </Button>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "toast"
+  ],
+  "type": "registry:block"
+}

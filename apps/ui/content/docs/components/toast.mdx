@@ -1,0 +1,250 @@
+---
+title: "الإشعار العابر"
+description: "إشعار مؤقت يظهر على الشاشة لإعلام المستخدمين."
+
+links:
+  doc: https://base-ui.com/react/components/toast#api-reference
+---
+
+<ComponentPreview name="p-toast-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/toast
+```
+
+<Step>أضف `ToastProvider` و `AnchoredToastProvider` إلى تطبيقك.</Step>
+
+<span data-lib="base-ui">
+```tsx title="app/layout.tsx"
+// [!code word:import { AnchoredToastProvider, ToastProvider } from "@/components/ui/toast"]
+// [!code word:<ToastProvider>]
+// [!code word:<AnchoredToastProvider>]
+// [!code word:</AnchoredToastProvider>]
+// [!code word:</ToastProvider>]
+import { AnchoredToastProvider, ToastProvider } from "@/components/ui/toast"
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="ar" dir="rtl">
+      <head />
+      <body>
+        <ToastProvider>
+          <AnchoredToastProvider>
+            <main>{children}</main>
+          </AnchoredToastProvider>
+        </ToastProvider>
+      </body>
+    </html>
+  )
+}
+```
+</span>
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="toast" title="components/ui/toast.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+<Step>أضف `ToastProvider` و `AnchoredToastProvider` إلى تطبيقك.</Step>
+
+<span data-lib="base-ui">
+```tsx title="app/layout.tsx"
+// [!code word:import { AnchoredToastProvider, ToastProvider } from "@/components/ui/toast"]
+// [!code word:<ToastProvider>]
+// [!code word:<AnchoredToastProvider>]
+// [!code word:</AnchoredToastProvider>]
+// [!code word:</ToastProvider>]
+import { AnchoredToastProvider, ToastProvider } from "@/components/ui/toast"
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="ar" dir="rtl">
+      <head />
+      <body>
+        <ToastProvider>
+          <AnchoredToastProvider>
+            <main>{children}</main>
+          </AnchoredToastProvider>
+        </ToastProvider>
+      </body>
+    </html>
+  )
+}
+```
+</span>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+### إشعار مكدس
+
+```tsx
+import { toastManager } from "@/components/ui/toast"
+```
+
+```tsx
+toastManager.add({
+  title: "تم إنشاء الحدث",
+  description: "الاثنين 3 يناير الساعة 6:00 مساءً",
+})
+```
+
+بشكل افتراضي ، تظهر الخبز المحمص في **أسفل اليمين** الزاوية. يمكنك تغيير هذا عن طريق وضع `position` الدعامة على `ToastProvider`.
+
+القيم المسموح بها: `top-left`, `top-center`, `top-right`, `bottom-left`, `bottom-center`, `bottom-right`. على سبيل المثال:
+
+```tsx
+<ToastProvider position="top-center">{children}</ToastProvider>
+```
+
+### إشعار مكررة (upsert)
+
+تمرير مستقرة `id` عند الاتصال `toastManager.add`. إذا إشعار مع ذلك `id` موجود بالفعل ، يقوم بيس بتحديثه في مكانه ، وتحديث مؤقت الإيقاف التلقائي ، والزيادات `updateKey`. يعيد الخبز المحمص المصمم رسمًا متحركًا قصيرًا لإعادة إخطار كل تحديث.
+
+```tsx
+toastManager.add({
+  id: "save-status",
+  title: "المحفوظة",
+  description: "تم تحديث مشروعك.",
+})
+```
+
+<ComponentPreview name="p-toast-10" />
+
+### إشعار مرسى
+
+بالنسبة للخبز المحمص الموضوع بالنسبة لعنصر معين ، استخدم `anchoredToastManager`. The `AnchoredToastProvider` يضاف عادة إلى تخطيط التطبيق الخاص بك (جنبا إلى جنب `ToastProvider`)، حتى تتمكن من استخدام `anchoredToastManager` مباشرة في المكونات الخاصة بك:
+
+```tsx
+anchoredToastManager.add({
+  title: "تم النسخ!",
+  positionerProps: {
+    anchor: buttonRef.current,
+  },
+})
+```
+
+يمكنك أيضًا تصميم الخبز المحمص المثبت مثل تلميحات الأدوات عن طريق المرور `data: { tooltipStyle: true }`. عند استخدام نمط تلميح الأدوات ، فقط `title` يتم عرض (الوصف والمحتويات الأخرى تجاهل):
+
+```tsx
+anchoredToastManager.add({
+  title: "تم النسخ!",
+  positionerProps: {
+    anchor: buttonRef.current,
+  },
+  data: {
+    tooltipStyle: true,
+  },
+})
+```
+
+<ComponentPreview name="p-toast-12" />
+
+## مرجع الواجهة البرمجية
+
+### ToastProvider
+
+مكون مزود للخبز المحمص المكدس. الأغطية `Toast.Provider` من مكتبة بيس.
+
+| الخاصية          | النوع                                                                                     | الافتراضي          | الوصف                                                                                            |
+| ------------- | ---------------------------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------ |
+| `position`    | `"top-left" \| "top-center" \| "top-right" \| "bottom-left" \| "bottom-center" \| "bottom-right"` | `"bottom-right"` | موقف من وجهة نظر إشعار                                                                         |
+| `portalProps` | `Toast.Portal.Props`                                                                    | -                | خصائص تُمرّر إلى البوابة الداخلية (`container`، إلخ) ؛ راجع بيس إشعار بوابة العرض واجهة برمجية                |
+
+### AnchoredToastProvider
+
+مكون مزود للخبز المحمص المثبت على عناصر محددة. استخدمه مع `anchoredToastManager`.
+
+| الخاصية          | النوع                 | الافتراضي | الوصف                                                                             |
+| ------------- | -------------------- | ------- | --------------------------------------------------------------------------------------- |
+| `portalProps` | `Toast.Portal.Props` | -       | خصائص تُمرّر إلى البوابة الداخلية (`container`، إلخ) ؛ راجع بيس إشعار بوابة العرض واجهة برمجية |
+
+### toastManager
+
+كائن مدير لإنشاء إشعار مكدسة. استخدام `toastManager.add()` لإظهار إشعار. تمرير نفس `id` في وقت لاحق `add` لتحديث هذا الخبز المحمص في مكانه (dedupe) بدلاً من تكديس نسخة مكررة.
+
+### anchoredToastManager
+
+كائن مدير لإنشاء الخبز المحمص المثبت. استخدام `anchoredToastManager.add()` مع `positionerProps.anchor` لإظهار إشعار مثبت على عنصر. كرر `add` المكالمات مع نفس `id` التحديث في مكانه ، مثل الخبز المحمص المكدس.
+
+### ToastViewport
+
+حاوية منطقة العرض للخبز المحمص. غلاف مصمم ل `Toast.Viewport` من مكتبة بيس.
+
+### الإشعار العابر
+
+حاوية إشعار فردية. غلاف على غرار `Toast.Root` من مكتبة بيس.
+
+### ToastTitle
+
+عنوان النص للخبز المحمص. غلاف نمط ل `Toast.Title` من مكتبة بيس.
+
+### ToastDescription
+
+وصف النص للنخب. المجمع على غرار ل `Toast.Description` من مكتبة بيس.
+
+### ToastAction
+
+زر العمل للخبز المحمص. غلاف نمط ل `Toast.Action` من مكتبة بيس.
+
+### ToastClose
+
+إغلاق زر للخبز المحمص. غلاف نمط ل `Toast.Close` من مكتبة بيس.
+
+## الأمثلة
+
+### مع الحالة
+
+<ComponentPreview name="p-toast-2" />
+
+### جارٍ التحميل
+
+<ComponentPreview name="p-toast-3" />
+
+### مع العمل
+
+<ComponentPreview name="p-toast-4" />
+
+### وعد
+
+<ComponentPreview name="p-toast-5" />
+
+### مع ارتفاعات متفاوتة
+
+<ComponentPreview name="p-toast-6" />
+
+### زر نسخ مع إشعار مرساة
+
+<ComponentPreview name="p-toast-7" />
+
+### زر إرسال مع خطأ إشعار
+
+<ComponentPreview name="p-toast-8" />

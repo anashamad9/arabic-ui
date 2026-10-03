@@ -1,0 +1,80 @@
+---
+title: "المحتوى القابل للطي"
+description: "لوحة قابلة للطي تسيطر عليها زر عنصر التفعيل."
+
+links:
+  doc: https://base-ui.com/react/components/collapsible#api-reference
+---
+
+<ComponentPreview name="p-collapsible-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/collapsible
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="collapsible" title="components/ui/collapsible.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  Collapsible,
+  CollapsiblePanel,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible"
+```
+
+```tsx
+<Collapsible>
+  <CollapsibleTrigger>هل يمكنني الوصول إلى الملف في السحابة؟</CollapsibleTrigger>
+  <CollapsiblePanel>
+    نعم، يمكنك الوصول إلى الملف في السحابة.
+  </CollapsiblePanel>
+</Collapsible>
+```
+
+## مرجع الواجهة البرمجية
+
+### المحتوى القابل للطي
+
+المكوّن الأساسي. اسم بديل للمكوّن `Collapsible.Root` من مكتبة بيس.
+
+### CollapsibleTrigger
+
+زر عنصر التفعيل الذي تبديل لوحة قابلة للطي. غلاف مصمم ل `Collapsible.Trigger` من مكتبة بيس.
+
+### CollapsiblePanel
+
+لوحة محتوى قابلة للطي. غلاف مصمم ل `Collapsible.Panel` من واجهة المستخدم الأساسية مع التحولات ارتفاع الرسوم المتحركة. أيضا تصديرها كما `CollapsibleContent`.

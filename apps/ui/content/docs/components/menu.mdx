@@ -1,0 +1,286 @@
+---
+title: "القائمة"
+description: "قائمة من الإجراءات في القائمة المنسدلة، معززة مع الملاحة لوحة المفاتيح."
+
+links:
+  doc: https://base-ui.com/react/components/menu#api-reference
+---
+
+<ComponentPreview name="p-menu-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/menu
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>استيراد المتغيرات التالية إلى ملف تنسيق الخاص بك</Step>
+
+```css
+@theme inline {
+  --color-destructive-foreground: var(--destructive-foreground);
+}
+
+:root {
+  --destructive-foreground: var(--color-red-700);
+}
+
+.dark {
+  --destructive-foreground: var(--color-red-400);
+}
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="menu" title="components/ui/menu.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  Menu,
+  MenuCheckboxItem,
+  MenuGroup,
+  MenuGroupLabel,
+  MenuItem,
+  MenuLinkItem,
+  MenuPopup,
+  MenuRadioGroup,
+  MenuRadioItem,
+  MenuSeparator,
+  MenuSub,
+  MenuSubPopup,
+  MenuSubTrigger,
+  MenuTrigger,
+} from "@/components/ui/menu"
+```
+
+```tsx
+<Menu>
+  <MenuTrigger>فتح</MenuTrigger>
+  <MenuPopup align="start" sideOffset={4}>
+    <MenuItem>الملف الشخصي</MenuItem>
+    <MenuSeparator />
+
+    <MenuGroup>
+      <MenuGroupLabel>تشغيل</MenuGroupLabel>
+      <MenuItem>تشغيل</MenuItem>
+      <MenuItem>الوقفة</MenuItem>
+    </MenuGroup>
+
+    <MenuSeparator />
+
+    <MenuCheckboxItem>تشغيل عشوائي</MenuCheckboxItem>
+    <MenuCheckboxItem>تكرار</MenuCheckboxItem>
+    <MenuCheckboxItem variant="switch">حفظ تلقائي</MenuCheckboxItem>
+
+    <MenuSeparator />
+
+    <MenuGroup>
+      <MenuGroupLabel>ترتيب حسب</MenuGroupLabel>
+      <MenuRadioGroup>
+        <MenuRadioItem>فنان</MenuRadioItem>
+        <MenuRadioItem>الألبوم</MenuRadioItem>
+        <MenuRadioItem>العنوان</MenuRadioItem>
+      </MenuRadioGroup>
+    </MenuGroup>
+
+    <MenuSeparator />
+
+    <MenuSub>
+      <MenuSubTrigger>إضافة إلى قائمة التشغيل</MenuSubTrigger>
+      <MenuSubPopup>
+        <MenuItem>موسيقى الجاز</MenuItem>
+        <MenuItem>روك</MenuItem>
+      </MenuSubPopup>
+    </MenuSub>
+  </MenuPopup>
+</Menu>
+```
+
+## مرجع الواجهة البرمجية
+
+### القائمة
+
+المكوّن الأساسي. اسم بديل للمكوّن `Menu.Root` من قاعدة واجهة المستخدم. أيضا تصديرها كما `DropdownMenu`.
+
+### MenuTrigger
+
+زر عنصر التفعيل الذي يفتح القائمة. الاسم المستعار ل `Menu.Trigger` من قاعدة واجهة المستخدم. أيضا تصديرها كما `DropdownMenuTrigger`.
+
+### MenuPopup
+
+حاوية منبثقة تعرض محتوى القائمة. كما تم تصديرها كـ `DropdownMenuContent`.
+
+| الخاصية          | النوع                                           | الافتراضي    | الوصف                                      |
+| ------------- | ---------------------------------------------- | ---------- | ------------------------------------------------ |
+| `side`        | `"top" \| "bottom" \| "left" \| "right"`       | `"bottom"` | جانب عنصر التفعيل لوضع المنبثقة        |
+| `align`       | `"start" \| "center" \| "end"`                 | `"center"` | محاذاة بالنسبة إلى عنصر التفعيل                |
+| `sideOffset`  | `number`                                       | `4`        | المسافة من عنصر التفعيل بالبكسل              |
+| `alignOffset` | `number`                                       | -          | إزاحة على طول محور المحاذاة                  |
+| `portalProps` | `Menu.Portal.Props`                            | -          | خصائص تُمرّر إلى البوابة الداخلية (`keepMounted`, `container`، وما إلى ذلك) ؛ انظر قاعدة واجهة المستخدم القائمة واجهة برمجية |
+
+### MenuGroup
+
+عناصر القائمة المتعلقة بالمجموعات. الاسم المستعار ل `Menu.Group` من قاعدة واجهة المستخدم. أيضا تصديرها كما `DropdownMenuGroup`.
+
+### MenuItem
+
+عنصر القائمة الفردية. أيضا تصديرها كما `DropdownMenuItem`.
+
+| الخاصية      | النوع                          | الافتراضي     | الوصف                                      |
+| --------- | ----------------------------- | ----------- | ------------------------------------------------ |
+| `inset`   | `boolean`                     | -           | يضيف مسافة عند بداية السطر للمحاذاة مع العناصر التي تتضمن أيقونات. |
+| `variant` | `"default" \| "destructive"`  | `"default"` | يتحكم في تصميم العنصر                        |
+
+**استخدام `inset`:** عند خلط العناصر مع وبدون أيقونات ، استخدم `inset` على عناصر أقل رمز للحفاظ على المحاذاة:
+
+```tsx
+<MenuItem><PencilIcon /> تعديل</MenuItem>
+<MenuItem><TrashIcon /> حذف</MenuItem>
+<MenuItem inset>الملف الشخصي</MenuItem>  {/* Aligns with icon items above */}
+```
+
+### MenuLinkItem
+
+ربط عنصر القائمة للملاحة. **`LinkItem`** يجعل من الأصلي **`<a>`** عندما تمر **`href`**. على غرار مثل **`MenuItem`**.
+
+| الخاصية           | النوع                          | الافتراضي     | الوصف                                      |
+| -------------- | ----------------------------- | ----------- | ------------------------------------------------ |
+| `inset`        | `boolean`                     | -           | يضيف مسافة عند بداية السطر للمحاذاة مع العناصر التي تتضمن أيقونات. |
+| `variant`      | `"default" \| "destructive"`  | `"default"` | يتحكم في تصميم العنصر                        |
+| `closeOnClick` | `boolean`                     | `true`      | ما إذا كانت القائمة تغلق عند النقر على الرابط |
+
+إذا كنت تستخدم **`MenuItem render={<Link href="..." />}`**الهجرة إلى **`MenuLinkItem`** ولكن **الحفاظ على الحفاظ `render`** - لا تستبدلها ب **`href`** وحدها عند استخدام جهاز التوجيه **`Link`**.
+
+```tsx
+<MenuLinkItem render={<Link href="/docs" />}>التوثيق</MenuLinkItem>
+```
+
+استخدم **`href`** فقط لروابط مرساة عادي:
+
+```tsx
+<MenuLinkItem href="/docs">التوثيق</MenuLinkItem>
+```
+
+### MenuCheckboxItem
+
+عنصر القائمة مربع الاختيار. أيضا تصديرها كما `DropdownMenuCheckboxItem`.
+
+| الخاصية      | النوع                       | الافتراضي     | الوصف                                      |
+| --------- | -------------------------- | ----------- | ------------------------------------------------ |
+| `variant` | `"default" \| "switch"`    | `"default"` | نمط العرض - `switch` يظهر مؤشر تبديل التبديل |
+
+### MenuRadioGroup
+
+مجموعات عناصر القائمة الراديو. الاسم المستعار ل `Menu.RadioGroup` من قاعدة واجهة المستخدم. أيضا تصديرها كما `DropdownMenuRadioGroup`.
+
+### MenuRadioItem
+
+عنصر قائمة الراديو. غلاف على غرار `Menu.RadioItem` من قاعدة واجهة المستخدم. أيضا تصديرها كما `DropdownMenuRadioItem`.
+
+### MenuGroupLabel
+
+تسمية لمجموعة القائمة. أيضا تصديرها كما `DropdownMenuLabel`.
+
+| الخاصية    | النوع      | الافتراضي | الوصف                                      |
+| ------- | --------- | ------- | ------------------------------------------------ |
+| `inset` | `boolean` | -       | يضيف مسافة عند بداية السطر للمحاذاة مع العناصر التي تتضمن أيقونات. |
+
+### MenuSeparator
+
+فاصل بصري بين عناصر القائمة. غلاف مصمم ل `Menu.Separator` من قاعدة واجهة المستخدم. أيضا تصديرها كما `DropdownMenuSeparator`.
+
+### MenuShortcut
+
+يعرض نص اختصار لوحة المفاتيح. مكون مخصص (وليس غلاف واجهة المستخدم الأساسية). أيضا تصديرها كما `DropdownMenuShortcut`.
+
+### MenuSub
+
+حاوية القائمة الفرعية. الاسم المستعار ل `Menu.SubmenuRoot` من قاعدة واجهة المستخدم. أيضا تصديرها كما `DropdownMenuSub`.
+
+### MenuSubTrigger
+
+عنصر التفعيل لفتح القائمة الفرعية. أيضا تصديرها كما `DropdownMenuSubTrigger`.
+
+| الخاصية    | النوع      | الافتراضي | الوصف                                      |
+| ------- | --------- | ------- | ------------------------------------------------ |
+| `inset` | `boolean` | -       | يضيف مسافة عند بداية السطر للمحاذاة مع العناصر التي تتضمن أيقونات. |
+
+### MenuSubPopup
+
+المنبثقة لمحتوى القائمة الفرعية. أيضا تصديرها كما `DropdownMenuSubContent`.
+
+| الخاصية          | النوع                           | الافتراضي   | الوصف                                      |
+| ------------- | ------------------------------ | --------- | ------------------------------------------------ |
+| `align`       | `"start" \| "center" \| "end"` | `"start"` | محاذاة بالنسبة إلى عنصر التفعيل                |
+| `sideOffset`  | `number`                       | `0`       | المسافة من عنصر التفعيل بالبكسل              |
+| `alignOffset` | `number`                       | `-5`      | إزاحة على طول محور المحاذاة. الافتراضي إلى `-5` عندما `align` ليس `"center"` |
+
+## الأمثلة
+
+### فتح على Hover
+
+<ComponentPreview name="p-menu-2" />
+
+### مع مربع اختيار
+
+<ComponentPreview name="p-menu-3" />
+
+### مع التبديل
+
+`MenuCheckboxItem` يدعم a `variant="switch"` الدعامة التي تعرض مؤشر التبديل الزخرفية بدلا من علامة الاختيار. هذا هو البديل البصرية بحتة - المكون لا يزال عنصر مربع الاختيار مع نفس الوظيفة.
+
+<ComponentPreview name="p-menu-9" />
+
+### مع مجموعة راديو
+
+<ComponentPreview name="p-menu-4" />
+
+### مع رابط
+
+<ComponentPreview name="p-menu-5" />
+
+### مع تسمية المجموعة
+
+<ComponentPreview name="p-menu-6" />
+
+### قائمة متداخلة
+
+<ComponentPreview name="p-menu-7" />
+
+### إغلاق على Click
+
+<ComponentPreview name="p-menu-8" />
+
+### فتح حوار
+
+<ComponentPreview name="p-dialog-2" />

@@ -1,0 +1,131 @@
+---
+title: "useCopyToClipboard"
+description: "انسخ النص إلى الحافظة مع حالة \"نسخ\" مؤقتة."
+---
+
+خطاف رياكت يلف واجهة برمجة تطبيقات الحافظة مع مهلة مضمنة لإعادة تعيين الحالة المنسوخة. مفيد لأزرار النسخ التي تعرض ملاحظات تأكيد موجزة.
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/use-copy-to-clipboard
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="use-copy-to-clipboard" title="hooks/use-copy-to-clipboard.ts" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+### الأساسية
+
+```tsx
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+
+function CopyButton({ text }: { text: string }) {
+  const { copyToClipboard, isCopied } = useCopyToClipboard();
+
+  return (
+    <button onClick={() => copyToClipboard(text)}>
+      {isCopied ? "تم النسخ!" : "نسخ"}
+    </button>
+  );
+}
+```
+
+### مهلة مخصصة
+
+المكوّن `isCopied` تتم إعادة تعيين الحالة بعد ثانيتين بشكل افتراضي. يمكنك تغيير هذا:
+
+```tsx
+const { copyToClipboard, isCopied } = useCopyToClipboard({ timeout: 3000 });
+```
+
+تعيين `timeout` إلى `0` للحفاظ على `isCopied` as `true` إلى أجل غير مسمى (حتى يتم فك المكون).
+
+### إعادة الاتصال على نسخة
+
+تشغيل تأثير جانبي عندما تنجح نسخة:
+
+```tsx
+const { copyToClipboard, isCopied } = useCopyToClipboard({
+  onCopy: () => console.log("نسخ إلى الحافظة"),
+});
+```
+
+### مبادلة الأيقونات
+
+نمط شائع - قم بتبديل الرمز لفترة وجيزة لتأكيد النسخة:
+
+```tsx
+import { CheckIcon, CopyIcon } from "lucide-react";
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { Button } from "@/components/ui/button";
+
+function CopyButton({ value }: { value: string }) {
+  const { copyToClipboard, isCopied } = useCopyToClipboard();
+
+  return (
+    <Button
+      aria-label="نسخ إلى الحافظة"
+      onClick={() => copyToClipboard(value)}
+      size="icon"
+      variant="outline"
+    >
+      {isCopied ? (
+        <CheckIcon aria-hidden="true" />
+      ) : (
+        <CopyIcon aria-hidden="true" />
+      )}
+    </Button>
+  );
+}
+```
+
+## الواجهة البرمجية
+
+```tsx
+function useCopyToClipboard(options?: {
+  timeout?: number;
+  onCopy?: () => void;
+}): {
+  copyToClipboard: (value: string) => void;
+  isCopied: boolean;
+};
+```
+
+### الخيارات
+
+| عقارات عقارية | النوع | الافتراضي | الوصف |
+|----------|------|---------|-------------|
+| `timeout` | `number` | `2000` | ميلي ثانية قبل `isCopied` إعادة تعيين إلى `false`. تعيين ل `0` للحفاظ عليه `true`. |
+| `onCopy` | `() => void` | — | رد رد فعل بعد نسخة ناجحة. |
+
+### قيمة الإرجاع
+
+| عقارات عقارية | النوع | الوصف |
+|----------|------|-------------|
+| `copyToClipboard` | `(value: string) => void` | الاتصال مع النص لنسخ. لا-op إذا `value` فارغة أو الحافظة واجهة برمجية غير متوفرة. |
+| `isCopied` | `boolean` | `true` من أجل `timeout` ms بعد نسخة ناجحة ، ثم إعادة تعيين. |

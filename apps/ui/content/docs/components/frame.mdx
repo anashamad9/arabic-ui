@@ -1,0 +1,143 @@
+---
+title: "الإطار"
+description: "حاوية مؤطرة لتجميع المعلومات ذات الصلة."
+---
+
+<ComponentPreview name="p-frame-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/frame
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="frame" title="components/ui/frame.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  Frame,
+  FrameDescription,
+  FrameFooter,
+  FrameHeader,
+  FramePanel,
+  FrameTitle,
+} from "@/components/ui/frame"
+```
+
+```tsx
+<Frame>
+  <FrameHeader>
+    <FrameTitle>العنوان</FrameTitle>
+    <FrameDescription>الوصف</FrameDescription>
+  </FrameHeader>
+  <FramePanel>المحتوى</FramePanel>
+  <FrameFooter>التذييل</FrameFooter>
+</Frame>
+```
+
+## مرجع الواجهة البرمجية
+
+### الإطار
+
+عنصر الحاوية الرئيسي لتجميع المعلومات ذات الصلة.
+
+| الخاصية        | النوع     | الافتراضي |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+### FramePanel
+
+حاوية لوحة لمحتوى الإطار.
+
+| الخاصية        | النوع     | الافتراضي |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<FramePanel>المحتوى</FramePanel>
+```
+
+### FrameHeader
+
+قسم الرأس للإطار.
+
+| الخاصية        | النوع     | الافتراضي |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<FrameHeader>
+  <FrameTitle>العنوان</FrameTitle>
+  <FrameDescription>الوصف</FrameDescription>
+</FrameHeader>
+```
+
+### FrameTitle
+
+عنوان النص لرأس الإطار.
+
+| الخاصية        | النوع     | الافتراضي |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<FrameTitle>العنوان</FrameTitle>
+```
+
+### FrameDescription
+
+وصف النص لرأس الإطار.
+
+| الخاصية        | النوع     | الافتراضي |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<FrameDescription>الوصف</FrameDescription>
+```
+
+### FrameFooter
+
+قسم تذييل للإطار.
+
+| الخاصية        | النوع     | الافتراضي |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+```tsx
+<FrameFooter>التذييل</FrameFooter>
+```
+
+## الأمثلة
+
+### لوحات منفصلة
+
+بشكل افتراضي ، يتم فصل لوحات متعددة مع تباعد بينهما.
+
+<ComponentPreview name="p-frame-3" />

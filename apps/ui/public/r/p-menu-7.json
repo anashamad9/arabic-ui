@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-menu-7",
+  "description": "قائمة متداخلة",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/menu"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-menu-7.tsx",
+      "content": "import { Button } from \"@/registry/default/ui/button\";\nimport {\n  Menu,\n  MenuItem,\n  MenuPopup,\n  MenuSub,\n  MenuSubPopup,\n  MenuSubTrigger,\n  MenuTrigger,\n} from \"@/registry/default/ui/menu\";\n\nexport default function Particle() {\n  return (\n    <Menu>\n      <MenuTrigger render={<Button variant=\"outline\" />}>\n        فتح القائمة\n      </MenuTrigger>\n      <MenuPopup>\n        <MenuItem>البند 1</MenuItem>\n        <MenuSub>\n          <MenuSubTrigger>المزيد</MenuSubTrigger>\n          <MenuSubPopup>\n            <MenuItem>البند الفرعي ألف</MenuItem>\n            <MenuItem>البند الفرعي باء</MenuItem>\n          </MenuSubPopup>\n        </MenuSub>\n        <MenuItem>البند الثاني</MenuItem>\n      </MenuPopup>\n    </Menu>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "dropdown",
+    "menu"
+  ],
+  "type": "registry:block"
+}

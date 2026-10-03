@@ -1,0 +1,165 @@
+---
+title: "البطاقة"
+description: "حاوية محتوى لتجميع المعلومات ذات الصلة."
+---
+
+<ComponentPreview name="p-card-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/card
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="card" title="components/ui/card.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardPanel,
+  CardTitle,
+} from "@/components/ui/card"
+```
+
+```tsx
+<Card>
+  <CardHeader>
+    <CardTitle>العنوان</CardTitle>
+    <CardDescription>الوصف</CardDescription>
+  </CardHeader>
+  <CardPanel>المحتوى</CardPanel>
+  <CardFooter>التذييل</CardFooter>
+</Card>
+```
+
+### إطار البطاقة مع عمل رأس
+
+استخدم `CardFrame` عندما تحتاج إلى تخطيط مؤطر مع زر إجراء في الرأس (على سبيل المثال "إضافة" ، "اتصال"):
+
+```tsx
+import {
+  CardFrame,
+  CardFrameAction,
+  CardFrameDescription,
+  CardFrameHeader,
+  CardFrameTitle,
+  CardPanel,
+} from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { PlusIcon } from "lucide-react"
+
+<CardFrame>
+  <CardFrameHeader>
+    <CardFrameTitle>المشروع</CardFrameTitle>
+    <CardFrameDescription>
+      إدارة إعدادات المشروع وتكوينه
+    </CardFrameDescription>
+    <CardFrameAction>
+      <Button variant="outline">
+        <PlusIcon />
+        إضافة
+      </Button>
+    </CardFrameAction>
+  </CardFrameHeader>
+  <Card>
+    <CardPanel>المحتوى</CardPanel>
+  </Card>
+</CardFrame>
+```
+
+### إطار البطاقة مع طاولة
+
+بالنسبة للقوائم أو شبكات البيانات، تصيير a [الجدول](/ui/docs/components/table) مع `variant="card"` داخل داخل الداخل `CardFrame` بحيث تتطابق الشبكة مع حدود الإطار ونصف القطر. راجع مثال إطار البطاقة في مستندات الجدول. إضافة `@arabicui/table` إذا لم تكن موجودة بالفعل في المشروع.
+
+## مرجع الواجهة البرمجية
+
+مكوّن مخصّص يستخدم من مكتبة بيس `useRender` بدلًا من تغليف مكوّن جاهز مباشرة.
+
+### البطاقة
+
+حاوية الجذر للبطاقة. يدعم `render` الخاصية.
+
+| الخاصية     | النوع                   | الافتراضي | الوصف                                      |
+| -------- | ---------------------- | ------- | ------------------------------------------------ |
+| `render` | `React.ReactElement`   | -       | تقديم كعنصر مختلف                    |
+
+### CardHeader
+
+رأس قسم الحاويات. يدعم `render` الخاصية.
+
+### CardTitle
+
+عنوان النص للبطاقة. يدعم `render` الخاصية.
+
+### CardDescription
+
+وصف النص للبطاقة. يدعم `render` الخاصية.
+
+### CardAction
+
+حاوية لأزرار العمل في رأس. تلقائيا المواقف إلى اليمين. يدعم `render` الخاصية.
+
+### CardPanel
+
+منطقة المحتوى الرئيسي للبطاقة. أيضا تصديرها كما `CardContent`. يدعم `render` الخاصية.
+
+### CardFooter
+
+قسم تذييل للبطاقة. يدعم `render` الخاصية.
+
+## إطار البطاقة واجهة برمجية المرجع
+
+`CardFrame` هو تخطيط بديل للبطاقات التي تجمع رأسًا ومحتوى وتذييلًا مع تصميم وقصاصة متسقين. استخدمه عندما تحتاج إلى بطاقة مؤطرة مع إجراءات رأس اختيارية.
+
+### CardFrame
+
+حاوية الجذر لتخطيط بطاقة مؤطرة. يدعم `render` الخاصية.
+
+### CardFrameHeader
+
+قسم الرأس للإطار. يحتوي على العنوان والوصف واختياريا `CardFrameAction`. يدعم `render` الخاصية.
+
+### CardFrameTitle
+
+عنوان النص للإطار. يدعم `render` الخاصية.
+
+### CardFrameDescription
+
+وصف النص للإطار. يدعم `render` الخاصية.
+
+### CardFrameAction
+
+حاوية لأزرار العمل (على سبيل المثال "إضافة" ، "تحرير") في الرأس. ضعه كأخ لـ `CardFrameTitle` و `CardFrameDescription` داخل داخل الداخل `CardFrameHeader`. يتم وضعه في أعلى اليمين عبر شبكة CSS (`col-start-2`, `row-span-2`, `self-center`, `justify-self-end`). استخدامه للإجراءات الأساسية التي تنطبق على الإطار بأكمله. يدعم `render` الخاصية.
+
+### CardFrameFooter
+
+قسم تذييل للإطار. يدعم `render` الخاصية.

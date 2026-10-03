@@ -1,0 +1,149 @@
+---
+title: "رمز التحقق"
+description: "إدخال مجزأ لكلمات المرور ورموز التحقق لمرة واحدة."
+
+links:
+  doc: https://base-ui.com/react/components/otp-field
+---
+
+<ComponentPreview name="p-otp-field-1" />
+
+هذا المكون يلتف [قاعدة واجهة المستخدم رمز تحقق الميدان](https://base-ui.com/react/components/otp-field).
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/otp-field
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react lucide-react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="otp-field" title="components/ui/otp-field.tsx" />
+<ComponentSource name="separator" title="components/ui/separator.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  OTPField,
+  OTPFieldInput,
+  OTPFieldSeparator,
+} from "@/components/ui/otp-field"
+```
+
+```tsx
+<OTPField aria-label="رمز التحقق" length={6}>
+  <OTPFieldInput />
+  <OTPFieldInput aria-label="شخصية 2 من 6" />
+  <OTPFieldInput aria-label="شخصية 3 من 6" />
+  <OTPFieldSeparator />
+  <OTPFieldInput aria-label="شخصية 4 من 6" />
+  <OTPFieldInput aria-label="شخصية 5 من 6" />
+  <OTPFieldInput aria-label="شخصية 6 من 6" />
+</OTPField>
+```
+
+## مرجع الواجهة البرمجية
+
+هذا المكون مبني على [قاعدة واجهة المستخدم رمز تحقق الميدان](https://base-ui.com/react/components/otp-field). كل فتحة حقيقية `<input>`; النظام في الشجرة يجب أن تتطابق `length` على الجذر.
+
+### OTPField
+
+عنصر الجذر. يقبل نفس الدعائم كما `OTPField.Root`; `className` يتم دمجها مع أنماط التخطيط الافتراضية.
+
+استخدم **`length`** (مطلوب) لعدد الأحرف. السابق `maxLength` الدعامة من التراث `input-otp` لا يتم استخدام الحزمة.
+
+| الخاصية   | النوع                  | الافتراضي     | الوصف                          |
+| ------ | --------------------- | ----------- | ------------------------------------ |
+| `size` | `"default" \| "lg"` | `"default"` | الحجم المطبق على جميع الفتحات في الحقل |
+| `validationType` | `"numeric" \| "alpha" \| "alphanumeric" \| "none"` | `numeric` | ما هي الشخصيات المقبولة ؛ انظر [قاعدة واجهة المستخدم رمز تحقق الميدان](https://base-ui.com/react/components/otp-field) |
+| `mask` | `boolean` | `false` | عندما `true`، أقنعة دخلت الأحرف في كل فتحة |
+
+### OTPFieldInput
+
+يجعل إدخال حرف رمز تحقق واحد (واجهة المستخدم الأساسية `OTPField.Input`). يتم ترتيب فتحات بواسطة **طلب دوم** في الشجرة (لا) `index` الدعامة).
+
+| الخاصية    | النوع     | الوصف                                      |
+| ------- | -------- | ------------------------------------------------ |
+| `className` | `string` | دمجها مع أنماط فتحة الافتراضية              |
+| `placeholder` | `string` | نائب أصلي؛ زوج مع `focus-visible:placeholder:text-transparent` إذا كان يجب إخفاء التلميحات عند الكتابة |
+
+تسمية عنصر تحكم رمز تحقق على الجذر (`OTPField`) مع `aria-label` أو ظاهر. `<label>`/`FieldLabel`. في قاعدة UI 1.6+ ، الأول `OTPFieldInput` يجب أن ترث هذا الحقل التسمية، في حين أن فتحات لاحقة يمكن استخدامها `aria-label` (على سبيل المثال، `Character 2 of 6`).
+
+### OTPFieldSeparator
+
+فاصل بصري بين مجموعات الفتحة. يستخدم نظام التصميم `Separator` داخل داخل الداخل `OTPField.Separator` لتخطيط وسهولة الوصول.
+
+## الأمثلة
+
+### كبير
+
+<ComponentPreview name="p-otp-field-2" />
+
+### مع فاصل
+
+<ComponentPreview name="p-otp-field-3" />
+
+### مع التسمية
+
+<ComponentPreview name="p-otp-field-4" />
+
+### تطبيع مخصص
+
+تعيين `validationType="none"` مع `normalizeValue` عندما تحتاج إلى تطبيع الإدخال الملصق قبل أن يصل إلى الحالة ، أو لفرض قواعد الأحرف المخصصة. استخدم `inputMode` للوحة المفاتيح الافتراضية تلميح، و `onValueInvalid` عندما تريد الرد على الشخصيات التي تم رفضها بعد التطبيع.
+
+<ComponentPreview name="p-otp-field-6" />
+
+### التحقق من صحة السيارات
+
+<ComponentPreview name="p-otp-field-7" />
+
+### أبجدية رقمية
+
+استخدم `validationType="alphanumeric"` للاسترداد أو النسخ الاحتياطي أو دعوة الرموز التي تمزج الحروف والأرقام.
+
+<ComponentPreview name="p-otp-field-8" />
+
+### تلميحات العنصر النائب
+
+كل فتحة حقيقية `<input>`، لذا `placeholder` و تنسيق تتصرف كالمعتاد. إخفاء العنصر النائب على التركيز عندما فتحة نشطة يجب أن لا تظهر تلميحا.
+
+<ComponentPreview name="p-otp-field-9" />
+
+### دخول ملثم
+
+Pass `mask` على الجذر عندما يجب حجب الكود أثناء كتابته (على سبيل المثال الشاشات المشتركة).
+
+<ComponentPreview name="p-otp-field-10" />
+
+## سجل التغيير
+
+- [أبريل 14, 2026](/ui/docs/changelog#رمز-التحقق) — `input-otp.tsx` إزالة لصالح `otp-field.tsx` (`@arabicui/otp-field`)

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-sheet-3",
+  "description": "مواضع اللوحة الجانبية",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/sheet"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-sheet-3.tsx",
+      "content": "import { Button } from \"@/registry/default/ui/button\";\nimport {\n  Sheet,\n  SheetDescription,\n  SheetHeader,\n  SheetPanel,\n  SheetPopup,\n  SheetTitle,\n  SheetTrigger,\n} from \"@/registry/default/ui/sheet\";\n\nexport default function Particle() {\n  return (\n    <div className=\"flex flex-wrap gap-2\">\n      <Sheet>\n        <SheetTrigger render={<Button variant=\"outline\" />}>\n          فتح من اليمين\n        </SheetTrigger>\n        <SheetPopup showCloseButton={false}>\n          <SheetHeader>\n            <SheetTitle>اليمين</SheetTitle>\n            <SheetDescription>الجانب الأيمن من الشاشة.</SheetDescription>\n          </SheetHeader>\n          <SheetPanel>\n            <p>\n              هذا نص عربي تجريبي يعرض شكل المحتوى داخل المكوّن. يمكنك استبداله\n              بمحتواك الخاص، وتعديل الطول والتنسيق بما يناسب واجهتك.\n            </p>\n          </SheetPanel>\n        </SheetPopup>\n      </Sheet>\n      <Sheet>\n        <SheetTrigger render={<Button variant=\"outline\" />}>\n          فتح اليسار\n        </SheetTrigger>\n        <SheetPopup showCloseButton={false} side=\"left\">\n          <SheetHeader>\n            <SheetTitle>اليسار</SheetTitle>\n            <SheetDescription>الجانب الأيسر من الشاشة.</SheetDescription>\n          </SheetHeader>\n          <SheetPanel>\n            <p>\n              هذا نص عربي تجريبي يعرض شكل المحتوى داخل المكوّن. يمكنك استبداله\n              بمحتواك الخاص، وتعديل الطول والتنسيق بما يناسب واجهتك.\n            </p>\n          </SheetPanel>\n        </SheetPopup>\n      </Sheet>\n      <Sheet>\n        <SheetTrigger render={<Button variant=\"outline\" />}>\n          فتح أعلى الصفحة\n        </SheetTrigger>\n        <SheetPopup showCloseButton={false} side=\"top\">\n          <SheetHeader>\n            <SheetTitle>أعلى قمة</SheetTitle>\n            <SheetDescription>أعلى الشاشة.</SheetDescription>\n          </SheetHeader>\n          <SheetPanel>\n            <p>\n              هذا نص عربي تجريبي يعرض شكل المحتوى داخل المكوّن. يمكنك استبداله\n              بمحتواك الخاص، وتعديل الطول والتنسيق بما يناسب واجهتك.\n            </p>\n          </SheetPanel>\n        </SheetPopup>\n      </Sheet>\n      <Sheet>\n        <SheetTrigger render={<Button variant=\"outline\" />}>\n          فتح القاع\n        </SheetTrigger>\n        <SheetPopup showCloseButton={false} side=\"bottom\">\n          <SheetHeader>\n            <SheetTitle>القاع</SheetTitle>\n            <SheetDescription>أسفل الشاشة.</SheetDescription>\n          </SheetHeader>\n          <SheetPanel>\n            <p>\n              هذا نص عربي تجريبي يعرض شكل المحتوى داخل المكوّن. يمكنك استبداله\n              بمحتواك الخاص، وتعديل الطول والتنسيق بما يناسب واجهتك.\n            </p>\n          </SheetPanel>\n        </SheetPopup>\n      </Sheet>\n    </div>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "sheet"
+  ],
+  "type": "registry:block"
+}

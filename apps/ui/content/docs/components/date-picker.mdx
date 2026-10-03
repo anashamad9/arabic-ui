@@ -1,0 +1,114 @@
+---
+title: "منتقي التاريخ"
+description: "مكون منتقي التاريخ تم إنشاؤه باستخدام التقويم و نافذة منبثقة."
+---
+
+<ComponentPreview name="p-date-picker-1" />
+
+## حول المشروع
+
+تم بناء منتقي التاريخ باستخدام تركيبة من `<Calendar>` و `<Popover>` المكونات.
+
+## التثبيت
+
+منتقي التاريخ هو نمط تكوين ، وليس مكونًا مستقلًا. قم بتثبيت المكونات المطلوبة:
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/calendar @arabicui/popover @arabicui/button
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @daypicker/react date-fns lucide-react @base-ui/react
+```
+
+<Step>انسخ مكونات التقويم والبوبوفر والزر إلى مشروعك.</Step>
+
+انظروا إلى [التقويم](/ui/docs/components/calendar), [النافذة المنبثقة](/ui/docs/components/popover)، و [الزر](/ui/docs/components/button) وثائق لتعليمات التثبيت.
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { format } from "date-fns"
+import { CalendarIcon } from "lucide-react"
+import { useState } from "react"
+
+import { Button } from "@/components/ui/button"
+import { Calendar } from "@/components/ui/calendar"
+import {
+  Popover,
+  PopoverPopup,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+```
+
+```tsx
+const [date, setDate] = useState<Date>()
+
+return (
+  <Popover>
+    <PopoverTrigger
+      render={
+        <Button
+          className="w-[280px] justify-start text-left font-normal"
+          variant="outline"
+        />
+      }
+    >
+      <CalendarIcon />
+      {date ? format(date, "PPP") : <span>اختر تاريخًا</span>}
+    </PopoverTrigger>
+    <PopoverPopup align="start" className="w-auto p-0">
+      <Calendar mode="single" selected={date} onSelect={setDate} />
+    </PopoverPopup>
+  </Popover>
+)
+```
+
+## الأمثلة
+
+### منتقي نطاق التواريخ
+
+<ComponentPreview name="p-date-picker-2" />
+
+### مع الملاحة المنسدلة
+
+استخدم `captionLayout="dropdown"` لتاريخ الميلاد أو تاريخ اختيار التاريخ:
+
+<ComponentPreview name="p-date-picker-3" />
+
+### مع Presets
+
+<ComponentPreview name="p-date-picker-4" />
+
+### مع المدخلات
+
+<ComponentPreview name="p-date-picker-5" />
+
+### إغلاق عند الاختيار
+
+التحكم في الحالة المنبثقة لإغلاقه عند تحديد تاريخ:
+
+<ComponentPreview name="p-date-picker-6" />
+

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-472",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/checkbox.json",
+    "https://coss.com/origin/r/table.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-472.tsx",
+      "content": "import { useId } from \"react\";\nimport { Checkbox } from \"@/registry/default/ui/checkbox\";\nimport {\n  Table,\n  TableBody,\n  TableCell,\n  TableFooter,\n  TableHead,\n  TableHeader,\n  TableRow,\n} from \"@/registry/default/ui/table\";\n\nconst items = [\n  {\n    balance: \"$1,250.00\",\n    email: \"alex.t@company.com\",\n    id: \"1\",\n    location: \"سان فرانسيسكو, الولايات المتحدة\",\n    name: \"أحمد علي\",\n    status: \"نشط\",\n  },\n  {\n    balance: \"$600.00\",\n    email: \"sarah.c@company.com\",\n    id: \"2\",\n    location: \"الرياض\",\n    name: \"سارة أحمد\",\n    status: \"نشط\",\n  },\n  {\n    balance: \"$650.00\",\n    email: \"j.wilson@company.com\",\n    id: \"3\",\n    location: \"لندن، المملكة المتحدة\",\n    name: \"عمر خالد\",\n    status: \"غير نشط\",\n  },\n  {\n    balance: \"$0.00\",\n    email: \"m.garcia@company.com\",\n    id: \"4\",\n    location: \"مدريد, إسبانيا\",\n    name: \"ماريا غارسيا\",\n    status: \"نشط\",\n  },\n  {\n    balance: \"-$1,000.00\",\n    email: \"d.kim@company.com\",\n    id: \"5\",\n    location: \"عمّان، الأردن\",\n    name: \"داود سالم\",\n    status: \"نشط\",\n  },\n];\n\nexport default function Component() {\n  const id = useId();\n  return (\n    <div>\n      <Table>\n        <TableHeader>\n          <TableRow className=\"hover:bg-transparent\">\n            <TableHead>\n              <Checkbox id={id} />\n            </TableHead>\n            <TableHead>الاسم</TableHead>\n            <TableHead>البريد الإلكتروني</TableHead>\n            <TableHead>الموقع</TableHead>\n            <TableHead>الحالة</TableHead>\n            <TableHead className=\"text-end\">الرصيد</TableHead>\n          </TableRow>\n        </TableHeader>\n        <TableBody>\n          {items.map((item) => (\n            <TableRow\n              className=\"has-data-[state=checked]:bg-muted/50\"\n              key={item.id}\n            >\n              <TableCell>\n                <Checkbox id={`table-checkbox-${item.id}`} />\n              </TableCell>\n              <TableCell className=\"font-medium\">{item.name}</TableCell>\n              <TableCell>{item.email}</TableCell>\n              <TableCell>{item.location}</TableCell>\n              <TableCell>{item.status}</TableCell>\n              <TableCell className=\"text-end\">{item.balance}</TableCell>\n            </TableRow>\n          ))}\n        </TableBody>\n        <TableFooter className=\"bg-transparent\">\n          <TableRow className=\"hover:bg-transparent\">\n            <TableCell colSpan={5}>المجموع</TableCell>\n            <TableCell className=\"text-end\">$2,500.00</TableCell>\n          </TableRow>\n        </TableFooter>\n      </Table>\n      <p className=\"mt-4 text-center text-muted-foreground text-sm\">\n        الجدول مع اختيار الصف\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "colSpan": 3,
+    "tags": [
+      "table",
+      "checkbox"
+    ]
+  }
+}

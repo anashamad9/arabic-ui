@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-tabs-13",
+  "description": "التبويبات مع أيقونة فقط وتلميحات الأدوات المجمعة",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@arabicui/tabs",
+    "@arabicui/tooltip"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-tabs-13.tsx",
+      "content": "import { HouseIcon, PanelsTopLeftIcon, SettingsIcon } from \"lucide-react\";\nimport { Tabs, TabsList, TabsPanel, TabsTab } from \"@/registry/default/ui/tabs\";\nimport {\n  Tooltip,\n  TooltipPopup,\n  TooltipProvider,\n  TooltipTrigger,\n} from \"@/registry/default/ui/tooltip\";\n\nexport default function Particle() {\n  return (\n    <TooltipProvider>\n      <Tabs className=\"items-center\" defaultValue=\"tab-1\">\n        <TabsList>\n          <Tooltip>\n            <TooltipTrigger\n              render={<TabsTab aria-label=\"نظرة عامة\" value=\"tab-1\" />}\n            >\n              <HouseIcon aria-hidden=\"true\" />\n            </TooltipTrigger>\n            <TooltipPopup>نظرة عامة</TooltipPopup>\n          </Tooltip>\n          <Tooltip>\n            <TooltipTrigger\n              render={<TabsTab aria-label=\"المشاريع\" value=\"tab-2\" />}\n            >\n              <PanelsTopLeftIcon aria-hidden=\"true\" />\n            </TooltipTrigger>\n            <TooltipPopup>المشاريع</TooltipPopup>\n          </Tooltip>\n          <Tooltip>\n            <TooltipTrigger\n              render={<TabsTab aria-label=\"الإعدادات\" value=\"tab-3\" />}\n            >\n              <SettingsIcon aria-hidden=\"true\" />\n            </TooltipTrigger>\n            <TooltipPopup>الإعدادات</TooltipPopup>\n          </Tooltip>\n        </TabsList>\n        <TabsPanel value=\"tab-1\">\n          <p className=\"p-4 text-center text-muted-foreground text-xs\">\n            نظرة عامة على المحتوى\n          </p>\n        </TabsPanel>\n        <TabsPanel value=\"tab-2\">\n          <p className=\"p-4 text-center text-muted-foreground text-xs\">\n            محتوى المشاريع\n          </p>\n        </TabsPanel>\n        <TabsPanel value=\"tab-3\">\n          <p className=\"p-4 text-center text-muted-foreground text-xs\">\n            إعدادات المحتوى\n          </p>\n        </TabsPanel>\n      </Tabs>\n    </TooltipProvider>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "tabs",
+    "tooltip"
+  ],
+  "type": "registry:block"
+}

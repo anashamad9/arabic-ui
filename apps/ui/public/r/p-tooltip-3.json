@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-tooltip-3",
+  "description": "مجموعة تبديل بتلميح متحرك",
+  "registryDependencies": [
+    "@arabicui/toggle-group",
+    "@arabicui/tooltip"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-tooltip-3.tsx",
+      "content": "\"use client\";\n\nimport { BoldIcon, ItalicIcon, UnderlineIcon } from \"lucide-react\";\nimport type { ComponentType } from \"react\";\nimport {\n  ToggleGroup,\n  ToggleGroupItem,\n} from \"@/registry/default/ui/toggle-group\";\nimport {\n  Tooltip,\n  TooltipCreateHandle,\n  TooltipPopup,\n  TooltipProvider,\n  TooltipTrigger,\n} from \"@/registry/default/ui/tooltip\";\n\nconst tooltipHandle = TooltipCreateHandle<ComponentType>();\n\nconst BoldContent = () => {\n  return <span>جعل النص غامق</span>;\n};\n\nconst ItalicContent = () => {\n  return <span>تطبيق التنسيق المائل على النص</span>;\n};\n\nconst UnderlineContent = () => {\n  return <span>أسفل النص</span>;\n};\n\nexport default function Particle() {\n  return (\n    <TooltipProvider>\n      <ToggleGroup defaultValue={[\"bold\"]} multiple>\n        <TooltipTrigger\n          className=\"after:absolute after:start-full after:h-full after:w-1\"\n          handle={tooltipHandle}\n          payload={BoldContent}\n          render={\n            <ToggleGroupItem aria-label=\"تبديل الخط العريض\" value=\"bold\" />\n          }\n        >\n          <BoldIcon aria-hidden=\"true\" />\n        </TooltipTrigger>\n        <TooltipTrigger\n          className=\"after:absolute after:start-full after:h-full after:w-1\"\n          handle={tooltipHandle}\n          payload={ItalicContent}\n          render={\n            <ToggleGroupItem aria-label=\"تبديل الخط المائل\" value=\"italic\" />\n          }\n        >\n          <ItalicIcon aria-hidden=\"true\" />\n        </TooltipTrigger>\n        <TooltipTrigger\n          className=\"after:absolute after:start-full after:h-full after:w-1\"\n          handle={tooltipHandle}\n          payload={UnderlineContent}\n          render={\n            <ToggleGroupItem aria-label=\"تبديل التسطير\" value=\"underline\" />\n          }\n        >\n          <UnderlineIcon aria-hidden=\"true\" />\n        </TooltipTrigger>\n      </ToggleGroup>\n\n      <Tooltip handle={tooltipHandle}>\n        {({ payload: Payload }) => (\n          <TooltipPopup>{Payload !== undefined && <Payload />}</TooltipPopup>\n        )}\n      </Tooltip>\n    </TooltipProvider>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "tooltip"
+  ],
+  "type": "registry:block"
+}

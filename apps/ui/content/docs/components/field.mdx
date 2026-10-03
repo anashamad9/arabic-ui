@@ -1,0 +1,199 @@
+---
+title: "حقل النموذج"
+description: "مكون يوفر وضع العلامات والتحقق من صحة عناصر التحكم في النموذج."
+
+links:
+  doc: https://base-ui.com/react/components/field#api-reference
+---
+
+<ComponentPreview name="p-field-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/field
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>استيراد المتغيرات التالية إلى ملف تنسيق الخاص بك</Step>
+
+```css
+@theme inline {
+  --color-destructive-foreground: var(--destructive-foreground);
+}
+
+:root {
+  --destructive-foreground: var(--color-red-700);
+}
+
+.dark {
+  --destructive-foreground: var(--color-red-400);
+}
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource
+  name="field"
+  title="components/ui/field.tsx"
+/>
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+  FieldValidity,
+} from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
+```
+
+```tsx
+<Field>
+  <FieldLabel>الاسم</FieldLabel>
+  <Input type="text" placeholder="أدخل اسمك" />
+  <FieldDescription>مرئية على ملفك الشخصي</FieldDescription>
+  <FieldError>الرجاء إدخال اسم صالح</FieldError>
+  <FieldValidity>
+    {(validity) => (
+      {validity.error && <p>{validity.error}</p>}
+    )}
+  </FieldValidity>
+</Field>
+```
+
+## مرجع الواجهة البرمجية
+
+### حقل النموذج
+
+المكوّن الأساسي. غلاف منسّق للمكوّن `Field.Root` من واجهة المستخدم الأساسية مع تخطيط العمود المرن.
+
+### FieldLabel
+
+تسمية للحقل. غلاف نمط ل `Field.Label` من مكتبة بيس.
+
+### FieldItem
+
+حاوية للعناصر الميدانية. غلاف على غرار `Field.Item` من مكتبة بيس.
+
+### FieldDescription
+
+وصف النص للحقل. المجمع على غرار ل `Field.Description` من واجهة المستخدم الأساسية مع لون المقدمة صامتة.
+
+### FieldError
+
+رسالة خطأ للحقل. غلاف مصمم ل `Field.Error` من واجهة المستخدم الأساسية مع لون المقدمة المدمرة.
+
+### FieldControl
+
+الاسم المستعار `Field.Control` من واجهة المستخدم الأساسية. استخدم هذا لتسجيل عنصر تحكم مخصص أو طرف ثالث في سياق الحقل حتى يشارك في وضع العلامات والتحقق من الصحة وحالة الخطأ.
+
+لاحظ أن `Textarea` لا يتطلب `FieldControl` — إنه يلتف `Field.Control` داخليًا ويتكامل مع `Field` بنفس الطريقة `Input` وغيرها من الضوابط المدمجة تفعل.
+
+### FieldValidity
+
+الاسم المستعار `Field.Validity` من مكتبة بيس.
+
+## الأمثلة
+
+### الحقل المطلوب
+
+<ComponentPreview name="p-field-2" />
+
+### الحقل المعطّل
+
+<ComponentPreview name="p-field-3" />
+
+### مع خطأ
+
+أدخل عنوان بريد إلكتروني غير صالح واضغط على Enter لرؤية الخطأ.
+
+<ComponentPreview name="p-field-4" />
+
+### مع الصلاحية
+
+<ComponentPreview name="p-field-5"
+  className="[& .preview>*]:w-full [&_.preview>*]:max-w-80"
+/>
+
+### مجموعة الإدخال
+
+<ComponentPreview name="p-field-6" />
+
+### حقل الإكمال التلقائي
+
+<ComponentPreview name="p-field-7" />
+
+### حقل كومبوكس
+
+<ComponentPreview name="p-field-8" />
+
+### كومبوكس حقل متعددة
+
+<ComponentPreview name="p-field-9" />
+
+### حقل مساحة النص
+
+<ComponentPreview name="p-field-10" />
+
+### اختر حقل
+
+<ComponentPreview name="p-field-11" />
+
+### حقل خانة الاختيار
+
+<ComponentPreview name="p-field-12" />
+
+### خانة الاختيار حقل المجموعة
+
+<ComponentPreview name="p-field-13" />
+
+### حقل الاختيار الأحادي
+
+<ComponentPreview name="p-field-14" />
+
+### حقل التبديل
+
+<ComponentPreview name="p-field-15" />
+
+### حقل شريط التمرير
+
+<ComponentPreview name="p-field-16" />
+
+### حقل الأرقام
+
+<ComponentPreview name="p-field-17" />
+
+### نموذج كامل
+
+<ComponentPreview name="p-field-18" />

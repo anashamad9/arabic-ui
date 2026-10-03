@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-toggle-3",
+  "description": "تبديل مع أيقونة",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@arabicui/toggle"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-toggle-3.tsx",
+      "content": "import { BoldIcon } from \"lucide-react\";\nimport { Toggle } from \"@/registry/default/ui/toggle\";\n\nexport default function Particle() {\n  return (\n    <Toggle aria-label=\"تبديل الخط العريض\" variant=\"outline\">\n      <BoldIcon />\n    </Toggle>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "toggle"
+  ],
+  "type": "registry:block"
+}

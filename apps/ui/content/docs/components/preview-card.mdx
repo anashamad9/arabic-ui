@@ -1,0 +1,85 @@
+---
+title: "بطاقة المعاينة"
+description: "نافذة منبثقة تظهر عند تحوم رابط ، تعرض معاينة للمستخدمين المطلعين."
+
+links:
+  doc: https://base-ui.com/react/components/preview-card#api-reference
+---
+
+<ComponentPreview name="p-preview-card-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/preview-card
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="preview-card" title="components/ui/preview-card.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { Button } from "@/components/ui/button"
+import {
+  PreviewCard,
+  PreviewCardPopup,
+  PreviewCardTrigger,
+} from "@/components/ui/preview-card"
+```
+
+```tsx
+<PreviewCard>
+  <PreviewCardTrigger>فتح بطاقة معاينة</PreviewCardTrigger>
+  <PreviewCardPopup>معاينة محتوى البطاقة</PreviewCardPopup>
+</PreviewCard>
+```
+
+## مرجع الواجهة البرمجية
+
+### PreviewCard
+
+المكوّن الأساسي. اسم بديل للمكوّن `PreviewCard.Root` من مكتبة بيس.
+
+### PreviewCardTrigger
+
+عنصر عنصر التفعيل الذي يظهر بطاقة المعاينة على تحوم. الاسم المستعار ل `PreviewCard.Trigger` من مكتبة بيس.
+
+### PreviewCardPopup
+
+حاوية منبثقة تعرض محتوى المعاينة. كما تم تصديرها كـ `HoverCardContent`.
+
+| الخاصية          | النوع                           | الافتراضي    | الوصف                                      |
+| ------------- | ------------------------------ | ---------- | ------------------------------------------------ |
+| `align`       | `"start" \| "center" \| "end"` | `"center"` | محاذاة بالنسبة إلى عنصر التفعيل                |
+| `sideOffset`  | `number`                       | `4`        | المسافة من عنصر التفعيل بالبكسل              |
+| `portalProps` | `PreviewCard.Portal.Props`     | -          | خصائص تُمرّر إلى البوابة الداخلية (`keepMounted`, `container`، وما إلى ذلك) ؛ انظر قاعدة واجهة المستخدم معاينة بطاقة واجهة برمجة التطبيقات |

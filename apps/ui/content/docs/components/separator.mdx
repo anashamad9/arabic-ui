@@ -1,0 +1,63 @@
+---
+title: "الفاصل"
+description: "عنصر فاصل متاح لقارئات الشاشة."
+
+links:
+  doc: https://base-ui.com/react/components/separator#api-reference
+---
+
+<ComponentPreview name="p-separator-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/separator
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="separator" title="components/ui/separator.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { Separator } from "@/components/ui/separator"
+```
+
+```tsx
+<Separator />
+```
+
+## مرجع الواجهة البرمجية
+
+### الفاصل
+
+المجمع على غرار ل `Separator` من واجهة المستخدم الأساسية. يجعل كخط أفقي افتراضيا مع لون الخلفية صامتة.

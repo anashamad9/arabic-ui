@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-536",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/timeline.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-536.tsx",
+      "content": "import {\n  Timeline,\n  TimelineContent,\n  TimelineDate,\n  TimelineHeader,\n  TimelineIndicator,\n  TimelineItem,\n  TimelineSeparator,\n  TimelineTitle,\n} from \"@/registry/default/ui/timeline\";\n\nconst items = [\n  {\n    action: \"فتح قضية جديدة\",\n    date: \"منذ 15 دقيقة\",\n    description:\n      \"أواجه مشكلة مع مكتبة المكوّنات الجديدة، إنها لا تصيّر بشكل صحيح.\",\n    id: 1,\n    image: \"/origin/avatar-40-01.jpg\",\n    title: \"هانا كاندل\",\n  },\n  {\n    action: \"التعليق على\",\n    date: \"منذ 10 دقائق\",\n    description:\n      \"هانا، أنا أواجه مشكلة مع مكتبة المكونات الجديدة.\",\n    id: 2,\n    image: \"/origin/avatar-40-02.jpg\",\n    title: \"كريس تومبسون\",\n  },\n  {\n    action: \"تعيينك إلى\",\n    date: \"منذ 5 دقائق\",\n    description:\n      \"مكتبة المكونات الجديدة لا يتم عرضها بشكل صحيح. هل يمكنك إلقاء نظرة؟\",\n    id: 3,\n    image: \"/origin/avatar-40-03.jpg\",\n    title: \"إيما ديفيس\",\n  },\n  {\n    action: \"أغلقت القضية\",\n    date: \"منذ 2 دقيقة\",\n    description: \"تم إصلاح المشكلة. يرجى مراجعة التغييرات.\",\n    id: 4,\n    image: \"/origin/avatar-40-05.jpg\",\n    title: \"أليكس مورغان\",\n  },\n];\n\nexport default function Component() {\n  return (\n    <Timeline>\n      {items.map((item) => (\n        <TimelineItem\n          className=\"group-data-[orientation=vertical]/timeline:ms-10 group-data-[orientation=vertical]/timeline:not-last:pb-8\"\n          key={item.id}\n          step={item.id}\n        >\n          <TimelineHeader>\n            <TimelineSeparator className=\"group-data-[orientation=vertical]/timeline:-left-7 group-data-[orientation=vertical]/timeline:h-[calc(100%-1.5rem-0.25rem)] group-data-[orientation=vertical]/timeline:translate-y-6.5\" />\n            <TimelineTitle className=\"mt-0.5\">\n              {item.title}{\" \"}\n              <span className=\"font-normal text-muted-foreground text-sm\">\n                {item.action}\n              </span>\n            </TimelineTitle>\n            <TimelineIndicator className=\"flex size-6 items-center justify-center border-none bg-primary/10 group-data-[orientation=vertical]/timeline:-left-7 group-data-completed/timeline-item:bg-primary group-data-completed/timeline-item:text-primary-foreground\">\n              <img\n                alt={item.title}\n                className=\"size-6 rounded-full\"\n                src={item.image}\n              />\n            </TimelineIndicator>\n          </TimelineHeader>\n          <TimelineContent className=\"mt-2 rounded-lg border px-4 py-3 text-foreground\">\n            {item.description}\n            <TimelineDate className=\"mt-1 mb-0\">{item.date}</TimelineDate>\n          </TimelineContent>\n        </TimelineItem>\n      ))}\n    </Timeline>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "colSpan": 2,
+    "tags": [
+      "timeline",
+      "vertical timeline"
+    ]
+  }
+}

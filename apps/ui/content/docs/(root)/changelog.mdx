@@ -1,0 +1,278 @@
+---
+title: "سجل التغيير"
+description: "كسر التغييرات وأدلة الهجرة والتحديثات الملحوظة."
+---
+
+## 19 أغسطس 2026
+
+### علامات التبويب التحجيم وأنماط التحكم المجزأة
+
+**`TabsList`** الآن يدعم أ **`size`** دعم مع **`"sm"`**, **`"default"`**، و **`"lg"`** القيم. حجم ينتشر إلى لها **`TabsTab`** الأطفال ، ويمكن لعلامة التبويب الفردية تجاوز الحجم الموروث عند الضرورة.
+
+يستخدم مظهر التبويبات الافتراضي الآن نفس حجم العنصر البصري مثل [الاختيار المقسّم](/ui/docs/components/segmented-control) نمط. الارتفاع الافتراضي هو أصغر قليلا من ذي قبل حتى يبقى المؤشر النشط أقحم متوازن بصريا بجانب زر من حجم المقابلة.
+
+تستورد علامات التبويب الآن خريطة حجمها و **`segmentedControlItemLayoutClassName`** من **`@arabicui/segmented-control`** مكتبة التسجيل. يغطي هذا الفصل فجوة الأيقونة المشتركة والحجم ومعالجة التعتيم. **`segmentedControlItemVariants`** ويشمل ذلك، و **`TabsTab`** يستخدم بدلا من تضمين نفس المرافق. **`@arabicui/tabs`** يعلن هذا على أنه تبعية التسجيل ، لذلك يقوم شادسي إن سطر الأوامر بتثبيته تلقائيًا مع تثبيت جديد أو تحديث يديره سطر الأوامر.
+
+**الترحيل:**
+
+علامات التبويب الحالية لا تتطلب JSX أي تغييرات بسبب **`"default"`** يظل الحجم الافتراضي. إذا قمت باستبدال مكون علامات التبويب المحلية من خلال سطر الأوامر، فراجع أي تخصيصات محلية قبل قبول الكتابة فوقها:
+
+```bash
+npx shadcn@latest add @arabicui/tabs
+```
+
+إذا قمت بالتحديث **`tabs.tsx`** يدويًا ، قم بتثبيت المكتبة المشتركة أولاً ثم دمج أحدث تنفيذ لعلامات التبويب. يؤدي نسخ ملف علامات التبويب الجديد فقط دون هذه التبعية إلى استيراد لم يتم حله.
+
+```bash
+npx shadcn@latest add @arabicui/segmented-control
+```
+
+بعد التحديث ، قم بإزالة أدوات الارتفاع المحلي أو الحشو الأفقي من **`TabsList`** و **`TabsTab`** فقط عندما يتجاوزون عن غير قصد الجديد **`size`** واجهة برمجية. احتفظ بالتجاوزات المتعمدة الخاصة بالمنتج. إذا احتفظت بنسخة محلية من المكتبة أو علامات التبويب، فقم بدمجها أيضًا **`segmentedControlItemLayoutClassName`** لذلك تبقى الرموز محاذاة بصريا مع زر.
+
+**تعليمات الترحيل:**
+
+```text
+حدّث مكوّن Tabs المحلي مع الحفاظ على تخصيصات مشروعك. ثبّت الاعتماد المشترك باستخدام `npx shadcn@latest add @arabicui/segmented-control`، ثم ادمج أحدث تنفيذ من @arabicui/tabs. يقبل TabsList الأحجام size="sm" | "default" | "lg" وينقل الحجم إلى TabsTab، ويمكن تحديد حجم مستقل لكل تبويب. استبدل أصناف الارتفاع والمسافات القديمة بالمساعد segmentedControlItemSizeClassNames، وأصناف الأيقونات بالمساعد segmentedControlItemLayoutClassName. لا تحتاج التبويبات الموجودة إلى خاصية size. راجع التخصيصات المحلية التي تتعارض مع الأحجام الجديدة، ثم افحص الأنواع والتنسيق وجميع الأحجام المستخدمة بصريًا.
+```
+
+## 31 يوليو 2026
+
+### منطقة التمرير — تحتوي على التمرير
+
+**`ScrollArea`** لم يعد ينطبق **`overscroll-behavior: contain`** بشكل افتراضي. استخدم الخيار الجديد **`overscrollContain`** الدعامة ( الافتراضي **`false`**) للاختيار.
+
+الأسطح المتداخلة التي لا ينبغي أن سلسلة التمرير إلى الصفحة تمر بالفعل عليه: **`DialogPanel`**, **`SheetPanel`**, **`DrawerPanel`**, **`ComboboxList`**, **`AutocompleteList`**، و **`SidebarContent`**.
+
+**الترحيل:**
+
+لا تغيير مطلوب لتلك الأجزاء المكونة بعد الترقية. لمناطق التمرير المتداخلة المخصصة (قوائم الأوامر ، وقوائم وقت التقويم ، والبائعين **`sidebar.tsx`**، وما إلى ذلك) ، اختر صراحة:
+
+```diff
+- <ScrollArea scrollbarGutter scrollFade>
++ <ScrollArea overscrollContain scrollbarGutter scrollFade>
+```
+
+**تعليمات الترحيل:**
+
+```text
+بعد تحديث @arabicui/scroll-area، لم يعد ScrollArea يطبّق overscroll-contain تلقائيًا. أضف overscrollContain إلى مناطق التمرير المتداخلة التي يجب أن تمنع انتقال التمرير إلى العنصر الأب، مثل النوافذ واللوحات والقوائم. تستخدم DialogPanel وSheetPanel وDrawerPanel وComboboxList وAutocompleteList وSidebarContent هذه الخاصية بالفعل؛ حدّث نسخها المحلية عند الحاجة.
+```
+
+## 26 يوليو 2026
+
+### رياكت منتقي التاريخ 10
+
+COSS UI/Arabic الآن أهداف **`@daypicker/react@10`**. الإرث **`react-day-picker`** لا يزال اسم الحزمة متاحًا للتوافق ، لكن منتقي التاريخ يوصي بالحزمة النطاق لـ v10 والإصدارات الأحدث.
+
+إذا قمت باستيراد واجهات برمجة تطبيقات منتقي التاريخ مباشرة ، فقم بتحديث التبعية والواردات:
+
+```diff
+- import { DayPicker, type DateRange } from "react-day-picker"
++ import { DayPicker, type DateRange } from "@daypicker/react"
+```
+
+منتقي التاريخ v10 يزيل واجهات برمجة التطبيقات المهجورة في v9 ، بما في ذلك خصائص التنقل القديمة والأسماء المستعارة وفتحات المكونات و `classNames` / `styles` مفاتيح. يجب أن تتبع التطبيقات مع أغلفة التقويم المخصصة [منتقي التاريخ v10 دليل الهجرة](https://daypicker.dev/upgrading).
+
+**تعليمات الترحيل:**
+
+```text
+حدّث React DayPicker إلى الإصدار 10. استبدل react-day-picker بالحزمة @daypicker/react، وحدّث استيرادات التنسيق واللغة أيضًا. راجع خصائص التنقل والتركيز وفتحات المكونات وأسماء أصناف التنسيق المحذوفة وفق https://daypicker.dev/upgrading. للتقاويم غير الميلادية، ثبّت الإضافة المناسبة من @daypicker/*. افحص الأنواع واختبر شاشات اختيار التاريخ بعد التحديث.
+```
+
+## 22 يونيو 2026
+
+### قاعدة واجهة المستخدم 1.6.0
+
+COSS UI/Arabic الآن أهداف **`@base-ui/react@1.6.0`**.
+
+**كسر التغيير المغطاة في هذا النتوء:** إعادة تسمية واجهة المستخدم الأساسية باسم تصدير مساحة اسم رمز تحقق من **`OTPFieldPreview`** إلى **`OTPField`**تم تحديث coss وفقًا لذلك في التنفيذ والمستندات الميدانية لمكتب المدعي العام.
+
+إذا قمت باستيراد بدائيات بيس رمز تحقق مباشرة في تطبيقك ، فقم بتحديث:
+
+```diff
+- import { OTPFieldPreview } from "@base-ui/react/otp-field"
++ import { OTPField } from "@base-ui/react/otp-field"
+```
+
+## 11 يونيو 2026
+
+### قائمة السياق
+
+**`@arabicui/context-menu`** هو مكون تسجيل جديد لقوائم الإجراءات بالنقر بزر الماوس الأيمن والصحافة الطويلة المرسوية بالمؤشر. [قائمة السياق](/ui/docs/components/context-menu) مستندات للتثبيت والأمثلة.
+
+**تثبيت:**
+
+```bash
+npx shadcn@latest add @arabicui/context-menu
+```
+
+لا توجد هجرة من كوس بدائي موجود - اختر المكان الذي تحتاج فيه إلى قوائم محفزة بالمؤشر بدلاً من (أو جنبًا إلى جنب) **`Menu`**.
+
+### القوائم وقوائم السياق — عناصر الروابط
+
+**`MenuLinkItem`** و **`ContextMenuLinkItem`** هي الأغلفة على غرار واجهة المستخدم الأساسية **`LinkItem`**. إنهم يتطابقون **`MenuItem`** / **`ContextMenuItem`** بصريا وافتراضيا **`closeOnClick`** إلى **`true`** وبالتالي فإن القائمة تغلق على الملاحة.
+
+**`LinkItem`** يجعل من الأصلي **`<a>`** عندما تمر **`href`**. إذا كنت تستخدم بالفعل **`render={<Link href="..." />}`** (أو وصلة راوتر أخرى) **الحفاظ على الحفاظ `render`** على عنصر الارتباط - تبديل اسم المكون فقط ، لا تسقط `render` من أجل `href` وحيدة.
+
+استخدم **`href`** فقط لروابط مرساة عادي مع عدم وجود جهاز توجيه **`Link`**.
+
+**الترحيل:**
+
+```diff
+  import {
+    Menu,
+-   MenuItem,
++   MenuLinkItem,
+    MenuPopup,
+    MenuTrigger,
+  } from "@/components/ui/menu"
+```
+
+```diff
+- <MenuItem render={<Link href="/docs" />}>Docs</MenuItem>
++ <MenuLinkItem render={<Link href="/docs" />}>Docs</MenuLinkItem>
+```
+
+مرساة عادي (لا يوجد جهاز توجيه **`Link`**):
+
+```tsx
+<MenuLinkItem href="/docs">التوثيق</MenuLinkItem>
+```
+
+لقوائم السياق:
+
+```diff
+- <ContextMenuItem render={<Link href="/docs" />}>Docs</ContextMenuItem>
++ <ContextMenuLinkItem render={<Link href="/docs" />}>Docs</ContextMenuLinkItem>
+```
+
+قائمة **`MenuItem render={<Link … />}`** الاستخدام يستمر في العمل ؛ ترحيل عند لمس تلك القوائم.
+
+**تعليمات الترحيل:**
+
+```text
+تُصدّر المكتبة MenuLinkItem وContextMenuLinkItem لعناصر التنقل. استبدل اسم المكوّن MenuItem أو ContextMenuItem بنظيره الخاص بالروابط، مع إبقاء render={<Link href="..." />} عند استخدام موجّه مثل Next.js. استخدم href مباشرة مع روابط <a> العادية. أبقِ MenuItem وContextMenuItem للإجراءات التي تستخدم onClick. راجع توثيق قائمة السياق للحزمة @arabicui/context-menu.
+```
+
+## 29 مايو 2026
+
+### منطقة التمرير
+
+**`ScrollArea`** إضافة اختياري **`fill`** الدعامة ( الافتراضي **`false`**). متى **`fill`** تمكين، **`size-full`** تطبق على **`ScrollArea.Content`** لذلك يمكن للتخطيطات المرنة الداخلية استخدام ارتفاع منفذ العرض الكامل (على سبيل المثال ، تثبيت تذييل مع **`mt-auto`** في الشريط الجانبي).
+
+يجب أن تحافظ معظم مناطق التمرير على الوضع الافتراضي. قم بالاشتراك فقط عندما يجب أن تمتد حاوية التمرير بدلاً من الحجم لأطفالها.
+
+**الترحيل:**
+
+لا تغيير مطلوب للقائمة **`ScrollArea`** الاستخدام (القوائم ، مربعات الحوار ، comboboxes ، قوائم الأوامر). للأشرطة الجانبية المخصصة أو الأعمدة المرنة الأخرى مع **`mt-auto`** تذييلات داخل منطقة التمرير ، اختر صراحة:
+
+```diff
+- <ScrollArea className="flex-1 min-h-0">
++ <ScrollArea className="flex-1 min-h-0" fill>
+    <div className="flex h-full flex-col">
+      …
+      <footer className="mt-auto">…</footer>
+    </div>
+  </ScrollArea>
+```
+
+**`SidebarContent`** من **`@arabicui/sidebar`** يمر بالفعل **`fill`**—تحديث منطقتك **`sidebar.tsx`** نسخ إذا كنت بائع المكون.
+
+**تعليمات الترحيل:**
+
+```text
+أصبحت الخاصية fill اختيارية في ScrollArea، وقيمتها الافتراضية false. أضفها فقط عندما يجب أن يمتد عمود المحتوى الداخلي إلى ارتفاع منطقة العرض، مثل تذييل مثبت أسفل شريط جانبي. استخدم flex-1 min-h-0 على ScrollArea وh-full flex-col على الحاوية الداخلية. يستخدم SidebarContent في @arabicui/sidebar هذه الخاصية بالفعل.
+```
+
+## أبريل 17, 2026
+
+### النموذج
+
+المكوّن **`Form`** العنصر (المكون)`form.tsx`) لم يعد يطبق فئات التخطيط الافتراضية (`flex`, `flex-col`, `gap-4`, `w-full`). إنه غلاف رقيق حول واجهة المستخدم الأساسية فقط ؛ تمرير **`className`** أينما كنت في حاجة إلى مكدس حقل عمودي، أو قيود العرض، أو تخطيط مربع حوار/ورقة.
+
+**الترحيل:**
+
+بالنسبة لنموذج حقل مكدس نموذجي، قم باستعادة الافتراضي السابق بشكل صريح:
+
+```diff
+- <Form onSubmit={…}>
++ <Form className="flex w-full flex-col gap-4" onSubmit={…}>
+```
+
+من أجل **الحوارات والأوراق والأدراج**ابقى **`DialogHeader`** (أو **`SheetHeader`**, **`DrawerHeader`**) **خارج** النموذج. التفاف **`DialogPanel`** و **`DialogFooter`** (أو ما يعادلها ورقة / درج) في **`<Form className="contents">`** أو مواطن **`<form className="contents">`**. **`display: contents`** الحفاظ على **رأس، لوحة، وتذييل** مثل **مباشرة فليكس الأطفال** من تخطيط العمود المنبثقة حتى **`DialogPanel`** قيود التمرير والارتفاع تعمل بشكل صحيح.
+
+**تعليمات الترحيل:**
+
+```text
+لم يعد Form يضيف تنسيقًا افتراضيًا. أضف className="flex w-full flex-col gap-4" إذا اعتمدت على ترتيب الحقول العمودي السابق. في النوافذ واللوحات، ضع الرأس خارج النموذج واجمع المحتوى والتذييل داخل Form بخاصية className="contents". ادمج أصناف التنسيق الموجودة مع أصناف الترتيب المطلوبة.
+```
+
+## أبريل 14, 2026
+
+### رمز التحقق
+
+المكوّن **`input-otp.tsx`** تمت إزالة عنصر التسجيل لصالح **`otp-field.tsx`** (`@arabicui/otp-field`)، الذي يلتف قاعدة واجهة المستخدم رمز تحقق الحقل. انظر [رمز التحقق](/ui/docs/components/otp-field) الوثائق و [دليل الهجرة](/ui/docs/radix-migration#رمز-التحقق) للحصول على تفاصيل واجهة برمجية.
+
+**الترحيل:**
+
+```diff
+- npx shadcn@latest add @arabicui/input-otp
++ npx shadcn@latest add @arabicui/otp-field
+```
+
+```diff
+- import { ... } from "@/components/ui/input-otp"
++ import { ... } from "@/components/ui/otp-field"
+```
+
+**تعليمات الترحيل:**
+
+```text
+استبدل @arabicui/input-otp وcomponents/ui/input-otp.tsx بالمكوّن @arabicui/otp-field وcomponents/ui/otp-field.tsx. استخدم OTPField وOTPFieldInput وOTPFieldSeparator، وحدّد length على المكوّن الجذري. احذف حزمة input-otp القديمة إذا كانت موجودة.
+```
+
+## أبريل 12, 2026
+
+### الجدول
+
+`Table` الآن يدعم اختياري **`variant`** الدعامة: **`"default"`** (التقصير) أو **`"card"`**. حذفه يحافظ على نفس المظهر كما كان من قبل. استخدام **`variant="card"`** للشبكة على غرار البطاقة (صفوف منفصلة ، خلايا مدورة ، علاج تحوم / تذييل محدث) - بما في ذلك الجداول داخل [الإطار](/ui/docs/components/frame) أو [CardFrame](/ui/docs/components/card) كما هو مبين في [مستندات الجدول](/ui/docs/components/table).
+
+**الترحيل:**
+
+لا يلزم إجراء أي تغيير للجداول الموجودة. اختر المكان الذي تريد جدول نمط البطاقة:
+
+```tsx
+<Table variant="card">
+```
+
+**تعليمات الترحيل:**
+
+```text
+يدعم Table الخاصية variant بالقيمتين "default" و"card". تعمل الجداول الموجودة دون تعديل. أضف variant="card" فقط إلى الجداول التي تحتاج تنسيق البطاقة، مثل الجداول داخل Frame أو CardFrame.
+```
+
+## مارس 20, 2026
+
+### مجموعة أزرار التبديل
+
+`Toggle` تم تغيير اسمها إلى `ToggleGroupItem` في `toggle-group.tsx` لتجنب صراع التسمية مع مستقل `Toggle` التصدير.
+
+**الترحيل:**
+
+```diff
+- import { Toggle, ToggleGroup } from "@/components/ui/toggle-group"
++ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+```
+
+```diff
+  <ToggleGroup>
+-   <Toggle value="bold">Bold</Toggle>
++   <ToggleGroupItem value="bold">Bold</ToggleGroupItem>
+  </ToggleGroup>
+```
+
+**تعليمات الترحيل:**
+
+```text
+غيّر اسم Toggle المستورد من toggle-group إلى ToggleGroupItem في جمل الاستيراد وفي عناصر JSX. أبقِ Toggle المستورد من toggle.tsx كما هو؛ التغيير يخص عناصر مجموعة التبديل فقط.
+```

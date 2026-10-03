@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-drawer-4",
+  "description": "أدراج متغيرة مدمجة لجميع المواقف الأربعة",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/drawer"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-drawer-4.tsx",
+      "content": "import { Button } from \"@/registry/default/ui/button\";\nimport {\n  Drawer,\n  DrawerHeader,\n  DrawerPanel,\n  DrawerPopup,\n  DrawerTitle,\n  DrawerTrigger,\n} from \"@/registry/default/ui/drawer\";\n\nexport default function Particle() {\n  return (\n    <div className=\"flex flex-wrap gap-2\">\n      <Drawer position=\"right\">\n        <DrawerTrigger render={<Button variant=\"outline\" />}>\n          اليمين\n        </DrawerTrigger>\n        <DrawerPopup variant=\"inset\">\n          <DrawerHeader>\n            <DrawerTitle>اليمين</DrawerTitle>\n          </DrawerHeader>\n          <DrawerPanel>\n            <p className=\"text-muted-foreground text-sm\">المحتوى من اليمين.</p>\n          </DrawerPanel>\n        </DrawerPopup>\n      </Drawer>\n      <Drawer position=\"left\">\n        <DrawerTrigger render={<Button variant=\"outline\" />}>\n          اليسار\n        </DrawerTrigger>\n        <DrawerPopup variant=\"inset\">\n          <DrawerHeader>\n            <DrawerTitle>اليسار</DrawerTitle>\n          </DrawerHeader>\n          <DrawerPanel>\n            <p className=\"text-muted-foreground text-sm\">المحتوى من اليسار.</p>\n          </DrawerPanel>\n        </DrawerPopup>\n      </Drawer>\n      <Drawer position=\"top\">\n        <DrawerTrigger render={<Button variant=\"outline\" />}>\n          أعلى قمة\n        </DrawerTrigger>\n        <DrawerPopup variant=\"inset\">\n          <DrawerHeader>\n            <DrawerTitle>أعلى قمة</DrawerTitle>\n          </DrawerHeader>\n          <DrawerPanel>\n            <p className=\"text-muted-foreground text-sm\">المحتوى من الأعلى.</p>\n          </DrawerPanel>\n        </DrawerPopup>\n      </Drawer>\n      <Drawer>\n        <DrawerTrigger render={<Button variant=\"outline\" />}>\n          القاع\n        </DrawerTrigger>\n        <DrawerPopup variant=\"inset\">\n          <DrawerHeader>\n            <DrawerTitle>القاع</DrawerTitle>\n          </DrawerHeader>\n          <DrawerPanel>\n            <p className=\"text-muted-foreground text-sm\">المحتوى من الأسفل.</p>\n          </DrawerPanel>\n        </DrawerPopup>\n      </Drawer>\n    </div>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "drawer"
+  ],
+  "type": "registry:block"
+}

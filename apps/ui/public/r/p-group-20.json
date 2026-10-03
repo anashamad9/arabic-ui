@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-group-20",
+  "description": "المجموعة مع زر الإدخال والنص",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/group",
+    "@arabicui/input"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-group-20.tsx",
+      "content": "import { Button } from \"@/registry/default/ui/button\";\nimport { Group, GroupSeparator } from \"@/registry/default/ui/group\";\nimport { Input } from \"@/registry/default/ui/input\";\n\nexport default function Particle() {\n  return (\n    <Group aria-label=\"الاشتراك في البريد الإلكتروني\">\n      <Input\n        aria-label=\"البريد الإلكتروني\"\n        placeholder=\"البريد الإلكتروني\"\n        type=\"email\"\n      />\n      <GroupSeparator />\n      <Button variant=\"outline\">اشتراك</Button>\n    </Group>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "button",
+    "group",
+    "input"
+  ],
+  "type": "registry:block"
+}

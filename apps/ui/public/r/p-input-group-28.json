@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-input-group-28",
+  "description": "رسالة الملحن مع أزرار المرفقات",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/input-group",
+    "@arabicui/tooltip"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-input-group-28.tsx",
+      "content": "\"use client\";\n\nimport { ImageIcon, PaperclipIcon } from \"lucide-react\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupTextarea,\n} from \"@/registry/default/ui/input-group\";\nimport {\n  Tooltip,\n  TooltipPopup,\n  TooltipProvider,\n  TooltipTrigger,\n} from \"@/registry/default/ui/tooltip\";\n\nexport default function Particle() {\n  return (\n    <InputGroup>\n      <InputGroupTextarea placeholder=\"اكتب رسالتك...\" rows={4} />\n      <InputGroupAddon align=\"block-end\" className=\"justify-between\">\n        <TooltipProvider>\n          <div className=\"flex gap-1\">\n            <Tooltip>\n              <TooltipTrigger\n                render={\n                  <Button\n                    aria-label=\"إرفاق ملف\"\n                    size=\"icon-sm\"\n                    variant=\"ghost\"\n                  />\n                }\n              >\n                <PaperclipIcon />\n              </TooltipTrigger>\n              <TooltipPopup>إرفاق ملف</TooltipPopup>\n            </Tooltip>\n            <Tooltip>\n              <TooltipTrigger\n                render={\n                  <Button\n                    aria-label=\"إدراج صورة\"\n                    size=\"icon-sm\"\n                    variant=\"ghost\"\n                  />\n                }\n              >\n                <ImageIcon />\n              </TooltipTrigger>\n              <TooltipPopup>إدراج صورة</TooltipPopup>\n            </Tooltip>\n          </div>\n        </TooltipProvider>\n        <Button size=\"sm\">إرسال</Button>\n      </InputGroupAddon>\n    </InputGroup>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-80"
+  },
+  "categories": [
+    "button",
+    "input group",
+    "textarea",
+    "tooltip"
+  ],
+  "type": "registry:block"
+}

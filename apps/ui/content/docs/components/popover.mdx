@@ -1,0 +1,135 @@
+---
+title: "النافذة المنبثقة"
+description: "نافذة منبثقة يمكن الوصول إليها مثبتة على زر."
+
+links:
+  doc: https://base-ui.com/react/components/popover#api-reference
+---
+
+<ComponentPreview name="p-popover-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/popover
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="popover" title="components/ui/popover.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  Popover,
+  PopoverClose,
+  PopoverDescription,
+  PopoverPopup,
+  PopoverTitle,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+```
+
+```tsx
+<Popover>
+  <PopoverTrigger>افتح النافذة المنبثقة</PopoverTrigger>
+  <PopoverPopup>
+    <PopoverTitle>عنوان النافذة المنبثقة</PopoverTitle>
+    <PopoverDescription>وصف النافذة المنبثقة</PopoverDescription>
+    <PopoverClose>إغلاق</PopoverClose>
+  </PopoverPopup>
+</Popover>
+```
+
+## مرجع الواجهة البرمجية
+
+### النافذة المنبثقة
+
+المكوّن الأساسي. اسم بديل للمكوّن `Popover.Root` من مكتبة بيس.
+
+### PopoverTrigger
+
+زر عنصر التفعيل الذي يفتح نافذة منبثقة. الاسم المستعار ل `Popover.Trigger` من مكتبة بيس.
+
+### PopoverPopup
+
+حاوية منبثقة تعرض المحتوى المنبثق. كما تم تصديرها كـ `PopoverContent`.
+
+| الخاصية           | النوع                                     | الافتراضي    | الوصف                                      |
+| -------------- | ---------------------------------------- | ---------- | ------------------------------------------------ |
+| `tooltipStyle` | `boolean`                                | `false`    | عندما يكون الأمر صحيحًا ، يطبق تصميمًا يشبه تلميح الأدوات (حشو أصغر ، سهم) |
+| `side`         | `"top" \| "bottom" \| "left" \| "right"` | `"bottom"` | جانب عنصر التفعيل لوضع المنبثقة        |
+| `align`        | `"start" \| "center" \| "end"`           | `"center"` | محاذاة بالنسبة إلى عنصر التفعيل                |
+| `sideOffset`   | `number`                                 | `4`        | المسافة من عنصر التفعيل بالبكسل              |
+| `alignOffset`  | `number`                                 | `0`        | إزاحة على طول محور المحاذاة                  |
+| `portalProps`  | `Popover.Portal.Props`                   | -          | خصائص تُمرّر إلى البوابة الداخلية (`keepMounted`, `container`, etc.; see بيس نافذة منبثقة بوابة العرض واجهة برمجية |
+
+### PopoverTitle
+
+عنوان النص ل نافذة منبثقة. غلاف نمط ل `Popover.Title` من مكتبة بيس.
+
+### PopoverDescription
+
+وصف النص لبوبوفر. المجمع على غرار ل `Popover.Description` من مكتبة بيس.
+
+### PopoverClose
+
+زر إغلاق ل نافذة منبثقة. الاسم المستعار ل `Popover.Close` من مكتبة بيس.
+
+### PopoverCreateHandle
+
+ينشئ مقبضًا لمشغلات نافذة منبثقة المنفصلة. يعيد كائن مقبض لإرفاقه بمشغلات متعددة.
+
+## الأمثلة
+
+### مع زر إغلاق
+
+<ComponentPreview name="p-popover-2" />
+
+### نمط تلميح الأدوات
+
+استخدم `tooltipStyle` الدعامة لجعل منبثقة تبدو وكأنها تلميح أداة. يوصى بذلك عندما يكون لديك زر أيقونة معلومات الغرض الوحيد منه هو عرض معلومات إضافية. [إرشادات الوصول إلى تلميح الأدوات](https://base-ui.com/react/components/tooltip#accessibility-guidelines) لأفضل الممارسات.
+
+<ComponentPreview name="p-input-group-7" />
+
+### فيلم Popovers
+
+يمكنك إنشاء منبثقات متحركة تنتقل بسلاسة بين المشغلات المختلفة باستخدام مشغلات منفصلة. يسمح هذا النمط لمشغلات متعددة بمشاركة نافذة منبثقة واحدة ، مع رسوم متحركة تلقائية لتغيير الموضع والحجم والمحتوى.
+
+لإنشاء مشغلات منفصلة:
+
+1. إنشاء مقبض باستخدام `PopoverCreateHandle`
+2. إرفاق نفس المقبض إلى عدة `PopoverTrigger` مكونات
+3. كل عنصر التفعيل يوفر `payload` الدعامة التي تحتوي على مكون المحتوى
+4. استخدام واحد `Popover` عنصر مع مقبض لتصيير المنبثقة
+
+<ComponentPreview name="p-popover-3" />

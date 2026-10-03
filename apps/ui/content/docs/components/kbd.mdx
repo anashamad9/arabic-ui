@@ -1,0 +1,83 @@
+---
+title: "مفتاح لوحة المفاتيح"
+description: "مكون لعرض مفاتيح لوحة المفاتيح والاختصارات."
+---
+
+<ComponentPreview name="p-kbd-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/kbd
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="kbd" title="components/ui/kbd.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { Kbd, KbdGroup } from "@/components/ui/kbd"
+```
+
+مفتاح واحد:
+
+```tsx
+<Kbd>K</Kbd>
+```
+
+مفاتيح متعددة (مفتاح الجمع):
+
+```tsx
+<KbdGroup>
+  <Kbd>⌘</Kbd>
+  <Kbd>K</Kbd>
+</KbdGroup>
+```
+
+## مرجع الواجهة البرمجية
+
+### مفتاح لوحة المفاتيح
+
+يعرض مفتاح لوحة مفاتيح واحد.
+
+| الخاصية        | النوع     | الافتراضي |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+### KbdGroup
+
+مجموعات مفاتيح لوحة مفاتيح متعددة لمجموعات المفاتيح.
+
+| الخاصية        | النوع     | الافتراضي |
+| ----------- | -------- | ------- |
+| `className` | `string` |         |
+
+## الأمثلة
+
+### مجموعة الإدخال
+
+<ComponentPreview name="p-input-group-11" className="[&_.preview>*]:w-full [&_.preview>*]:max-w-64" />

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fonts",
+  "registryDependencies": [
+    "@arabicui/font-sans",
+    "@arabicui/font-heading",
+    "@arabicui/font-mono"
+  ],
+  "files": [],
+  "type": "registry:ui"
+}

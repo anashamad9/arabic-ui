@@ -1,0 +1,670 @@
+"use client";
+
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@coss/ui/components/avatar";
+import { Badge } from "@coss/ui/components/badge";
+import { Button } from "@coss/ui/components/button";
+import { CardFrame } from "@coss/ui/components/card";
+import { Checkbox } from "@coss/ui/components/checkbox";
+import {
+  Combobox,
+  ComboboxCollection,
+  ComboboxEmpty,
+  ComboboxGroup,
+  ComboboxGroupLabel,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+  ComboboxPopup,
+  ComboboxTrigger,
+  ComboboxValue,
+} from "@coss/ui/components/combobox";
+import { Group, GroupSeparator } from "@coss/ui/components/group";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@coss/ui/components/input-group";
+import { Label } from "@coss/ui/components/label";
+import {
+  Menu,
+  MenuGroup,
+  MenuGroupLabel,
+  MenuItem,
+  MenuPopup,
+  MenuSeparator,
+  MenuTrigger,
+} from "@coss/ui/components/menu";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@coss/ui/components/table";
+import {
+  type ColumnDef,
+  columnSizingFeature,
+  columnVisibilityFeature,
+  createSortedRowModel,
+  flexRender,
+  rowSelectionFeature,
+  rowSortingFeature,
+  type SortingState,
+  sortFn_alphanumeric,
+  sortFn_text,
+  tableFeatures,
+  useTable,
+} from "@tanstack/react-table";
+import {
+  ArrowUpRightIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  EllipsisIcon,
+  FunnelIcon,
+  PlusIcon,
+  SearchIcon,
+  SlidersHorizontalIcon,
+  UserPlusIcon,
+} from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import {
+  AppHeader,
+  AppHeaderContent,
+  AppHeaderDescription,
+} from "@/components/app/app-header";
+
+type TeamRole = "MEMBER" | "OWNER";
+type RoleFilter = "all" | TeamRole;
+
+type ColumnToggleItem = { label: string; value: "role" | "lastActive" };
+
+const COLUMN_TOGGLE_ITEMS: ColumnToggleItem[] = [
+  { label: "الدور", value: "role" },
+  { label: "آخر نشاط", value: "lastActive" },
+];
+
+const ROLE_FILTER_ITEMS: { label: string; value: RoleFilter }[] = [
+  { label: "جميع الأعضاء", value: "all" },
+  { label: "المالكون", value: "OWNER" },
+  { label: "الأعضاء", value: "MEMBER" },
+];
+
+type TeamMember = {
+  id: string;
+  name: string;
+  email: string;
+  role: TeamRole;
+  lastActive: string;
+  avatarUrl?: string;
+  hasOptions?: boolean;
+};
+
+const features = tableFeatures({
+  columnSizingFeature,
+  columnVisibilityFeature,
+  rowSelectionFeature,
+  rowSortingFeature,
+  sortedRowModel: createSortedRowModel(),
+  sortFns: {
+    alphanumeric: sortFn_alphanumeric,
+    text: sortFn_text,
+  },
+});
+
+const members: TeamMember[] = [
+  {
+    avatarUrl:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=128&h=128&fit=crop&q=80",
+    email: "teampro@example.com",
+    id: "team-pro-example",
+    lastActive: "نشط الآن",
+    name: "الفريق الاحترافي مثال",
+    role: "OWNER",
+  },
+  {
+    avatarUrl:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=128&h=128&fit=crop&q=80",
+    email: "teamfree@example.com",
+    id: "team-free-example",
+    lastActive: "منذ يومين",
+    name: "الفريق المجاني مثال",
+    role: "OWNER",
+  },
+  {
+    avatarUrl:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=128&h=128&fit=crop&q=80",
+    email: "teampro2@example.com",
+    id: "team-pro-example-2",
+    lastActive: "منذ أسبوع واحد",
+    name: "فريق برو مثال 2",
+    role: "MEMBER",
+  },
+  {
+    avatarUrl:
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=128&h=128&fit=crop&q=80",
+    email: "teampro3@example.com",
+    hasOptions: false,
+    id: "team-pro-example-3",
+    lastActive: "منذ 3 ساعات",
+    name: "فريق برو مثال 3",
+    role: "OWNER",
+  },
+  {
+    avatarUrl:
+      "https://images.unsplash.com/photo-1504593811423-6dd665756598?w=128&h=128&fit=crop&q=80",
+    email: "teampro4@example.com",
+    id: "team-pro-example-4",
+    lastActive: "فقط الآن",
+    name: "فريق برو مثال 4",
+    role: "OWNER",
+  },
+];
+
+function shouldIgnoreRowSelectionClick(target: EventTarget | null): boolean {
+  return (
+    target instanceof Element &&
+    target.closest(
+      'a, button, input, select, textarea, [role="button"], [role="checkbox"], [data-slot="checkbox"], [data-slot="label"]',
+    ) !== null
+  );
+}
+
+function getInitials(name: string): string {
+  const parts = name.trim().split(/\s+/);
+  if (parts.length === 0) return "";
+  if (parts.length === 1) return parts[0]?.charAt(0).toUpperCase() ?? "";
+  return `${parts[0]?.charAt(0) ?? ""}${parts.at(-1)?.charAt(0) ?? ""}`.toUpperCase();
+}
+
+const ROLE_LABEL: Record<TeamRole, string> = {
+  MEMBER: "عضو",
+  OWNER: "المالك",
+};
+
+function RoleBadge({ role }: { role: TeamRole }) {
+  return (
+    <Badge variant={role === "OWNER" ? "info" : "secondary"}>
+      {ROLE_LABEL[role]}
+    </Badge>
+  );
+}
+
+function MemberActions({
+  canManage = true,
+  memberName,
+}: {
+  canManage?: boolean;
+  memberName: string;
+}) {
+  const openProfileButton = (
+    <Button aria-label={`فتح ${memberName}`} size="icon-sm" variant="outline">
+      <ArrowUpRightIcon aria-hidden="true" />
+    </Button>
+  );
+
+  if (!canManage) {
+    return openProfileButton;
+  }
+
+  return (
+    <Group className="shrink-0">
+      {openProfileButton}
+      <GroupSeparator />
+      <Menu>
+        <MenuTrigger
+          render={
+            <Button
+              aria-label={`الخيارات المتاحة ${memberName}`}
+              size="icon-sm"
+              variant="outline"
+            />
+          }
+        >
+          <EllipsisIcon aria-hidden="true" />
+        </MenuTrigger>
+        <MenuPopup align="end">
+          <MenuGroup>
+            <MenuGroupLabel>عضو</MenuGroupLabel>
+            <MenuItem>
+              <ArrowUpRightIcon aria-hidden="true" />
+              عرض الملف الشخصي
+            </MenuItem>
+            <MenuItem>
+              <UserPlusIcon aria-hidden="true" />
+              انسخ رابط الدعوة
+            </MenuItem>
+          </MenuGroup>
+          <MenuSeparator />
+          <MenuGroup>
+            <MenuGroupLabel>الأذونات</MenuGroupLabel>
+            <MenuItem>دور التغيير</MenuItem>
+            <MenuItem variant="destructive">إزالة من الفريق</MenuItem>
+          </MenuGroup>
+        </MenuPopup>
+      </Menu>
+    </Group>
+  );
+}
+
+function getColumns({
+  showRoleColumn,
+  showLastActiveColumn,
+}: {
+  showRoleColumn: boolean;
+  showLastActiveColumn: boolean;
+}): ColumnDef<typeof features, TeamMember>[] {
+  const cols: ColumnDef<typeof features, TeamMember>[] = [
+    {
+      cell: ({ row }) => (
+        <Label>
+          <Checkbox
+            aria-label={`الاختيار ${row.original.name}`}
+            checked={row.getIsSelected()}
+            onCheckedChange={(value) => row.toggleSelected(!!value)}
+          />
+        </Label>
+      ),
+      enableSorting: false,
+      header: ({ table }) => (
+        <Checkbox
+          aria-label="تحديد الكل"
+          checked={table.getIsAllRowsSelected()}
+          indeterminate={
+            table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected()
+          }
+          onCheckedChange={(value) => table.toggleAllRowsSelected(!!value)}
+        />
+      ),
+      id: "select",
+      size: 28,
+    },
+    {
+      accessorKey: "name",
+      cell: ({ row }) => (
+        <div className="flex min-w-0 items-center gap-3">
+          <Avatar className="size-8 shrink-0">
+            {row.original.avatarUrl ? (
+              <AvatarImage
+                alt={row.original.name}
+                src={row.original.avatarUrl}
+              />
+            ) : null}
+            <AvatarFallback>{getInitials(row.original.name)}</AvatarFallback>
+          </Avatar>
+          <div className="min-w-0">
+            <div className="truncate font-medium text-sm">
+              {row.original.name}
+            </div>
+            <div className="truncate text-muted-foreground text-sm">
+              {row.original.email}
+            </div>
+          </div>
+        </div>
+      ),
+      header: "عضو",
+      size: 240,
+    },
+  ];
+
+  if (showRoleColumn) {
+    cols.push({
+      accessorKey: "role",
+      cell: ({ row }) => <RoleBadge role={row.original.role} />,
+      header: "الدور",
+      size: 80,
+    });
+  }
+
+  if (showLastActiveColumn) {
+    cols.push({
+      accessorKey: "lastActive",
+      cell: ({ row }) => (
+        <span className="text-muted-foreground text-sm">
+          {row.original.lastActive}
+        </span>
+      ),
+      header: "آخر نشاط",
+      size: 100,
+    });
+  }
+
+  cols.push({
+    cell: ({ row }) => (
+      <div className="flex justify-end">
+        <MemberActions
+          canManage={row.original.hasOptions !== false}
+          memberName={row.original.name}
+        />
+      </div>
+    ),
+    enableSorting: false,
+    header: () => <span className="sr-only">الإجراءات</span>,
+    id: "actions",
+    size: 80,
+  });
+
+  return cols;
+}
+
+export function TeamMembersPageClient() {
+  const [roleFilter, setRoleFilter] = useState<RoleFilter>("all");
+  const [searchValue, setSearchValue] = useState("");
+  const [showRoleColumn, setShowRoleColumn] = useState(true);
+  const [showLastActiveColumn, setShowLastActiveColumn] = useState(true);
+  const [sorting, setSorting] = useState<SortingState>([
+    { desc: false, id: "name" },
+  ]);
+
+  const filteredMembers = useMemo(() => {
+    const query = searchValue.trim().toLowerCase();
+
+    return members.filter((member) => {
+      const matchesRole = roleFilter === "all" || member.role === roleFilter;
+      const matchesQuery =
+        query.length === 0 ||
+        member.name.toLowerCase().includes(query) ||
+        member.email.toLowerCase().includes(query);
+
+      return matchesRole && matchesQuery;
+    });
+  }, [roleFilter, searchValue]);
+
+  const columns = useMemo(
+    () =>
+      getColumns({
+        showLastActiveColumn,
+        showRoleColumn,
+      }),
+    [showLastActiveColumn, showRoleColumn],
+  );
+
+  const firstRoleFilterItem = ROLE_FILTER_ITEMS[0];
+  const roleFilterItem =
+    ROLE_FILTER_ITEMS.find((item) => item.value === roleFilter) ??
+    (firstRoleFilterItem !== undefined
+      ? firstRoleFilterItem
+      : { label: "جميع الأعضاء", value: "all" as const });
+
+  const columnToggleValue = useMemo((): ColumnToggleItem[] => {
+    const selected: ColumnToggleItem[] = [];
+    const roleColumn = COLUMN_TOGGLE_ITEMS[0];
+    const lastActiveColumn = COLUMN_TOGGLE_ITEMS[1];
+    if (showRoleColumn && roleColumn !== undefined) selected.push(roleColumn);
+    if (showLastActiveColumn && lastActiveColumn !== undefined) {
+      selected.push(lastActiveColumn);
+    }
+    return selected;
+  }, [showLastActiveColumn, showRoleColumn]);
+
+  useEffect(() => {
+    setSorting((previous) => {
+      let next = previous;
+      if (!showRoleColumn) {
+        next = next.filter((s) => s.id !== "role");
+      }
+      if (!showLastActiveColumn) {
+        next = next.filter((s) => s.id !== "lastActive");
+      }
+      return next.length > 0 ? next : [{ desc: false, id: "name" }];
+    });
+  }, [showLastActiveColumn, showRoleColumn]);
+
+  const table = useTable(
+    {
+      columns,
+      data: filteredMembers,
+      enableRowSelection: true,
+      enableSortingRemoval: false,
+      features,
+      getRowId: (row) => row.id,
+      onSortingChange: setSorting,
+      state: {
+        sorting,
+      },
+    },
+    () => null,
+  );
+
+  return (
+    <>
+      <AppHeader>
+        <AppHeaderContent title="أعضاء الفريق">
+          <AppHeaderDescription>
+            المستخدمون الموجودون في المجموعة
+          </AppHeaderDescription>
+        </AppHeaderContent>
+      </AppHeader>
+
+      <div className="mt-6 flex flex-col gap-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-1 flex-wrap items-center gap-2">
+            <InputGroup className="w-full sm:max-w-52">
+              <InputGroupInput
+                aria-label="البحث عن الأعضاء"
+                onChange={(event) => setSearchValue(event.target.value)}
+                placeholder="بحث"
+                type="search"
+                value={searchValue}
+              />
+              <InputGroupAddon>
+                <SearchIcon aria-hidden="true" />
+              </InputGroupAddon>
+            </InputGroup>
+
+            <Combobox
+              autoHighlight
+              items={COLUMN_TOGGLE_ITEMS}
+              multiple
+              onValueChange={(items) => {
+                const next = items ?? [];
+                setShowRoleColumn(next.some((i) => i.value === "role"));
+                setShowLastActiveColumn(
+                  next.some((i) => i.value === "lastActive"),
+                );
+              }}
+              value={columnToggleValue}
+            >
+              <ComboboxTrigger
+                render={<Button aria-label="عرض العرض" variant="outline" />}
+              >
+                <SlidersHorizontalIcon aria-hidden="true" />
+                عرض العرض
+              </ComboboxTrigger>
+              <ComboboxPopup align="start" aria-label="تبديل الأعمدة">
+                <div className="border-b p-2">
+                  <ComboboxInput
+                    placeholder="بحث"
+                    showTrigger={false}
+                    size="sm"
+                    startAddon={<SearchIcon aria-hidden="true" />}
+                  />
+                </div>
+                <ComboboxEmpty>لم يتم العثور على أعمدة.</ComboboxEmpty>
+                <ComboboxList>
+                  <ComboboxGroup items={COLUMN_TOGGLE_ITEMS}>
+                    <ComboboxGroupLabel>تبديل الأعمدة</ComboboxGroupLabel>
+                    <ComboboxCollection>
+                      {(item: ColumnToggleItem) => (
+                        <ComboboxItem key={item.value} value={item}>
+                          {item.label}
+                        </ComboboxItem>
+                      )}
+                    </ComboboxCollection>
+                  </ComboboxGroup>
+                </ComboboxList>
+                <div className="border-t p-2">
+                  <Button
+                    className="w-full"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setShowRoleColumn(true);
+                      setShowLastActiveColumn(true);
+                    }}
+                  >
+                    عرض كل الأعمدة
+                  </Button>
+                </div>
+              </ComboboxPopup>
+            </Combobox>
+
+            <Combobox
+              items={ROLE_FILTER_ITEMS}
+              onValueChange={(item) => item && setRoleFilter(item.value)}
+              value={roleFilterItem}
+            >
+              <ComboboxTrigger render={<Button variant="outline" />}>
+                <FunnelIcon aria-hidden="true" />
+                <ComboboxValue />
+              </ComboboxTrigger>
+              <ComboboxPopup align="start" aria-label="التصفية حسب الدور">
+                <ComboboxEmpty>لم يتم العثور على أدوار.</ComboboxEmpty>
+                <ComboboxList>
+                  <ComboboxGroup items={ROLE_FILTER_ITEMS}>
+                    <ComboboxGroupLabel>الدور</ComboboxGroupLabel>
+                    <ComboboxCollection>
+                      {(item: (typeof ROLE_FILTER_ITEMS)[number]) => (
+                        <ComboboxItem key={item.value} value={item}>
+                          {item.label}
+                        </ComboboxItem>
+                      )}
+                    </ComboboxCollection>
+                  </ComboboxGroup>
+                </ComboboxList>
+              </ComboboxPopup>
+            </Combobox>
+          </div>
+
+          <Button>
+            <PlusIcon aria-hidden="true" />
+            إضافة
+          </Button>
+        </div>
+
+        <table.Subscribe
+          selector={(state) => ({
+            rowSelection: state.rowSelection,
+            sorting: state.sorting,
+          })}
+        >
+          {() => (
+            <CardFrame className="w-full">
+              <Table variant="card" className="table-fixed">
+                <TableHeader>
+                  {table.getHeaderGroups().map((headerGroup) => (
+                    <TableRow key={headerGroup.id}>
+                      {headerGroup.headers.map((header) => {
+                        const columnSize = header.column.getSize();
+
+                        return (
+                          <TableHead
+                            className={
+                              header.column.id === "name"
+                                ? "sm:w-auto!"
+                                : undefined
+                            }
+                            key={header.id}
+                            style={
+                              columnSize
+                                ? { width: `${columnSize}px` }
+                                : undefined
+                            }
+                          >
+                            {header.isPlaceholder ? null : header.column.getCanSort() ? (
+                              <div
+                                className="flex h-full cursor-pointer select-none items-center justify-between gap-2"
+                                onClick={header.column.getToggleSortingHandler()}
+                                onKeyDown={(event) => {
+                                  if (
+                                    event.key === "إدخال" ||
+                                    event.key === " "
+                                  ) {
+                                    event.preventDefault();
+                                    header.column.getToggleSortingHandler()?.(
+                                      event,
+                                    );
+                                  }
+                                }}
+                                role="button"
+                                tabIndex={0}
+                              >
+                                {flexRender(
+                                  header.column.columnDef.header,
+                                  header.getContext(),
+                                )}
+                                {{
+                                  asc: (
+                                    <ChevronUpIcon
+                                      aria-hidden="true"
+                                      className="size-4 shrink-0 opacity-80"
+                                    />
+                                  ),
+                                  desc: (
+                                    <ChevronDownIcon
+                                      aria-hidden="true"
+                                      className="size-4 shrink-0 opacity-80"
+                                    />
+                                  ),
+                                }[header.column.getIsSorted() as string] ??
+                                  null}
+                              </div>
+                            ) : (
+                              flexRender(
+                                header.column.columnDef.header,
+                                header.getContext(),
+                              )
+                            )}
+                          </TableHead>
+                        );
+                      })}
+                    </TableRow>
+                  ))}
+                </TableHeader>
+                <TableBody>
+                  {table.getRowModel().rows.length ? (
+                    table.getRowModel().rows.map((row) => (
+                      <TableRow
+                        data-state={
+                          row.getIsSelected() ? "selected" : undefined
+                        }
+                        key={row.id}
+                        onClick={(event) => {
+                          if (shouldIgnoreRowSelectionClick(event.target))
+                            return;
+                          row.toggleSelected();
+                        }}
+                      >
+                        {row.getVisibleCells().map((cell) => (
+                          <TableCell key={cell.id}>
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext(),
+                            )}
+                          </TableCell>
+                        ))}
+                      </TableRow>
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell
+                        className="h-24 text-center"
+                        colSpan={columns.length}
+                      >
+                        لم يتم العثور على أعضاء.
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </CardFrame>
+          )}
+        </table.Subscribe>
+      </div>
+    </>
+  );
+}

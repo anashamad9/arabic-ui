@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-card-2",
+  "description": "بطاقة المصادقة مع الإجراءات",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/card",
+    "@arabicui/field",
+    "@arabicui/form",
+    "@arabicui/input"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-card-2.tsx",
+      "content": "import Link from \"next/link\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport {\n  Card,\n  CardAction,\n  CardHeader,\n  CardPanel,\n  CardTitle,\n} from \"@/registry/default/ui/card\";\nimport { Field, FieldLabel } from \"@/registry/default/ui/field\";\nimport { Form } from \"@/registry/default/ui/form\";\nimport { Input } from \"@/registry/default/ui/input\";\n\nexport default function Particle() {\n  return (\n    <Card className=\"w-full max-w-xs\">\n      <CardHeader>\n        <CardTitle>تسجيل الدخول إلى حسابك</CardTitle>\n        <CardAction>\n          <Link\n            className=\"text-muted-foreground text-sm leading-4.5 hover:underline\"\n            href=\"#\"\n          >\n            إنشاء حساب\n          </Link>\n        </CardAction>\n      </CardHeader>\n      <CardPanel>\n        <Form className=\"flex w-full flex-col gap-4\">\n          <Field>\n            <FieldLabel>البريد الإلكتروني</FieldLabel>\n            <Input placeholder=\"أدخل بريدك الإلكتروني\" type=\"email\" />\n          </Field>\n          <Field>\n            <FieldLabel>كلمة المرور</FieldLabel>\n            <Input placeholder=\"أدخل كلمة المرور\" type=\"password\" />\n          </Field>\n          <Button className=\"w-full\" type=\"submit\">\n            تسجيل الدخول\n          </Button>\n        </Form>\n      </CardPanel>\n    </Card>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:flex **:data-[slot=preview]:justify-center"
+  },
+  "categories": [
+    "card",
+    "form"
+  ],
+  "type": "registry:block"
+}

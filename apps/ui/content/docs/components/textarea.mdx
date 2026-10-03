@@ -1,0 +1,100 @@
+---
+title: "مساحة النص"
+description: "عنصر نصي أصلي."
+---
+
+<ComponentPreview name="p-textarea-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/textarea
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="textarea" title="components/ui/textarea.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { Textarea } from "@/components/ui/textarea"
+```
+
+```tsx
+<Textarea />
+```
+
+## التكامل الميداني
+
+على عكس عناصر التحكم في النموذج المدمجة في بيس ، لا يوفر بيس إصدارًا بدائيًا أصليًا. يلف هذا المكون الأصلي `<textarea>` عنصر في `Field.Control` داخليًا ، لذلك يتكامل مع `Field` افتراضيًا - لا حاجة لتغليفه في `FieldControl` يدويا.
+
+```tsx
+<Field>
+  <FieldLabel>الحيوية</FieldLabel>
+  <Textarea placeholder="أخبرنا عن نفسك..." />
+  <FieldDescription>اكتب سيرة ذاتية قصيرة.</FieldDescription>
+  <FieldError>هذا الحقل مطلوب.</FieldError>
+</Field>
+```
+
+## مرجع الواجهة البرمجية
+
+### مساحة النص
+
+تصميم عنصر مساحة النص الأصلي مع خيارات حجم مخصص.
+
+| الخاصية       | النوع                                  | الافتراضي     | الوصف                                      |
+| ---------- | ------------------------------------- | ----------- | ------------------------------------------------ |
+| `size`     | `"sm" \| "default" \| "lg" \| number` | `"default"` | يتحكم في حشوة النص. يتم تمرير قيم الأرقام إلى اللغة الأصلية `rows` الخاصية |
+| `unstyled` | `boolean`                             | `false`     | عندما يكون صحيحًا ، يزيل كل التصميم الافتراضي           |
+
+## الأمثلة
+
+### حجم صغير
+
+<ComponentPreview name="p-textarea-2" />
+
+### حجم كبير
+
+<ComponentPreview name="p-textarea-3" />
+
+### معطّل
+
+<ComponentPreview name="p-textarea-4" />
+
+### مع التسمية
+
+<ComponentPreview name="p-textarea-5" />
+
+### التكامل مع النماذج
+
+<ComponentPreview name="p-textarea-6" />

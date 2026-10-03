@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-select-23",
+  "description": "اختر مع التسمية",
+  "registryDependencies": [
+    "@arabicui/select"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-select-23.tsx",
+      "content": "import {\n  Select,\n  SelectItem,\n  SelectLabel,\n  SelectPopup,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/default/ui/select\";\n\nconst items = [\n  { label: \"تفاح\", value: \"apple\" },\n  { label: \"موز\", value: \"banana\" },\n  { label: \"برتقال\", value: \"orange\" },\n];\n\nexport default function Particle() {\n  return (\n    <Select defaultValue={items[0]} items={items}>\n      <SelectLabel>الفواكه</SelectLabel>\n      <SelectTrigger aria-label=\"اختر الفاكهة\">\n        <SelectValue />\n      </SelectTrigger>\n      <SelectPopup>\n        {items.map((item) => (\n          <SelectItem key={item.value} value={item}>\n            {item.label}\n          </SelectItem>\n        ))}\n      </SelectPopup>\n    </Select>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-64"
+  },
+  "categories": [
+    "select"
+  ],
+  "type": "registry:block"
+}

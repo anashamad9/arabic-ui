@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-menu-1",
+  "description": "القائمة الأساسية",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/menu"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-menu-1.tsx",
+      "content": "import {\n  PauseIcon,\n  PlayIcon,\n  SkipBackIcon,\n  SkipForwardIcon,\n  TrashIcon,\n} from \"lucide-react\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport {\n  Menu,\n  MenuCheckboxItem,\n  MenuGroup,\n  MenuGroupLabel,\n  MenuItem,\n  MenuPopup,\n  MenuRadioGroup,\n  MenuRadioItem,\n  MenuSeparator,\n  MenuShortcut,\n  MenuSub,\n  MenuSubPopup,\n  MenuSubTrigger,\n  MenuTrigger,\n} from \"@/registry/default/ui/menu\";\n\nexport default function Particle() {\n  return (\n    <Menu>\n      <MenuTrigger render={<Button variant=\"outline\" />}>\n        فتح القائمة\n      </MenuTrigger>\n      <MenuPopup>\n        <MenuGroup>\n          <MenuGroupLabel>تشغيل</MenuGroupLabel>\n          <MenuItem>\n            <PlayIcon aria-hidden=\"true\" />\n            تشغيل\n            <MenuShortcut>⌘P</MenuShortcut>\n          </MenuItem>\n          <MenuItem disabled>\n            <PauseIcon aria-hidden=\"true\" />\n            الوقفة\n            <MenuShortcut>⇧⌘P</MenuShortcut>\n          </MenuItem>\n          <MenuItem>\n            <SkipBackIcon aria-hidden=\"true\" />\n            السابق\n            <MenuShortcut>⌘[</MenuShortcut>\n          </MenuItem>\n          <MenuItem>\n            <SkipForwardIcon aria-hidden=\"true\" />\n            التالي\n            <MenuShortcut>⌘]</MenuShortcut>\n          </MenuItem>\n        </MenuGroup>\n        <MenuSeparator />\n        <MenuCheckboxItem>تشغيل عشوائي</MenuCheckboxItem>\n        <MenuCheckboxItem>تكرار</MenuCheckboxItem>\n        <MenuCheckboxItem disabled>الصوت المحسن</MenuCheckboxItem>\n        <MenuSeparator />\n        <MenuGroup>\n          <MenuGroupLabel>ترتيب حسب</MenuGroupLabel>\n          <MenuRadioGroup>\n            <MenuRadioItem value=\"artist\">فنان</MenuRadioItem>\n            <MenuRadioItem value=\"album\">الألبوم</MenuRadioItem>\n            <MenuRadioItem value=\"title\">العنوان</MenuRadioItem>\n          </MenuRadioGroup>\n        </MenuGroup>\n        <MenuSeparator />\n        <MenuCheckboxItem variant=\"switch\">حفظ تلقائي</MenuCheckboxItem>\n        <MenuSeparator />\n        <MenuSub>\n          <MenuSubTrigger>إضافة إلى قائمة التشغيل</MenuSubTrigger>\n          <MenuSubPopup>\n            <MenuItem>موسيقى الجاز</MenuItem>\n            <MenuSub>\n              <MenuSubTrigger>روك</MenuSubTrigger>\n              <MenuSubPopup>\n                <MenuItem>هارد روك</MenuItem>\n                <MenuItem>صخرة ناعمة</MenuItem>\n                <MenuItem>كلاسيك روك</MenuItem>\n                <MenuSeparator />\n                <MenuItem>المعادن المعدنية</MenuItem>\n                <MenuItem>الشرير</MenuItem>\n                <MenuItem>كلاسيكي</MenuItem>\n                <MenuItem>البديل</MenuItem>\n                <MenuItem>إيندي</MenuItem>\n                <MenuItem>إلكتروني</MenuItem>\n              </MenuSubPopup>\n            </MenuSub>\n            <MenuItem>بوب</MenuItem>\n          </MenuSubPopup>\n        </MenuSub>\n        <MenuSeparator />\n        <MenuItem variant=\"destructive\">\n          <TrashIcon aria-hidden=\"true\" />\n          حذف\n          <MenuShortcut>⌘⌫</MenuShortcut>\n        </MenuItem>\n      </MenuPopup>\n    </Menu>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "dropdown",
+    "menu"
+  ],
+  "type": "registry:block"
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-61",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/label.json",
+    "https://coss.com/origin/r/textarea.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-61.tsx",
+      "content": "import { useId } from \"react\";\nimport { Label } from \"@/registry/default/ui/label\";\nimport { Textarea } from \"@/registry/default/ui/textarea\";\n\nexport default function Component() {\n  const id = useId();\n  return (\n    <div className=\"*:not-first:mt-2\">\n      <Label htmlFor={id}>مساحة النص مع نص مساعد</Label>\n      <Textarea id={id} placeholder=\"اكتب تعليقًا\" />\n      <p\n        aria-live=\"polite\"\n        className=\"mt-2 text-muted-foreground text-xs\"\n        role=\"region\"\n      >\n        يرجى إضافة العديد من التفاصيل كما يمكنك\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "tags": [
+      "label",
+      "textarea",
+      "helper"
+    ]
+  }
+}

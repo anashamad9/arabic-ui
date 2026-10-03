@@ -1,0 +1,13 @@
+import { useId } from "react";
+import { Label } from "@/registry/default/ui/label";
+import { Textarea } from "@/registry/default/ui/textarea";
+
+export default function Component() {
+  const id = useId();
+  return (
+    <div className="*:not-first:mt-2">
+      <Label htmlFor={id}>مساحة النص مع عدم تغيير الحجم</Label>
+      <Textarea className="[resize:none]" id={id} placeholder="اكتب تعليقًا" />
+    </div>
+  );
+}

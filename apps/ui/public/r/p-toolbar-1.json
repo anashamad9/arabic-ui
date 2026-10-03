@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-toolbar-1",
+  "description": "شريط الأدوات مع التبديلات والأزرار، وحدد",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/select",
+    "@arabicui/toggle-group",
+    "@arabicui/toolbar",
+    "@arabicui/tooltip"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-toolbar-1.tsx",
+      "content": "\"use client\";\n\nimport {\n  AlignCenterIcon,\n  AlignLeftIcon,\n  AlignRightIcon,\n  DollarSignIcon,\n  PercentIcon,\n} from \"lucide-react\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport {\n  Select,\n  SelectItem,\n  SelectPopup,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/default/ui/select\";\nimport {\n  ToggleGroup,\n  ToggleGroupItem,\n} from \"@/registry/default/ui/toggle-group\";\nimport {\n  Toolbar,\n  ToolbarButton,\n  ToolbarGroup,\n  ToolbarSeparator,\n} from \"@/registry/default/ui/toolbar\";\nimport {\n  Tooltip,\n  TooltipPopup,\n  TooltipProvider,\n  TooltipTrigger,\n} from \"@/registry/default/ui/tooltip\";\n\nconst items = [\n  { label: \"Helvetica\", value: \"helvetica\" },\n  { label: \"Arial\", value: \"arial\" },\n  { label: \"تايمز نيو رومان\", value: \"times-new-roman\" },\n];\n\nexport default function Particle() {\n  return (\n    <TooltipProvider>\n      <Toolbar>\n        <ToggleGroup className=\"border-none p-0\" defaultValue={[\"left\"]}>\n          <Tooltip>\n            <TooltipTrigger\n              render={\n                <ToolbarButton\n                  aria-label=\"محاذاة اليسار\"\n                  render={<ToggleGroupItem value=\"left\" />}\n                >\n                  <AlignLeftIcon />\n                </ToolbarButton>\n              }\n            />\n            <TooltipPopup sideOffset={8}>محاذاة اليسار</TooltipPopup>\n          </Tooltip>\n          <Tooltip>\n            <TooltipTrigger\n              render={\n                <ToolbarButton\n                  aria-label=\"محاذاة إلى الوسط\"\n                  render={\n                    <ToggleGroupItem aria-label=\"مركز تبديل\" value=\"center\" />\n                  }\n                >\n                  <AlignCenterIcon />\n                </ToolbarButton>\n              }\n            />\n            <TooltipPopup sideOffset={8}>محاذاة إلى الوسط</TooltipPopup>\n          </Tooltip>\n          <Tooltip>\n            <TooltipTrigger\n              render={\n                <ToolbarButton\n                  aria-label=\"محاذاة إلى اليمين\"\n                  render={\n                    <ToggleGroupItem aria-label=\"تبديل اليمين\" value=\"right\" />\n                  }\n                >\n                  <AlignRightIcon />\n                </ToolbarButton>\n              }\n            />\n            <TooltipPopup sideOffset={8}>محاذاة إلى اليمين</TooltipPopup>\n          </Tooltip>\n        </ToggleGroup>\n        <ToolbarSeparator />\n        <ToolbarGroup>\n          <Tooltip>\n            <TooltipTrigger\n              render={\n                <ToolbarButton\n                  aria-label=\"الشكل كعملة\"\n                  render={<Button size=\"icon\" variant=\"ghost\" />}\n                >\n                  <DollarSignIcon />\n                </ToolbarButton>\n              }\n            />\n            <TooltipPopup sideOffset={8}>الشكل كعملة</TooltipPopup>\n          </Tooltip>\n          <Tooltip>\n            <TooltipTrigger\n              render={\n                <ToolbarButton\n                  aria-label=\"الشكل كنسبة مئوية\"\n                  render={<Button size=\"icon\" variant=\"ghost\" />}\n                >\n                  <PercentIcon />\n                </ToolbarButton>\n              }\n            />\n            <TooltipPopup sideOffset={8}>الشكل كنسبة مئوية</TooltipPopup>\n          </Tooltip>\n        </ToolbarGroup>\n        <ToolbarSeparator />\n        <ToolbarGroup>\n          <Select defaultValue=\"helvetica\" items={items}>\n            <Tooltip>\n              <TooltipTrigger\n                render={\n                  <ToolbarButton\n                    render={\n                      <SelectTrigger>\n                        <SelectValue />\n                      </SelectTrigger>\n                    }\n                  />\n                }\n              />\n              <TooltipPopup sideOffset={8}>حدد خط مختلف</TooltipPopup>\n            </Tooltip>\n            <SelectPopup>\n              {items.map(({ label, value }) => (\n                <SelectItem key={value} value={value}>\n                  {label}\n                </SelectItem>\n              ))}\n            </SelectPopup>\n          </Select>\n        </ToolbarGroup>\n        <ToolbarSeparator />\n        <ToolbarGroup>\n          <ToolbarButton render={<Button />}>حفظ</ToolbarButton>\n        </ToolbarGroup>\n      </Toolbar>\n    </TooltipProvider>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "toolbar"
+  ],
+  "type": "registry:block"
+}

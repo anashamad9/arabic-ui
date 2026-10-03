@@ -1,0 +1,69 @@
+---
+title: "مجموعة الحقول"
+description: "عنصر فيلدست الأصلي مع أسطورة."
+
+links:
+  doc: https://base-ui.com/react/components/fieldset#api-reference
+---
+
+<ComponentPreview name="p-fieldset-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/fieldset
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="fieldset" title="components/ui/fieldset.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { Fieldset, FieldsetLegend } from "@/components/ui/fieldset"
+```
+
+```tsx
+<Fieldset>
+  <FieldsetLegend>أسطورة فيلدسيت</FieldsetLegend>
+</Fieldset>
+```
+
+## مرجع الواجهة البرمجية
+
+### مجموعة الحقول
+
+المكوّن الأساسي. غلاف منسّق للمكوّن `Fieldset.Root` من واجهة المستخدم الأساسية مع تخطيط العمود المرن.
+
+### FieldsetLegend
+
+أسطورة لمجموعة الحقول. غلاف نمط ل `Fieldset.Legend` من واجهة المستخدم الأساسية مع وزن الخط شبه الجريء.

@@ -1,0 +1,74 @@
+"use client";
+
+import { useMemo } from "react";
+import {
+  Combobox,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+  ComboboxPopup,
+} from "@/registry/default/ui/combobox";
+
+export default function Particle() {
+  const timezones = Intl.supportedValuesOf("timeZone");
+
+  const formattedTimezones = useMemo(() => {
+    return timezones
+      .map((timezone) => {
+        const formatter = new Intl.DateTimeFormat("en-US", {
+          timeZone: timezone,
+          timeZoneName: "shortOffset",
+        });
+        const parts = formatter.formatToParts(new Date());
+        const offset =
+          parts.find((part) => part.type === "timeZoneName")?.value || "";
+
+        const offsetMatch = offset.match(/GMT([+-]?)(\d+)(?::(\d+))?/);
+        const sign = offsetMatch?.[1] === "-" ? -1 : 1;
+        const hours = Number.parseInt(offsetMatch?.[2] || "0", 10);
+        const minutes = Number.parseInt(offsetMatch?.[3] || "0", 10);
+        const totalMinutes = sign * (hours * 60 + minutes);
+
+        return {
+          label:
+            new Intl.DateTimeFormat("ar", {
+              timeZone: timezone,
+              timeZoneName: "long",
+            })
+              .formatToParts(new Date())
+              .find((part) => part.type === "timeZoneName")?.value || timezone,
+          numericOffset: totalMinutes,
+          value: timezone,
+        };
+      })
+      .sort((a, b) => a.numericOffset - b.numericOffset);
+  }, [timezones]);
+
+  const defaultTimezone = formattedTimezones.find(
+    (tz) => tz.value === "Europe/London",
+  );
+
+  return (
+    <Combobox
+      autoHighlight
+      defaultValue={defaultTimezone}
+      items={formattedTimezones}
+    >
+      <ComboboxInput
+        aria-label="اختر المنطقة الزمنية"
+        placeholder="اختر المنطقة الزمنية..."
+      />
+      <ComboboxPopup>
+        <ComboboxEmpty>لم يتم العثور على مناطق زمنية.</ComboboxEmpty>
+        <ComboboxList>
+          {(item) => (
+            <ComboboxItem key={item.value} value={item}>
+              {item.label}
+            </ComboboxItem>
+          )}
+        </ComboboxList>
+      </ComboboxPopup>
+    </Combobox>
+  );
+}

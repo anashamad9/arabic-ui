@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-drawer-7",
+  "description": "الأدراج السفلية المتداخلة مع محتوى مركزي",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/drawer"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-drawer-7.tsx",
+      "content": "import { Button } from \"@/registry/default/ui/button\";\nimport {\n  Drawer,\n  DrawerClose,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerHeader,\n  DrawerPanel,\n  DrawerPopup,\n  DrawerTitle,\n  DrawerTrigger,\n} from \"@/registry/default/ui/drawer\";\n\nexport default function Particle() {\n  return (\n    <Drawer>\n      <DrawerTrigger render={<Button variant=\"outline\" />}>\n        أدراج متداخلة\n      </DrawerTrigger>\n      <DrawerPopup showBar>\n        <DrawerHeader className=\"text-center\">\n          <DrawerTitle>الخطوة الأولى</DrawerTitle>\n          <DrawerDescription>\n            هذه هي الخطوة الأولى. اضغط على الزر أدناه للمتابعة إلى الشاشة\n            التالية.\n          </DrawerDescription>\n        </DrawerHeader>\n        <DrawerFooter\n          className=\"justify-center sm:justify-center\"\n          variant=\"bare\"\n        >\n          <DrawerClose render={<Button variant=\"ghost\" />}>إلغاء</DrawerClose>\n          <Drawer>\n            <DrawerTrigger render={<Button variant=\"outline\" />}>\n              متابعة\n            </DrawerTrigger>\n            <DrawerPopup showBar>\n              <DrawerHeader className=\"text-center\">\n                <DrawerTitle>الخطوة الثانية</DrawerTitle>\n                <DrawerDescription>\n                  لقد وصلت إلى الخطوة الثانية. اضغط على الزر أدناه للمتابعة إلى\n                  الشاشة التالية.\n                </DrawerDescription>\n              </DrawerHeader>\n              <DrawerPanel>\n                <div className=\"flex justify-center\">\n                  <div className=\"size-48 shrink-0 rounded-xl border bg-muted\" />\n                </div>\n              </DrawerPanel>\n              <DrawerFooter\n                className=\"justify-center sm:justify-center\"\n                variant=\"bare\"\n              >\n                <DrawerClose render={<Button variant=\"ghost\" />}>\n                  رجوع\n                </DrawerClose>\n                <Drawer>\n                  <DrawerTrigger render={<Button variant=\"outline\" />}>\n                    متابعة\n                  </DrawerTrigger>\n                  <DrawerPopup showBar>\n                    <DrawerHeader className=\"text-center\">\n                      <DrawerTitle>الخطوة الثالثة</DrawerTitle>\n                      <DrawerDescription>\n                        لقد وصلت إلى الخطوة النهائية. يمكنك إغلاق هذا اللوحة\n                        المنزلقة أو العودة.\n                      </DrawerDescription>\n                    </DrawerHeader>\n                    <DrawerPanel>\n                      <div className=\"flex justify-center\">\n                        <div className=\"size-32 shrink-0 rounded-full border bg-muted\" />\n                      </div>\n                    </DrawerPanel>\n                  </DrawerPopup>\n                </Drawer>\n              </DrawerFooter>\n            </DrawerPopup>\n          </Drawer>\n        </DrawerFooter>\n      </DrawerPopup>\n    </Drawer>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "categories": [
+    "drawer"
+  ],
+  "type": "registry:block"
+}

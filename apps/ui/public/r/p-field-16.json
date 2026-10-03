@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-field-16",
+  "description": "حقل مع المنزلق",
+  "registryDependencies": [
+    "@arabicui/field",
+    "@arabicui/slider"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-field-16.tsx",
+      "content": "import {\n  Field,\n  FieldDescription,\n  FieldLabel,\n} from \"@/registry/default/ui/field\";\nimport { Slider } from \"@/registry/default/ui/slider\";\n\nexport default function Particle() {\n  return (\n    <Field className=\"items-stretch gap-3\">\n      <FieldLabel>الدولة</FieldLabel>\n      <Slider defaultValue={50} />\n      <FieldDescription>هذا حقل اختياري</FieldDescription>\n    </Field>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-64"
+  },
+  "categories": [
+    "field",
+    "label",
+    "slider"
+  ],
+  "type": "registry:block"
+}

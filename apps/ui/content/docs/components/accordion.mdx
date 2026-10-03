@@ -1,0 +1,102 @@
+---
+title: "القائمة القابلة للطي"
+description: "مجموعة من اللوحات القابلة للطي مع العناوين والمحتوى."
+
+links:
+  doc: https://base-ui.com/react/components/accordion#api-reference
+---
+
+<ComponentPreview name="p-accordion-1" align="start" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/accordion
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="accordion" title="components/ui/accordion.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  Accordion,
+  AccordionItem,
+  AccordionPanel,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+```
+
+```tsx
+<Accordion>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>هل يمكن الوصول إليها؟</AccordionTrigger>
+    <AccordionPanel>
+      نعم. إنها تلتزم بنمط تصميم سهولة الوصول.
+    </AccordionPanel>
+  </AccordionItem>
+</Accordion>
+```
+
+## مرجع الواجهة البرمجية
+
+### القائمة القابلة للطي
+
+المكوّن الأساسي. اسم بديل للمكوّن `Accordion.Root` من مكتبة بيس.
+
+### AccordionItem
+
+حاوية البند القائمة القابلة للطي الفردية. المجمع على غرار ل `Accordion.Item` من واجهة المستخدم الأساسية مع تصميم الحدود السفلية.
+
+### AccordionTrigger
+
+زر عنصر التفعيل الذي يحرك لوحة القائمة القابلة للطي. غلاف مصمم ل `Accordion.Trigger` من واجهة المستخدم الأساسية. يتضمن رمز شيفرون مدمج يدور عند توسيعه.
+
+### AccordionPanel
+
+لوحة محتوى قابلة للطي. غلاف مصمم ل `Accordion.Panel` من واجهة المستخدم الأساسية مع التحولات ارتفاع الرسوم المتحركة. أيضا تصديرها كما `AccordionContent`.
+
+## الأمثلة
+
+### القائمة القابلة للطي
+
+<ComponentPreview name="p-accordion-2" align="start" />
+
+### القائمة القابلة للطي المتعددة
+
+<ComponentPreview name="p-accordion-3" align="start" />
+
+### القائمة القابلة للطي الخاضعة للرقابة
+
+<ComponentPreview name="p-accordion-4" align="start" />

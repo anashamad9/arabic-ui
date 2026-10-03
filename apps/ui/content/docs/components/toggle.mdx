@@ -1,0 +1,94 @@
+---
+title: "زر التبديل"
+description: "زر دولتين يمكن تبديله أو إيقافه."
+
+links:
+  doc: https://base-ui.com/react/components/toggle#api-reference
+---
+
+<ComponentPreview name="p-toggle-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/toggle
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="toggle" title="components/ui/toggle.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { Toggle } from "@/components/ui/toggle"
+```
+
+```tsx
+<Toggle>زر التبديل</Toggle>
+```
+
+## مرجع الواجهة البرمجية
+
+### زر التبديل
+
+المجمع على غرار ل `Toggle.Root` من واجهة المستخدم الأساسية مع خيارات متغير وحجم.
+
+| الخاصية      | النوع                          | الافتراضي     | الوصف                                      |
+| --------- | ----------------------------- | ----------- | ------------------------------------------------ |
+| `variant` | `"default" \| "outline"`      | `"default"` | يتحكم في تصميم تبديل                      |
+| `size`    | `"default" \| "sm" \| "lg"`   | `"default"` | يتحكم في حجم التبديل                         |
+
+## الأمثلة
+
+### بإطار
+
+<ComponentPreview name="p-toggle-2" />
+
+### مع أيقونة
+
+<ComponentPreview name="p-toggle-3" />
+
+### حجم صغير
+
+<ComponentPreview name="p-toggle-4" />
+
+### حجم كبير
+
+<ComponentPreview name="p-toggle-5" />
+
+### معطّل
+
+<ComponentPreview name="p-toggle-6" />
+
+### مجموعة أيقونات
+
+<ComponentPreview name="p-toggle-7" />

@@ -1,0 +1,325 @@
+---
+title: "قائمة الأوامر"
+description: "مكون لوحة أوامر تم إنشاؤه باستخدام نافذة حوارية و الإكمال التلقائي للبحث عن الأوامر وتنفيذها."
+
+links:
+  doc: https://base-ui.com/react/components/autocomplete#api-reference
+---
+
+<ComponentPreview name="p-command-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/command
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="command" title="components/ui/command.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  Command,
+  CommandCollection,
+  CommandDialog,
+  CommandDialogPopup,
+  CommandDialogTrigger,
+  CommandEmpty,
+  CommandFooter,
+  CommandGroup,
+  CommandGroupLabel,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandPanel,
+  CommandSeparator,
+  CommandShortcut,
+} from "@/components/ui/command"
+import { Button } from "@/components/ui/button"
+```
+
+```tsx
+const items = [
+  { value: "linear", label: "خطي" },
+  { value: "figma", label: "فيغما" },
+  { value: "slack", label: "التراخي" },
+]
+
+<CommandDialog>
+  <CommandDialogTrigger render={<Button variant="outline" />}>
+    لوحة القيادة المفتوحة
+  </CommandDialogTrigger>
+
+  <CommandDialogPopup>
+    <Command items={items}>
+      <CommandInput placeholder="ابحث…" />
+      <CommandEmpty>لم يتم العثور على نتائج.</CommandEmpty>
+      <CommandList>
+        {(item) => (
+          <CommandItem key={item.value} value={item.value}>
+            {item.label}
+          </CommandItem>
+        )}
+      </CommandList>
+    </Command>
+  </CommandDialogPopup>
+</CommandDialog>
+```
+
+## مرجع الواجهة البرمجية
+
+### قائمة الأوامر
+
+المكون الجذري الذي يلف وظيفة الإكمال التلقائي. إنه اسم مستعار ل `Autocomplete.Root` مع افتراضات معقولة لسلوك لوحة الأوامر: `autoHighlight="always"`, `keepHighlight={true}`، و `open={true}`.
+
+| الخاصية            | النوع                                   | الافتراضي     | الوصف                                      |
+| --------------- | -------------------------------------- | ----------- | ------------------------------------------------ |
+| `items`         | `readonly unknown[]`                   | -           | صفيف العناصر لعرضها في الأمر     |
+| `open`          | `boolean`                              | `true`      | التحكم في ما إذا كان الأمر مفتوحًا             |
+| `autoHighlight` | `boolean \| "always"`                  | `"always"`  | يتحكم في تسليط الضوء التلقائي على العناصر         |
+| `keepHighlight` | `boolean`                              | `true`      | ما إذا كان الحفاظ على تسليط الضوء على الدولة              |
+| `...props`      | `React.ComponentProps<typeof Command>` | -           | يتم دعم جميع الدعائم الإكمال التلقائي لواجهة المستخدم الأساسية     |
+
+### CommandDialog
+
+مكون غلاف يوفر وظيفة الجذر الحواري. إنه اسم مستعار ل `Dialog.Root` من مكتبة بيس.
+
+| الخاصية           | النوع       | الوصف                                 |
+| -------------- | ---------- | ------------------------------------------- |
+| `open`         | `boolean`  | التحكم في ما إذا كان الفتح النافذةًا         |
+| `onOpenChange` | `function` | رد الاتصال تم إطلاقه عندما تتغير الحالة المفتوحة  |
+| `...props`     | قاعدة واجهة المستخدم الحوار الدعائم | يتم دعم جميع سمات الحوار القياسية |
+
+### CommandDialogTrigger
+
+زر عنصر التفعيل الذي يفتح مربع حوار الأوامر. يعرض كزر افتراضي.
+
+| الخاصية        | النوع                                        | الوصف                                      |
+| ----------- | ------------------------------------------- | ------------------------------------------------ |
+| `render`    | `React.ReactElement`                        | عنصر لتقديم كما عنصر التفعيل                 |
+| `className` | `string`                                    | فئات تنسيق إضافية لتخصيص المكوّن. |
+| `...props`  | قاعدة واجهة المستخدم الحوار عنصر التفعيل الدعائم                | يتم دعم جميع سمات مشغل الحوار القياسية |
+
+### CommandDialogPopup
+
+حاوية المحتوى المنبثقة التي تعرض لوحة الأوامر داخل مربع حوار.
+
+| الخاصية           | النوع                         | الوصف                                      |
+| -------------- | ---------------------------- | ------------------------------------------------ |
+| `className`    | `string`                     | فئات تنسيق إضافية لتخصيص المكوّن. |
+| `portalProps`  | `Dialog.Portal.Props`        | خصائص تُمرّر إلى البوابة الداخلية (`keepMounted`, `container`، وما إلى ذلك) ؛ انظر قاعدة واجهة المستخدم الحوار بوابة واجهة برمجية |
+| `...props`     | قاعدة واجهة المستخدم الحوار الدعائم المنبثقة   | يتم دعم جميع سمات الحوار المنبثقة القياسية |
+
+### CommandInput
+
+حقل إدخال البحث مع رمز بحث متكامل. يتضمن تلقائيا أيقونة بحث عبر `startAddon` وهو مقاس إلى `lg` افتراضيا.
+
+| الخاصية          | النوع                              | الوصف                                      |
+| ------------- | --------------------------------- | ------------------------------------------------ |
+| `placeholder` | `string`                          | نص العنصر النائب للإدخال               |
+| `className`   | `string`                          | فئات تنسيق إضافية لتخصيص المكوّن. |
+| `...props`    | قاعدة واجهة المستخدم الإكمال التلقائي الإدخال الدعائم  | يتم دعم جميع سمات الإدخال الإكمال التلقائي القياسية |
+
+### CommandList
+
+حاوية قابلة للتمرير لعناصر الأوامر. يلتف `AutocompleteList` مع وظيفة التمرير.
+
+| الخاصية        | النوع                              | الوصف                                      |
+| ----------- | --------------------------------- | ------------------------------------------------ |
+| `className` | `string`                          | فئات تنسيق إضافية لتخصيص المكوّن. |
+| `...props`  | قاعدة واجهة المستخدم الإكمال التلقائي قائمة الدعائم   | يتم دعم جميع سمات قائمة الإكمال التلقائي القياسية |
+
+### CommandPanel
+
+مكون حاوية يوفر تصميمًا لمحتوى الأوامر خارج مربع الحوارات. مفيد عند بناء واجهات أوامر مستقلة ذات مظهر مرتفع ومحدود.
+
+| الخاصية        | النوع                          | الوصف                                      |
+| ----------- | ----------------------------- | ------------------------------------------------ |
+| `className` | `string`                      | فئات تنسيق إضافية لتخصيص المكوّن. |
+| `...props`  | `React.ComponentProps<'div'>` | يتم دعم جميع سمات div القياسية        |
+
+### CommandEmpty
+
+يعرض رسالة عندما لا يتم العثور على نتائج.
+
+| الخاصية        | النوع                              | الوصف                                      |
+| ----------- | --------------------------------- | ------------------------------------------------ |
+| `className` | `string`                          | فئات تنسيق إضافية لتخصيص المكوّن. |
+| `...props`  | قاعدة واجهة المستخدم الإكمال التلقائي الدعائم الفارغة  | يتم دعم جميع سمات الإكمال التلقائي الفارغة القياسية |
+
+### CommandGroup
+
+عناصر القيادة المتعلقة بالمجموعات معًا. Wraps `AutocompleteGroup`.
+
+| الخاصية        | النوع                              | الوصف                                      |
+| ----------- | --------------------------------- | ------------------------------------------------ |
+| `items`     | `readonly unknown[]`              | مجموعة العناصر في هذه المجموعة                 |
+| `className` | `string`                          | فئات تنسيق إضافية لتخصيص المكوّن. |
+| `...props`  | قاعدة واجهة المستخدم الإكمال التلقائي المجموعة الدعائم  | يتم دعم جميع سمات مجموعة الإكمال التلقائي القياسية |
+
+### CommandGroupLabel
+
+يعرض تسمية لمجموعة أوامر.
+
+| الخاصية        | النوع                                   | الوصف                                      |
+| ----------- | -------------------------------------- | ------------------------------------------------ |
+| `className` | `string`                               | فئات تنسيق إضافية لتخصيص المكوّن. |
+| `...props`  | قاعدة واجهة المستخدم الإكمال التلقائي المجموعة تسمية الدعائم | يتم دعم جميع سمات تسمية مجموعة الإكمال التلقائي القياسية |
+
+### CommandItem
+
+عنصر أمر فردي قابل للتحديد. يمتد `AutocompleteItem`.
+
+| الخاصية        | النوع                              | الوصف                                      |
+| ----------- | --------------------------------- | ------------------------------------------------ |
+| `value`     | `unknown`                         | قيمة البند                            |
+| `className` | `string`                          | فئات تنسيق إضافية لتخصيص المكوّن. |
+| `...props`  | قاعدة واجهة المستخدم الإكمال التلقائي البند الدعائم   | يتم دعم جميع سمات عنصر الإكمال التلقائي القياسية |
+
+### CommandSeparator
+
+فاصل مرئي بين مجموعات الأوامر أو العناصر. يتضمن التباعد الرأسي الافتراضي مع `my-2` ClassName
+
+| الخاصية        | النوع                                   | الوصف                                      |
+| ----------- | -------------------------------------- | ------------------------------------------------ |
+| `className` | `string`                               | فئات تنسيق إضافية لتطبيقها على المكون (الافتراضي يتضمن `my-2`) |
+| `...props`  | قاعدة واجهة المستخدم الإكمال التلقائي فاصل الدعائم   | يتم دعم جميع سمات فاصل الإكمال التلقائي القياسية |
+
+### CommandShortcut
+
+يعرض اختصارات لوحة المفاتيح في عنصر امتداد نمطي.
+
+| الخاصية        | النوع                           | الوصف                                      |
+| ----------- | ------------------------------ | ------------------------------------------------ |
+| `className` | `string`                       | فئات تنسيق إضافية لتخصيص المكوّن. |
+| `...props`  | `React.ComponentProps<'span'>` | يتم دعم جميع سمات الامتداد القياسية       |
+
+### CommandFooter
+
+قسم تذييل لعرض التلميحات أو اختصارات لوحة المفاتيح الإضافية. `div` مع الحشو والحدود.
+
+| الخاصية        | النوع                          | الوصف                                      |
+| ----------- | ----------------------------- | ------------------------------------------------ |
+| `className` | `string`                      | فئات تنسيق إضافية لتخصيص المكوّن. |
+| `...props`  | `React.ComponentProps<'div'>` | يتم دعم جميع سمات div القياسية        |
+
+### CommandCollection
+
+المستخدمة في داخل `CommandGroup` لف العناصر عند استخدام البيانات المجمعة. إنه اسم مستعار ل `AutocompleteCollection` من مكون الإكمال التلقائي.
+
+| الخاصية        | النوع                                    | الوصف                                      |
+| ----------- | --------------------------------------- | ------------------------------------------------ |
+| `...props`  | قاعدة واجهة المستخدم الإكمال التلقائي المجموعة الدعائم   | يتم دعم جميع سمات جمع الإكمال التلقائي القياسية |
+
+## الأمثلة
+
+### مع اختصار لوحة المفاتيح
+
+يمكنك إضافة اختصار لوحة المفاتيح لفتح لوحة الأوامر:
+
+```tsx
+React.useEffect(() => {
+  const down = (e: KeyboardEvent) => {
+    if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault()
+      setOpen((open) => !open)
+    }
+  }
+
+  document.addEventListener("keydown", down)
+  return () => document.removeEventListener("keydown", down)
+}, [])
+```
+
+### مع العناصر المجمعة
+
+```tsx
+const groupedItems = [
+  {
+    value: "اقتراحات",
+    items: [
+      { value: "linear", label: "خطي" },
+      { value: "figma", label: "فيغما" },
+    ]
+  },
+  {
+    value: "الأوامر",
+    items: [
+      { value: "clipboard", label: "تاريخ الحافظة" },
+      { value: "settings", label: "تفضيلات النظام" },
+    ]
+  },
+]
+
+<Command items={groupedItems}>
+  <CommandInput placeholder="ابحث…" />
+  <CommandEmpty>لم يتم العثور على نتائج.</CommandEmpty>
+  <CommandList>
+    {(group, index) => (
+      <React.Fragment key={group.value}>
+        <CommandGroup items={group.items}>
+          <CommandGroupLabel>{group.value}</CommandGroupLabel>
+          <CommandCollection>
+            {(item) => (
+              <CommandItem key={item.value} value={item.value}>
+                {item.label}
+              </CommandItem>
+            )}
+          </CommandCollection>
+        </CommandGroup>
+        {index < groupedItems.length - 1 && <CommandSeparator />}
+      </React.Fragment>
+    )}
+  </CommandList>
+</Command>
+```
+
+### القيادة المستقلة (بدون حوار)
+
+يمكنك استخدام مكون Command بدون غلاف حوار:
+
+```tsx
+<Command open items={items}>
+  <CommandInput placeholder="اكتب أمر..." />
+  <CommandEmpty>لم يتم العثور على نتائج.</CommandEmpty>
+  <CommandList>
+    {(item) => (
+      <CommandItem key={item.value} value={item.value}>
+        {item.label}
+      </CommandItem>
+    )}
+  </CommandList>
+</Command>
+```

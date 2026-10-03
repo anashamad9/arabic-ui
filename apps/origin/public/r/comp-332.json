@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comp-332",
+  "type": "registry:component",
+  "registryDependencies": [
+    "https://coss.com/origin/r/button.json",
+    "https://coss.com/origin/r/dialog.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/comp-332.tsx",
+      "content": "\"use client\";\n\nimport { ArrowRightIcon } from \"lucide-react\";\nimport { useState } from \"react\";\nimport { cn } from \"@/registry/default/lib/utils\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport {\n  Dialog,\n  DialogClose,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n} from \"@/registry/default/ui/dialog\";\n\nexport default function Component() {\n  const [step, setStep] = useState(1);\n\n  const stepContent = [\n    {\n      description:\n        \"اكتشف مجموعة قوية من المكونات المصممة لتعزيز سير عمل التطوير الخاص بك.\",\n      title: \"مرحبا بكم في COSS UI/Arabic\",\n    },\n    {\n      description:\n        \"كل مكون قابل للتخصيص بالكامل وبنيت مع معايير الويب الحديثة في الاعتبار.\",\n      title: \"مكونات قابلة للتخصيص\",\n    },\n    {\n      description:\n        \"ابدأ ببناء واجهات مذهلة مع مكتبة المكونات الشاملة الخاصة بنا.\",\n      title: \"هل أنت مستعد للبدء؟\",\n    },\n    {\n      description:\n        \"يمكنك الوصول إلى وثائقنا ومواردنا المجتمعية الشاملة لتحقيق أقصى استفادة من COSS UI/Arabic.\",\n      title: \"الحصول على الدعم\",\n    },\n  ];\n\n  const totalSteps = stepContent.length;\n\n  const handleContinue = () => {\n    if (step < totalSteps) {\n      setStep(step + 1);\n    }\n  };\n\n  return (\n    <Dialog\n      onOpenChange={(open) => {\n        if (open) setStep(1);\n      }}\n    >\n      <DialogTrigger asChild>\n        <Button variant=\"outline\">تهيئة الحساب</Button>\n      </DialogTrigger>\n      <DialogContent className=\"gap-0 p-0 [&>button:last-child]:text-white\">\n        <div className=\"p-2\">\n          <img\n            alt=\"حوار حوار حواري\"\n            className=\"w-full rounded-md\"\n            height={216}\n            src=\"/origin/dialog-content.png\"\n            width={382}\n          />\n        </div>\n        <div className=\"space-y-6 px-6 pt-3 pb-6\">\n          <DialogHeader>\n            <DialogTitle>{stepContent[step - 1].title}</DialogTitle>\n            <DialogDescription>\n              {stepContent[step - 1].description}\n            </DialogDescription>\n          </DialogHeader>\n          <div className=\"flex flex-col justify-between gap-4 sm:flex-row sm:items-center\">\n            <div className=\"flex justify-center space-x-1.5 max-sm:order-1\">\n              {[...Array(totalSteps)].map((_, index) => (\n                <div\n                  className={cn(\n                    \"size-1.5 rounded-full bg-primary\",\n                    index + 1 === step ? \"bg-primary\" : \"opacity-20\",\n                  )}\n                  key={String(index)}\n                />\n              ))}\n            </div>\n            <DialogFooter>\n              <DialogClose asChild>\n                <Button type=\"button\" variant=\"ghost\">\n                  Skip تخطي\n                </Button>\n              </DialogClose>\n              {step < totalSteps ? (\n                <Button\n                  className=\"group\"\n                  onClick={handleContinue}\n                  type=\"button\"\n                >\n                  التالي\n                  <ArrowRightIcon\n                    aria-hidden=\"true\"\n                    className=\"rtl:rotate-180 -me-1 opacity-60 transition-transform group-hover:translate-x-0.5\"\n                    size={16}\n                  />\n                </Button>\n              ) : (\n                <DialogClose asChild>\n                  <Button type=\"button\">حسنًا</Button>\n                </DialogClose>\n              )}\n            </DialogFooter>\n          </div>\n        </div>\n      </DialogContent>\n    </Dialog>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "style": 1,
+    "tags": [
+      "dialog",
+      "modal",
+      "onboarding",
+      "radix"
+    ]
+  }
+}

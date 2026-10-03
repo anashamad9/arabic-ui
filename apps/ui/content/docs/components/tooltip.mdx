@@ -1,0 +1,118 @@
+---
+title: "التلميح"
+description: "نافذة منبثقة تظهر عند تحوم عنصر أو تركيزه ، تعرض تلميحًا للمستخدمين المبصرين."
+
+links:
+  doc: https://base-ui.com/react/components/tooltip#api-reference
+---
+
+<ComponentPreview name="p-tooltip-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/tooltip
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource name="tooltip" title="components/ui/tooltip.tsx" />
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import {
+  Tooltip,
+  TooltipCreateHandle,
+  TooltipPopup,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+```
+
+```tsx
+<Tooltip>
+  <TooltipTrigger render={<Button variant="outline" />}>
+    تحوم حولي
+  </TooltipTrigger>
+  <TooltipPopup>تلميح مفيد</TooltipPopup>
+</Tooltip>
+```
+
+## مرجع الواجهة البرمجية
+
+### التلميح
+
+المكوّن الأساسي. اسم بديل للمكوّن `Tooltip.Root` من مكتبة بيس.
+
+### TooltipTrigger
+
+عنصر عنصر التفعيل الذي يظهر تلميح الأدوات على hover / focus. الاسم المستعار ل `Tooltip.Trigger` من مكتبة بيس.
+
+### TooltipPopup
+
+الحاوية المنبثقة التي تعرض محتوى تلميح الأدوات. أيضا تصديرها كما `TooltipContent`.
+
+| الخاصية         | النوع                                     | الافتراضي    | الوصف                                      |
+| ------------ | ---------------------------------------- | ---------- | ------------------------------------------------ |
+| `side`       | `"top" \| "bottom" \| "left" \| "right"` | `"top"`    | جانب عنصر التفعيل لوضع تلميح الأدوات      |
+| `align`      | `"start" \| "center" \| "end"`           | `"center"` | محاذاة بالنسبة إلى عنصر التفعيل                |
+| `sideOffset` | `number`                                 | `4`        | المسافة من عنصر التفعيل بالبكسل              |
+| `portalProps` | `Tooltip.Portal.Props`                  | -          | خصائص تُمرّر إلى البوابة الداخلية (`keepMounted`, `container`، وما إلى ذلك) ؛ راجع واجهة المستخدم الأساسية التلميح بوابة واجهة برمجية |
+
+### TooltipProvider
+
+مزود لتجميع تلميحات الأدوات. الاسم المستعار ل `Tooltip.Provider` من مكتبة بيس.
+
+### TooltipCreateHandle
+
+يقوم بإنشاء مقبض لمشغلات تلميح الأدوات المنفصلة. يقوم بإرجاع كائن مقبض لإرفاقه بمشغلات متعددة للانتقالات المتحركة.
+
+## الأمثلة
+
+### تلميحات الأدوات المجمعة
+
+لتجميع تلميحات أدوات متعددة بحيث تظهر على الفور بعد فتح أول واحد، لفها في `TooltipProvider`. يضمن منطق التجميع أنه بمجرد ظهور تلميح الأدوات ، سيتم عرض تلميحات الأدوات المجاورة على الفور.
+
+<ComponentPreview name="p-tooltip-2" />
+
+### تلميحات متحركة
+
+يمكنك إنشاء تلميحات أدوات متحركة تنتقل بسلاسة بين مشغلات مختلفة باستخدام مشغلات منفصلة. يسمح هذا النمط لمشغلات متعددة بمشاركة نافذة منبثقة تلميح أداة واحدة ، مع رسوم متحركة تلقائية لتغيير الموضع والحجم والمحتوى.
+
+لإنشاء مشغلات منفصلة:
+
+1. إنشاء مقبض باستخدام `TooltipCreateHandle`
+2. إرفاق نفس المقبض إلى عدة `TooltipTrigger` مكونات
+3. كل عنصر التفعيل يوفر `payload` الدعامة التي تحتوي على مكون المحتوى
+4. استخدام واحد `Tooltip` عنصر مع مقبض لتصيير المنبثقة
+
+<ComponentPreview name="p-tooltip-3" />

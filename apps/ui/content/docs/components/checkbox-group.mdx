@@ -1,0 +1,100 @@
+---
+title: "مجموعة مربعات الاختيار"
+description: "يوفر حالة مشتركة لسلسلة من خانات الاختيار."
+
+links:
+  doc: https://base-ui.com/react/components/checkbox-group#api-reference
+---
+
+<ComponentPreview name="p-checkbox-group-1" />
+
+## التثبيت
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">سطر الأوامر</TabsTab>
+  <TabsTab value="manual">يدويًا</TabsTab>
+</TabsList>
+<TabsPanel value="cli">
+
+```bash
+npx shadcn@latest add @arabicui/checkbox-group
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+<Steps>
+
+<Step>ثبّت الحزم التالية:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
+
+<ComponentSource
+  name="checkbox-group"
+  title="components/ui/checkbox-group.tsx"
+/>
+
+<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
+
+</Steps>
+
+</TabsPanel>
+
+</CodeTabs>
+
+## الاستخدام
+
+```tsx
+import { Checkbox } from "@/components/ui/checkbox"
+import { CheckboxGroup } from "@/components/ui/checkbox-group"
+```
+
+```tsx
+<CheckboxGroup>
+  <Label>
+    <Checkbox defaultChecked />
+    Next.js
+  </Label>
+  <Label>
+    <Checkbox />
+    فايت
+  </Label>
+  <Label>
+    <Checkbox />
+    أسترو
+  </Label>
+</CheckboxGroup>
+```
+
+## مرجع الواجهة البرمجية
+
+### CheckboxGroup
+
+المجمع على غرار ل `CheckboxGroup` من واجهة المستخدم الأساسية. يوفر إدارة الحالة المشتركة لمجموعة من خانات الاختيار مع تخطيط العمود المرن.
+
+## الأمثلة
+
+للحصول على علامات المجموعة والتحقق من صحتها ، تفضل تغليف مجموعات مربع الاختيار مع `Field` و `Fieldset`. انظر المثال ذي الصلة: [حقل مجموعة مربع الاختيار](/ui/docs/components/field#خانة-الاختيار-حقل-المجموعة).
+
+### مع Disabled العنصر
+
+<ComponentPreview name="p-checkbox-group-2" />
+
+### الرئيسية مربع الاختيار
+
+<ComponentPreview name="p-checkbox-group-3" />
+
+### متداخلة الوالدين مربع الاختيار
+
+<ComponentPreview name="p-checkbox-group-4" />
+
+### التكامل مع النماذج
+
+<ComponentPreview name="p-checkbox-group-5" />

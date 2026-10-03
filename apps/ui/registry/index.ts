@@ -1,0 +1,22 @@
+import type { Registry } from "shadcn/schema";
+import { baseUi } from "@/registry/registry-base-ui";
+import { fonts } from "@/registry/registry-fonts";
+import { hooks } from "@/registry/registry-hooks";
+import { lib } from "@/registry/registry-lib";
+import { particles } from "@/registry/registry-particles";
+import { styles } from "@/registry/registry-styles";
+import { ui } from "@/registry/registry-ui";
+
+export const registry = {
+  homepage: "http://localhost:4000/ui",
+  items: [
+    ...ui,
+    ...(particles as Registry["items"]),
+    ...styles,
+    ...fonts,
+    ...lib,
+    ...baseUi,
+    ...hooks,
+  ],
+  name: "COSS UI/Arabic",
+} satisfies Registry;

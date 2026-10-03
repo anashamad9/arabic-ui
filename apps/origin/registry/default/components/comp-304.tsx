@@ -1,0 +1,30 @@
+import { ArrowRightIcon, Eclipse } from "lucide-react";
+
+export default function Component() {
+  return (
+    <div className="dark bg-muted px-4 py-3 text-foreground">
+      <div className="flex flex-col justify-between gap-2 md:flex-row">
+        <div className="flex grow gap-3">
+          <Eclipse
+            aria-hidden="true"
+            className="mt-0.5 shrink-0 opacity-60"
+            size={16}
+          />
+          <div className="flex grow flex-col justify-between gap-2 md:flex-row md:items-center">
+            <p className="text-sm">
+              لقد أضفنا للتو شيئًا رائعًا لجعل تجربتك أفضل.
+            </p>
+            <a className="group whitespace-nowrap font-medium text-sm" href="#">
+              اعرف المزيد
+              <ArrowRightIcon
+                aria-hidden="true"
+                className="ms-1 -mt-0.5 inline-flex opacity-60 transition-transform group-hover:translate-x-0.5 rtl:rotate-180"
+                size={16}
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

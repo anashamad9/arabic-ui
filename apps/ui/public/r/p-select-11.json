@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "p-select-11",
+  "description": "اختر النموذج",
+  "registryDependencies": [
+    "@arabicui/button",
+    "@arabicui/field",
+    "@arabicui/form",
+    "@arabicui/select"
+  ],
+  "files": [
+    {
+      "path": "registry/default/particles/p-select-11.tsx",
+      "content": "\"use client\";\n\nimport type { FormEvent } from \"react\";\nimport { useState } from \"react\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport {\n  Field,\n  FieldDescription,\n  FieldError,\n  FieldLabel,\n} from \"@/registry/default/ui/field\";\nimport { Form } from \"@/registry/default/ui/form\";\nimport {\n  Select,\n  SelectItem,\n  SelectPopup,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/default/ui/select\";\n\nconst items = [\n  { label: \"Next.js\", value: \"next\" },\n  { label: \"فايت\", value: \"vite\" },\n  { label: \"أسترو\", value: \"astro\" },\n];\n\nexport default function Particle() {\n  const [loading, setLoading] = useState(false);\n  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {\n    e.preventDefault();\n    const formData = new FormData(e.currentTarget);\n    setLoading(true);\n    await new Promise((r) => setTimeout(r, 800));\n    setLoading(false);\n    alert(`الإطار: ${formData.get(\"framework\") || \"\"}`);\n  };\n\n  return (\n    <Form className=\"flex w-full max-w-64 flex-col gap-4\" onSubmit={onSubmit}>\n      <Field>\n        <FieldLabel>إطار العمل</FieldLabel>\n        <Select items={items} name=\"framework\" required>\n          <SelectTrigger aria-label=\"اختر إطار العمل\">\n            <SelectValue placeholder=\"اختر إطار عمل\" />\n          </SelectTrigger>\n          <SelectPopup>\n            {items.map(({ label, value }) => (\n              <SelectItem key={value} value={value}>\n                {label}\n              </SelectItem>\n            ))}\n          </SelectPopup>\n        </Select>\n        <FieldDescription>اختر المفضلة لديك.</FieldDescription>\n        <FieldError>يرجى اختيار قيمة.</FieldError>\n      </Field>\n\n      <Button loading={loading} type=\"submit\">\n        إرسال\n      </Button>\n    </Form>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "className": "**:data-[slot=preview]:w-full **:data-[slot=preview]:max-w-64"
+  },
+  "categories": [
+    "select"
+  ],
+  "type": "registry:block"
+}
