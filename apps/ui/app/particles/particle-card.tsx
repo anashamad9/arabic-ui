@@ -1,4 +1,3 @@
-import { Icons } from "@coss/ui/shared/icons";
 import { InformationCircleIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { cache } from "react";
@@ -11,9 +10,7 @@ import {
   DrawerTrigger,
 } from "@/registry/default/ui/drawer";
 import { ParticleCardContainer } from "./particle-card-container";
-import { CodeBlockCommand } from "@/components/code-block-command";
 import { ComponentSource } from "@/components/component-source";
-import { CopyRegistry } from "@/components/copy-registry";
 import { getRegistryItem } from "@/lib/registry";
 
 const getCachedRegistryItem = cache(async (name: string) => {
@@ -44,8 +41,6 @@ export async function ParticleCard({
   className?: string;
   colSpan?: number;
 }) {
-  const cossuiUrl = process.env.NEXT_PUBLIC_APP_URL || "https://coss.com/ui";
-
   const particle = await getCachedRegistryItem(name);
 
   if (!particle) {
@@ -78,10 +73,6 @@ export async function ParticleCard({
                 {particle.name}
               </Button>
             )}
-            <CopyRegistry
-              value={`${cossuiUrl}/r/${name}.json`}
-              variant="outline"
-            />
             <Drawer position="right">
               <DrawerTrigger
                 render={
@@ -97,37 +88,11 @@ export async function ParticleCard({
                 variant="straight"
               >
                 <DrawerContent className="flex flex-1 flex-col overflow-hidden p-6">
-                  <div>
-                    <h2 className="mb-4 font-heading font-semibold text-xl">
-                      التثبيت
-                    </h2>
-                    <figure data-rehype-pretty-code-figure>
-                      <CodeBlockCommand
-                        __bun__={`bunx --bun shadcn@latest add @arabicui/${name}`}
-                        __npm__={`npx shadcn@latest add @arabicui/${name}`}
-                        __pnpm__={`pnpm dlx shadcn@latest add @arabicui/${name}`}
-                        __yarn__={`yarn dlx shadcn@latest add @arabicui/${name}`}
-                      />
-                    </figure>
-                  </div>
                   <div className="flex h-full flex-1 flex-col overflow-hidden">
                     <div className="flex items-center justify-between gap-2">
                       <h2 className="mt-6 mb-4 font-heading font-semibold text-xl">
                         الكود
                       </h2>
-                      <Button
-                        render={
-                          <a
-                            href={`https://v0.dev/chat/api/open?url=${encodeURIComponent(`${cossuiUrl}/r/${name}.json`)}`}
-                            rel="noopener noreferrer"
-                            target="_blank"
-                          >
-                            فتح في<span className="sr-only">v0</span>
-                            <Icons.v0 className="size-5" />
-                          </a>
-                        }
-                        variant="outline"
-                      />
                     </div>
                     <ComponentSource
                       className="flex min-h-0 flex-1 flex-col *:data-rehype-pretty-code-figure:mt-0"

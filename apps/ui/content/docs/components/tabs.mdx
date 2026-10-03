@@ -8,54 +8,16 @@ links:
 
 <ComponentPreview name="p-tabs-1" />
 
-## التثبيت
+## الاستيراد المحلي
 
-<CodeTabs>
+بعد [استنساخ المستودع وتشغيله محليًا](/ui/docs/get-started)، استورد المكونات من الحزمة المشتركة داخل المشروع. لا تحتاج إلى سجل مكونات أو أمر تثبيت لكل مكوّن.
 
-<TabsList>
-  <TabsTab value="cli">سطر الأوامر</TabsTab>
-  <TabsTab value="manual">يدويًا</TabsTab>
-</TabsList>
-<TabsPanel value="cli">
-
-```bash
-npx shadcn@latest add @arabicui/tabs
-```
-
-تثبيت سطر الأوامر المشتركة `@arabicui/segmented-control` اعتماد التسجيل تلقائيا.
-
-</TabsPanel>
-
-<TabsPanel value="manual">
-
-<Steps>
-
-<Step>ثبّت الحزم التالية:</Step>
-
-```bash
-npm install @base-ui/react class-variance-authority
-```
-
-<Step>انسخ تصميم التحكم المجزأ المشترك في مشروعك.</Step>
-
-<ComponentSource name="segmented-control" title="lib/segmented-control.ts" />
-
-<Step>انسخ مكون التبويبات ولصقه في مشروعك.</Step>
-
-<ComponentSource name="tabs" title="components/ui/tabs.tsx" />
-
-<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
-
-</Steps>
-
-</TabsPanel>
-
-</CodeTabs>
+ملف المصدر: `packages/ui/src/components/tabs.tsx`. مسار الاستيراد: `@coss/ui/components/tabs`.
 
 ## الاستخدام
 
 ```tsx
-import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/ui/tabs"
+import { Tabs, TabsList, TabsPanel, TabsTab } from "@coss/ui/components/tabs"
 ```
 
 ```tsx

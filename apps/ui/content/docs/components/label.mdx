@@ -5,42 +5,16 @@ description: "يجعل علامة يمكن الوصول إليها المرتب�
 
 <ComponentPreview name="p-input-6" />
 
-## التثبيت
+## الاستيراد المحلي
 
-<CodeTabs>
+بعد [استنساخ المستودع وتشغيله محليًا](/ui/docs/get-started)، استورد المكونات من الحزمة المشتركة داخل المشروع. لا تحتاج إلى سجل مكونات أو أمر تثبيت لكل مكوّن.
 
-<TabsList>
-  <TabsTab value="cli">سطر الأوامر</TabsTab>
-  <TabsTab value="manual">يدويًا</TabsTab>
-</TabsList>
-<TabsPanel value="cli">
-
-```bash
-npx shadcn@latest add @arabicui/label
-```
-
-</TabsPanel>
-
-<TabsPanel value="manual">
-
-<Steps>
-
-<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
-
-<ComponentSource name="label" title="components/ui/label.tsx" />
-
-<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
-
-</Steps>
-
-</TabsPanel>
-
-</CodeTabs>
+ملف المصدر: `packages/ui/src/components/label.tsx`. مسار الاستيراد: `@coss/ui/components/label`.
 
 ## الاستخدام
 
 ```tsx
-import { Label } from "@/components/ui/label"
+import { Label } from "@coss/ui/components/label"
 ```
 
 ```tsx

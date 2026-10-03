@@ -5,37 +5,11 @@ description: "هوك استعلام الوسائط التفاعلية مع بن�
 
 خطاف رياكت يشترك في استعلام وسائط تنسيق ويعيد ما إذا كان يتطابق. `useSyncExternalStore` لسلامة SSR وتوافق الوضع المتزامن.
 
-## التثبيت
+## الاستيراد المحلي
 
-<CodeTabs>
+بعد [استنساخ المستودع وتشغيله محليًا](/ui/docs/get-started)، استورد المكونات من الحزمة المشتركة داخل المشروع. لا تحتاج إلى سجل مكونات أو أمر تثبيت لكل مكوّن.
 
-<TabsList>
-  <TabsTab value="cli">سطر الأوامر</TabsTab>
-  <TabsTab value="manual">يدويًا</TabsTab>
-</TabsList>
-<TabsPanel value="cli">
-
-```bash
-npx shadcn@latest add @arabicui/use-media-query
-```
-
-</TabsPanel>
-
-<TabsPanel value="manual">
-
-<Steps>
-
-<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
-
-<ComponentSource name="use-media-query" title="hooks/use-media-query.ts" />
-
-<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
-
-</Steps>
-
-</TabsPanel>
-
-</CodeTabs>
+ملف المصدر: `packages/ui/src/hooks/use-media-query.ts`. مسار الاستيراد: `@coss/ui/hooks/use-media-query`.
 
 ## الاستخدام
 
@@ -44,7 +18,7 @@ npx shadcn@latest add @arabicui/use-media-query
 استخدم بناء جملة متغير تيلويند لمطابقة نقاط التوقف. يوفر تايب سكريبت الإكمال التلقائي الكامل.
 
 ```tsx
-import { useMediaQuery } from "@/hooks/use-media-query";
+import { useMediaQuery } from "@coss/ui/hooks/use-media-query";
 
 // Min-width (breakpoint and above) — like md:
 const isDesktop = useMediaQuery("md");
@@ -148,7 +122,7 @@ function useMediaQuery(
 هوك أيضا تصدير `useIsMobile` للتوافق الخلفي مع شادسي إن's `use-mobile` نمط:
 
 ```tsx
-import { useIsMobile } from "@/hooks/use-media-query";
+import { useIsMobile } from "@coss/ui/hooks/use-media-query";
 
 const isMobile = useIsMobile(); // equivalent to useMediaQuery("max-md")
 ```

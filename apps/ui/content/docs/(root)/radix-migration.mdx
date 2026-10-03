@@ -442,7 +442,7 @@ description: "دليل عملي للهجرة من المكتبات المستن�
 
 ### رمز التحقق
 
-كوس دوس **لا** استخدام المجتمع [`input-otp`](https://github.com/guilhermerodz/input-otp) حزمة. يتم تنفيذ إدخال رمز تحقق مع [قاعدة واجهة المستخدم رمز تحقق الميدان](https://base-ui.com/react/components/otp-field) (`OTPField`) عن طريق `@arabicui/otp-field` بند التسجيل (`components/ui/otp-field.tsx`).
+كوس دوس **لا** استخدام المجتمع [`input-otp`](https://github.com/guilhermerodz/input-otp) حزمة. يتم تنفيذ إدخال رمز تحقق مع [قاعدة واجهة المستخدم رمز تحقق الميدان](https://base-ui.com/react/components/otp-field) (`OTPField`) عن طريق `@coss/ui/components/otp-field` بند التسجيل (`components/ui/otp-field.tsx`).
 
 **قائمة تحقق سريعة:**
 - إزالة `input-otp` التبعية من التطبيق الخاص بك ؛ الاعتماد على `@base-ui/react` من خلال COSS UI/Arabic
@@ -498,7 +498,7 @@ description: "دليل عملي للهجرة من المكتبات المستن�
 **قائمة تحقق سريعة:**
 - استبدل `asChild` → `render` على `MenuTrigger` و `MenuItem`
 - استبدل `onSelect` → `onClick` على عناصر القائمة
-- تحديث مسار الاستيراد من `@/components/ui/dropdown-menu` → `@/components/ui/menu`
+- تحديث مسار الاستيراد من `@coss/ui/components/dropdown-menu` → `@coss/ui/components/menu`
 - يُفضّل `Menu*` أسماء المكونات؛ `DropdownMenu*` البقاء للإرث
 - يُفضّل `MenuGroupLabel` بدلا من `DropdownMenuLabel`
 - يُفضّل `MenuPopup` بدلا من `DropdownMenuContent`
@@ -599,7 +599,7 @@ description: "دليل عملي للهجرة من المكتبات المستن�
 ### بطاقة المعاينة
 
 **قائمة تحقق سريعة:**
-- تحديث مسار الاستيراد من `@/components/ui/hover-card` → `@/components/ui/preview-card`
+- تحديث مسار الاستيراد من `@coss/ui/components/hover-card` → `@coss/ui/components/preview-card`
 - يُفضّل `PreviewCard*` أسماء المكونات؛ `HoverCard*` البقاء للإرث
 - يُفضّل `PreviewCardPopup` بدلا من `HoverCardContent`
 - إذا كنت تستخدم `asChild` على أجزاء، والتبديل إلى `render` الخاصية
@@ -894,7 +894,7 @@ toast("تم إنشاء الحدث", {
 **COSS UI/Arabic (بيس)**
 
 ```tsx title="app/layout.tsx"
-import { ToastProvider } from "@/components/ui/toast"
+import { ToastProvider } from "@coss/ui/components/toast"
 
 export default function RootLayout({ children }) {
   return (

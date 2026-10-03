@@ -9,43 +9,11 @@ description: "مكون منتقي التاريخ تم إنشاؤه باستخد�
 
 تم بناء منتقي التاريخ باستخدام تركيبة من `<Calendar>` و `<Popover>` المكونات.
 
-## التثبيت
+## الاستيراد المحلي
 
-منتقي التاريخ هو نمط تكوين ، وليس مكونًا مستقلًا. قم بتثبيت المكونات المطلوبة:
+بعد [استنساخ المستودع وتشغيله محليًا](/ui/docs/get-started)، استورد المكونات من الحزمة المشتركة داخل المشروع. لا تحتاج إلى سجل مكونات أو أمر تثبيت لكل مكوّن.
 
-<CodeTabs>
-
-<TabsList>
-  <TabsTab value="cli">سطر الأوامر</TabsTab>
-  <TabsTab value="manual">يدويًا</TabsTab>
-</TabsList>
-<TabsPanel value="cli">
-
-```bash
-npx shadcn@latest add @arabicui/calendar @arabicui/popover @arabicui/button
-```
-
-</TabsPanel>
-
-<TabsPanel value="manual">
-
-<Steps>
-
-<Step>ثبّت الحزم التالية:</Step>
-
-```bash
-npm install @daypicker/react date-fns lucide-react @base-ui/react
-```
-
-<Step>انسخ مكونات التقويم والبوبوفر والزر إلى مشروعك.</Step>
-
-انظروا إلى [التقويم](/ui/docs/components/calendar), [النافذة المنبثقة](/ui/docs/components/popover)، و [الزر](/ui/docs/components/button) وثائق لتعليمات التثبيت.
-
-</Steps>
-
-</TabsPanel>
-
-</CodeTabs>
+هذا المثال يجمع عدة مكونات محلية؛ استخدم مسارات الاستيراد الموضحة أدناه.
 
 ## الاستخدام
 
@@ -54,13 +22,13 @@ import { format } from "date-fns"
 import { CalendarIcon } from "lucide-react"
 import { useState } from "react"
 
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
+import { Button } from "@coss/ui/components/button"
+import { Calendar } from "@coss/ui/components/calendar"
 import {
   Popover,
   PopoverPopup,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@coss/ui/components/popover"
 ```
 
 ```tsx

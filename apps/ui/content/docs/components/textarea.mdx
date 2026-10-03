@@ -5,48 +5,16 @@ description: "عنصر نصي أصلي."
 
 <ComponentPreview name="p-textarea-1" />
 
-## التثبيت
+## الاستيراد المحلي
 
-<CodeTabs>
+بعد [استنساخ المستودع وتشغيله محليًا](/ui/docs/get-started)، استورد المكونات من الحزمة المشتركة داخل المشروع. لا تحتاج إلى سجل مكونات أو أمر تثبيت لكل مكوّن.
 
-<TabsList>
-  <TabsTab value="cli">سطر الأوامر</TabsTab>
-  <TabsTab value="manual">يدويًا</TabsTab>
-</TabsList>
-<TabsPanel value="cli">
-
-```bash
-npx shadcn@latest add @arabicui/textarea
-```
-
-</TabsPanel>
-
-<TabsPanel value="manual">
-
-<Steps>
-
-<Step>ثبّت الحزم التالية:</Step>
-
-```bash
-npm install @base-ui/react
-```
-
-<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
-
-<ComponentSource name="textarea" title="components/ui/textarea.tsx" />
-
-<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
-
-</Steps>
-
-</TabsPanel>
-
-</CodeTabs>
+ملف المصدر: `packages/ui/src/components/textarea.tsx`. مسار الاستيراد: `@coss/ui/components/textarea`.
 
 ## الاستخدام
 
 ```tsx
-import { Textarea } from "@/components/ui/textarea"
+import { Textarea } from "@coss/ui/components/textarea"
 ```
 
 ```tsx

@@ -8,43 +8,11 @@ links:
 
 <ComponentPreview name="p-progress-1" />
 
-## التثبيت
+## الاستيراد المحلي
 
-<CodeTabs>
+بعد [استنساخ المستودع وتشغيله محليًا](/ui/docs/get-started)، استورد المكونات من الحزمة المشتركة داخل المشروع. لا تحتاج إلى سجل مكونات أو أمر تثبيت لكل مكوّن.
 
-<TabsList>
-  <TabsTab value="cli">سطر الأوامر</TabsTab>
-  <TabsTab value="manual">يدويًا</TabsTab>
-</TabsList>
-<TabsPanel value="cli">
-
-```bash
-npx shadcn@latest add @arabicui/progress
-```
-
-</TabsPanel>
-
-<TabsPanel value="manual">
-
-<Steps>
-
-<Step>ثبّت الحزم التالية:</Step>
-
-```bash
-npm install @base-ui/react
-```
-
-<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
-
-<ComponentSource name="progress" title="components/ui/progress.tsx" />
-
-<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
-
-</Steps>
-
-</TabsPanel>
-
-</CodeTabs>
+ملف المصدر: `packages/ui/src/components/progress.tsx`. مسار الاستيراد: `@coss/ui/components/progress`.
 
 ## الاستخدام
 
@@ -53,7 +21,7 @@ import {
   Progress,
   ProgressLabel,
   ProgressValue,
-} from "@/components/ui/progress"
+} from "@coss/ui/components/progress"
 ```
 
 ```tsx

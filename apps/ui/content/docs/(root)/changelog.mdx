@@ -11,28 +11,24 @@ description: "كسر التغييرات وأدلة الهجرة والتحديث
 
 يستخدم مظهر التبويبات الافتراضي الآن نفس حجم العنصر البصري مثل [الاختيار المقسّم](/ui/docs/components/segmented-control) نمط. الارتفاع الافتراضي هو أصغر قليلا من ذي قبل حتى يبقى المؤشر النشط أقحم متوازن بصريا بجانب زر من حجم المقابلة.
 
-تستورد علامات التبويب الآن خريطة حجمها و **`segmentedControlItemLayoutClassName`** من **`@arabicui/segmented-control`** مكتبة التسجيل. يغطي هذا الفصل فجوة الأيقونة المشتركة والحجم ومعالجة التعتيم. **`segmentedControlItemVariants`** ويشمل ذلك، و **`TabsTab`** يستخدم بدلا من تضمين نفس المرافق. **`@arabicui/tabs`** يعلن هذا على أنه تبعية التسجيل ، لذلك يقوم شادسي إن سطر الأوامر بتثبيته تلقائيًا مع تثبيت جديد أو تحديث يديره سطر الأوامر.
+تستورد علامات التبويب الآن خريطة حجمها و **`segmentedControlItemLayoutClassName`** من **`@coss/ui/lib/segmented-control`** مكتبة التسجيل. يغطي هذا الفصل فجوة الأيقونة المشتركة والحجم ومعالجة التعتيم. **`segmentedControlItemVariants`** ويشمل ذلك، و **`TabsTab`** يستخدم بدلا من تضمين نفس المرافق. **`@coss/ui/components/tabs`** يعلن هذا على أنه تبعية التسجيل ، لذلك يقوم شادسي إن سطر الأوامر بتثبيته تلقائيًا مع تثبيت جديد أو تحديث يديره سطر الأوامر.
 
 **الترحيل:**
 
 علامات التبويب الحالية لا تتطلب JSX أي تغييرات بسبب **`"default"`** يظل الحجم الافتراضي. إذا قمت باستبدال مكون علامات التبويب المحلية من خلال سطر الأوامر، فراجع أي تخصيصات محلية قبل قبول الكتابة فوقها:
 
-```bash
-npx shadcn@latest add @arabicui/tabs
-```
+استخدم الحزمة المحلية كما هو موضح في [دليل البدء](/ui/docs/get-started).
 
-إذا قمت بالتحديث **`tabs.tsx`** يدويًا ، قم بتثبيت المكتبة المشتركة أولاً ثم دمج أحدث تنفيذ لعلامات التبويب. يؤدي نسخ ملف علامات التبويب الجديد فقط دون هذه التبعية إلى استيراد لم يتم حله.
+عند تحديث التبويبات محليًا، حافظ على أدوات التصميم المشتركة في `packages/ui/src/lib/segmented-control.ts` واستخدم الاستيراد من الحزمة المحلية.
 
-```bash
-npx shadcn@latest add @arabicui/segmented-control
-```
+استخدم الحزمة المحلية كما هو موضح في [دليل البدء](/ui/docs/get-started).
 
 بعد التحديث ، قم بإزالة أدوات الارتفاع المحلي أو الحشو الأفقي من **`TabsList`** و **`TabsTab`** فقط عندما يتجاوزون عن غير قصد الجديد **`size`** واجهة برمجية. احتفظ بالتجاوزات المتعمدة الخاصة بالمنتج. إذا احتفظت بنسخة محلية من المكتبة أو علامات التبويب، فقم بدمجها أيضًا **`segmentedControlItemLayoutClassName`** لذلك تبقى الرموز محاذاة بصريا مع زر.
 
 **تعليمات الترحيل:**
 
 ```text
-حدّث مكوّن Tabs المحلي مع الحفاظ على تخصيصات مشروعك. ثبّت الاعتماد المشترك باستخدام `npx shadcn@latest add @arabicui/segmented-control`، ثم ادمج أحدث تنفيذ من @arabicui/tabs. يقبل TabsList الأحجام size="sm" | "default" | "lg" وينقل الحجم إلى TabsTab، ويمكن تحديد حجم مستقل لكل تبويب. استبدل أصناف الارتفاع والمسافات القديمة بالمساعد segmentedControlItemSizeClassNames، وأصناف الأيقونات بالمساعد segmentedControlItemLayoutClassName. لا تحتاج التبويبات الموجودة إلى خاصية size. راجع التخصيصات المحلية التي تتعارض مع الأحجام الجديدة، ثم افحص الأنواع والتنسيق وجميع الأحجام المستخدمة بصريًا.
+حدّث مكوّن Tabs المحلي مع الحفاظ على تخصيصات مشروعك. استورد الأدوات المشتركة من `@coss/ui/lib/segmented-control`، ثم ادمج أحدث تنفيذ من @coss/ui/components/tabs. يقبل TabsList الأحجام size="sm" | "default" | "lg" وينقل الحجم إلى TabsTab، ويمكن تحديد حجم مستقل لكل تبويب. استبدل أصناف الارتفاع والمسافات القديمة بالمساعد segmentedControlItemSizeClassNames، وأصناف الأيقونات بالمساعد segmentedControlItemLayoutClassName. لا تحتاج التبويبات الموجودة إلى خاصية size. راجع التخصيصات المحلية التي تتعارض مع الأحجام الجديدة، ثم افحص الأنواع والتنسيق وجميع الأحجام المستخدمة بصريًا.
 ```
 
 ## 31 يوليو 2026
@@ -55,7 +51,7 @@ npx shadcn@latest add @arabicui/segmented-control
 **تعليمات الترحيل:**
 
 ```text
-بعد تحديث @arabicui/scroll-area، لم يعد ScrollArea يطبّق overscroll-contain تلقائيًا. أضف overscrollContain إلى مناطق التمرير المتداخلة التي يجب أن تمنع انتقال التمرير إلى العنصر الأب، مثل النوافذ واللوحات والقوائم. تستخدم DialogPanel وSheetPanel وDrawerPanel وComboboxList وAutocompleteList وSidebarContent هذه الخاصية بالفعل؛ حدّث نسخها المحلية عند الحاجة.
+بعد تحديث @coss/ui/components/scroll-area، لم يعد ScrollArea يطبّق overscroll-contain تلقائيًا. أضف overscrollContain إلى مناطق التمرير المتداخلة التي يجب أن تمنع انتقال التمرير إلى العنصر الأب، مثل النوافذ واللوحات والقوائم. تستخدم DialogPanel وSheetPanel وDrawerPanel وComboboxList وAutocompleteList وSidebarContent هذه الخاصية بالفعل؛ حدّث نسخها المحلية عند الحاجة.
 ```
 
 ## 26 يوليو 2026
@@ -98,13 +94,11 @@ COSS UI/Arabic الآن أهداف **`@base-ui/react@1.6.0`**.
 
 ### قائمة السياق
 
-**`@arabicui/context-menu`** هو مكون تسجيل جديد لقوائم الإجراءات بالنقر بزر الماوس الأيمن والصحافة الطويلة المرسوية بالمؤشر. [قائمة السياق](/ui/docs/components/context-menu) مستندات للتثبيت والأمثلة.
+**`@coss/ui/components/context-menu`** هو مكون تسجيل جديد لقوائم الإجراءات بالنقر بزر الماوس الأيمن والصحافة الطويلة المرسوية بالمؤشر. [قائمة السياق](/ui/docs/components/context-menu) مستندات للتثبيت والأمثلة.
 
 **تثبيت:**
 
-```bash
-npx shadcn@latest add @arabicui/context-menu
-```
+استخدم الحزمة المحلية كما هو موضح في [دليل البدء](/ui/docs/get-started).
 
 لا توجد هجرة من كوس بدائي موجود - اختر المكان الذي تحتاج فيه إلى قوائم محفزة بالمؤشر بدلاً من (أو جنبًا إلى جنب) **`Menu`**.
 
@@ -125,7 +119,7 @@ npx shadcn@latest add @arabicui/context-menu
 +   MenuLinkItem,
     MenuPopup,
     MenuTrigger,
-  } from "@/components/ui/menu"
+  } from "@coss/ui/components/menu"
 ```
 
 ```diff
@@ -151,7 +145,7 @@ npx shadcn@latest add @arabicui/context-menu
 **تعليمات الترحيل:**
 
 ```text
-تُصدّر المكتبة MenuLinkItem وContextMenuLinkItem لعناصر التنقل. استبدل اسم المكوّن MenuItem أو ContextMenuItem بنظيره الخاص بالروابط، مع إبقاء render={<Link href="..." />} عند استخدام موجّه مثل Next.js. استخدم href مباشرة مع روابط <a> العادية. أبقِ MenuItem وContextMenuItem للإجراءات التي تستخدم onClick. راجع توثيق قائمة السياق للحزمة @arabicui/context-menu.
+تُصدّر المكتبة MenuLinkItem وContextMenuLinkItem لعناصر التنقل. استبدل اسم المكوّن MenuItem أو ContextMenuItem بنظيره الخاص بالروابط، مع إبقاء render={<Link href="..." />} عند استخدام موجّه مثل Next.js. استخدم href مباشرة مع روابط <a> العادية. أبقِ MenuItem وContextMenuItem للإجراءات التي تستخدم onClick. راجع توثيق قائمة السياق للحزمة @coss/ui/components/context-menu.
 ```
 
 ## 29 مايو 2026
@@ -176,12 +170,12 @@ npx shadcn@latest add @arabicui/context-menu
   </ScrollArea>
 ```
 
-**`SidebarContent`** من **`@arabicui/sidebar`** يمر بالفعل **`fill`**—تحديث منطقتك **`sidebar.tsx`** نسخ إذا كنت بائع المكون.
+**`SidebarContent`** من **`@coss/ui/components/sidebar`** يمر بالفعل **`fill`**—تحديث منطقتك **`sidebar.tsx`** نسخ إذا كنت بائع المكون.
 
 **تعليمات الترحيل:**
 
 ```text
-أصبحت الخاصية fill اختيارية في ScrollArea، وقيمتها الافتراضية false. أضفها فقط عندما يجب أن يمتد عمود المحتوى الداخلي إلى ارتفاع منطقة العرض، مثل تذييل مثبت أسفل شريط جانبي. استخدم flex-1 min-h-0 على ScrollArea وh-full flex-col على الحاوية الداخلية. يستخدم SidebarContent في @arabicui/sidebar هذه الخاصية بالفعل.
+أصبحت الخاصية fill اختيارية في ScrollArea، وقيمتها الافتراضية false. أضفها فقط عندما يجب أن يمتد عمود المحتوى الداخلي إلى ارتفاع منطقة العرض، مثل تذييل مثبت أسفل شريط جانبي. استخدم flex-1 min-h-0 على ScrollArea وh-full flex-col على الحاوية الداخلية. يستخدم SidebarContent في @coss/ui/components/sidebar هذه الخاصية بالفعل.
 ```
 
 ## أبريل 17, 2026
@@ -211,24 +205,21 @@ npx shadcn@latest add @arabicui/context-menu
 
 ### رمز التحقق
 
-المكوّن **`input-otp.tsx`** تمت إزالة عنصر التسجيل لصالح **`otp-field.tsx`** (`@arabicui/otp-field`)، الذي يلتف قاعدة واجهة المستخدم رمز تحقق الحقل. انظر [رمز التحقق](/ui/docs/components/otp-field) الوثائق و [دليل الهجرة](/ui/docs/radix-migration#رمز-التحقق) للحصول على تفاصيل واجهة برمجية.
+المكوّن **`input-otp.tsx`** تمت إزالة عنصر التسجيل لصالح **`otp-field.tsx`** (`@coss/ui/components/otp-field`)، الذي يلتف قاعدة واجهة المستخدم رمز تحقق الحقل. انظر [رمز التحقق](/ui/docs/components/otp-field) الوثائق و [دليل الهجرة](/ui/docs/radix-migration#رمز-التحقق) للحصول على تفاصيل واجهة برمجية.
 
 **الترحيل:**
 
-```diff
-- npx shadcn@latest add @arabicui/input-otp
-+ npx shadcn@latest add @arabicui/otp-field
-```
+استخدم الحزمة المحلية كما هو موضح في [دليل البدء](/ui/docs/get-started).
 
 ```diff
 - import { ... } from "@/components/ui/input-otp"
-+ import { ... } from "@/components/ui/otp-field"
++ import { ... } from "@coss/ui/components/otp-field"
 ```
 
 **تعليمات الترحيل:**
 
 ```text
-استبدل @arabicui/input-otp وcomponents/ui/input-otp.tsx بالمكوّن @arabicui/otp-field وcomponents/ui/otp-field.tsx. استخدم OTPField وOTPFieldInput وOTPFieldSeparator، وحدّد length على المكوّن الجذري. احذف حزمة input-otp القديمة إذا كانت موجودة.
+استبدل @coss/ui/components/input-otp وcomponents/ui/input-otp.tsx بالمكوّن @coss/ui/components/otp-field وcomponents/ui/otp-field.tsx. استخدم OTPField وOTPFieldInput وOTPFieldSeparator، وحدّد length على المكوّن الجذري. احذف حزمة input-otp القديمة إذا كانت موجودة.
 ```
 
 ## أبريل 12, 2026
@@ -260,8 +251,8 @@ npx shadcn@latest add @arabicui/context-menu
 **الترحيل:**
 
 ```diff
-- import { Toggle, ToggleGroup } from "@/components/ui/toggle-group"
-+ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+- import { Toggle, ToggleGroup } from "@coss/ui/components/toggle-group"
++ import { ToggleGroup, ToggleGroupItem } from "@coss/ui/components/toggle-group"
 ```
 
 ```diff

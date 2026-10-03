@@ -8,46 +8,11 @@ links:
 
 <ComponentPreview name="p-number-field-1" />
 
-## التثبيت
+## الاستيراد المحلي
 
-<CodeTabs>
+بعد [استنساخ المستودع وتشغيله محليًا](/ui/docs/get-started)، استورد المكونات من الحزمة المشتركة داخل المشروع. لا تحتاج إلى سجل مكونات أو أمر تثبيت لكل مكوّن.
 
-<TabsList>
-  <TabsTab value="cli">سطر الأوامر</TabsTab>
-  <TabsTab value="manual">يدويًا</TabsTab>
-</TabsList>
-<TabsPanel value="cli">
-
-```bash
-npx shadcn@latest add @arabicui/number-field
-```
-
-</TabsPanel>
-
-<TabsPanel value="manual">
-
-<Steps>
-
-<Step>ثبّت الحزم التالية:</Step>
-
-```bash
-npm install @base-ui/react
-```
-
-<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
-
-<ComponentSource
-  name="number-field"
-  title="components/ui/number-field.tsx"
-/>
-
-<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
-
-</Steps>
-
-</TabsPanel>
-
-</CodeTabs>
+ملف المصدر: `packages/ui/src/components/number-field.tsx`. مسار الاستيراد: `@coss/ui/components/number-field`.
 
 ## الاستخدام
 
@@ -59,7 +24,7 @@ import {
   NumberFieldIncrement,
   NumberFieldInput,
   NumberFieldScrubArea,
-} from "@/components/ui/number-field"
+} from "@coss/ui/components/number-field"
 ```
 
 ```tsx

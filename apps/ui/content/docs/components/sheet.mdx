@@ -8,43 +8,11 @@ links:
 
 <ComponentPreview name="p-sheet-1" />
 
-## التثبيت
+## الاستيراد المحلي
 
-<CodeTabs>
+بعد [استنساخ المستودع وتشغيله محليًا](/ui/docs/get-started)، استورد المكونات من الحزمة المشتركة داخل المشروع. لا تحتاج إلى سجل مكونات أو أمر تثبيت لكل مكوّن.
 
-<TabsList>
-  <TabsTab value="cli">سطر الأوامر</TabsTab>
-  <TabsTab value="manual">يدويًا</TabsTab>
-</TabsList>
-<TabsPanel value="cli">
-
-```bash
-npx shadcn@latest add @arabicui/sheet
-```
-
-</TabsPanel>
-
-<TabsPanel value="manual">
-
-<Steps>
-
-<Step>ثبّت الحزم التالية:</Step>
-
-```bash
-npm install @base-ui/react
-```
-
-<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
-
-<ComponentSource name="sheet" title="components/ui/sheet.tsx" />
-
-<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
-
-</Steps>
-
-</TabsPanel>
-
-</CodeTabs>
+ملف المصدر: `packages/ui/src/components/sheet.tsx`. مسار الاستيراد: `@coss/ui/components/sheet`.
 
 ## الاستخدام
 
@@ -59,7 +27,7 @@ import {
   SheetPopup,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
+} from "@coss/ui/components/sheet"
 ```
 
 ```tsx

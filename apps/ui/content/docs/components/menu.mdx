@@ -8,59 +8,11 @@ links:
 
 <ComponentPreview name="p-menu-1" />
 
-## التثبيت
+## الاستيراد المحلي
 
-<CodeTabs>
+بعد [استنساخ المستودع وتشغيله محليًا](/ui/docs/get-started)، استورد المكونات من الحزمة المشتركة داخل المشروع. لا تحتاج إلى سجل مكونات أو أمر تثبيت لكل مكوّن.
 
-<TabsList>
-  <TabsTab value="cli">سطر الأوامر</TabsTab>
-  <TabsTab value="manual">يدويًا</TabsTab>
-</TabsList>
-<TabsPanel value="cli">
-
-```bash
-npx shadcn@latest add @arabicui/menu
-```
-
-</TabsPanel>
-
-<TabsPanel value="manual">
-
-<Steps>
-
-<Step>ثبّت الحزم التالية:</Step>
-
-```bash
-npm install @base-ui/react
-```
-
-<Step>استيراد المتغيرات التالية إلى ملف تنسيق الخاص بك</Step>
-
-```css
-@theme inline {
-  --color-destructive-foreground: var(--destructive-foreground);
-}
-
-:root {
-  --destructive-foreground: var(--color-red-700);
-}
-
-.dark {
-  --destructive-foreground: var(--color-red-400);
-}
-```
-
-<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
-
-<ComponentSource name="menu" title="components/ui/menu.tsx" />
-
-<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
-
-</Steps>
-
-</TabsPanel>
-
-</CodeTabs>
+ملف المصدر: `packages/ui/src/components/menu.tsx`. مسار الاستيراد: `@coss/ui/components/menu`.
 
 ## الاستخدام
 
@@ -80,7 +32,7 @@ import {
   MenuSubPopup,
   MenuSubTrigger,
   MenuTrigger,
-} from "@/components/ui/menu"
+} from "@coss/ui/components/menu"
 ```
 
 ```tsx

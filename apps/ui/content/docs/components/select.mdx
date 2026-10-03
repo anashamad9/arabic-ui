@@ -8,43 +8,11 @@ links:
 
 <ComponentPreview name="p-select-1" />
 
-## التثبيت
+## الاستيراد المحلي
 
-<CodeTabs>
+بعد [استنساخ المستودع وتشغيله محليًا](/ui/docs/get-started)، استورد المكونات من الحزمة المشتركة داخل المشروع. لا تحتاج إلى سجل مكونات أو أمر تثبيت لكل مكوّن.
 
-<TabsList>
-  <TabsTab value="cli">سطر الأوامر</TabsTab>
-  <TabsTab value="manual">يدويًا</TabsTab>
-</TabsList>
-<TabsPanel value="cli">
-
-```bash
-npx shadcn@latest add @arabicui/select
-```
-
-</TabsPanel>
-
-<TabsPanel value="manual">
-
-<Steps>
-
-<Step>ثبّت الحزم التالية:</Step>
-
-```bash
-npm install @base-ui/react
-```
-
-<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
-
-<ComponentSource name="select" title="components/ui/select.tsx" />
-
-<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
-
-</Steps>
-
-</TabsPanel>
-
-</CodeTabs>
+ملف المصدر: `packages/ui/src/components/select.tsx`. مسار الاستيراد: `@coss/ui/components/select`.
 
 ## الاستخدام
 
@@ -56,7 +24,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@coss/ui/components/select"
 ```
 
 ```tsx
@@ -139,7 +107,7 @@ const items = [
 | `size` | `"sm" \| "default" \| "lg"` | `"default"` | يتحكم في حجم الزر                 |
 
 ```tsx
-import { SelectButton } from "@/components/ui/select"
+import { SelectButton } from "@coss/ui/components/select"
 ```
 
 ```tsx

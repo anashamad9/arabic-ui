@@ -1,142 +1,98 @@
 ---
 title: "ابدأ الآن"
-description: "أضف المكونات العربية إلى مشروعك، واضبط الاتجاه والخط."
+description: "استنسخ المستودع، شغله محليًا، واستورد المكونات من الحزمة المشتركة."
 ---
 
-توفّر **COSS UI/Arabic** مكونات عربية جاهزة للنسخ والتخصيص. تعتمد على مكتبة بيس وتيلويند، وتراعي سهولة الوصول والتنقل بلوحة المفاتيح.
+**COSS UI/Arabic** تعريب لمكتبة coss UI بواسطة أنس حمد. الاستخدام المعتمد هو استنساخ هذا المستودع وتشغيله محليًا، ثم استيراد المكونات من ملفات الحزمة المشتركة.
 
-## المتطلبات الأساسية
+## استنساخ المستودع
 
-ابدأ بمشروع رياكت يدعم تيلويند بالإصدار الرابع. شغّل هذه المكتبة محليًا ليكون سجل المكونات العربية متاحًا أثناء التثبيت.
-
-## إضافة مكونات
-
-يمكنك تثبيت المكونات عبر سطر الأوامر، أو نسخ شيفرتها يدويًا من تبويب **الكود**.
-
-### مع سطر الأوامر
-
-أضف السجل المحلي إلى ملف `components.json` في مشروعك:
-
-```json
-{
-  "registries": {
-    "@arabicui": "http://localhost:4000/ui/r/{name}.json"
-  }
-}
-```
-
-ادمج هذا الجزء مع الإعدادات الموجودة في الملف. ثم أضف مكوّنًا:
+تحتاج إلى Git وBun بالإصدار `1.3.1` أو أحدث.
 
 ```bash
-npx shadcn@latest add @arabicui/button
+git clone https://github.com/anashamad9/arabic-ui.git
+cd arabic-ui
+bun install
+bun run dev:local
 ```
 
-لإضافة جميع المكونات الأساسية:
+افتح التوثيق والأمثلة على `http://localhost:4000/ui`. تحوّلك البوابة المحلية على `http://localhost:3001` إلى المكتبة نفسها.
 
-```bash
-npx shadcn@latest add @arabicui/ui
-```
+## الاستيراد المحلي
 
-ولإضافة الألوان والأنماط المشتركة:
+المكونات في `packages/ui/src/components`، والخطافات في `packages/ui/src/hooks`، والأدوات المشتركة في `packages/ui/src/lib`. يربط Bun هذه الملفات عبر حزمة مساحة العمل المحلية `@coss/ui`؛ ليست حزمة منشورة تحتاج إلى تنزيلها منفصلة.
 
-```bash
-npx shadcn@latest add @arabicui/style
-```
-
-يستخدم هذا السجل ملفات النسخة العربية الموجودة في مشروعك المحلي. يجب أن يبقى خادم التوثيق على المنفذ `4000` قيد التشغيل أثناء التثبيت.
-
-### يدويا
-
-1. اختر المكوّن من [التوثيق](/ui/docs) أو [الأمثلة](/ui/particles).
-2. افتح تبويب **الكود** وانسخ الملف إلى مشروعك.
-3. ثبّت الحزم المدرجة في صفحة المكوّن.
-4. عدّل مسارات الاستيراد لتطابق بنية مشروعك.
-5. أضف المتغيرات والأنماط المشتركة الموضّحة في [دليل التنسيق](/ui/docs/styling).
-
-## الاتجاه العربي
-
-ضبط اتجاه المستند وحده لا يكفي لتحديد سلوك الأسهم والتنقل بلوحة المفاتيح. أضف مزوّد الاتجاه حول المكونات:
+استخدم المكونات مباشرة داخل تطبيقات المستودع:
 
 ```tsx
 "use client";
 
-import { DirectionProvider } from "@base-ui/react/direction-provider";
+import { Button } from "@coss/ui/components/button";
+import { Input } from "@coss/ui/components/input";
 
-export function ArabicProvider({ children }: { children: React.ReactNode }) {
-  return <DirectionProvider direction="rtl">{children}</DirectionProvider>;
+export function LocalExample() {
+  return (
+    <div className="flex items-center gap-2">
+      <Input aria-label="الاسم" placeholder="اكتب اسمك" />
+      <Button>حفظ</Button>
+    </div>
+  );
 }
 ```
 
-واضبط لغة المستند واتجاهه في التخطيط الرئيسي:
+يمكنك تعديل صفحات `apps/ui/app` أو إنشاء صفحة جديدة فيها وتجربة المكونات. لا تحتاج إلى تثبيت كل مكوّن على حدة أو إلى خادم سجل مكونات؛ يعمل الاستيراد المحلي من الملفات حتى عندما تكون صفحة التوثيق مغلقة.
 
-```tsx
-<html lang="ar" dir="rtl">
-  <body>
-    <ArabicProvider>{children}</ArabicProvider>
-  </body>
-</html>
-```
+## الأنماط والخط
 
-استخدم خصائص المسافات والمحاذاة المنطقية مثل `ms` و`me` و`ps` و`pe` و`text-start` عند تخصيص المكونات. اعزل الكود والأوامر عن اتجاه النص العربي:
+يستخدم التطبيق الأنماط المشتركة من الحزمة المحلية:
 
 ```css
-pre, code, kbd {
-  direction: ltr;
-  unicode-bidi: isolate;
+@import "@coss/ui/globals.css";
+```
+
+خط ثمانية مضمن في المستودع ويُحمّل محليًا. إعدادات التطبيق والخط موجودة مسبقًا في `apps/ui/app/layout.tsx`.
+
+```tsx
+import { fontSans, fontMono } from "@coss/ui/fonts";
+```
+
+## الاتجاه العربي
+
+تهيّئ تطبيقات المستودع `lang="ar"` و`dir="rtl"` ومزوّد الاتجاه مسبقًا. عند إضافة تخطيط جديد، استخدم مزوّد الثيم والاتجاه المشترك:
+
+```tsx
+import { ThemeProvider } from "@coss/ui/shared/theme-provider";
+
+export function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="ar" dir="rtl">
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
+    </html>
+  );
 }
 ```
 
-## التصميم
+استخدم خصائص المسافات والمحاذاة المنطقية مثل `ms` و`me` و`ps` و`pe` و`text-start` عند تخصيص المكونات.
 
-تُعرّف الألوان والحدود وحالات التحميل والتفاعل بمتغيرات مشتركة. تستطيع تعديلها بما يناسب مشروعك. تشمل المتغيرات الإضافية ألوان المعلومات والنجاح والتحذير والأخطاء.
+## استخدام الحزمة في تطبيق آخر
 
-## الخطوط
+لإضافة تطبيق داخل مساحة العمل، أضف `"@coss/ui": "workspace:*"` إلى تبعياته وشغّل `bun install` من جذر المستودع. في تطبيق Next.js أضف `transpilePackages: ["@coss/ui"]` إلى إعداداته، واستورد الأنماط والخط ومزوّد الاتجاه كما هو موضح أعلاه. راجع إعدادات `apps/ui` كنموذج جاهز.
 
-تستخدم الواجهة **خط ثمانية** المحلي. انسخ ملفات الأوزان التي تحتاجها من `thmanyahsans/woff2` إلى مجلد `public/fonts` في مشروعك. تتوفر أيضًا [نسخة الخط العادي](/ui/fonts/thmanyahsans-Regular.woff2) و[الخط العريض](/ui/fonts/thmanyahsans-Bold.woff2) للتنزيل من خادم التوثيق المحلي.
+إذا نقلت الحزمة إلى مشروع آخر، انسخ مجلد `packages/ui` كاملًا مع ملفات الخط والتبعيات، وأدرجه ضمن مساحة العمل المحلية. احتفظ بملفات الترخيص ونسبة المصدر إلى coss UI.
 
-```tsx
-import localFont from "next/font/local";
+## التحقق
 
-const thmanyah = localFont({
-  display: "swap",
-  src: [
-    { path: "../public/fonts/thmanyahsans-Regular.woff2", weight: "400" },
-    { path: "../public/fonts/thmanyahsans-Bold.woff2", weight: "700" },
-  ],
-  variable: "--font-sans",
-});
+```bash
+bun run typecheck
 ```
 
-عدّل المسارات وفق مكان ملف التخطيط. ثم اربط المتغير بالجسم والعناوين:
+لإنشاء نسخة محلية مبنية وتشغيلها:
 
-```tsx
-<body className={`${thmanyah.variable} font-sans`}>{children}</body>
-```
-
-```css
-@theme inline {
-  --font-sans: var(--font-sans);
-  --font-heading: var(--font-sans);
-}
-```
-
-توفّر الحزمة المشتركة داخل هذا المشروع الصادرات `fontSans` و`fontHeading` من `@coss/ui/fonts`. يحتاج المشروع المستقل إلى نسخ ملفات الخط كما هو موضّح أعلاه؛ إعدادات الخط في السجل تضبط أسماء العائلات ولا تنقل الملفات الثنائية تلقائيًا.
-
-## الصادرات البدائية
-
-تعيد المكونات تصدير عناصرها البدائية عند الحاجة إلى تخصيص أعمق. استخدم المكونات المنسّقة افتراضيًا، وانتقل إلى العناصر البدائية عند بناء تركيب خاص.
-
-```tsx
-import { Slider, SliderValue, SliderPrimitive } from "@coss/ui/components/slider";
-```
-
-## قاعدة واجهة المستخدم إعادة التصدير
-
-في التطبيقات الموجودة داخل هذا المشروع يمكنك استيراد أدوات بيس من الحزمة المشتركة:
-
-```tsx
-import { DirectionProvider } from "@coss/ui/base-ui/direction-provider";
-import { useRender } from "@coss/ui/base-ui/use-render";
+```bash
+bun run build
+bun run start:local
 ```
 
 ## الخطوة التالية

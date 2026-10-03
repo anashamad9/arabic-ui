@@ -11,7 +11,6 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 import type { ComponentProps } from "react";
 import * as React from "react";
-import { useCopyToClipboard } from "@/registry/default/hooks/use-copy-to-clipboard";
 import { Button } from "@/registry/default/ui/button";
 import {
   Command,
@@ -28,7 +27,6 @@ import {
   CommandList,
 } from "@/registry/default/ui/command";
 import { Kbd, KbdGroup } from "@/registry/default/ui/kbd";
-import { useConfig } from "@/hooks/use-config";
 import { useIsMac } from "@/hooks/use-is-mac";
 import type { source } from "@/lib/source";
 
@@ -54,14 +52,7 @@ export function CommandMenu({
   navItems?: { href: string; label: string }[];
 }) {
   const isMac = useIsMac();
-  const [config] = useConfig();
-  const { copyToClipboard } = useCopyToClipboard();
   const [open, setOpen] = React.useState(false);
-  const [selectedType, setSelectedType] = React.useState<
-    "page" | "component" | null
-  >(null);
-  const [copyPayload, setCopyPayload] = React.useState("");
-  const packageManager = config.packageManager || "pnpm";
 
   // Convert tree structure to grouped items
   const groupedItems = React.useMemo<PageGroup[]>(() => {
@@ -111,36 +102,6 @@ export function CommandMenu({
     return groups;
   }, [tree, navItems]);
 
-  const handlePageHighlight = React.useCallback(
-    (item: PageItem) => {
-      if (item.isComponent) {
-        const componentName = item.url.split("/").pop();
-        setSelectedType("component");
-        const registryItem = `@arabicui/${componentName}`;
-        let cmd: string;
-        switch (packageManager) {
-          case "pnpm":
-            cmd = `pnpm dlx shadcn@latest add ${registryItem}`;
-            break;
-          case "bun":
-            cmd = `bunx --bun shadcn@latest add ${registryItem}`;
-            break;
-          case "yarn":
-            cmd = `yarn dlx shadcn@latest add ${registryItem}`;
-            break;
-          default:
-            cmd = `npx shadcn@latest add ${registryItem}`;
-        }
-
-        setCopyPayload(cmd);
-      } else {
-        setSelectedType("page");
-        setCopyPayload("");
-      }
-    },
-    [packageManager],
-  );
-
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || e.key === "/") {
@@ -156,17 +117,11 @@ export function CommandMenu({
         e.preventDefault();
         setOpen((open) => !open);
       }
-
-      if (e.key === "c" && (e.metaKey || e.ctrlKey)) {
-        if (selectedType === "page" || selectedType === "component") {
-          copyToClipboard(copyPayload);
-        }
-      }
     };
 
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
-  }, [copyPayload, selectedType, copyToClipboard]);
+  }, []);
 
   return (
     <CommandDialog onOpenChange={setOpen} open={open} {...props}>
@@ -178,15 +133,7 @@ export function CommandMenu({
         </KbdGroup>
       </CommandDialogTrigger>
       <CommandDialogPopup>
-        <Command
-          items={groupedItems}
-          onItemHighlighted={(highlightedValue) => {
-            const item = highlightedValue as PageItem | null;
-            if (item) {
-              handlePageHighlight(item);
-            }
-          }}
-        >
+        <Command items={groupedItems}>
           <CommandInput placeholder="ابحث في التوثيق…" />
           <CommandPanel>
             <CommandEmpty>لم يتم العثور على نتائج.</CommandEmpty>
@@ -226,15 +173,6 @@ export function CommandMenu({
                 <HugeiconsIcon icon={ArrowTurnBackwardIcon} strokeWidth={2} />
               </Kbd>
             </div>
-            {copyPayload && (
-              <div className="flex min-w-0 items-center gap-2">
-                <span className="truncate font-mono">{copyPayload}</span>
-                <KbdGroup>
-                  <Kbd>{isMac ? "⌘" : "Ctrl"}</Kbd>
-                  <Kbd>C</Kbd>
-                </KbdGroup>
-              </div>
-            )}
           </CommandFooter>
         </Command>
       </CommandDialogPopup>

@@ -5,44 +5,18 @@ description: "انسخ النص إلى الحافظة مع حالة \"نسخ\" �
 
 خطاف رياكت يلف واجهة برمجة تطبيقات الحافظة مع مهلة مضمنة لإعادة تعيين الحالة المنسوخة. مفيد لأزرار النسخ التي تعرض ملاحظات تأكيد موجزة.
 
-## التثبيت
+## الاستيراد المحلي
 
-<CodeTabs>
+بعد [استنساخ المستودع وتشغيله محليًا](/ui/docs/get-started)، استورد المكونات من الحزمة المشتركة داخل المشروع. لا تحتاج إلى سجل مكونات أو أمر تثبيت لكل مكوّن.
 
-<TabsList>
-  <TabsTab value="cli">سطر الأوامر</TabsTab>
-  <TabsTab value="manual">يدويًا</TabsTab>
-</TabsList>
-<TabsPanel value="cli">
-
-```bash
-npx shadcn@latest add @arabicui/use-copy-to-clipboard
-```
-
-</TabsPanel>
-
-<TabsPanel value="manual">
-
-<Steps>
-
-<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
-
-<ComponentSource name="use-copy-to-clipboard" title="hooks/use-copy-to-clipboard.ts" />
-
-<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
-
-</Steps>
-
-</TabsPanel>
-
-</CodeTabs>
+ملف المصدر: `packages/ui/src/hooks/use-copy-to-clipboard.ts`. مسار الاستيراد: `@coss/ui/hooks/use-copy-to-clipboard`.
 
 ## الاستخدام
 
 ### الأساسية
 
 ```tsx
-import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { useCopyToClipboard } from "@coss/ui/hooks/use-copy-to-clipboard";
 
 function CopyButton({ text }: { text: string }) {
   const { copyToClipboard, isCopied } = useCopyToClipboard();
@@ -81,8 +55,8 @@ const { copyToClipboard, isCopied } = useCopyToClipboard({
 
 ```tsx
 import { CheckIcon, CopyIcon } from "lucide-react";
-import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
-import { Button } from "@/components/ui/button";
+import { useCopyToClipboard } from "@coss/ui/hooks/use-copy-to-clipboard";
+import { Button } from "@coss/ui/components/button";
 
 function CopyButton({ value }: { value: string }) {
   const { copyToClipboard, isCopied } = useCopyToClipboard();

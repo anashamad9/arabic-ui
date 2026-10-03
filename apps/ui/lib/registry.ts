@@ -121,13 +121,13 @@ export function fixImport(content: string) {
       return `@/components/${component}`;
     }
     if (type.endsWith("ui")) {
-      return `@/components/ui/${component}`;
+      return `@coss/ui/components/${component}`;
     }
     if (type.endsWith("hooks")) {
-      return `@/hooks/${component}`;
+      return `@coss/ui/hooks/${component}`;
     }
     if (type.endsWith("lib")) {
-      return `@/lib/${component}`;
+      return `@coss/ui/lib/${component}`;
     }
 
     return match;

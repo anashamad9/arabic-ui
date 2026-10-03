@@ -5,37 +5,11 @@ description: "حاوية محتوى لتجميع المعلومات ذات ال�
 
 <ComponentPreview name="p-card-1" />
 
-## التثبيت
+## الاستيراد المحلي
 
-<CodeTabs>
+بعد [استنساخ المستودع وتشغيله محليًا](/ui/docs/get-started)، استورد المكونات من الحزمة المشتركة داخل المشروع. لا تحتاج إلى سجل مكونات أو أمر تثبيت لكل مكوّن.
 
-<TabsList>
-  <TabsTab value="cli">سطر الأوامر</TabsTab>
-  <TabsTab value="manual">يدويًا</TabsTab>
-</TabsList>
-<TabsPanel value="cli">
-
-```bash
-npx shadcn@latest add @arabicui/card
-```
-
-</TabsPanel>
-
-<TabsPanel value="manual">
-
-<Steps>
-
-<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
-
-<ComponentSource name="card" title="components/ui/card.tsx" />
-
-<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
-
-</Steps>
-
-</TabsPanel>
-
-</CodeTabs>
+ملف المصدر: `packages/ui/src/components/card.tsx`. مسار الاستيراد: `@coss/ui/components/card`.
 
 ## الاستخدام
 
@@ -47,7 +21,7 @@ import {
   CardHeader,
   CardPanel,
   CardTitle,
-} from "@/components/ui/card"
+} from "@coss/ui/components/card"
 ```
 
 ```tsx
@@ -73,8 +47,8 @@ import {
   CardFrameHeader,
   CardFrameTitle,
   CardPanel,
-} from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+} from "@coss/ui/components/card"
+import { Button } from "@coss/ui/components/button"
 import { PlusIcon } from "lucide-react"
 
 <CardFrame>
@@ -98,7 +72,7 @@ import { PlusIcon } from "lucide-react"
 
 ### إطار البطاقة مع طاولة
 
-بالنسبة للقوائم أو شبكات البيانات، تصيير a [الجدول](/ui/docs/components/table) مع `variant="card"` داخل داخل الداخل `CardFrame` بحيث تتطابق الشبكة مع حدود الإطار ونصف القطر. راجع مثال إطار البطاقة في مستندات الجدول. إضافة `@arabicui/table` إذا لم تكن موجودة بالفعل في المشروع.
+بالنسبة للقوائم أو شبكات البيانات، تصيير a [الجدول](/ui/docs/components/table) مع `variant="card"` داخل داخل الداخل `CardFrame` بحيث تتطابق الشبكة مع حدود الإطار ونصف القطر. راجع مثال إطار البطاقة في مستندات الجدول. استورد الجدول من `@coss/ui/components/table`.
 
 ## مرجع الواجهة البرمجية
 

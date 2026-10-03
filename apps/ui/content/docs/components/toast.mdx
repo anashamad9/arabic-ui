@@ -8,106 +8,18 @@ links:
 
 <ComponentPreview name="p-toast-1" />
 
-## التثبيت
+## الاستيراد المحلي
 
-<CodeTabs>
+بعد [استنساخ المستودع وتشغيله محليًا](/ui/docs/get-started)، استورد المكونات من الحزمة المشتركة داخل المشروع. لا تحتاج إلى سجل مكونات أو أمر تثبيت لكل مكوّن.
 
-<TabsList>
-  <TabsTab value="cli">سطر الأوامر</TabsTab>
-  <TabsTab value="manual">يدويًا</TabsTab>
-</TabsList>
-<TabsPanel value="cli">
-
-```bash
-npx shadcn@latest add @arabicui/toast
-```
-
-<Step>أضف `ToastProvider` و `AnchoredToastProvider` إلى تطبيقك.</Step>
-
-<span data-lib="base-ui">
-```tsx title="app/layout.tsx"
-// [!code word:import { AnchoredToastProvider, ToastProvider } from "@/components/ui/toast"]
-// [!code word:<ToastProvider>]
-// [!code word:<AnchoredToastProvider>]
-// [!code word:</AnchoredToastProvider>]
-// [!code word:</ToastProvider>]
-import { AnchoredToastProvider, ToastProvider } from "@/components/ui/toast"
-
-export default function RootLayout({ children }) {
-  return (
-    <html lang="ar" dir="rtl">
-      <head />
-      <body>
-        <ToastProvider>
-          <AnchoredToastProvider>
-            <main>{children}</main>
-          </AnchoredToastProvider>
-        </ToastProvider>
-      </body>
-    </html>
-  )
-}
-```
-</span>
-
-</TabsPanel>
-
-<TabsPanel value="manual">
-
-<Steps>
-
-<Step>ثبّت الحزم التالية:</Step>
-
-```bash
-npm install @base-ui/react
-```
-
-<Step>انسخ الكود التالية والصقها في مشروعك.</Step>
-
-<ComponentSource name="toast" title="components/ui/toast.tsx" />
-
-<Step>عدّل مسارات الاستيراد لتطابق بنية مشروعك.</Step>
-
-<Step>أضف `ToastProvider` و `AnchoredToastProvider` إلى تطبيقك.</Step>
-
-<span data-lib="base-ui">
-```tsx title="app/layout.tsx"
-// [!code word:import { AnchoredToastProvider, ToastProvider } from "@/components/ui/toast"]
-// [!code word:<ToastProvider>]
-// [!code word:<AnchoredToastProvider>]
-// [!code word:</AnchoredToastProvider>]
-// [!code word:</ToastProvider>]
-import { AnchoredToastProvider, ToastProvider } from "@/components/ui/toast"
-
-export default function RootLayout({ children }) {
-  return (
-    <html lang="ar" dir="rtl">
-      <head />
-      <body>
-        <ToastProvider>
-          <AnchoredToastProvider>
-            <main>{children}</main>
-          </AnchoredToastProvider>
-        </ToastProvider>
-      </body>
-    </html>
-  )
-}
-```
-</span>
-
-</Steps>
-
-</TabsPanel>
-
-</CodeTabs>
+ملف المصدر: `packages/ui/src/components/toast.tsx`. مسار الاستيراد: `@coss/ui/components/toast`.
 
 ## الاستخدام
 
 ### إشعار مكدس
 
 ```tsx
-import { toastManager } from "@/components/ui/toast"
+import { toastManager } from "@coss/ui/components/toast"
 ```
 
 ```tsx
